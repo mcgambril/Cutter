@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="PublishConfigData" serverName="MCG_Abyss_Serve">
+    <serverData>
+      <paths name="MCG_Abyss_Serve">
+        <serverdata>
+          <mappings>
+            <mapping local="$PROJECT_DIR$" web="Cutter" />
+          </mappings>
+        </serverdata>
+      </paths>
+    </serverData>
+  </component>
+</project>
