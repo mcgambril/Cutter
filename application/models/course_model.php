@@ -4,6 +4,7 @@
  * User: Matthew
  * Date: 7/16/2015
  * Time: 9:50 PM
+ * Cutter/application/models/course_model.php
  */
 
 class Course_model extends CI_Model {
@@ -24,6 +25,9 @@ class Course_model extends CI_Model {
         //$this->db->select('name, slope');
         $query = $this->db->get('course');
         return $query->result();
+    }
 
+    public function test_entry($data) {
+        $this->db->insert('course', $data);
     }
 }
