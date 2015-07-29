@@ -12,7 +12,7 @@
 <link rel="stylesheet" href="<?php echo base_url("assets/css/bootstrap.css"); ?>" />
 
 <head>
-<title>Cutter Home</title>
+    <title>Cutter</title>
 </head>
 
 <script type="text/javascript" src="<?php echo base_url("assets/js/jQuery-1.11.3.js"); ?>"></script>
@@ -30,13 +30,50 @@
         <div class="container-fluid">
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 <ul class="nav navbar-nav">
+                    <li><a href="#">Home</a></li>
                     <li class="dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Dropdown <span class="caret"></span></a>
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Admin<span class="caret"></span></a>
                         <ul class="dropdown-menu">
-                            <li><a href="#">Action</a></li>
+                            <li><a href="#">Login</a></li>
+                        </ul>
+                    </li>
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Score<span class="caret"></span></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="<?php echo base_url("application/views/score_view.php"); ?>">Score - Home</a></li>
+                            <li><a href="#">Score - Post</a></li>
+                            <li><a href="#">Score - Edit</a></li>
+                        </ul>
+                    </li>
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Player<span class="caret"></span></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="#">Player - Home</a></li>
+                            <li><a href="#">Player - Add</a></li>
+                            <li><a href="#">Player - Post</a></li>
+                            <li><a href="#">Player - Edit</a></li>
+                            <li><a href="#">Player - Delete</a></li>
+                        </ul>
+                    </li>
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Handicap<span class="caret"></span></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="#">Handicap - Update</a></li>
+                        </ul>
+                    </li>
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Course<span class="caret"></span></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="#">Course - Home</a></li>
+                            <li><a href="#">Course - Add</a></li>
+                            <li><a href="#">Course - Post</a></li>
+                            <li><a href="#">Course - Edit</a></li>
+                            <li><a href="#">Course - Delete</a></li>
                         </ul>
                     </li>
                 </ul>
         </div>
     </nav>
+
+
 

@@ -7,6 +7,9 @@
  *Cutter/application/views/home_view.php
  */
  -->
+    <div class="page-header">
+         <h1>Cutter - <small>Scores and Handicaps</small></h1>
+    </div>
 
 	<h1>Home</h1>
     <h2>

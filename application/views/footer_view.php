@@ -7,5 +7,7 @@
  */
  -->
 
+<p>Copyright (c) 2015</p>
+
 </body>
 </html>
