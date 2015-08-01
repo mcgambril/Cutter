@@ -13,7 +13,7 @@
 
 	<h1>Home</h1>
     <h2>
-        <?php
+        <!--<?php
             foreach($query as $row) {
                 echo $row->courseID;echo ' ';
                 echo $row->name; echo ' ';
@@ -21,7 +21,7 @@
                 echo $row->rating;echo ' ';
                 echo $row->default; echo "</br>";
             }
-        ?>
+        ?>-->
     </h2>
     <h2><button type="button" class="btn btn-default">Default</button></h2>
 

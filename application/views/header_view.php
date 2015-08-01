@@ -30,11 +30,11 @@
         <div class="container-fluid">
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 <ul class="nav navbar-nav">
-                    <li><a href="#">Home</a></li>
+                    <li><a href="<?php echo base_url("index.php/header/loadHomeView"); ?>">Home</a></li>
                     <li class="dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Admin<span class="caret"></span></a>
                         <ul class="dropdown-menu">
-                            <li><a href="#">Login</a></li>
+                            <li><a href="<?php echo base_url("index.php/header/loadAdminView"); ?>">Login</a></li>
                         </ul>
                     </li>
                     <li class="dropdown">
@@ -50,7 +50,6 @@
                         <ul class="dropdown-menu">
                             <li><a href="#">Player - Home</a></li>
                             <li><a href="#">Player - Add</a></li>
-                            <li><a href="#">Player - Post</a></li>
                             <li><a href="#">Player - Edit</a></li>
                             <li><a href="#">Player - Delete</a></li>
                         </ul>
@@ -66,7 +65,6 @@
                         <ul class="dropdown-menu">
                             <li><a href="#">Course - Home</a></li>
                             <li><a href="#">Course - Add</a></li>
-                            <li><a href="#">Course - Post</a></li>
                             <li><a href="#">Course - Edit</a></li>
                             <li><a href="#">Course - Delete</a></li>
                         </ul>
