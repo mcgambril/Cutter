@@ -37,6 +37,12 @@ class Header extends CI_Controller {
         $this->load->view('footer_view');
     }
 
+    public function loadScorePostView() {
+        $this->load->view('header_view');
+        $this->load->view('score_post_view');
+        $this->load->view('footer_view');
+    }
+
     public function loadScoreEditView() {
         $this->load->view('header_view');
         $this->load->view('score_edit_view');
@@ -46,12 +52,6 @@ class Header extends CI_Controller {
     public function loadScoreUpdateSuccessView() {
         $this->load->view('header_view');
         $this->load->view('score_update_success_view');
-        $this->load->view('footer_view');
-    }
-
-    public function loadScorePostView() {
-        $this->load->view('header_view');
-        $this->load->view('score_post_view');
         $this->load->view('footer_view');
     }
 

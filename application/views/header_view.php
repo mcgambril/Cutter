@@ -35,38 +35,39 @@
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Admin<span class="caret"></span></a>
                         <ul class="dropdown-menu">
                             <li><a href="<?php echo base_url("index.php/header/loadAdminView"); ?>">Login</a></li>
+                            <li><a href="<?php echo base_url("index.php/header/loadHomeView"); ?>">Logout</a></li>
                         </ul>
                     </li>
                     <li class="dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Score<span class="caret"></span></a>
                         <ul class="dropdown-menu">
                             <li><a href="<?php echo base_url("index.php/header/loadScoreHomeView"); ?>">Score - Home</a></li>
-                            <li><a href="#">Score - Post</a></li>
-                            <li><a href="#">Score - Edit</a></li>
+                            <li><a href="<?php echo base_url("index.php/header/loadScorePostView"); ?>">Score - Post</a></li>
+                            <li><a href="<?php echo base_url("index.php/header/loadScoreEditView"); ?>">Score - Edit</a></li>
                         </ul>
                     </li>
                     <li class="dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Player<span class="caret"></span></a>
                         <ul class="dropdown-menu">
-                            <li><a href="#">Player - Home</a></li>
-                            <li><a href="#">Player - Add</a></li>
-                            <li><a href="#">Player - Edit</a></li>
-                            <li><a href="#">Player - Delete</a></li>
+                            <li><a href="<?php echo base_url("index.php/header/loadPlayerHomeView"); ?>">Player - Home</a></li>
+                            <li><a href="<?php echo base_url("index.php/header/loadPlayerAddView"); ?>">Player - Add</a></li>
+                            <li><a href="<?php echo base_url("index.php/header/loadPlayerEditView"); ?>">Player - Edit</a></li>
+                            <li><a href="<?php echo base_url("index.php/header/loadPlayerDeleteView"); ?>">Player - Delete</a></li>
                         </ul>
                     </li>
                     <li class="dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Handicap<span class="caret"></span></a>
                         <ul class="dropdown-menu">
-                            <li><a href="#">Handicap - Update</a></li>
+                            <li><a href="<?php echo base_url("index.php/header/loadHandicapUpdateView"); ?>">Handicap - Update</a></li>
                         </ul>
                     </li>
                     <li class="dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Course<span class="caret"></span></a>
                         <ul class="dropdown-menu">
-                            <li><a href="#">Course - Home</a></li>
-                            <li><a href="#">Course - Add</a></li>
-                            <li><a href="#">Course - Edit</a></li>
-                            <li><a href="#">Course - Delete</a></li>
+                            <li><a href="<?php echo base_url("index.php/header/loadCourseHomeView"); ?>">Course - Home</a></li>
+                            <li><a href="<?php echo base_url("index.php/header/loadCourseAddView"); ?>">Course - Add</a></li>
+                            <li><a href="<?php echo base_url("index.php/header/loadCourseEditView"); ?>">Course - Edit</a></li>
+                            <li><a href="<?php echo base_url("index.php/header/loadCourseDeleteView"); ?>">Course - Delete</a></li>
                         </ul>
                     </li>
                 </ul>

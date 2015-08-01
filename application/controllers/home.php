@@ -23,7 +23,7 @@ class Home extends CI_Controller {
         $data['query'] = $this->course_model->test();
 
 
-        $this->load->view('header_view');
+        $this->load->view('home_header_view');
         $this->load->view('home_view'/*, $data*/);
         $this->load->view('footer_view');
     }
