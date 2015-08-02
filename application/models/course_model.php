@@ -26,6 +26,14 @@ class Course_model extends CI_Model {
         return $getCoursesQuery->result();
     }
 
+    public function getHomeCourse() {
+        $this->db->select('*');
+        $this->db->from('course');
+        $this->db->where('default', 1);
+        $getHomeCourseQuery = $this->db->get();
+        return $getHomeCourseQuery->result();
+    }
+
     public function test_entry($data) {
         $this->db->insert('course', $data);
     }

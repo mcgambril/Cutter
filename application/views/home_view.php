@@ -12,6 +12,32 @@
     </div>
 
     <div class="panel panel-default">
+        <div class="panel-heading">Home Course</div>
+        <table class ="table table-condensed table-bordered">
+            <thead>
+                <tr>
+                    <th>Course Name</th>
+                    <th>Slope</th>
+                    <th>Rating</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <?php
+                        foreach($getHomeCourseQuery as $row) {
+                            echo '<td>' . $row->name . '</td>';
+                            echo '<td>' . $row->slope . '</td>';
+                            echo '<td>' . $row->rating . '</td>';
+                        }
+                    ?>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    </br></br></br>
+
+    <div class="panel panel-default">
         <!-- Default panel contents -->
         <div class="panel-heading">Members</div>
 
@@ -40,26 +66,32 @@
                             echo '<td class="col-md-2">' . $row->handicap . '</td>';
                             echo '<td class="col-md-2">' . $row->handicapIndex . '</td>';
                         echo'</tr>';
-                                echo'<tr id="'.$row->playerID.'" class="collapse">';
-                                    echo'<td><table class="table-condensed table-bordered">';
-                                        echo'<thead>';
+                        echo'<tr id="'.$row->playerID.'" class="collapse">';
+                            echo'<td></td>';
+                            echo'<td>';
+                                echo'<table class="table-condensed table-bordered">';
+                                    echo'<thead>';
+                                        echo'<tr>';
+                                            echo'<th>Date (YYYY-MM-DD)</th>';
+                                            echo'<th>Score</th>';
+                                            echo'<th>Differential</th>';
+                                        echo'</tr>';
+                                    echo'</thead>';
+                                    echo'<tbody>';
+                                        foreach($row->scores as $r) {
                                             echo'<tr>';
-                                                echo'<th>Date</th>';
-                                                echo'<th>Score</th>';
-                                                echo'<th>Differential</th>';
+                                                echo'<td>'.$r->date.'</td>';
+                                                echo'<td>'.$r->score.'</td>';
+                                                echo'<td>'.$r->differential.'</td>';
                                             echo'</tr>';
-                                        echo'</thead>';
-                                        echo'<tbody>';
-                                            foreach($row->scores as $r) {
-                                                echo'<tr>';
-                                                    echo'<td>'.$r->date.'</td>';
-                                                    echo'<td>'.$r->score.'</td>';
-                                                    echo'<td>'.$r->differential.'</td>';
-                                                echo'</tr>';
-                                            }
-                                        echo'</tbody>';
-                                    echo'</table></td><td></td><td></td><td></td>';
-                                echo'</tr>';
+                                        }
+                                    echo'</tbody>';
+                                echo'</table>';
+                                echo'</br>';
+                            echo'</td>';
+                            echo'<td></td>';
+                            echo'<td></td>';
+                        echo'</tr>';
                     echo '</tbody>';
                 echo '</table>';
             }
