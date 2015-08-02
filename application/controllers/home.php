@@ -27,17 +27,7 @@ class Home extends CI_Controller {
         $data['getScoresQuery'] = $this->score_model->getScores();
         $data['getPlayersAndScoresQuery'] = $this->player_model->getPlayersAndScores();
 
-        $playerID = 1;
-        $data['getPlayerScoresQuery'] = $this->player_model->getPlayerScores($playerID);
-
-        $scores = array();
         $data['IDs'] = $this->player_model->getPlayerIDs();
-
-        $i = 0;
-        foreach($data['IDs'] as $row) {
-            $data['Scores'] = $this->player_model->getPlayerScores($row->playerID);
-            $i++;
-        }
 
         $this->load->view('home_header_view');
         $this->load->view('home_view', $data);
