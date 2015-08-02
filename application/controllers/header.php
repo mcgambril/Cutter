@@ -26,7 +26,7 @@ class Header extends CI_Controller {
     }
 
     public function loadAdminView() {
-        $this->load->view('header_view');
+        $this->load->view('home_header_view');
         $this->load->view('admin_view');
         $this->load->view('footer_view');
     }

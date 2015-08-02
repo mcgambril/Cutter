@@ -19,12 +19,16 @@ class Home extends CI_Controller {
         //$this->update();
 
         $this->load->model('course_model');
+        $this->load->model('player_model');
 
-        $data['query'] = $this->course_model->test();
+        $data['getCoursesQuery'] = $this->course_model->getCourses();
+        $data['getPlayersQuery'] = $this->player_model->getPlayers();
 
+        $playerID = 1;
+        $data['getPlayerScoresQuery'] = $this->player_model->getPlayerScores($playerID);
 
         $this->load->view('home_header_view');
-        $this->load->view('home_view'/*, $data*/);
+        $this->load->view('home_view', $data);
         $this->load->view('footer_view');
     }
 

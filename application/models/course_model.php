@@ -21,10 +21,9 @@ class Course_model extends CI_Model {
         parent::__construct();
     }
 
-    public function test() {
-        //$this->db->select('name, slope');
-        $query = $this->db->get('course');
-        return $query->result();
+    public function getCourses() {
+        $getCoursesQuery = $this->db->get('course');
+        return $getCoursesQuery->result();
     }
 
     public function test_entry($data) {

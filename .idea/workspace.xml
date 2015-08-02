@@ -2,27 +2,14 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="bf1f04b8-8018-444a-9bbe-e11b375c07b1" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/views/course_add_view.php" afterPath="$PROJECT_DIR$/application/views/course_add_view.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/views/course_delete_view.php" afterPath="$PROJECT_DIR$/application/views/course_delete_view.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/views/course_edit_view.php" afterPath="$PROJECT_DIR$/application/views/course_edit_view.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/views/course_update_success_view.php" afterPath="$PROJECT_DIR$/application/views/course_update_success_view.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/views/course_view.php" afterPath="$PROJECT_DIR$/application/views/course_view.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/views/handicap_confirm_update_view.php" afterPath="$PROJECT_DIR$/application/views/handicap_confirm_update_view.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/views/handicap_update_success_view.php" afterPath="$PROJECT_DIR$/application/views/handicap_update_success_view.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/views/handicap_update_view.php" afterPath="$PROJECT_DIR$/application/views/handicap_update_view.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/application/models/player_model.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/application/models/score_model.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/models/course_model.php" afterPath="$PROJECT_DIR$/application/models/course_model.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/controllers/header.php" afterPath="$PROJECT_DIR$/application/controllers/header.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/views/header_view.php" afterPath="$PROJECT_DIR$/application/views/header_view.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/controllers/home.php" afterPath="$PROJECT_DIR$/application/controllers/home.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/views/home_header_view.php" afterPath="$PROJECT_DIR$/application/views/home_header_view.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/views/password_confirm_view.php" afterPath="$PROJECT_DIR$/application/views/password_confirm_view.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/views/player_add_view.php" afterPath="$PROJECT_DIR$/application/views/player_add_view.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/views/player_delete_view.php" afterPath="$PROJECT_DIR$/application/views/player_delete_view.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/views/player_edit_view.php" afterPath="$PROJECT_DIR$/application/views/player_edit_view.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/views/player_update_success_view.php" afterPath="$PROJECT_DIR$/application/views/player_update_success_view.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/views/player_view.php" afterPath="$PROJECT_DIR$/application/views/player_view.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/views/score_edit_view.php" afterPath="$PROJECT_DIR$/application/views/score_edit_view.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/views/score_post_view.php" afterPath="$PROJECT_DIR$/application/views/score_post_view.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/views/score_update_success_view.php" afterPath="$PROJECT_DIR$/application/views/score_update_success_view.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/views/home_view.php" afterPath="$PROJECT_DIR$/application/views/home_view.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="Cutter.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -50,10 +37,60 @@
       <file leaf-file-name="home.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/application/controllers/home.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-7.6538463" vertical-offset="226" max-vertical-offset="833">
-              <caret line="25" column="32" selection-start-line="25" selection-start-column="32" selection-end-line="25" selection-end-column="32" />
+            <state vertical-scroll-proportion="-15.807693" vertical-offset="133" max-vertical-offset="901">
+              <caret line="32" column="5" selection-start-line="32" selection-start-column="5" selection-end-line="32" selection-end-column="5" />
               <folding>
                 <element signature="e#6#133#0#PHP" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="home_view.php" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/application/views/home_view.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.55593807" vertical-offset="391" max-vertical-offset="1122">
+              <caret line="42" column="14" selection-start-line="42" selection-start-column="14" selection-end-line="42" selection-end-column="14" />
+              <folding>
+                <element signature="n#style#0;n#table#0;n#div#1;n#!!top" expanded="true" />
+                <marker date="1438475634222" expanded="true" signature="1287:1331" placeholder="..." />
+                <marker date="1438475634222" expanded="true" signature="1287:1600" placeholder="..." />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="course_model.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/application/models/course_model.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="-15.807693" vertical-offset="48" max-vertical-offset="629">
+              <caret line="27" column="0" selection-start-line="27" selection-start-column="0" selection-end-line="27" selection-end-column="0" />
+              <folding>
+                <element signature="e#6#136#0#PHP" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="player_model.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/application/models/player_model.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="-15.807693" vertical-offset="31" max-vertical-offset="612">
+              <caret line="26" column="47" selection-start-line="26" selection-start-column="47" selection-end-line="26" selection-end-column="47" />
+              <folding>
+                <element signature="e#6#89#0#PHP" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="score_model.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/application/models/score_model.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="-13.730769" vertical-offset="0" max-vertical-offset="459">
+              <caret line="21" column="1" selection-start-line="21" selection-start-column="1" selection-end-line="21" selection-end-column="1" />
+              <folding>
+                <element signature="e#6#89#0#PHP" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -62,21 +99,11 @@
       <file leaf-file-name="header.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/application/controllers/header.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-24.961538" vertical-offset="286" max-vertical-offset="2380">
-              <caret line="55" column="5" selection-start-line="55" selection-start-column="5" selection-end-line="55" selection-end-column="5" />
+            <state vertical-scroll-proportion="-12.423077" vertical-offset="153" max-vertical-offset="2380">
+              <caret line="28" column="32" selection-start-line="28" selection-start-column="32" selection-end-line="28" selection-end-column="32" />
               <folding>
                 <element signature="e#6#90#0#PHP" expanded="true" />
               </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="header_view.php" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/application/views/header_view.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.40140846" vertical-offset="452" max-vertical-offset="1428">
-              <caret line="40" column="41" selection-start-line="40" selection-start-column="41" selection-end-line="40" selection-end-column="41" />
-              <folding />
             </state>
           </provider>
         </entry>
@@ -98,14 +125,11 @@
         <option value="$PROJECT_DIR$/application/controllers/course.php" />
         <option value="$PROJECT_DIR$/application/config/autoload.php" />
         <option value="$PROJECT_DIR$/application/config/routes.php" />
-        <option value="$PROJECT_DIR$/application/models/course_model.php" />
         <option value="$PROJECT_DIR$/assets/css/bootstrap.css" />
         <option value="$PROJECT_DIR$/application/views/password_confirm_view.html" />
         <option value="$PROJECT_DIR$/application/views/footer_view.php" />
         <option value="$PROJECT_DIR$/application/views/score_view.php" />
         <option value="$PROJECT_DIR$/application/views/admin_view.php" />
-        <option value="$PROJECT_DIR$/application/views/home_view.php" />
-        <option value="$PROJECT_DIR$/application/controllers/header.php" />
         <option value="$PROJECT_DIR$/application/views/course_add_view.php" />
         <option value="$PROJECT_DIR$/application/views/course_delete_view.php" />
         <option value="$PROJECT_DIR$/application/views/course_edit_view.php" />
@@ -124,8 +148,13 @@
         <option value="$PROJECT_DIR$/application/views/score_edit_view.php" />
         <option value="$PROJECT_DIR$/application/views/score_post_view.php" />
         <option value="$PROJECT_DIR$/application/views/score_update_success_view.php" />
-        <option value="$PROJECT_DIR$/application/controllers/home.php" />
+        <option value="$PROJECT_DIR$/application/controllers/header.php" />
+        <option value="$PROJECT_DIR$/application/models/score_model.php" />
+        <option value="$PROJECT_DIR$/application/models/course_model.php" />
         <option value="$PROJECT_DIR$/application/views/header_view.php" />
+        <option value="$PROJECT_DIR$/application/views/home_view.php" />
+        <option value="$PROJECT_DIR$/application/controllers/home.php" />
+        <option value="$PROJECT_DIR$/application/models/player_model.php" />
       </list>
     </option>
   </component>
@@ -210,6 +239,24 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="views" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Cutter" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Cutter" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="application" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="models" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -396,7 +443,11 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="578">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
+          <folding>
+            <element signature="n#style#0;n#table#0;n#div#1;n#!!top" expanded="true" />
+            <marker date="1438475634222" expanded="true" signature="1287:1331" placeholder="..." />
+            <marker date="1438475634222" expanded="true" signature="1287:1600" placeholder="..." />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -404,9 +455,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="476" max-vertical-offset="578">
           <caret line="28" column="1" selection-start-line="28" selection-start-column="1" selection-end-line="28" selection-end-column="1" />
-          <folding>
-            <element signature="e#6#136#0#PHP" expanded="false" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -534,16 +583,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/application/models/course_model.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-18.115385" vertical-offset="39" max-vertical-offset="646">
-          <caret line="30" column="8" selection-start-line="30" selection-start-column="8" selection-end-line="30" selection-end-column="8" />
-          <folding>
-            <element signature="e#6#136#0#PHP" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/application/views/admin_view.php">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-5.8846154" vertical-offset="0" max-vertical-offset="255">
@@ -620,22 +659,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-5.8846154" vertical-offset="0" max-vertical-offset="255">
           <caret line="9" column="35" selection-start-line="9" selection-start-column="35" selection-end-line="9" selection-end-column="35" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/application/views/home_header_view.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-15.307693" vertical-offset="231" max-vertical-offset="799">
-          <caret line="37" column="25" selection-start-line="37" selection-start-column="25" selection-end-line="37" selection-end-column="25" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/application/views/home_view.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-15.038462" vertical-offset="0" max-vertical-offset="561">
-          <caret line="23" column="13" selection-start-line="23" selection-start-column="13" selection-end-line="23" selection-end-column="13" />
           <folding />
         </state>
       </provider>
@@ -720,31 +743,81 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/application/controllers/home.php">
+    <entry file="file://$PROJECT_DIR$/application/views/home_header_view.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-7.6538463" vertical-offset="226" max-vertical-offset="833">
-          <caret line="25" column="32" selection-start-line="25" selection-start-column="32" selection-end-line="25" selection-end-column="32" />
-          <folding>
-            <element signature="e#6#133#0#PHP" expanded="true" />
-          </folding>
+        <state vertical-scroll-proportion="0.7007042" vertical-offset="231" max-vertical-offset="799">
+          <caret line="37" column="25" selection-start-line="37" selection-start-column="25" selection-end-line="37" selection-end-column="25" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/application/views/header_view.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.4190141" vertical-offset="306" max-vertical-offset="1428">
+          <caret line="32" column="74" selection-start-line="32" selection-start-column="74" selection-end-line="32" selection-end-column="74" />
+          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/application/controllers/header.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-24.961538" vertical-offset="286" max-vertical-offset="2380">
-          <caret line="55" column="5" selection-start-line="55" selection-start-column="5" selection-end-line="55" selection-end-column="5" />
+        <state vertical-scroll-proportion="-12.423077" vertical-offset="153" max-vertical-offset="2380">
+          <caret line="28" column="32" selection-start-line="28" selection-start-column="32" selection-end-line="28" selection-end-column="32" />
           <folding>
             <element signature="e#6#90#0#PHP" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/application/views/header_view.php">
+    <entry file="file://$PROJECT_DIR$/application/models/score_model.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.40140846" vertical-offset="452" max-vertical-offset="1428">
-          <caret line="40" column="41" selection-start-line="40" selection-start-column="41" selection-end-line="40" selection-end-column="41" />
-          <folding />
+        <state vertical-scroll-proportion="-13.730769" vertical-offset="0" max-vertical-offset="459">
+          <caret line="21" column="1" selection-start-line="21" selection-start-column="1" selection-end-line="21" selection-end-column="1" />
+          <folding>
+            <element signature="e#6#89#0#PHP" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/application/models/course_model.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-15.807693" vertical-offset="48" max-vertical-offset="629">
+          <caret line="27" column="0" selection-start-line="27" selection-start-column="0" selection-end-line="27" selection-end-column="0" />
+          <folding>
+            <element signature="e#6#136#0#PHP" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/application/controllers/home.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-15.807693" vertical-offset="133" max-vertical-offset="901">
+          <caret line="32" column="5" selection-start-line="32" selection-start-column="5" selection-end-line="32" selection-end-column="5" />
+          <folding>
+            <element signature="e#6#133#0#PHP" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/application/models/player_model.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-15.807693" vertical-offset="31" max-vertical-offset="612">
+          <caret line="26" column="47" selection-start-line="26" selection-start-column="47" selection-end-line="26" selection-end-column="47" />
+          <folding>
+            <element signature="e#6#89#0#PHP" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/application/views/home_view.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.55593807" vertical-offset="391" max-vertical-offset="1122">
+          <caret line="42" column="14" selection-start-line="42" selection-start-column="14" selection-end-line="42" selection-end-column="14" />
+          <folding>
+            <element signature="n#style#0;n#table#0;n#div#1;n#!!top" expanded="true" />
+            <marker date="1438475634222" expanded="true" signature="1287:1331" placeholder="..." />
+            <marker date="1438475634222" expanded="true" signature="1287:1600" placeholder="..." />
+          </folding>
         </state>
       </provider>
     </entry>
