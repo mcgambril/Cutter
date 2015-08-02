@@ -27,4 +27,20 @@ class Player_model extends CI_Model {
         return $getPlayerScoresQuery->result();
     }
 
+    public function getPlayersAndScores() {
+        $query = $this->db->get('player');
+        $getPlayersAndScoresQuery = $query->result();
+        foreach($getPlayersAndScoresQuery as &$row) {
+            $row->scores = $this->getPlayerScores($row->playerID);
+        }
+        return $getPlayersAndScoresQuery;
+    }
+
+    public function getPlayerIDs() {
+        $this->db->select('playerID');
+        $this->db->from('player');
+        $getPlayerIDsQuery = $this->db->get();
+        return $getPlayerIDsQuery->result();
+    }
+
 }

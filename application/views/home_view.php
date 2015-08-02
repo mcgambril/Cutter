@@ -44,16 +44,32 @@
 
             </tbody>
         </table>
+        </div>
 
         <?php
         foreach ($getPlayerScoresQuery as $row) {
-            echo $row->date;
-            echo $row->score;
-            echo $row->differential;
+            echo $row->date; echo '</br>';
+            echo $row->score; echo '</br>';
+            echo $row->differential; echo '</br>';
+
+        }
+        $i=0;
+        foreach($IDs as $row) {
+            echo $row->playerID . ' (' . $i . '), ';
+        }
+
+        foreach($getPlayersAndScoresQuery as $row) {
+            echo $row->name . ', ';
+            foreach($row->scores as $r) {
+                echo $r->date . ', ';
+                echo $r->score . ', ';
+                echo $r->differential . ', ';
+            }
+            echo '</br>';
         }
         ?>
 
-    </div>
+
 
 
 
