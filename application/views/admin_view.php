@@ -7,4 +7,15 @@
  */
  -->
 
-<p>This is the Admin View</p>
+<h1>Password?</h1>
+
+<form>
+    <div class="form-group">
+        <label for="exampleInputPassword1">Password</label>
+        <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
+    </div>
+    <button type="submit" class="btn btn-default">Submit</button>
+    <button type="button" class="btn btn-default">
+            <a href="<?php echo base_url("index.php/home/index"); ?>">Back</a>
+    </button>
+</form>
