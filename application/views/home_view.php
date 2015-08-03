@@ -35,7 +35,9 @@
         </table>
     </div>
 
-    </br></br></br>
+    <br />
+    <br />
+    <br />
 
     <div class="panel panel-default">
         <!-- Default panel contents -->
@@ -87,7 +89,7 @@
                                         }
                                     echo'</tbody>';
                                 echo'</table>';
-                                echo'</br>';
+                                echo'<br />';
                             echo'</td>';
                             echo'<td></td>';
                             echo'<td></td>';

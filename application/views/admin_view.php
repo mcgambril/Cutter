@@ -8,14 +8,21 @@
  -->
 
 <h1>Password?</h1>
+<br />
+<br />
 
-<form>
-    <div class="form-group">
-        <label for="exampleInputPassword1">Password</label>
-        <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
-    </div>
-    <button type="submit" class="btn btn-default">Submit</button>
-    <button type="button" class="btn btn-default">
-            <a href="<?php echo base_url("index.php/home/index"); ?>">Back</a>
-    </button>
+<?php echo validation_errors(); ?>
+
+<?php echo form_open('admin/submitPass') ?>
+
+<div class="form-group">
+    <label for="pwd">Password:</label>
+    <input type="text" name="password" class="form-control">
+    <br>
+    <input type="submit" class="btn btn-default" value="Submit" name="submit">
+    <a class="btn btn-default" href="<?php echo base_url("index.php/home/index"); ?>">Back</a>
+</div>
+
 </form>
+
+
