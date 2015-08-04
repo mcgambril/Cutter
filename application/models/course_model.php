@@ -29,7 +29,7 @@ class Course_model extends CI_Model {
     public function getHomeCourse() {
         $this->db->select('*');
         $this->db->from('course');
-        $this->db->where('default', 1);
+        $this->db->where('courseDefault', 1);
         $getHomeCourseQuery = $this->db->get();
         return $getHomeCourseQuery->result();
     }

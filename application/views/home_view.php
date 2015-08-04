@@ -7,32 +7,35 @@
  *Cutter/application/views/home_view.php
  */
  -->
+<div class="container"> <!--<div class="container-fluid">-->
     <div class="page-header">
          <h1>Cutter - <small>Home</small></h1>
     </div>
 
     <div class="panel panel-default">
         <div class="panel-heading">Home Course</div>
-        <table class ="table table-condensed table-bordered">
-            <thead>
-                <tr>
-                    <th>Course Name</th>
-                    <th>Slope</th>
-                    <th>Rating</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <?php
-                        foreach($getHomeCourseQuery as $row) {
-                            echo '<td>' . $row->name . '</td>';
-                            echo '<td>' . $row->slope . '</td>';
-                            echo '<td>' . $row->rating . '</td>';
-                        }
-                    ?>
-                </tr>
-            </tbody>
-        </table>
+        <div class="table-responsive">
+            <table class ="table table-condensed table-bordered">
+                <thead>
+                    <tr>
+                        <th>Course Name</th>
+                        <th>Slope</th>
+                        <th>Rating</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <?php
+                            foreach($getHomeCourseQuery as $row) {
+                                echo '<td>' . $row->courseName . '</td>';
+                                echo '<td>' . $row->courseSlope . '</td>';
+                                echo '<td>' . $row->courseRating . '</td>';
+                            }
+                        ?>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
     </div>
 
     <br />
@@ -43,62 +46,67 @@
         <!-- Default panel contents -->
         <div class="panel-heading">Members</div>
 
-        <table class ="table table-condensed table-bordered" style="border-collapse:collapse;">
-            <thead>
-                <tr>
-                    <th class="col-md-2"></th>
-                    <th class="col-md-2">Name</th>
-                    <th class="col-md-2">Handicap</th>
-                    <th class="col-md-2">Handicap Index</th>
-                </tr>
-            </thead>
-            <tbody>
-            </tbody>
-        </table>
+        <div class="table-responsive">
+            <table class ="table table-condensed table-bordered" style="border-collapse:collapse;">
+                <thead>
+                    <tr>
+                        <th class="col-md-2">See Scores</th>
+                        <th class="col-md-2">Name</th>
+                        <th class="col-md-2">Handicap</th>
+                        <th class="col-md-2">Handicap Index</th>
+                    </tr>
+                </thead>
+                <tbody>
+                </tbody>
+            </table>
+        </div>
 
         <?php
             foreach($getPlayersAndScoresQuery as $row) {
-                echo '<table class ="table table-condensed table-bordered" style="border-collapse:collapse;">';
-                    echo '<thead>';
-                    echo '</thead>';
-                    echo '<tbody>';
-                        echo '<tr data-toggle="collapse" data-target="#'.$row->playerID.'" class="accordion-toggle">';
-                            echo '<td class="col-md-2"><button type="button" class="btn btn-default">Scores</button></td>';
-                            echo '<td class="col-md-2">' . $row->name . '</td>';
-                            echo '<td class="col-md-2">' . $row->handicap . '</td>';
-                            echo '<td class="col-md-2">' . $row->handicapIndex . '</td>';
-                        echo'</tr>';
-                        echo'<tr id="'.$row->playerID.'" class="collapse">';
-                            echo'<td></td>';
-                            echo'<td>';
-                                echo'<table class="table-condensed table-bordered">';
-                                    echo'<thead>';
-                                        echo'<tr>';
-                                            echo'<th>Date (YYYY-MM-DD)</th>';
-                                            echo'<th>Score</th>';
-                                            echo'<th>Differential</th>';
-                                        echo'</tr>';
-                                    echo'</thead>';
-                                    echo'<tbody>';
-                                        foreach($row->scores as $r) {
+                echo '<div class="table-responsive">';
+                    echo '<table class ="table table-condensed table-bordered table-striped" style="border-collapse:collapse;">';
+                        echo '<thead>';
+                        echo '</thead>';
+                        echo '<tbody>';
+                            echo '<tr data-toggle="collapse" data-target="#'.$row->playerID.'" class="accordion-toggle">';
+                                echo '<td class="col-md-2"><button type="button" class="btn btn-default">Scores</button></td>';
+                                echo '<td class="col-md-2">' . $row->playerName . '</td>';
+                                echo '<td class="col-md-2">' . $row->playerHandicap . '</td>';
+                                echo '<td class="col-md-2">' . $row->playerHandicapIndex . '</td>';
+                            echo'</tr>';
+                            echo'<tr id="'.$row->playerID.'" class="collapse">';
+                                echo'<td></td>';
+                                echo'<td>';
+                                    echo'<table class="table-condensed table-bordered">';
+                                        echo'<thead>';
                                             echo'<tr>';
-                                                echo'<td>'.$r->date.'</td>';
-                                                echo'<td>'.$r->score.'</td>';
-                                                echo'<td>'.$r->differential.'</td>';
+                                                echo'<th>Date (YYYY-MM-DD)</th>';
+                                                echo'<th>Score</th>';
+                                                echo'<th>Differential</th>';
                                             echo'</tr>';
-                                        }
-                                    echo'</tbody>';
-                                echo'</table>';
-                                echo'<br />';
-                            echo'</td>';
-                            echo'<td></td>';
-                            echo'<td></td>';
-                        echo'</tr>';
-                    echo '</tbody>';
-                echo '</table>';
+                                        echo'</thead>';
+                                        echo'<tbody>';
+                                            foreach($row->scores as $r) {
+                                                echo'<tr>';
+                                                    echo'<td>'.$r->scoreDate.'</td>';
+                                                    echo'<td>'.$r->scoreScore.'</td>';
+                                                    echo'<td>'.$r->scoreDifferential.'</td>';
+                                                echo'</tr>';
+                                            }
+                                        echo'</tbody>';
+                                    echo'</table>';
+                                    echo'<br />';
+                                echo'</td>';
+                                echo'<td></td>';
+                                echo'<td></td>';
+                            echo'</tr>';
+                        echo '</tbody>';
+                    echo '</table>';
+                echo '</div>';
             }
         ?>
     </div>
+</div>
 
 
 

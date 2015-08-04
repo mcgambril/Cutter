@@ -22,7 +22,7 @@ class Player_model extends CI_Model {
     public function getPlayerScores($playerID) {
         $this->db->select('*');
         $this->db->from('score');
-        $this->db->where('playerID', $playerID);
+        $this->db->where('scorePlayerID', $playerID);
         $getPlayerScoresQuery = $this->db->get();
         return $getPlayerScoresQuery->result();
     }
