@@ -8,3 +8,4 @@
  -->
 
 <p>This is the score edit view</p>
+<p>this id is <?php echo $id?> </p>

@@ -25,4 +25,11 @@ class Score extends CI_Controller {
         $this->load->view('score_view', $data);
         $this->load->view('footer_view');
     }
+
+    public function edit() {
+        $id['id'] = $this->uri->segment(3);
+        $this->load->view('header_view');
+        $this->load->view('score_edit_view', $id);
+        $this->load->view('footer_view');
+    }
 }
