@@ -7,7 +7,9 @@
  */
  -->
 
-<h1>Password?</h1>
+<div class="page-header">
+    <h1>Password<small></small></h1>
+</div>
 <br />
 <br />
 

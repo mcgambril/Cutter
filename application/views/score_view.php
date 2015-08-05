@@ -11,6 +11,13 @@
         <h1>Score - <small>Home</small></h1>
     </div>
 
+    <!--<div class="input-group date">
+        <input type="text" value="12-02-2012">
+        <div class="input-group-addon"><span class="glyphicon glyphicon-th" aria-hidden="true"></span></div>
+    </div>-->
+
+    <p>Date: <input type="text" id="datepicker"></p>
+
     <div class="panel panel-default">
         <!-- Default panel contents -->
         <div class="panel-heading">All Players' Scores</div>
