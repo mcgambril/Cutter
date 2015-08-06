@@ -50,10 +50,10 @@
             <table class ="table table-condensed table-bordered" style="border-collapse:collapse;">
                 <thead>
                     <tr>
-                        <th class="col-md-2">See Scores</th>
-                        <th class="col-md-2">Name</th>
-                        <th class="col-md-2">Handicap</th>
-                        <th class="col-md-2">Handicap Index</th>
+                        <th class="col-md-3">See Scores</th>
+                        <th class="col-md-3">Name</th>
+                        <th class="col-md-3">Handicap</th>
+                        <th class="col-md-3">Handicap Index</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -69,10 +69,10 @@
                         echo '</thead>';
                         echo '<tbody>';
                             echo '<tr data-toggle="collapse" data-target="#'.$row->playerID.'" class="accordion-toggle">';
-                                echo '<td class="col-md-2"><button type="button" class="btn btn-default">Scores</button></td>';
-                                echo '<td class="col-md-2">' . $row->playerName . '</td>';
-                                echo '<td class="col-md-2">' . $row->playerHandicap . '</td>';
-                                echo '<td class="col-md-2">' . $row->playerHandicapIndex . '</td>';
+                                echo '<td class="col-md-3"><button type="button" class="btn btn-default">Scores</button></td>';
+                                echo '<td class="col-md-3">' . $row->playerName . '</td>';
+                                echo '<td class="col-md-3">' . $row->playerHandicap . '</td>';
+                                echo '<td class="col-md-3">' . $row->playerHandicapIndex . '</td>';
                             echo'</tr>';
                             echo'<tr id="'.$row->playerID.'" class="collapse">';
                                 echo'<td></td>';

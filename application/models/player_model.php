@@ -32,6 +32,12 @@ class Player_model extends CI_Model {
         $getPlayersAndScoresQuery = $query->result();
         foreach($getPlayersAndScoresQuery as &$row) {
             $row->scores = $this->getPlayerScores($row->playerID);
+            if(is_null($row->playerHandicap)) {
+                $row->playerHandicap = 'N/A';
+            }
+            if(is_null($row->playerHandicapIndex)) {
+                $row->playerHandicapIndex = 'N/A';
+            }
         }
         return $getPlayersAndScoresQuery;
     }

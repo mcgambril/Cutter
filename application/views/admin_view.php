@@ -17,13 +17,13 @@
 
 <?php echo form_open('admin/submitPass') ?>
 
-<div class="form-group">
-    <label for="pwd">Password:</label>
-    <input type="password" name="password" class="form-control">
-    <br>
-    <input type="submit" class="btn btn-default" value="Submit" name="submit">
-    <a class="btn btn-default" href="<?php echo base_url("index.php/home/index"); ?>">Back</a>
-</div>
+    <div class="form-group">
+        <label for="pwd">Password:</label>
+        <input type="password" name="password" class="form-control">
+        <br>
+        <input type="submit" class="btn btn-default" value="Submit" name="submit">
+        <a class="btn btn-default" href="<?php echo base_url("index.php/home/index"); ?>">Back</a>
+    </div>
 
 </form>
 

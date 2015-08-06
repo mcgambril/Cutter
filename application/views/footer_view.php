@@ -6,8 +6,12 @@
  * Time: 9:33 PM
  */
  -->
-
-<p>Copyright (c) 2015</p>
+<div class="text-center">
+    <?php
+        date_default_timezone_set('America/Mexico_City');
+    ?>
+    <p>© 2015- <?php echo date("Y"); ?></p>
+</div>
 
 </body>
 </html>
