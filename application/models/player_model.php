@@ -42,11 +42,16 @@ class Player_model extends CI_Model {
         return $getPlayersAndScoresQuery;
     }
 
-    public function getPlayerIDs() {
+    public function getPlayerIDs($var) {
         $this->db->select('playerID');
         $this->db->from('player');
         $getPlayerIDsQuery = $this->db->get();
-        return $getPlayerIDsQuery->result();
+        if($var == 1) {
+            return $getPlayerIDsQuery->result_array();
+        }
+        else {
+            return $getPlayerIDsQuery->result();
+        }
     }
 
 }

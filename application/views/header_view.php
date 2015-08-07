@@ -25,7 +25,8 @@
         $( "#datepicker" ).datepicker({
             changeMonth: true,
             changeYear: true,
-            showButtonPanel: true
+            showButtonPanel: true,
+            dateFormat:  'yy-mm-dd'
          /*   showOn: "button",
             buttonImage: "<?php echo base_url("assets/images/calendar.gif"); ?>",
             buttonImageOnly: true,
@@ -39,6 +40,10 @@
         padding-top: 60px;
     }
 </style>
+
+<?php
+    date_default_timezone_set('America/Mexico_City');
+?>
 
 <body>
 

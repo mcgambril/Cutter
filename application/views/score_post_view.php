@@ -18,13 +18,10 @@
             <div class="row">
 
                 <div class="col-md-3">
-                    <?php echo timezone_menu('UM6'); ?>
-                    <br />
-                    <br />
-                    <p>Date: <input type="text" name="datepicker" id="datepicker" class="form-control"></p>
+                    <p>Date: <input type="text" name="datepicker" id="datepicker" class="form-control" data-date-format="yyyy-mm-dd"></p>
                     <br />
                     <label for="pick-course">Course:</label>
-                    <select class="form-control" id="pick-course">
+                    <select class="form-control" id="pick-course" name="course">
                         <?php
                             foreach($getCoursesQuery as $row) {
                                 echo '<option>' . $row->courseName . '</option>';
@@ -48,7 +45,8 @@
                                 <thead>
                                 <tr>
                                     <th class="col-md-2">Player</th>
-                                    <th class="col-md-2">Scores?</th>
+                                    <!--<th class="col-md-2">ID</th>-->
+                                    <th class="col-md-2">Scores to Enter?</th>
                                     <th class="col-md-2">AM Score</th>
                                     <th class="col-md-2">PM Score</th>
                                 </tr>
@@ -63,9 +61,12 @@
                                         echo '</thead>';
                                         echo '<tbody>';
                                             echo '<tr>';
-                                                echo '<td class="col-md-2">' . $row->playerName . '</td>';
+                                                echo '<td class="col-md-2">' . $row->playerName . '<input type="hidden" name="' . $row->playerID . '" value="' . $row->playerID . '" /></td>';
+                                                //echo '<td class="col-md-2">';
+                                                   //echo '<input type="text" name="' . $row->playerID . '" id="' . $row->playerID . '" value="' . $row->playerID . '"/>';
+                                                //echo '</td>';
                                                 echo '<td class="col-md-2">';
-                                                    echo '<input type="checkbox" id="' . $row->playerID . '-played" data-toggle="collapse" data-target=".' . $row->playerID . 'score"/>';
+                                                    echo '<input type="checkbox" id="' . $row->playerID . '-played" data-toggle="collapse" data-target=".' . $row->playerID . 'score"/>Yes';
                                                 echo '</td>';
                                                 echo '<td class="col-md-2">';
                                                     echo '<input type="text" name="' . $row->playerID . 'am-score"  id="' . $row->playerID . 'am-score" class="form-control collapse ' . $row->playerID . 'score">';

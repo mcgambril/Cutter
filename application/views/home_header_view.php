@@ -24,6 +24,10 @@
     }
 </style>
 
+<?php
+    date_default_timezone_set('America/Mexico_City');
+?>
+
 <body>
 
 <nav class="navbar navbar-default navbar-fixed-top">
