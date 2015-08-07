@@ -34,8 +34,6 @@
                 </div>
 
                 <div class="col-md-8">
-                    <br />
-                    <br />
                     <div class="panel panel-default">
 
                         <div class="panel-heading">Post New Scores</div>
