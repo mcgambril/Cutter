@@ -53,14 +53,15 @@ class Score extends CI_Controller {
     public function submitPost() {
         $this->load->model('score_model');
         $this->load->model('player_model');
+        $this->load->model('course_model');
         $this->load->helper('form');
         $this->load->library('form_validation');
         date_default_timezone_set('America/Mexico_City');
 
         $this->form_validation->set_rules('datepicker', 'Date', 'required|callback_validateDate');
 
-        $data['players'] = $this->player_model->getPlayers();
-        foreach($data['players'] as $row) {
+        $temp['players'] = $this->player_model->getPlayers();
+        foreach($temp['players'] as $row) {
             $this->form_validation->set_rules($row->playerID.'am-score', $row->playerName.' AM Score', 'integer|greater_than[17]');
             $this->form_validation->set_rules($row->playerID.'pm-score', $row->playerName.' PM Score', 'integer|greater_than[17]');
         }
@@ -69,9 +70,10 @@ class Score extends CI_Controller {
             $this->post();
         }
 
-        $data['date'] = $this->input->post('datepicker');
-        $data['course'] = $this->input->post('course');
-        $temp['ids'] = $this->player_model->getPlayerIDs(1);
+        $temp['date'] = $this->input->post('datepicker');
+        $temp['courseName'] = $this->input->post('course');
+        $temp['courseID'] = $this->course_model->getCourseID($temp['courseName']);
+        $temp['ids'] = $this->player_model->getPlayerIDsAtoZ(1); //may need to use query that orders id's based on player name alphabetically
         $ids = array();
         $amScores = array();
         $pmScores = array();
@@ -85,32 +87,37 @@ class Score extends CI_Controller {
             array_push($pmScores, $var3);
         }
 
-        $data['ids'] = $ids;
+        $i = 0;
+        $j = 0;
+        foreach($ids as $row) {
+            $data[''.$i.'']['scorePlayerID'] = $row;
+            $data[''.$i.'']['scoreCourseID'] = $temp['courseID']; //need to translate out of array and into course ID
+            $data[''.$i.'']['scoreScore'] = $amScores[''.$j.''];
+            $data[''.$i.'']['scoreDate'] = $temp['date']; //translate this out of array
+            $data[''.$i.'']['scoreTime'] = 0;
+            $data[''.$i.'']['scoreDifferential'] = null; //need to make function to calculate differential
+            $i++;
+            $data[''.$i.'']['scorePlayerID'] = $row;
+            $data[''.$i.'']['scoreCourseID'] = $temp['courseID']; //need to translate out of array and into course ID
+            $data[''.$i.'']['scoreScore'] = $pmScores[''.$j.''];
+            $data[''.$i.'']['scoreDate'] = $temp['date']; //translate this out of array
+            $data[''.$i.'']['scoreTime'] = 1;
+            $data[''.$i.'']['scoreDifferential'] = null; //need to make function to calculate differential
+            $i++;
+            $j++;
+        }
 
-        foreach( $amScores as $key => $value ) {
-            if(empty($value)) {
-                unset( $amScores[$key] );
+        foreach($data as $row) {
+            if($row['scoreScore'] == '') {
+                unset($data[$row]);
             }
         }
-        foreach($pmScores as $key => $value) {
-            if(empty($value)) {
-                unset($pmScores[$key]);
-            }
-        }
-        if($this->validateEmpty($amScores, $pmScores) == FALSE) {
+
+        if($this->validateEmpty($data) == FALSE) {
             $this->load->view('score_empty_post_view');
         }
         else {
-            $data['amScores'] = $amScores;
-            $data['pmScores'] = $pmScores;
-            foreach($data['ids'] as $row) {
-                //create a new element in $data['scoreRecords'] with playerID, date, course, am score (if there? how do I check?) and pm score (same question)
-                //maybe need to name keys in earlier score arrays based on playerID...as long as those keys don't change when empties are unset
-                //could use multi array w/ playerID=>am score as each element in amscore array
-            }
-            //rearrange arrays so there is a different array for each individual score record
-            //then load those into the database
-            //send them to success page
+            $this->db->insert_batch('score', $data);
             $this->load->view('score_update_success_view', $data);
         }
     }
@@ -130,8 +137,8 @@ class Score extends CI_Controller {
         }
     }
 
-    public function validateEmpty($amScores, $pmScores) {
-        if(empty($amScores) && empty($pmScores)) {
+    public function validateEmpty($data) {
+        if(empty($data)) {
             return FALSE;
         }
         else {

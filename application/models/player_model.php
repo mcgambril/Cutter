@@ -54,4 +54,17 @@ class Player_model extends CI_Model {
         }
     }
 
+    public function getPlayerIDsAtoZ($var) {
+        $this->db->select('playerName, playerID');
+        $this->db->from('player');
+        $this->db->order_by('playerName', 'asc');
+        $getPlayerIDsAtoZQuery = $this->db->get();
+        if($var == 1) {
+            return $getPlayerIDsAtoZQuery->result_array();
+        }
+        else {
+            return $getPlayerIDsAtoZQuery->result();
+        }
+    }
+
 }
