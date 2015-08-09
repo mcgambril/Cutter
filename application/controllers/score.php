@@ -72,8 +72,9 @@ class Score extends CI_Controller {
 
         $temp['date'] = $this->input->post('datepicker');
         $temp['courseName'] = $this->input->post('course');
-        $temp['courseID'] = $this->course_model->getCourseID($temp['courseName']);
-        $temp['ids'] = $this->player_model->getPlayerIDsAtoZ(1); //may need to use query that orders id's based on player name alphabetically
+        //$temp['courseID'] = $this->course_model->getCourseID($this->input->post('course'));
+        $courseID = $this->course_model->getCourseID($this->input->post('course'));
+        $temp['ids'] = $this->player_model->getPlayerIDsAtoZ(1);
         $ids = array();
         $amScores = array();
         $pmScores = array();
@@ -91,14 +92,14 @@ class Score extends CI_Controller {
         $j = 0;
         foreach($ids as $row) {
             $data[''.$i.'']['scorePlayerID'] = $row;
-            $data[''.$i.'']['scoreCourseID'] = $temp['courseID']; //need to translate out of array and into course ID
+            $data[''.$i.'']['scoreCourseID'] = $courseID; //$temp['courseID']
             $data[''.$i.'']['scoreScore'] = $amScores[''.$j.''];
             $data[''.$i.'']['scoreDate'] = $temp['date']; //translate this out of array
             $data[''.$i.'']['scoreTime'] = 0;
             $data[''.$i.'']['scoreDifferential'] = null; //need to make function to calculate differential
             $i++;
             $data[''.$i.'']['scorePlayerID'] = $row;
-            $data[''.$i.'']['scoreCourseID'] = $temp['courseID']; //need to translate out of array and into course ID
+            $data[''.$i.'']['scoreCourseID'] = $courseID; //need to translate out of array and into course ID
             $data[''.$i.'']['scoreScore'] = $pmScores[''.$j.''];
             $data[''.$i.'']['scoreDate'] = $temp['date']; //translate this out of array
             $data[''.$i.'']['scoreTime'] = 1;
@@ -108,8 +109,8 @@ class Score extends CI_Controller {
         }
 
         foreach($data as $row) {
-            if($row['scoreScore'] == '') {
-                unset($data[$row]);
+            if ($row['scoreScore'] == '') {
+                unset($row);
             }
         }
 
@@ -117,6 +118,10 @@ class Score extends CI_Controller {
             $this->load->view('score_empty_post_view');
         }
         else {
+            //might need to do a foreach data as row and do individual inserts...but this would take forever for
+            //inserting a lot of data
+            //might need to rearrange setting of data elements so the subarrays are in the same order as
+            //the columns in the score table
             $this->db->insert_batch('score', $data);
             $this->load->view('score_update_success_view', $data);
         }
