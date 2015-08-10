@@ -34,12 +34,30 @@ class Course_model extends CI_Model {
         return $getHomeCourseQuery->result();
     }
 
-    public function getCourseID($courseName) {
+    public function getCourseID($courseName, $var) {
         $this->db->select('courseID');
         $this->db->from('course');
         $this->db->where('courseName', $courseName);
         $getCourseIDQuery = $this->db->get();
-        return $getCourseIDQuery->result();
+        if($var == 1){
+            return $getCourseIDQuery->result_array();
+        }
+        else {
+            return $getCourseIDQuery->result();
+        }
+    }
+
+    public function getCourse($id, $var) {
+        $this->db->select('*');
+        $this->db->from('course');
+        $this->db->where('courseID', (int)$id);
+        $getCourseQuery = $this->db->get();
+        if($var == 1) {
+            return $getCourseQuery->result_array();
+        }
+        else {
+            return $getCourseQuery->result();
+        }
     }
 
     public function test_entry($data) {

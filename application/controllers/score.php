@@ -72,8 +72,7 @@ class Score extends CI_Controller {
 
         $temp['date'] = $this->input->post('datepicker');
         $temp['courseName'] = $this->input->post('course');
-        //$temp['courseID'] = $this->course_model->getCourseID($this->input->post('course'));
-        $courseID = $this->course_model->getCourseID($this->input->post('course'));
+        $temp['courseID'] = (int)$this->course_model->getCourseID($this->input->post('course'), 0);
         $temp['ids'] = $this->player_model->getPlayerIDsAtoZ(1);
         $ids = array();
         $amScores = array();
@@ -92,25 +91,25 @@ class Score extends CI_Controller {
         $j = 0;
         foreach($ids as $row) {
             $data[''.$i.'']['scorePlayerID'] = $row;
-            $data[''.$i.'']['scoreCourseID'] = $courseID; //$temp['courseID']
+            $data[''.$i.'']['scoreCourseID'] = /*$courseID;*/ $temp['courseID'];
             $data[''.$i.'']['scoreScore'] = $amScores[''.$j.''];
-            $data[''.$i.'']['scoreDate'] = $temp['date']; //translate this out of array
+            $data[''.$i.'']['scoreDate'] = $temp['date'];
             $data[''.$i.'']['scoreTime'] = 0;
-            $data[''.$i.'']['scoreDifferential'] = null; //need to make function to calculate differential
+            $data[''.$i.'']['scoreDifferential'] = $this->calculateDifferential($amScores[''.$j.''], $temp['courseID']);
             $i++;
             $data[''.$i.'']['scorePlayerID'] = $row;
-            $data[''.$i.'']['scoreCourseID'] = $courseID; //need to translate out of array and into course ID
+            $data[''.$i.'']['scoreCourseID'] = $temp['courseID'];
             $data[''.$i.'']['scoreScore'] = $pmScores[''.$j.''];
-            $data[''.$i.'']['scoreDate'] = $temp['date']; //translate this out of array
+            $data[''.$i.'']['scoreDate'] = $temp['date'];
             $data[''.$i.'']['scoreTime'] = 1;
-            $data[''.$i.'']['scoreDifferential'] = null; //need to make function to calculate differential
+            $data[''.$i.'']['scoreDifferential'] = $this->calculateDifferential($pmScores[''.$j.''], $temp['courseID']);
             $i++;
             $j++;
         }
 
-        foreach($data as $row) {
-            if ($row['scoreScore'] == '') {
-                unset($row);
+        foreach($data as $row) {            //not successfully taking out rows with empty scores yet
+            if (empty($row['scoreScore'])) {
+                unset($data[$row]);
             }
         }
 
@@ -149,6 +148,15 @@ class Score extends CI_Controller {
         else {
             return TRUE;
         }
+    }
+
+    public function calculateDifferential($score, $courseID) {
+        $this->load->model('course_model');
+        $query['course'] = $this->course_model->getCourse((int)$courseID, 1);
+        foreach($query['course'] as $row) {
+            $differential = ((($score - $row['courseRating'])*113)/($row['courseSlope']));
+        }
+        return round($differential, 1);
     }
 
 
