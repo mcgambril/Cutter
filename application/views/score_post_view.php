@@ -24,7 +24,7 @@
                     <select class="form-control" id="pick-course" name="course">
                         <?php
                             foreach($getCoursesQuery as $row) {
-                                echo '<option>' . $row->courseName . '</option>';
+                                echo '<option value="' . $row->courseName . '">' . $row->courseName . '</option>';
                             }
                         ?>
                     </select>
@@ -43,7 +43,6 @@
                                 <thead>
                                 <tr>
                                     <th class="col-md-2">Player</th>
-                                    <!--<th class="col-md-2">ID</th>-->
                                     <th class="col-md-2">Scores to Enter?</th>
                                     <th class="col-md-2">AM Score</th>
                                     <th class="col-md-2">PM Score</th>
@@ -60,9 +59,6 @@
                                         echo '<tbody>';
                                             echo '<tr>';
                                                 echo '<td class="col-md-2">' . $row->playerName . '<input type="hidden" name="' . $row->playerID . '" value="' . $row->playerID . '" /></td>';
-                                                //echo '<td class="col-md-2">';
-                                                   //echo '<input type="text" name="' . $row->playerID . '" id="' . $row->playerID . '" value="' . $row->playerID . '"/>';
-                                                //echo '</td>';
                                                 echo '<td class="col-md-2">';
                                                     echo '<input type="checkbox" id="' . $row->playerID . '-played" data-toggle="collapse" data-target=".' . $row->playerID . 'score"/>Yes';
                                                 echo '</td>';

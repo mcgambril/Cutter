@@ -72,7 +72,7 @@ class Score extends CI_Controller {
 
         $temp['date'] = $this->input->post('datepicker');
         $temp['courseName'] = $this->input->post('course');
-        $temp['courseID'] = (int)$this->course_model->getCourseID($this->input->post('course'), 0);
+        $temp['courseID'] = (int)$this->course_model->getCourseID((int)$temp['courseName'], 0);
         $temp['ids'] = $this->player_model->getPlayerIDsAtoZ(1);
         $ids = array();
         $amScores = array();
@@ -91,7 +91,7 @@ class Score extends CI_Controller {
         $j = 0;
         foreach($ids as $row) {
             $data[''.$i.'']['scorePlayerID'] = $row;
-            $data[''.$i.'']['scoreCourseID'] = /*$courseID;*/ $temp['courseID'];
+            $data[''.$i.'']['scoreCourseID'] = $temp['courseID'];
             $data[''.$i.'']['scoreScore'] = $amScores[''.$j.''];
             $data[''.$i.'']['scoreDate'] = $temp['date'];
             $data[''.$i.'']['scoreTime'] = 0;
@@ -107,22 +107,19 @@ class Score extends CI_Controller {
             $j++;
         }
 
-        foreach($data as $row) {            //not successfully taking out rows with empty scores yet
-            if (empty($row['scoreScore'])) {
-                unset($data[$row]);
+        for($k=0; $k <= (count($ids)*2); $k++) {
+            if( empty($data[$k]['scoreScore'])) {
+                unset($data[$k]);
             }
         }
+
 
         if($this->validateEmpty($data) == FALSE) {
             $this->load->view('score_empty_post_view');
         }
         else {
-            //might need to do a foreach data as row and do individual inserts...but this would take forever for
-            //inserting a lot of data
-            //might need to rearrange setting of data elements so the subarrays are in the same order as
-            //the columns in the score table
-            $this->db->insert_batch('score', $data);
-            $this->load->view('score_update_success_view', $data);
+            $this->course_model->insertScoreBatch($data);
+            $this->scoreUpdateSuccess($data);
         }
     }
 
@@ -157,6 +154,11 @@ class Score extends CI_Controller {
             $differential = ((($score - $row['courseRating'])*113)/($row['courseSlope']));
         }
         return round($differential, 1);
+    }
+
+    public function scoreUpdateSuccess($data) {
+        $this->load->view('score_update_success_view', $data);
+
     }
 
 

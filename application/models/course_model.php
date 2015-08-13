@@ -63,4 +63,9 @@ class Course_model extends CI_Model {
     public function test_entry($data) {
         $this->db->insert('course', $data);
     }
+
+    public function insertScoreBatch($data) {
+        $this->db->insert_batch('score', $data);
+        return;
+    }
 }
