@@ -28,4 +28,6 @@ class Score_model extends CI_Model {
         return $getFullScoreInfoQuery->result();
     }
 
+    
+
 }

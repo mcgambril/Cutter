@@ -64,7 +64,7 @@
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Score<span class="caret"></span></a>
                         <ul class="dropdown-menu">
                             <li><a href="<?php echo base_url("index.php/score/index"); ?>">Score - Home</a></li>
-                            <li><a href="<?php echo base_url("index.php/score/post"); ?>">Score - Post</a></li>
+                            <li><a href="<?php echo base_url("index.php/score/postDate"); ?>">Score - Post</a></li>
                             <li><a href="<?php echo base_url("index.php/header/loadScoreEditView"); ?>">Score - Edit</a></li>
                         </ul>
                     </li>

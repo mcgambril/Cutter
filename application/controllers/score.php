@@ -34,6 +34,16 @@ class Score extends CI_Controller {
         $this->load->view('footer_view');
     }
 
+    public function postDate() {
+        $this->load->helper('form');
+        $this->load->library('form_validation');
+        $this->load->helper('date');
+        date_default_timezone_set('America/Mexico_City');
+        $this->load->view('header_view');
+        $this->load->view('score_post_choose_date_view');
+        $this->load->view('footer_view');
+    }
+
     public function post() {
         $this->load->model('course_model');
         $this->load->model('player_model');
@@ -158,6 +168,24 @@ class Score extends CI_Controller {
     public function scoreUpdateSuccess($data) {
         $this->load->view('score_update_success_view', $data);
 
+    }
+
+    public function submitDate() {
+        $this->load->model('score_model');
+        $this->load->model('player_model');
+        $this->load->model('course_model');
+        $this->load->helper('form');
+        $this->load->library('form_validation');
+        date_default_timezone_set('America/Mexico_City');
+
+        $this->form_validation->set_rules('datepicker', 'Date', 'required|callback_validateDate');
+
+        if($this->form_validation->run()== FALSE) {
+            $this->postDate();
+        }
+        else {
+            $temp['date'] = $this->input->post('datepicker');
+        }
     }
 
 
