@@ -71,8 +71,7 @@ class Score extends CI_Controller {
         }
 
         $temp['date'] = $this->input->post('datepicker');
-        $temp['courseName'] = $this->input->post('course');
-        $temp['courseID'] = (int)$this->course_model->getCourseID((int)$temp['courseName'], 0);
+        $temp['courseID'] = $this->input->post('course');
         $temp['ids'] = $this->player_model->getPlayerIDsAtoZ(1);
         $ids = array();
         $amScores = array();
