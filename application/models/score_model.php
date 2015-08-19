@@ -28,6 +28,21 @@ class Score_model extends CI_Model {
         return $getFullScoreInfoQuery->result();
     }
 
+    public function getPlayersScoresByDate($date) {
+        $this->db->select('p.playerName, count(*), sum(s.scoreTime');
+        $this->db->from('player p');
+        $this->db->join('score s', '(p.playerID = s.scorePlayerID) AND (s.scoreDate = ' .$date. ')', 'left outer');
+        $this->db->group_by('p.playerName');
+        $getPlayersScoresByDateQuery = $this->db->get();
+        return $getPlayersScoresByDateQuery->result();
+    }
+/*select p.playerName, count(*), sum(s.scoreTime)
+from player p
+left outer join score s
+on (p.playerID = s.scorePlayerID)
+and s.scoreDate = '2015-08-01'
+group by p.playerName*/
+
 
 
 }
