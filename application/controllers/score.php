@@ -52,6 +52,14 @@ class Score extends CI_Controller {
         $this->load->helper('date');
         date_default_timezone_set('America/Mexico_City');
 
+      /*  $this->form_validation->set_rules('datepicker', 'Date', 'required|callback_validateDate');
+
+        if($this->form_validation->run()== FALSE) {
+            $this->post();
+        }
+
+        $temp['date'] = $this->input->post('datepicker');*/
+
         $data['getPlayersQuery'] = $this->player_model->getPlayers();
         $data['getCoursesQuery'] = $this->course_model->getCourses();
 
@@ -186,6 +194,17 @@ class Score extends CI_Controller {
         else {
             $temp['date'] = $this->input->post('datepicker');
         }
+
+        $temp['getPlayersScoresByDateQuery'] = $this->score_model->getPlayersScoresByDate($temp['date']);
+        //for each player in the above result set, check their count and sum values and set a new field in the array called
+        //scoreSummary to none, am, pm, or both
+            //if am, query and receive and set that score in the array
+            //if pm, query and receive and set that score in the array
+            //if both, query and receive and set both scores in the array
+        //in view, for each one in the result set, if none, present as designed
+        //if am, present score, gray out, and present pm as designed
+        //ditto for pm situation
+        //if both, gray out those scores and check box and present the scores
     }
 
 

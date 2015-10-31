@@ -62,10 +62,10 @@
                                                 echo '<td class="col-md-2">';
                                                     echo '<input type="checkbox" id="' . $row->playerID . '-played" data-toggle="collapse" data-target=".' . $row->playerID . 'score"/>Yes';
                                                 echo '</td>';
-                                                echo '<td class="col-md-2">';
+                                                echo '<td class="col-md-2">Empty';
                                                     echo '<input type="text" name="' . $row->playerID . 'am-score"  id="' . $row->playerID . 'am-score" class="form-control collapse ' . $row->playerID . 'score">';
                                                 echo '</td>';
-                                                echo '<td class="col-md-2">';
+                                                echo '<td class="col-md-2">Empty';
                                                     echo '<input type="text" name="' . $row->playerID . 'pm-score" id ="' . $row->playerID . 'pm-score" class="form-control collapse ' . $row->playerID . 'score">';
                                                 echo '</td>';
                                             echo '</tr>';
