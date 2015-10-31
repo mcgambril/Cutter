@@ -19,7 +19,6 @@ class Score extends CI_Controller {
         $this->load->model('player_model');
         $this->load->model('score_model');
 
-
         $data['getFullScoreInfoQuery'] = $this->score_model->getFullScoreInfo();
 
         $this->load->view('header_view');
@@ -28,6 +27,7 @@ class Score extends CI_Controller {
     }
 
     public function edit() {
+
         $id['id'] = $this->uri->segment(3);
         $this->load->view('header_view');
         $this->load->view('score_edit_view', $id);
@@ -35,30 +35,25 @@ class Score extends CI_Controller {
     }
 
     public function postDate() {
+
         $this->load->helper('form');
         $this->load->library('form_validation');
         $this->load->helper('date');
         date_default_timezone_set('America/Mexico_City');
+
         $this->load->view('header_view');
         $this->load->view('score_post_choose_date_view');
         $this->load->view('footer_view');
     }
 
     public function post() {
+
         $this->load->model('course_model');
         $this->load->model('player_model');
         $this->load->helper('form');
         $this->load->library('form_validation');
         $this->load->helper('date');
         date_default_timezone_set('America/Mexico_City');
-
-      /*  $this->form_validation->set_rules('datepicker', 'Date', 'required|callback_validateDate');
-
-        if($this->form_validation->run()== FALSE) {
-            $this->post();
-        }
-
-        $temp['date'] = $this->input->post('datepicker');*/
 
         $data['getPlayersQuery'] = $this->player_model->getPlayers();
         $data['getCoursesQuery'] = $this->course_model->getCourses();
@@ -69,6 +64,7 @@ class Score extends CI_Controller {
     }
 
     public function submitPost() {
+
         $this->load->model('score_model');
         $this->load->model('player_model');
         $this->load->model('course_model');
@@ -194,8 +190,33 @@ class Score extends CI_Controller {
         else {
             $temp['date'] = $this->input->post('datepicker');
         }
+        $data['getCoursesQuery'] = $this->course_model->getCourses();
 
-        $temp['getPlayersScoresByDateQuery'] = $this->score_model->getPlayersScoresByDate($temp['date']);
+        $data['getPlayersScoresByDateQuery'] = $this->score_model->getPlayersScoresByDate($temp['date']);
+        foreach ($data['getPlayersScoresByDateQuery'] as $row) {
+            if ($row->scoreSummary == 'am empty') {
+                $row->amScore = 'empty';
+                //$row['pmScore'] = $this->score_model->getScore($row['playerID'], 1, $temp['date']);
+                $row->pmScore = $this->score_model->getScore($row->playerID, 1, $temp['date']);
+            }
+            else if ($row->scoreSummary == 'pm empty') {
+                $row->amScore = $this->score_model->getScore($row->playerID, 0, $temp['date']);
+                $row->pmScore = 'empty';
+            }
+            else if ($row->scoreSummary == 'full') {
+                $row->amScore = $this->score_model->getScore($row->playerID, 0, $temp['date']);
+                $row->pmScore = $this->score_model->getScore($row->playerID, 1, $temp['date']);
+            }
+            else if ($row->scoreSummary == 'empty') {
+                $row->amScore = 'empty';
+                $row->pmScore = 'empty';
+            }
+        }
+
+        $this->load->view('header_view');
+        $this->load->view('score_post2_view', $data);
+        $this->load->view('footer_view');
+
         //for each player in the above result set, check their count and sum values and set a new field in the array called
         //scoreSummary to none, am, pm, or both
             //if am, query and receive and set that score in the array
