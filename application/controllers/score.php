@@ -188,24 +188,24 @@ class Score extends CI_Controller {
             $this->postDate();
         }
         else {
-            $temp['date'] = $this->input->post('datepicker');
+            $data['date'] = $this->input->post('datepicker');
         }
         $data['getCoursesQuery'] = $this->course_model->getCourses();
 
-        $data['getPlayersScoresByDateQuery'] = $this->score_model->getPlayersScoresByDate($temp['date']);
+        $data['getPlayersScoresByDateQuery'] = $this->score_model->getPlayersScoresByDate($data['date']);
         foreach ($data['getPlayersScoresByDateQuery'] as $row) {
             if ($row->scoreSummary == 'am empty') {
                 $row->amScore = 'empty';
                 //$row['pmScore'] = $this->score_model->getScore($row['playerID'], 1, $temp['date']);
-                $row->pmScore = $this->score_model->getScore($row->playerID, 1, $temp['date']);
+                $row->pmScore = $this->score_model->getScore($row->playerID, 1, $data['date']);
             }
             else if ($row->scoreSummary == 'pm empty') {
-                $row->amScore = $this->score_model->getScore($row->playerID, 0, $temp['date']);
+                $row->amScore = $this->score_model->getScore($row->playerID, 0, $data['date']);
                 $row->pmScore = 'empty';
             }
             else if ($row->scoreSummary == 'full') {
-                $row->amScore = $this->score_model->getScore($row->playerID, 0, $temp['date']);
-                $row->pmScore = $this->score_model->getScore($row->playerID, 1, $temp['date']);
+                $row->amScore = $this->score_model->getScore($row->playerID, 0, $data['date']);
+                $row->pmScore = $this->score_model->getScore($row->playerID, 1, $data['date']);
             }
             else if ($row->scoreSummary == 'empty') {
                 $row->amScore = 'empty';

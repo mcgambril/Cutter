@@ -12,7 +12,7 @@
     <h1>Score - <small>Post</small></h1>
 </div>
 
-<?php print_r(array_values($getPlayersScoresByDateQuery)); ?>
+<?php echo print_r(array_values($getPlayersScoresByDateQuery)); echo $date;?> <!--not sure why a 1 is printed out in front of the date string here-->
 
 <?php echo validation_errors(); ?>
 
@@ -22,7 +22,7 @@
         <div class="row">
 
             <div class="col-md-3">
-                <p>Date: <input type="text" name="datepicker" id="datepicker" class="form-control" data-date-format="yyyy-mm-dd"></p>
+                <?php echo '<p>Date: <input type="text" value="' . $date . '" name="datepicker" id="datepicker"  class="form-control" data-date-format="yyyy-mm-dd"></p>';?>
                 <br />
                 <label for="pick-course">Course:</label>
                 <select class="form-control" id="pick-course" name="course">
