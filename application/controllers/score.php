@@ -147,13 +147,25 @@ class Score extends CI_Controller {
                     unset($data[$k]);
                 }
             }
-            
+
             if($this->validateEmpty($data) == FALSE) {
                 $this->load->view('score_empty_post_view');
             }
             else {
                 $this->course_model->insertScoreBatch($data);
-                $this->scoreUpdateSuccess($data);
+
+                //figure out how to sort data properly into an array so that it can be easily and coherently presented
+                //in the update success view
+
+                /*foreach($data as $row) {
+                    $row['playerName'] = $this->player_model->getPlayerNameByID($row['scorePlayerID']);
+                }*/
+                $data2['enteredScoreInfo'] = $data;
+                foreach($data as $row) {
+                    $data2['playerNames'] = $this->player_model->getPlayerNameByID($row['scorePlayerID']);
+                }
+
+                $this->scoreUpdateSuccess($data2);
             }
         }
     }
@@ -193,7 +205,13 @@ class Score extends CI_Controller {
     }
 
     public function scoreUpdateSuccess($data) {
+        $this->load->helper('date');
+        date_default_timezone_set('America/Mexico_City');
+
+        $this->load->view('header_view');
         $this->load->view('score_update_success_view', $data);
+        $this->load->view('footer_view');
+
 
     }
 
