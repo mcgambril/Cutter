@@ -160,6 +160,8 @@ class Score extends CI_Controller {
                 /*foreach($data as $row) {
                     $row['playerName'] = $this->player_model->getPlayerNameByID($row['scorePlayerID']);
                 }*/
+                //Data needed:  playerName, scoreDate, courseName, scoreScore
+
                 $data2['enteredScoreInfo'] = $data;
                 foreach($data as $row) {
                     $data2['playerNames'] = $this->player_model->getPlayerNameByID($row['scorePlayerID']);

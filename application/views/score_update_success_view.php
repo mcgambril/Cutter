@@ -13,7 +13,7 @@
 </div>
 <br>
 <?php
-/*    print_r(array($enteredScoreInfo));
+    print_r(array($enteredScoreInfo));
     print_r(array($playerNames));
     foreach ($enteredScoreInfo as $row) {
         echo $row->scoreCourseID;
@@ -25,7 +25,7 @@
     foreach ($playerNames as $row) {
         echo $row->playerName;
     }
-*/?>
+?>
 <div class="text-center">
 <a class="btn btn-default" href="<?php echo base_url("index.php/score/index"); ?>">Score - Home</a>
 </div>
