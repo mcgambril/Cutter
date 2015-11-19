@@ -154,28 +154,23 @@ class Score extends CI_Controller {
             else {
                 $this->course_model->insertScoreBatch($data);
 
-                //figure out how to sort data properly into an array so that it can be easily and coherently presented
-                //in the update success view
 
-                /*foreach($data as $row) {
-                    $row['playerName'] = $this->player_model->getPlayerNameByID($row['scorePlayerID']);
-                }*/
-                //Data needed:  playerName, scoreDate, courseName, scoreScore
 
-               /* $data2 = $data;
+                //for($i = 0; $i <= (count($ids)*2); $i++) {
                 foreach($data as $row) {
-                    $data2['playerNames'] = $this->player_model->getPlayerNameByID($row['scorePlayerID']);
-                }*/
-
-                //$data2 = $data;
-                foreach ($data as $row) {
+                    //$data[''.$i.'']['playerName'] = $this->player_model->getPlayerNameByID($data[''.$i.'']['scorePlayerID']);
                     $row['playerName'] = $this->player_model->getPlayerNameByID($row['scorePlayerID']);
+                    //$data[''.$i.'']['courseName'] = $this->course_model->getCourse($data[''.$i.'']['scoreCourseID'], 0);
                     $row['courseName'] = $this->course_model->getCourse($row['scoreCourseID'], 0);
+                    //if ($data[''.$i.'']['scoreTime'] == 0) {
                     if ($row['scoreTime'] == 0) {
+                        //$data[''.$i.'']['scoreTimeName'] = 'AM';
                         $row['scoreTimeName'] = 'AM';
                     }
+                    //else if ($data[''.$i.'']['scoreTime'] == 1) {
                     else if ($row['scoreTime'] == 1) {
-                        $row['scoreTimeNme'] = 'PM';
+                        //$data[''.$i.'']['scoreTimeName'] = 'PM';
+                        $row['scoreTimeName'] = 'PM';
                     }
                 }
 

@@ -14,21 +14,6 @@
 <br>
 <?php
     print_r(array($data)); echo '<br>break<br>';
-    //print_r(array($playerNames));
-    /*foreach ($enteredScoreInfo as $row) {
-
-        echo $row->scoreScore;
-        echo $row->scoreDate;
-        echo $row->scoreTime;
-        echo $row->scoreDifferential;
-    }
-    foreach ($playerNames as $row) {
-        echo $row->playerName;
-    }*/
-
-    foreach ($data as $row) {
-
-    }
 ?>
 <div class="text-center">
 <a class="btn btn-default" href="<?php echo base_url("index.php/score/index"); ?>">Score - Home</a>
