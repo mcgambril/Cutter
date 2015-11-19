@@ -162,11 +162,24 @@ class Score extends CI_Controller {
                 }*/
                 //Data needed:  playerName, scoreDate, courseName, scoreScore
 
-                $data2['enteredScoreInfo'] = $data;
+               /* $data2 = $data;
                 foreach($data as $row) {
                     $data2['playerNames'] = $this->player_model->getPlayerNameByID($row['scorePlayerID']);
+                }*/
+
+                //$data2 = $data;
+                foreach ($data as $row) {
+                    $row['playerName'] = $this->player_model->getPlayerNameByID($row['scorePlayerID']);
+                    $row['courseName'] = $this->course_model->getCourse($row['scoreCourseID'], 0);
+                    if ($row['scoreTime'] == 0) {
+                        $row['scoreTimeName'] = 'AM';
+                    }
+                    else if ($row['scoreTime'] == 1) {
+                        $row['scoreTimeNme'] = 'PM';
+                    }
                 }
 
+                $data2['data'] = $data;
                 $this->scoreUpdateSuccess($data2);
             }
         }

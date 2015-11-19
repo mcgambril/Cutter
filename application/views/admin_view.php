@@ -17,9 +17,9 @@
 
 <?php echo form_open('admin/submitPass') ?>
 
-    <div class="form-group">
+    <div class="form-group" style="padding-left:10%;">
         <label for="pwd">Password:</label>
-        <input type="password" name="password" class="form-control">
+        <input type="password" name="password" class="form-control" style="width:50%;">
         <br>
         <input type="submit" class="btn btn-default" value="Submit" name="submit">
         <a class="btn btn-default" href="<?php echo base_url("index.php/home/index"); ?>">Back</a>

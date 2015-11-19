@@ -13,10 +13,10 @@
 </div>
 <br>
 <?php
-    print_r(array($enteredScoreInfo));
-    print_r(array($playerNames));
-    foreach ($enteredScoreInfo as $row) {
-        echo $row->scoreCourseID;
+    print_r(array($data)); echo '<br>break<br>';
+    //print_r(array($playerNames));
+    /*foreach ($enteredScoreInfo as $row) {
+
         echo $row->scoreScore;
         echo $row->scoreDate;
         echo $row->scoreTime;
@@ -24,6 +24,10 @@
     }
     foreach ($playerNames as $row) {
         echo $row->playerName;
+    }*/
+
+    foreach ($data as $row) {
+
     }
 ?>
 <div class="text-center">
