@@ -13,7 +13,7 @@
 </div>
 <br>
 <?php
-    print_r(array($data)); echo '<br>break<br>';
+    print_r(array($data3)); echo '<br><br><br>';
 ?>
 <div class="text-center">
 <a class="btn btn-default" href="<?php echo base_url("index.php/score/index"); ?>">Score - Home</a>

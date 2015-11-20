@@ -60,12 +60,22 @@ class Course_model extends CI_Model {
         }
     }
 
+    public function getCourseName($id, $var) {
+        $this->db->select('courseName');
+        $this->db->from('course');
+        $this->db->where('courseID', (int)$id);
+        $getCourseNameQuery = $this->db->get();
+        if($var == 1) {
+            return $getCourseNameQuery->result_array();
+        }
+        else {
+            return $getCourseNameQuery->result();
+        }
+    }
+
     public function test_entry($data) {
         $this->db->insert('course', $data);
     }
 
-    public function insertScoreBatch($data) {
-        $this->db->insert_batch('score', $data);
-        return;
-    }
+
 }

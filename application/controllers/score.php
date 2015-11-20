@@ -89,6 +89,7 @@ class Score extends CI_Controller {
         $this->load->model('score_model');
         $this->load->model('player_model');
         $this->load->model('course_model');
+        $this->load->model('tempscore_model');
         $this->load->helper('form');
         $this->load->library('form_validation');
         date_default_timezone_set('America/Mexico_City');
@@ -131,13 +132,32 @@ class Score extends CI_Controller {
                 $data[''.$i.'']['scoreDate'] = $temp['date'];
                 $data[''.$i.'']['scoreTime'] = 0;
                 $data[''.$i.'']['scoreDifferential'] = $this->calculateDifferential($amScores[''.$j.''], $temp['courseID']);
+
+                $data2[''.$i.'']['tempPlayerName'] = $this->player_model->getPlayerNameByID($row);
+                $temp2['tempCourseName'] = $this->course_model->getCourseName($temp['courseID'], 1);
+                $data2[''.$i.'']['tempCourseName'] = implode("", $temp2['tempCourseName']);
+                $data2[''.$i.'']['tempScore'] = $amScores[''.$j.''];
+                $data2[''.$i.'']['tempDate'] = $temp['date'];
+                $data2[''.$i.'']['tempDifferential'] = $data[''.$i.'']['scoreDifferential'];
+                $data2[''.$i.'']['tempActive'] = 1;
+
                 $i++;
+
                 $data[''.$i.'']['scorePlayerID'] = $row;
                 $data[''.$i.'']['scoreCourseID'] = $temp['courseID'];
                 $data[''.$i.'']['scoreScore'] = $pmScores[''.$j.''];
                 $data[''.$i.'']['scoreDate'] = $temp['date'];
                 $data[''.$i.'']['scoreTime'] = 1;
                 $data[''.$i.'']['scoreDifferential'] = $this->calculateDifferential($pmScores[''.$j.''], $temp['courseID']);
+
+                $data2[''.$i.'']['tempPlayerName'] = $this->player_model->getPlayerNameByID($row);
+                $temp['tempCourseName'] = $this->course_model->getCourseName($temp['courseID'], 1);
+                $data2[''.$i.'']['tempCourseName'] = implode("", $temp2['tempCourseName']);
+                $data2[''.$i.'']['tempScore'] = $pmScores[''.$j.''];
+                $data2[''.$i.'']['tempDate'] = $temp['date'];
+                $data2[''.$i.'']['tempDifferential'] = $data[''.$i.'']['scoreDifferential'];
+                $data2[''.$i.'']['tempActive'] = 1;
+
                 $i++;
                 $j++;
             }
@@ -146,36 +166,23 @@ class Score extends CI_Controller {
                 if( empty($data[$k]['scoreScore'])) {
                     unset($data[$k]);
                 }
+                if (empty($data2[$k]['tempScore'])) {
+                    unset($data2[$k]);
+                }
             }
 
             if($this->validateEmpty($data) == FALSE) {
                 $this->load->view('score_empty_post_view');
             }
             else {
-                $this->course_model->insertScoreBatch($data);
+                $this->score_model->insertScoreBatch($data);
 
+                $this->tempscore_model->insertTempscoreBatch($data2);
 
+                $data3['getTempScoresQuery'] = $this->tempscore_model->getTempScores();
+                $this->tempscore_model->deactivateTempScores();
 
-                //for($i = 0; $i <= (count($ids)*2); $i++) {
-                foreach($data as $row) {
-                    //$data[''.$i.'']['playerName'] = $this->player_model->getPlayerNameByID($data[''.$i.'']['scorePlayerID']);
-                    $row['playerName'] = $this->player_model->getPlayerNameByID($row['scorePlayerID']);
-                    //$data[''.$i.'']['courseName'] = $this->course_model->getCourse($data[''.$i.'']['scoreCourseID'], 0);
-                    $row['courseName'] = $this->course_model->getCourse($row['scoreCourseID'], 0);
-                    //if ($data[''.$i.'']['scoreTime'] == 0) {
-                    if ($row['scoreTime'] == 0) {
-                        //$data[''.$i.'']['scoreTimeName'] = 'AM';
-                        $row['scoreTimeName'] = 'AM';
-                    }
-                    //else if ($data[''.$i.'']['scoreTime'] == 1) {
-                    else if ($row['scoreTime'] == 1) {
-                        //$data[''.$i.'']['scoreTimeName'] = 'PM';
-                        $row['scoreTimeName'] = 'PM';
-                    }
-                }
-
-                $data2['data'] = $data;
-                $this->scoreUpdateSuccess($data2);
+                $this->scoreUpdateSuccess($data3);
             }
         }
     }

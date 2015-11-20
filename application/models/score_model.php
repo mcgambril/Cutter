@@ -67,6 +67,13 @@ class Score_model extends CI_Model {
 
 
 
+    public function insertScoreBatch($data) {
+        $this->db->insert_batch('score', $data);
+        return;
+    }
+
+
+
 
 
 }

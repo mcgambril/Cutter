@@ -28,7 +28,6 @@ class Home extends CI_Controller {
         $data['getPlayersQuery'] = $this->player_model->getPlayers();
         $data['getScoresQuery'] = $this->score_model->getScores();
         $data['getPlayersAndScoresQuery'] = $this->player_model->getPlayersAndScores();
-
         $data['getHomeCourseQuery'] = $this->course_model->getHomeCourse();
         $data['IDs'] = $this->player_model->getPlayerIDs(0);
 
@@ -55,7 +54,7 @@ class Home extends CI_Controller {
 
     }
 
-    public function update() {
+    /*public function update() {
 
         $data = array(
                         "name" => "Vestavia",
@@ -67,5 +66,5 @@ class Home extends CI_Controller {
         $this->load->model('course_model');
 
         $this->course_model->test_entry($data);
-    }
+    }*/
 }
