@@ -30,8 +30,22 @@ class Tempscore_model extends CI_Model
         return;
     }
 
+    public function updateTempScores() {
+
+        $queryString = "update tempscore t
+                          set
+                              t.tempPlayerName = (select p.playerName from player p where p.playerID = t.scorePlayerID),
+                              t.tempCourseName = (select c.courseName from course c where c.courseID = t.scoreCourseID)
+                          where t.tempActive = 1";
+        $this->db->_protect_identifiers = false;
+        $result = $this->db->query($queryString);
+        $this->db->_protect_identifiers = true;
+        return $result;
+    }
+
     public function insertTempscoreBatch($data) {
         $this->db->insert_batch('tempscore', $data);
+
         return;
     }
 

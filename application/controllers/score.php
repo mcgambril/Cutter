@@ -125,6 +125,7 @@ class Score extends CI_Controller {
 
             $i = 0;
             $j = 0;
+            $buffer = "temp";
             foreach($ids as $row) {
                 $data[''.$i.'']['scorePlayerID'] = $row;
                 $data[''.$i.'']['scoreCourseID'] = $temp['courseID'];
@@ -133,12 +134,21 @@ class Score extends CI_Controller {
                 $data[''.$i.'']['scoreTime'] = 0;
                 $data[''.$i.'']['scoreDifferential'] = $this->calculateDifferential($amScores[''.$j.''], $temp['courseID']);
 
-                $data2[''.$i.'']['tempPlayerName'] = $this->player_model->getPlayerNameByID($row);
-                $temp2['tempCourseName'] = $this->course_model->getCourseName($temp['courseID'], 1);
-                $data2[''.$i.'']['tempCourseName'] = implode("", $temp2['tempCourseName']);
+                //$data2[''.$i.'']['tempPlayerName'] = $this->player_model->getPlayerNameByID($row);
+                //$temp2['tempCourseName'] = $this->course_model->getCourseName($temp['courseID'], 1);
+                //$data2[''.$i.'']['tempCourseName'] = implode("", $temp2['tempCourseName']);
+                $data2[''.$i.'']['scorePlayerID'] = $row;
+                $data2[''.$i.'']['tempPlayerName'] = $buffer;
+                $data2[''.$i.'']['scoreCourseID'] = $temp['courseID'];
+                $data2[''.$i.'']['tempCourseName'] = $buffer;
+                $data2[''.$i.'']['scoreScore'] = $amScores[''.$j.''];
                 $data2[''.$i.'']['tempScore'] = $amScores[''.$j.''];
+                $data2[''.$i.'']['scoreDate'] = $temp['date'];
                 $data2[''.$i.'']['tempDate'] = $temp['date'];
+                $data2[''.$i.'']['scoreDifferential'] = $this->calculateDifferential($amScores[''.$j.''], $temp['courseID']);
                 $data2[''.$i.'']['tempDifferential'] = $data[''.$i.'']['scoreDifferential'];
+                $data2[''.$i.'']['scoreTime'] = 0;
+                $data2[''.$i.'']['tempTime'] = 'AM';
                 $data2[''.$i.'']['tempActive'] = 1;
 
                 $i++;
@@ -150,12 +160,21 @@ class Score extends CI_Controller {
                 $data[''.$i.'']['scoreTime'] = 1;
                 $data[''.$i.'']['scoreDifferential'] = $this->calculateDifferential($pmScores[''.$j.''], $temp['courseID']);
 
-                $data2[''.$i.'']['tempPlayerName'] = $this->player_model->getPlayerNameByID($row);
-                $temp['tempCourseName'] = $this->course_model->getCourseName($temp['courseID'], 1);
-                $data2[''.$i.'']['tempCourseName'] = implode("", $temp2['tempCourseName']);
+                //$data2[''.$i.'']['tempPlayerName'] = $this->player_model->getPlayerNameByID($row);
+                //$temp['tempCourseName'] = $this->course_model->getCourseName($temp['courseID'], 1);
+                //$data2[''.$i.'']['tempCourseName'] = implode("", $temp2['tempCourseName']);
+                $data2[''.$i.'']['scorePlayerID'] = $row;
+                $data2[''.$i.'']['tempPlayerName'] = $buffer;
+                $data2[''.$i.'']['scoreCourseID'] = $temp['courseID'];
+                $data2[''.$i.'']['tempCourseName'] = $buffer;
+                $data2[''.$i.'']['scoreScore'] = $pmScores[''.$j.''];
                 $data2[''.$i.'']['tempScore'] = $pmScores[''.$j.''];
+                $data2[''.$i.'']['scoreDate'] = $temp['date'];
                 $data2[''.$i.'']['tempDate'] = $temp['date'];
                 $data2[''.$i.'']['tempDifferential'] = $data[''.$i.'']['scoreDifferential'];
+                $data2[''.$i.'']['scoreDifferential'] = $this->calculateDifferential($pmScores[''.$j.''], $temp['courseID']);
+                $data2[''.$i.'']['scoreTime'] = 1;
+                $data2[''.$i.'']['tempTime'] = 'PM';
                 $data2[''.$i.'']['tempActive'] = 1;
 
                 $i++;
@@ -166,7 +185,7 @@ class Score extends CI_Controller {
                 if( empty($data[$k]['scoreScore'])) {
                     unset($data[$k]);
                 }
-                if (empty($data2[$k]['tempScore'])) {
+                if (empty($data2[$k]['scoreScore'])) {
                     unset($data2[$k]);
                 }
             }
@@ -178,11 +197,16 @@ class Score extends CI_Controller {
                 $this->score_model->insertScoreBatch($data);
 
                 $this->tempscore_model->insertTempscoreBatch($data2);
+                //run the update tempscore function here
+                if ($this->tempscore_model->updateTempScores() == True) {
+                    $data3['getTempScoresQuery'] = $this->tempscore_model->getTempScores();
+                    //might want to do a query to delete the temp scores instead of deactivate
+                    $this->tempscore_model->deactivateTempScores();
 
-                $data3['getTempScoresQuery'] = $this->tempscore_model->getTempScores();
-                $this->tempscore_model->deactivateTempScores();
+                    $this->scoreUpdateSuccess($data3);
+                }
+                else{};
 
-                $this->scoreUpdateSuccess($data3);
             }
         }
     }

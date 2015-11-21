@@ -13,7 +13,15 @@
 </div>
 <br>
 <?php
-    print_r(array($data3)); echo '<br><br><br>';
+    //print_r(array($getTempScoresQuery)); echo '<br>';
+    foreach ($getTempScoresQuery as $row) {
+        echo 'Player Name: ' . $row->tempPlayerName . '<br>';
+        echo 'Date: ' . $row->tempDate . '<br>';
+        echo 'Course: ' . $row->tempCourseName . '<br>';
+        echo 'Score: ' . $row->tempScore . '<br>';
+        echo 'Differential: ' . $row->tempDifferential . '<br>';
+        echo 'Time: ' . $row->tempTime . '<br><br>';
+    }
 ?>
 <div class="text-center">
 <a class="btn btn-default" href="<?php echo base_url("index.php/score/index"); ?>">Score - Home</a>
