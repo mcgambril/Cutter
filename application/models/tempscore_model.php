@@ -27,6 +27,7 @@ class Tempscore_model extends CI_Model
         $data = array('tempActive' => 0);
         //$this->db->where('tempActive', 1);
         $this->db->update('tempscore', $data, "tempActive = 1");
+        //might want to just delete the active records rather than switching to inactive
         return;
     }
 

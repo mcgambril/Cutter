@@ -190,7 +190,7 @@ class Score extends CI_Controller {
                 }
             }
 
-            if($this->validateEmpty($data) == FALSE) {
+            if($this->validateNotEmpty($data) == FALSE) {
                 $this->load->view('score_empty_post_view');
             }
             else {
@@ -205,7 +205,9 @@ class Score extends CI_Controller {
 
                     $this->scoreUpdateSuccess($data3);
                 }
-                else{};
+                else{
+                    //return some error message or view...
+                };
 
             }
         }
@@ -222,12 +224,12 @@ class Score extends CI_Controller {
             return TRUE;
         }
         else {
-            $this->form_validation->set_message('validateDate', 'Cannot enter scores for a future date.');
+            $this->form_validation->set_message('validateDate', 'Cannot enter or edit scores for a future date.');
             return FALSE;
         }
     }
 
-    public function validateEmpty($data) {
+    public function validateNotEmpty($data) {
         if(empty($data)) {
             return FALSE;
         }
@@ -298,6 +300,33 @@ class Score extends CI_Controller {
             $this->load->view('score_post_view', $data);
             $this->load->view('footer_view');
 
+        }
+    }
+
+    public function chooseEditDate() {
+        $this->load->helper('form');
+        $this->load->library('form_validation');
+        $this->load->helper('date');
+        date_default_timezone_set('America/Mexico_City');
+
+        $this->load->view('header_view');
+        $this->load->view('score_choose_edit_date_view');
+        $this->load->view('footer_view');
+    }
+
+    public function postEditDate() {
+        $this->load->model('score_model');
+        $this->load->helper('form');
+        $this->load->library('form_validation');
+        date_default_timezone_set('America/Mexico_City');
+
+        $this->form_validation->set_rules('datepicker', 'Date', 'required|callback_validateDate');
+
+        if($this->form_validation->run()== FALSE) {
+            $this->chooseEditDate();
+        }
+        else {
+            $data['date'] = $this->input->post('datepicker');
         }
     }
 }
