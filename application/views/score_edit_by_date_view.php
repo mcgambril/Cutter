@@ -1,0 +1,76 @@
+<!--
+/**
+ * Created by PhpStorm.
+ * User: Matthew
+ * Date: 11/23/2015
+ * Time: 1:53 PM
+ */
+ -->
+
+This is the score_edit_by_date_view
+
+<!--
+    -Need to be able to view the full score info:  name, course, date, score, time, differential
+    -should only be able to edit the score and the course; if anything else needs to be changed then they will just have to delete that record
+     and create a new one with the proper data
+    -there should be a delete option on this page as well just to make it easier-->
+
+ <div class="container">
+    <div class="page-header">
+        <h1>Score - <small>Edit Scores for <?php echo $date ?></small></h1>
+    </div>
+
+     <div class="panel panel-default">
+         <!-- Default panel contents -->
+         <div class="panel-heading">Existing Scores for <?php echo $date?></div>
+
+         <div class="table-responsive">
+             <table class ="table table-condensed table-bordered" style="border-collapse:collapse;">
+                 <thead>
+                 <tr>
+                     <th class="col-md-1">Player</th>
+                     <th class="col-md-1">Date</th>
+                     <th class="col-md-1">Course</th>
+                     <th class="col-md-1">New Course</th>
+                     <th class="col-md-1">Score</th>
+                     <th class="col-md-1">New Score</th>
+                     <th class="col-md-1">Time</th>
+                 </tr>
+             </table>
+         </div>
+
+         <?php foreach($getFullScoreInfoByDate as $row) {
+             echo'<div class="table-responsive">';
+             echo '<table class ="table table-condensed table-bordered">';
+             echo '<thead>';
+             echo '</thead>';
+             echo '<tbody>';
+             echo '<tr>';
+             echo '<td class="col-md-1">' . $row->playerName . '</td>';
+             echo '<td class="col-md-1">' . $row->scoreDate . '</td>';
+             echo '<td class="col-md-1">' . $row->courseName . '</td>';
+             echo '<label for="pick-course">Course:</label>';
+             echo '<select class="form-control" id="pick-course" name="course" class="col-md-1">';
+             foreach($getCoursesQuery as $r) {
+                 echo '<option value="' . $r->courseID . '">' . $r->courseName . '</option>';
+             }
+             echo '</select>';
+             echo '<td class="col-md-1">' . $row->scoreScore . '</td>';
+             echo '<td class="col-md-1">';
+             echo '<input type="text" name="' . $row->playerID . 'new-score"  id="' . $row->playerID . 'new-score" ' . $row->playerID . 'score">';
+             echo '</td>';
+             if ($row->scoreTime == 0) {
+                 echo '<td class="col-md-1">AM</td>';
+             }
+             else {
+                 echo '<td class="col-md-1">PM</td>';
+             }
+             echo '</tr>';
+             echo '</tbody>';
+             echo '</table>';
+             echo '</div>';
+         }
+         ?>
+     </div>
+ </div>
+ </div>

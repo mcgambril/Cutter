@@ -316,6 +316,7 @@ class Score extends CI_Controller {
 
     public function postEditDate() {
         $this->load->model('score_model');
+        $this->load->model('course_model');
         $this->load->helper('form');
         $this->load->library('form_validation');
         date_default_timezone_set('America/Mexico_City');
@@ -327,6 +328,12 @@ class Score extends CI_Controller {
         }
         else {
             $data['date'] = $this->input->post('datepicker');
+            $data['getFullScoreInfoByDate'] = $this->score_model->getFullScoreInfoByDate($data['date']);
+            $data['getCoursesQuery'] = $this->course_model->getCourses();
+
+            $this->load->view('header_view');
+            $this->load->view('score_edit_by_date_view', $data);
+            $this->load->view('footer_view');
         }
     }
 }

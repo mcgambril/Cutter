@@ -65,11 +65,19 @@ class Score_model extends CI_Model {
         return $getScoreQuery->result();
     }
 
-
-
     public function insertScoreBatch($data) {
         $this->db->insert_batch('score', $data);
         return;
+    }
+
+    public function getFullScoreInfoByDate($date) {
+        $this->db->select('score.*, player.*, course.*');
+        $this->db->from('score');
+        $this->db->join('player', 'score.scorePlayerID = player.playerID', 'INNER');
+        $this->db->join('course', 'score.scoreCourseID = course.courseID', 'INNER');
+        $this->db->where('score.scoreDate', $date);
+        $getFullScoreInfoQuery = $this->db->get();
+        return $getFullScoreInfoQuery->result();
     }
 
 
