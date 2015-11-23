@@ -35,6 +35,7 @@ This is the score_edit_by_date_view
                      <th class="col-md-1">Score</th>
                      <th class="col-md-1">New Score</th>
                      <th class="col-md-1">Time</th>
+                     <th class="col-md-1">Delete?</th>
                  </tr>
              </table>
          </div>
@@ -49,15 +50,15 @@ This is the score_edit_by_date_view
              echo '<td class="col-md-1">' . $row->playerName . '</td>';
              echo '<td class="col-md-1">' . $row->scoreDate . '</td>';
              echo '<td class="col-md-1">' . $row->courseName . '</td>';
-             echo '<label for="pick-course">Course:</label>';
-             echo '<select class="form-control" id="pick-course" name="course" class="col-md-1">';
+             echo '<td class="col-md-1">';
+             echo '<select class="form-control" id="pick-course" name="course">';
              foreach($getCoursesQuery as $r) {
                  echo '<option value="' . $r->courseID . '">' . $r->courseName . '</option>';
              }
-             echo '</select>';
+             echo '</select></td>';
              echo '<td class="col-md-1">' . $row->scoreScore . '</td>';
              echo '<td class="col-md-1">';
-             echo '<input type="text" name="' . $row->playerID . 'new-score"  id="' . $row->playerID . 'new-score" ' . $row->playerID . 'score">';
+             echo '<input type="text" class="col-md-12" name="' . $row->playerID . 'new-score"  id="' . $row->playerID . 'new-score" ' . $row->playerID . 'score">';
              echo '</td>';
              if ($row->scoreTime == 0) {
                  echo '<td class="col-md-1">AM</td>';
@@ -65,6 +66,10 @@ This is the score_edit_by_date_view
              else {
                  echo '<td class="col-md-1">PM</td>';
              }
+             echo '<td class="col-md-1">';
+             echo '<a class="btn btn-default col-md-12" href="' . base_url("index.php/score/delete/".$row->scoreID) . '">Delete</a>';
+             //change the delete buttons to a delete check box and maybe highlight something red if checked just to be sure
+             echo '</td>';
              echo '</tr>';
              echo '</tbody>';
              echo '</table>';
