@@ -134,9 +134,6 @@ class Score extends CI_Controller {
                 $data[''.$i.'']['scoreTime'] = 0;
                 $data[''.$i.'']['scoreDifferential'] = $this->calculateDifferential($amScores[''.$j.''], $temp['courseID']);
 
-                //$data2[''.$i.'']['tempPlayerName'] = $this->player_model->getPlayerNameByID($row);
-                //$temp2['tempCourseName'] = $this->course_model->getCourseName($temp['courseID'], 1);
-                //$data2[''.$i.'']['tempCourseName'] = implode("", $temp2['tempCourseName']);
                 $data2[''.$i.'']['scorePlayerID'] = $row;
                 $data2[''.$i.'']['tempPlayerName'] = $buffer;
                 $data2[''.$i.'']['scoreCourseID'] = $temp['courseID'];
@@ -160,9 +157,6 @@ class Score extends CI_Controller {
                 $data[''.$i.'']['scoreTime'] = 1;
                 $data[''.$i.'']['scoreDifferential'] = $this->calculateDifferential($pmScores[''.$j.''], $temp['courseID']);
 
-                //$data2[''.$i.'']['tempPlayerName'] = $this->player_model->getPlayerNameByID($row);
-                //$temp['tempCourseName'] = $this->course_model->getCourseName($temp['courseID'], 1);
-                //$data2[''.$i.'']['tempCourseName'] = implode("", $temp2['tempCourseName']);
                 $data2[''.$i.'']['scorePlayerID'] = $row;
                 $data2[''.$i.'']['tempPlayerName'] = $buffer;
                 $data2[''.$i.'']['scoreCourseID'] = $temp['courseID'];
@@ -335,5 +329,9 @@ class Score extends CI_Controller {
             $this->load->view('score_edit_by_date_view', $data);
             $this->load->view('footer_view');
         }
+    }
+
+    public function submitEditScore() {
+        return;
     }
 }
