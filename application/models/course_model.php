@@ -73,9 +73,9 @@ class Course_model extends CI_Model {
         }
     }
 
-    public function test_entry($data) {
+    /*public function test_entry($data) {
         $this->db->insert('course', $data);
-    }
+    }*/
 
 
 }

@@ -308,6 +308,7 @@ class Score extends CI_Controller {
         $this->load->view('footer_view');
     }
 
+    //adding parameters to maybe know whether it needs to bring in date from form or just use the one it is given
     public function postEditDate() {
         $this->load->model('score_model');
         $this->load->model('course_model');
@@ -332,6 +333,30 @@ class Score extends CI_Controller {
     }
 
     public function submitEditScore() {
+
+        $this->load->model('score_model');
+        $this->load->helper('form');
+        $this->load->library('form_validation');
+        date_default_timezone_set('America/Mexico_City');
+
+        $this->form_validation->set_rules('datepicker', 'Date', 'required|callback_validateDate');
+        $date = $this->input->post('datepicker');
+
+        $temp['scoreList'] = $this->score_model->getFullScoreInfoByDate($date);
+
+        foreach ($temp['scoreList'] as $row) {
+            $this->form_validation->set_rules($row->playerID.'-new-score', $row->playerName.' New Score', 'integer|greater_than[17]');
+        }
+
+        if($this->form_validation->run()== FALSE) {
+            //Need to figure out what to do if the date for some reason does not pass the validation rules
+            //it should theoretically never fail the validation rules since it is being passed through after having passed the rules once
+            //plus it is a read only field so it shouldn't be able to be altered
+        }
+        else {
+            
+        }
+
         return;
     }
 }
