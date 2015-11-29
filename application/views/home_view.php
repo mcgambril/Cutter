@@ -69,7 +69,7 @@
                         echo '</thead>';
                         echo '<tbody>';
                             echo '<tr data-toggle="collapse" data-target="#'.$row->playerID.'" class="accordion-toggle">';
-                                echo '<td class="col-md-3"><button type="button" class="btn btn-default">Scores</button></td>';
+                                echo '<td class="col-md-3"><button type="button" class="btn btn-default col-md-12">Scores</button></td>';
                                 echo '<td class="col-md-3">' . $row->playerName . '</td>';
                                 echo '<td class="col-md-3">' . $row->playerHandicap . '</td>';
                                 echo '<td class="col-md-3">' . $row->playerHandicapIndex . '</td>';
@@ -78,6 +78,7 @@
                                 echo'<td></td>';
                                 echo'<td>';
                                     echo'<table class="table-condensed table-bordered">';
+                                    echo'<caption style="font-weight:bold; color:#000000;">Last 20 Scores</caption>';
                                         echo'<thead>';
                                             echo'<tr>';
                                                 echo'<th>Date (YYYY-MM-DD)</th>';

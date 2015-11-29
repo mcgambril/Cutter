@@ -309,6 +309,7 @@ class Score extends CI_Controller {
     }
 
     //adding parameters to maybe know whether it needs to bring in date from form or just use the one it is given
+    //need to post message if there are no scores for the current date to be edited
     public function postEditDate() {
         $this->load->model('score_model');
         $this->load->model('course_model');
@@ -354,7 +355,7 @@ class Score extends CI_Controller {
             //plus it is a read only field so it shouldn't be able to be altered
         }
         else {
-            
+
         }
 
         return;
