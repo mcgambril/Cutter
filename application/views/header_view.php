@@ -16,9 +16,12 @@
 </head>
 
 <link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
+<link rel="icon" href="<?php echo base_url("assets/images/golfball2.jpg");?>" />
+<!--Just need to insert a good icon image above instead of the test icon-->
 <script type="text/javascript" src="<?php echo base_url("assets/js/jQuery-1.11.3.js"); ?>"></script>
 <script type="text/javascript" src="<?php echo base_url("assets/js/bootstrap.js"); ?>"></script>
 <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
+<link rel="stylesheet" href="<?php echo base_url("assets/css/site.css"); ?>" />
 
 <script>
     $(function() {

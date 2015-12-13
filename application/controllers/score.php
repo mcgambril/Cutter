@@ -355,7 +355,13 @@ class Score extends CI_Controller {
             //plus it is a read only field so it shouldn't be able to be altered
         }
         else {
-
+            $deleteScores = array();
+            foreach ($temp['scoreList'] as $key => $row) {
+                if ($this->input->post($row->playerID.'-delete') == "delete") {
+                    array_push($deleteScores, $row);
+                    unset($temp['scoreList'][$key]);
+                }
+            }
         }
 
         return;

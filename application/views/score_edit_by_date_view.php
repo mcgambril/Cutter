@@ -31,6 +31,7 @@
                      <th class="col-md-1">Player</th>
                      <th class="col-md-1">Date</th>
                      <th class="col-md-1">Course</th>
+                     <!--<th class="col-md-1">Change Course?</th>-->
                      <th class="col-md-1">New Course</th>
                      <th class="col-md-1">Score</th>
                      <th class="col-md-1">New Score</th>
@@ -51,12 +52,14 @@
                                  echo '<td class="col-md-1">' . $row->playerName . '</td>';
                                  echo '<td class="col-md-1">' . $row->scoreDate . '</td>';
                                  echo '<td class="col-md-1">' . $row->courseName . '</td>';
+                                 //echo '<td class="col-md-1"> Yes <input type="checkbox" id="' . $row->playerID . '-course_change"/></td>';
                                  echo '<td class="col-md-1">';
-                                 echo '<select class="form-control" id="pick-course" name="course">';
-                                     foreach($getCoursesQuery as $r) {
-                                         echo '<option value="' . $r->courseID . '">' . $r->courseName . '</option>';
-                                     }
-                                 echo '</select></td>';
+                                    echo 'Yes <input type="checkbox" id="' . $row->playerID . '-course_change"/>';
+                                    echo ' <select class="form-control" id="pick-course" name="course">';
+                                        foreach($getCoursesQuery as $r) {
+                                             echo '<option value="' . $r->courseID . '">' . $r->courseName . '</option>';
+                                        }
+                                    echo '</select></td>';
                                  echo '<td class="col-md-1">' . $row->scoreScore . '</td>';
                                  echo '<td class="col-md-1">';
                                     echo '<input type="text" class="col-md-12" name="' . $row->playerID . '-new-score"  id="' . $row->playerID . '-new-score" ' . $row->playerID . 'score">';
@@ -68,7 +71,7 @@
                                      echo '<td class="col-md-1">PM</td>';
                                  }
                                  echo '<td class="col-md-1">';
-                                    echo 'Delete? <input type="checkbox" id="' . $row->playerID . '-delete"/>';
+                                    echo 'Delete? <input type="checkbox" class="delete_box" id="' . $row->playerID . '-delete" value="delete"/>';
                                     //change the delete buttons to a delete check box and maybe highlight something red if checked just to be sure
                                  echo '</td>';
                              echo '</tr>';
