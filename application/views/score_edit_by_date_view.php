@@ -70,7 +70,7 @@
                                      echo '<td class="col-md-1">PM</td>';
                                  }
                                  echo '<td class="col-md-1">';
-                                    echo 'Delete? <input type="checkbox" class="delete_box" id="' . $row->playerID . '-delete" value="delete"/>';
+                                    echo 'Delete? <input type="checkbox" class="delete_box" id="' . $row->scoreID . '-delete" name="' . $row->scoreID . '-delete"  value="delete"/>';
                                     //change the delete buttons to a delete check box and maybe highlight something red if checked just to be sure
                                  echo '</td>';
                              echo '</tr>';
