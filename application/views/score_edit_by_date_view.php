@@ -52,10 +52,9 @@
                                  echo '<td class="col-md-1">' . $row->playerName . '</td>';
                                  echo '<td class="col-md-1">' . $row->scoreDate . '</td>';
                                  echo '<td class="col-md-1">' . $row->courseName . '</td>';
-                                 //echo '<td class="col-md-1"> Yes <input type="checkbox" id="' . $row->playerID . '-course_change"/></td>';
                                  echo '<td class="col-md-1">';
-                                    echo 'Yes <input type="checkbox" id="' . $row->playerID . '-course_change"/>';
-                                    echo ' <select class="form-control" id="pick-course" name="course">';
+                                    echo 'Yes <input type="checkbox" id="' . $row->playerID . '-course_change" name="' . $row->playerID . '-course_change" value="yes"/>';
+                                    echo ' <select class="form-control" id="pick-course-' . $row->scoreID . '" name="course-' . $row->scoreID . '">';
                                         foreach($getCoursesQuery as $r) {
                                              echo '<option value="' . $r->courseID . '">' . $r->courseName . '</option>';
                                         }

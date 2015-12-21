@@ -13,7 +13,6 @@
 </div>
 <br>
 <?php
-    //print_r(array($getTempScoresQuery)); echo '<br>';
     foreach ($getTempScoresQuery as $row) {
         echo 'Player Name: ' . $row->tempPlayerName . '<br>';
         echo 'Date: ' . $row->tempDate . '<br>';

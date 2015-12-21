@@ -197,7 +197,7 @@ class Score extends CI_Controller {
                     //might want to do a query to delete the temp scores instead of deactivate
                     $this->tempscore_model->deactivateTempScores();
 
-                    $this->scoreUpdateSuccess($data3);
+                    $this->scoreEntrySuccess($data3);
                 }
                 else{
                     //return some error message or view...
@@ -241,15 +241,24 @@ class Score extends CI_Controller {
         return round($differential, 1);
     }
 
-    public function scoreUpdateSuccess($data) {
+    public function scoreEntrySuccess($data) {
         $this->load->helper('date');
         date_default_timezone_set('America/Mexico_City');
 
         $this->load->view('header_view');
-        $this->load->view('score_update_success_view', $data);
+        $this->load->view('score_entry_success_view', $data);
         $this->load->view('footer_view');
 
 
+    }
+
+    public function scoreEditSuccess() {
+        $this->load->helper('date');
+        date_default_timezone_set('America/Mexico_City');
+
+        $this->load->view('header_view');
+        $this->load->view('score_edit_success_view');
+        $this->load->view('footer_view');
     }
 
     public function submitDate() {
@@ -357,11 +366,39 @@ class Score extends CI_Controller {
         else {
             $deleteScores = array();
             foreach ($temp['scoreList'] as $key => $row) {
-                if ($this->input->post($row->playerID.'-delete') == "delete") {
-                    array_push($deleteScores, $row);
+                if ($this->input->post($row->playerID . '-delete') == "delete") {
+                    array_push($deleteScores, $row->scoreID);
                     unset($temp['scoreList'][$key]);
                 }
             }
+
+            if($this->validateNotEmpty($deleteScores) == TRUE) {
+                $this->db->where_in('scoreID', $deleteScores);
+                $this->db->delete('score');
+            }
+
+            $updateScores = array();
+            foreach ($temp['scoreList'] as $key => $row) {
+                $id = $row->scoreID;
+                if ($this->input->post($row->playerID . '-course_change') == "yes") {
+                    $newCourse = $this->input->post('course-' . $row->scoreID);
+                }
+                else {
+                    $newCourse = $row->scoreCourseID;
+                }
+                $newScore = $this->input->post($row->playerID . '-new-score');
+                if(empty($newScore) == TRUE){
+                    $newScore = $row->scoreScore;
+                }
+                $tempUpdate = array (
+                    "scoreID" => $id,
+                    "scoreCourseID" => $newCourse,
+                    "scoreScore" => $newScore
+                );
+                array_push($updateScores, $tempUpdate);
+            }
+            $this->db->update_batch('score', $updateScores, 'scoreID');
+            $this->scoreEditSuccess();
         }
 
         return;
