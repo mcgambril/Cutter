@@ -1,3 +1,7 @@
 td .delete_box:checked {
     background-color: indianred;
 }
+
+.fixed {
+    position: fixed;
+}

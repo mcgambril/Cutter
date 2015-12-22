@@ -30,7 +30,11 @@
                         echo '<option value="' . $row->courseID . '">' . $row->courseName . '</option>';
                     }
                     ?>
-                </select>
+                </select><br /><br />
+                <div style="position:fixed;">
+                    <input type="submit" class="btn btn-default" value="Enter Scores" name="submit">
+                    <a class="btn btn-default" href="<?php echo base_url("index.php/score/index"); ?>">Back</a>
+                </div>
             </div>
 
             <div class="col-md-1">
@@ -128,10 +132,6 @@
                     ?>
                 </div>
 
-                <div class="text-center">
-                    <input type="submit" class="btn btn-default" value="Enter Scores" name="submit">
-                    <a class="btn btn-default" href="<?php echo base_url("index.php/score/index"); ?>">Back</a>
-                </div>
             </div>
 
         </div>

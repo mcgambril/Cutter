@@ -75,4 +75,17 @@ class Player_model extends CI_Model {
         return $getPlayerNameByIDQuery->result();
     }
 
+    public function insertPlayer($player) {
+        $queryString = "INSERT INTO player (playerName)
+                        VALUES ('$player')";
+
+        if($this->db->query($queryString) == TRUE) {
+            return TRUE;
+        }
+        else {
+            return FALSE;
+        }
+
+    }
+
 }

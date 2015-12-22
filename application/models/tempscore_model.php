@@ -33,14 +33,14 @@ class Tempscore_model extends CI_Model
 
     public function updateTempScores() {
 
-        $queryString = "update tempscore t
-                          set
-                              t.tempPlayerName = (select p.playerName from player p where p.playerID = t.scorePlayerID),
-                              t.tempCourseName = (select c.courseName from course c where c.courseID = t.scoreCourseID)
-                          where t.tempActive = 1";
-        $this->db->_protect_identifiers = false;
+        $queryString = "UPDATE tempscore t
+                          SET
+                              t.tempPlayerName = (SELECT p.playerName FROM player p WHERE p.playerID = t.scorePlayerID),
+                              t.tempCourseName = (SELECT c.courseName FROM course c WHERE c.courseID = t.scoreCourseID)
+                          WHERE t.tempActive = 1";
+        $this->db->_protect_identifiers = FALSE;
         $result = $this->db->query($queryString);
-        $this->db->_protect_identifiers = true;
+        $this->db->_protect_identifiers = TRUE;
         return $result;
     }
 
