@@ -386,7 +386,6 @@ class Score extends CI_Controller {
                 else {
                     $newCourse = $row->scoreCourseID;
                 }
-                //need to check and make sure anything in this box was an integer greater than 17
                 $tempNewScore = $this->input->post($row->playerID . '-new-score');
                 if($tempNewScore == "" || $tempNewScore == null || $tempNewScore == 0){
                     $newScore = $row->scoreScore;
