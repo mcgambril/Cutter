@@ -85,9 +85,10 @@ class Player extends CI_Controller
         $this->load->helper('form');
 
         $id = $this->input->post('playerID');
-        if ($this->player_model->deletePlayer($id) == TRUE) {
+        if ($this->player_model->deletePlayer((int)$id) == TRUE) {
             //create delete success message data
             //open delete result view
+            $this->index();
         }
         else {
             //create delete failed message data

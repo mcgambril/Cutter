@@ -19,7 +19,6 @@
             echo '<!-- Default panel contents -->';
             echo '<div class="panel-heading">' . $row->playerName . '&#39s Current Information</div>';
             echo'<div class="table-responsive">';
-                echo '<input type = "hidden" name = "playerID" value = "' . $row->playerID . '" />';
                 echo '<table class ="table table-condensed table-bordered" style="border-collapse:collapse;">';
                     echo '<thead>';
                         echo '<tr>';
@@ -50,6 +49,7 @@
         <div class="row">
             <div class="text-center">
                 <h3>Are you sure you want to Delete this player from the database?</h3>
+                <?php echo '<input type = "hidden" name = "playerID" value = "' . $row->playerID . '" />'; ?>
                 <input type="submit" class="btn btn-default" value="Yes. Delete Player" name="submitName">
                 <a class="btn btn-default" href="<?php echo base_url("index.php/player/index"); ?>">Back</a>
             </div>
