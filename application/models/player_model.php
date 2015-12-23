@@ -96,8 +96,14 @@ class Player_model extends CI_Model {
 
     }
 
-    public function updatePlayer($id, $name) {
-
+    public function updatePlayer($id, $data) {
+        $this->db->where('playerID', $id);
+        if ($this->db->update('player', $data) == TRUE) {
+            return TRUE;
+        }
+        else {
+            return FALSE;
+        }
     }
 
 }

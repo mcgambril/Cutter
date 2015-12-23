@@ -65,8 +65,14 @@ class Player extends CI_Controller
             $id = $this->input->post('playerID');
             $newFirst = $this->input->post('newFirstName');
             $newLast = $this->input->post('newLastName');
-            $newPlayerName = $newLast . ', ' . $newFirst;
-            $queryResult = $this->player_model->updatePlayer($id, $newPlayerName);
+            $data['playerName'] = $newLast . ', ' . $newFirst;
+            $queryResult = $this->player_model->updatePlayer($id, $data);
+            if ($queryResult == TRUE) {
+                $data['title'] = 'Success!';
+            }
+            else {
+
+            }
         }
     }
 
