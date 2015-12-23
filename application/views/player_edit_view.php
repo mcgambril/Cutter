@@ -7,11 +7,11 @@
  */
  -->
 
-<p>This is the player edit view</p>
-
 <div class="container">
     <div class="page-header">
-        <h1>Player - <small>Edit</small></h1>
+        <?php foreach($getPlayerByIDQuery as $row) {
+            echo '<h1>' . $row->playerName . ' - <small>Edit Player</small></h1>';
+        }?>
     </div>
 </div>
 
@@ -21,18 +21,17 @@
 <div class="form-group">
     <div class="container">
         <div class="row">
-            <?php foreach ($getPlayerByIDQuery as $row) {
-                echo '<h4>' . $row->playerName . '</h4>';
-            }?>
             <br>
             <h4>Enter the new name for this player:</h4><br>
             <div class="col-md-3">
-                <input type="hidden" name="playerID" value="<?php $row->playerID ?>" />
+                <?php foreach ($getPlayerByIDQuery as $row) {
+                    echo '<input type = "hidden" name = "playerID" value = "' . $row->playerID . '" />';
+                }?>
                 <p>First Name: <input type="text" name="newFirstName" id="newFirstName" class="form-control"></p>
                 <p>Last Name: <input type="text" name="newLastName" id="newLastName" class="form-control"></p>
                 <br />
                 <div class="text-center">
-                    <input type="submit" class="btn btn-default" value="Add Player" name="submitName">
+                    <input type="submit" class="btn btn-default" value="Submit New Player Name" name="submitName">
                     <a class="btn btn-default" href="<?php echo base_url("index.php/player/index"); ?>">Back</a>
                 </div>
             </div>

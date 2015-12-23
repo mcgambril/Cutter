@@ -40,6 +40,8 @@ class Player extends CI_Controller
     }
 
     public function Edit() {
+        $this->load->helper('form');
+        $this->load->library('form_validation');
         $this->load->model('player_model');
 
         $id = $this->uri->segment(3);
@@ -63,16 +65,26 @@ class Player extends CI_Controller
         }
         else {
             $id = $this->input->post('playerID');
+            $temp['oldName'] = $this->player_model->getPlayerNameByID($id);
+            foreach($temp['oldName'] as $row) {
+                if(isset($row->playerName)) {
+                    $oldName = $row->playerName;
+                }
+            }
             $newFirst = $this->input->post('newFirstName');
             $newLast = $this->input->post('newLastName');
-            $data['playerName'] = $newLast . ', ' . $newFirst;
+            $newName = $newLast . ', ' . $newFirst;
+            $data['playerName'] = $newName;
             $queryResult = $this->player_model->updatePlayer($id, $data);
             if ($queryResult == TRUE) {
                 $data['title'] = 'Success!';
+                $data['message'] = "'" . $oldName . "'s' name was changed to '" . $newName . ".'";
             }
             else {
-
+                $data['title'] = 'Failure';
+                $data['message'] = "'" . $oldName . "'s' name failed to updated to '" . $newName . ".'  Please try again later";
             }
+            $this->playerUpdateResult($data);
         }
     }
 
@@ -113,6 +125,12 @@ class Player extends CI_Controller
 
         $this->load->view('header_view');
         $this->load->view('player_add_result_view', $data);
+        $this->load->view('footer_view');
+    }
+
+    public function playerUpdateResult($data) {
+        $this->load->view('header_view');
+        $this->load->view('player_update_result_view', $data);
         $this->load->view('footer_view');
     }
 }
