@@ -85,6 +85,16 @@ class Score_model extends CI_Model {
         }
     }
 
+    public function updateScoresBatch($data) {
+        if( $this->db->update_batch('score', $data, 'scoreID') == TRUE) {
+            return TRUE;
+        }
+        else {
+            return FALSE;
+        }
+
+    }
+
 
 
 

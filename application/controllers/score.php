@@ -400,8 +400,18 @@ class Score extends CI_Controller {
                 );
                 array_push($updateScores, $tempUpdate);
             }
-            $this->db->update_batch('score', $updateScores, 'scoreID');
-            $this->scoreEditSuccess();
+            if ($this->score_model->updateScoresBatch($updateScores) == TRUE) {
+                //insert success data messages here
+                //might want to show what updates were made
+                $messageData['title'] = 'Success!';
+            }
+            else {
+                //insert failed update messages here
+                //might want to show which updates failed
+                $messageData['title'] = 'Failure';
+            }
+            //$this->db->update_batch('score', $updateScores, 'scoreID');
+            $this->scoreEditSuccess($messageData);
         }
 
         return;

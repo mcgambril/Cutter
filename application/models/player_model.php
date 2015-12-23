@@ -67,6 +67,14 @@ class Player_model extends CI_Model {
         }
     }
 
+    public function getPlayerByID($id) {
+        $this->db->select('*');
+        $this->db->from('player');
+        $this->db->where('playerID', $id);
+        $getPlayerByIDQuery = $this->db->get();
+        return $getPlayerByIDQuery->result();
+    }
+
     public function getPlayerNameByID($id) {
         $this->db->select('playerName');
         $this->db->from('player');
@@ -85,6 +93,10 @@ class Player_model extends CI_Model {
         else {
             return FALSE;
         }
+
+    }
+
+    public function updatePlayer($id, $name) {
 
     }
 

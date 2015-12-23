@@ -39,6 +39,37 @@ class Player extends CI_Controller
         $this->load->view('footer_view');
     }
 
+    public function Edit() {
+        $this->load->model('player_model');
+
+        $id = $this->uri->segment(3);
+        $data['getPlayerByIDQuery'] = $this->player_model->getPlayerByID($id);
+
+        $this->load->view('header_view');
+        $this->load->view('player_edit_view', $data);
+        $this->load->view('footer_view');
+    }
+
+    public function submitEditPlayer() {
+        $this->load->model('player_model');
+        $this->load->helper('form');
+        $this->load->library('form_validation');
+
+        $this->form_validation->set_rules('newFirstName', 'First Name', 'required');
+        $this->form_validation->set_rules('newLastName', 'Last Name', 'required');
+
+        if($this->form_validation->run() ==FALSE ) {
+            //need to go back to the Edit screen for the current player
+        }
+        else {
+            $id = $this->input->post('playerID');
+            $newFirst = $this->input->post('newFirstName');
+            $newLast = $this->input->post('newLastName');
+            $newPlayerName = $newLast . ', ' . $newFirst;
+            $queryResult = $this->player_model->updatePlayer($id, $newPlayerName);
+        }
+    }
+
     public function submitNewPlayer() {
         $this->load->model('player_model');
         $this->load->helper('form');
