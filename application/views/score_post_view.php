@@ -18,29 +18,29 @@
 <div class="form-group">
     <div class="container">
         <div class="row">
-
-            <div class="col-md-3">
-
-                <?php echo '<p>Date: <input type="text" value="' . $date . '" name="datepicker"  class="form-control" readonly></p>';?>
-                <br />
-                <label for="pick-course">Course:</label>
-                <select class="form-control" id="pick-course" name="course">
-                    <?php
-                    foreach($getCoursesQuery as $row) {
-                        echo '<option value="' . $row->courseID . '">' . $row->courseName . '</option>';
-                    }
-                    ?>
-                </select><br /><br />
-                <div style="position:fixed;">
-                    <input type="submit" class="btn btn-default" value="Enter Scores" name="submit">
-                    <a class="btn btn-default" href="<?php echo base_url("index.php/score/index"); ?>">Back</a>
+            <div class="col-md-4">
+                <div class="col-md-3 fixed">
+                    <?php echo '<p><strong>Date: </strong></p><input type="text" value="' . $date . '" name="datepicker"  class="form-control" readonly>';?>
+                    <br />
+                    <label for="pick-course">Course:</label>
+                    <select class="form-control" id="pick-course" name="course">
+                        <?php
+                        foreach($getCoursesQuery as $row) {
+                            echo '<option value="' . $row->courseID . '">' . $row->courseName . '</option>';
+                        }
+                        ?>
+                    </select><br/>
+                    <div>
+                        <input type="submit" class="btn btn-default" value="Enter Scores" name="submit">
+                        <a class="btn btn-default" href="<?php echo base_url("index.php/score/index"); ?>">Back</a>
+                    </div>
                 </div>
             </div>
 
-            <div class="col-md-1">
-            </div>
+            <!--<div class="col-md-1">
+            </div>-->
 
-            <div class="col-md-8">
+            <div class="col-md-8" style="position:relative;">
                 <div class="panel panel-default">
 
                     <div class="panel-heading">Post New Scores</div>
@@ -68,7 +68,7 @@
                                         echo '<tr>';
                                             echo '<td class="col-md-2">' . $row->playerName . '<input type="hidden" name="' . $row->playerID . '" value="' . $row->playerID . '" /></td>';
                                             echo '<td class="col-md-2">';
-                                                echo '<input type="checkbox" id="' . $row->playerID . '-played" data-toggle="collapse" data-target=".' . $row->playerID . 'score"/>Yes';
+                                                echo '<input type="checkbox" id="' . $row->playerID . '-played" data-toggle="collapse" data-target=".' . $row->playerID . 'score"/> Yes';
                                             echo '</td>';
                                             echo '<td class="col-md-2">Empty';
                                                 echo '<input type="text" name="' . $row->playerID . 'am-score"  id="' . $row->playerID . 'am-score" class="form-control collapse ' . $row->playerID . 'score">';

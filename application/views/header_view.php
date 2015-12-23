@@ -21,7 +21,7 @@
 <script type="text/javascript" src="<?php echo base_url("assets/js/jQuery-1.11.3.js"); ?>"></script>
 <script type="text/javascript" src="<?php echo base_url("assets/js/bootstrap.js"); ?>"></script>
 <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
-<link rel="stylesheet" href="<?php echo base_url("assets/css/site.css"); ?>" />
+<link rel="stylesheet" type="text/css" href="<?php echo base_url("assets/css/Site.css"); ?>" />
 
 <script>
     $(function() {
@@ -29,11 +29,8 @@
             changeMonth: true,
             changeYear: true,
             showButtonPanel: true,
-            dateFormat:  'yy-mm-dd'
-         /*   showOn: "button",
-            buttonImage: "<?php echo base_url("assets/images/calendar.gif"); ?>",
-            buttonImageOnly: true,
-            buttonText: "Select date"*/
+            dateFormat:  'yy-mm-dd',
+            showAnim: 'slideDown'
         });
     });
 </script>

@@ -16,7 +16,7 @@
     <div class="form-group">
         <div class="container">
             <div class="row">
-                <h4>*Pick a date to enter new scores for:</h4><br>
+                <h4>Pick or enter a date (yyyy-mm-dd) to enter new scores for:</h4><br>
                 <div class="col-md-3">
                     <p>Date: <input type="text" name="datepicker" id="datepicker" class="form-control" data-date-format="yyyy-mm-dd"></p>
                     <br />
