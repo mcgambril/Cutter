@@ -33,10 +33,10 @@ class Player_model extends CI_Model {
         foreach($getPlayersAndScoresQuery as &$row) {
             $row->scores = $this->getPlayerScores($row->playerID);
             if(is_null($row->playerHandicap)) {
-                $row->playerHandicap = 'N/A';
+                $row->playerHandicap = 'TBD';
             }
             if(is_null($row->playerHandicapIndex)) {
-                $row->playerHandicapIndex = 'N/A';
+                $row->playerHandicapIndex = 'TBD';
             }
         }
         return $getPlayersAndScoresQuery;
@@ -99,6 +99,16 @@ class Player_model extends CI_Model {
     public function updatePlayer($id, $data) {
         $this->db->where('playerID', $id);
         if ($this->db->update('player', $data) == TRUE) {
+            return TRUE;
+        }
+        else {
+            return FALSE;
+        }
+    }
+
+    public function deletePlayer($id) {
+        $this->db->where('playerID', $id);
+        if ($this->db->delete('player') == TRUE) {
             return TRUE;
         }
         else {

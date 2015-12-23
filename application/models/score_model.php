@@ -95,6 +95,16 @@ class Score_model extends CI_Model {
 
     }
 
+    public function deleteScores($scores) {
+        $this->db->where_in('scoreID', $scores);
+        if ($this->db->delete('score') == TRUE) {
+            return TRUE;
+        }
+        else {
+            return FALSE;
+        }
+    }
+
 
 
 

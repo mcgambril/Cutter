@@ -46,7 +46,7 @@
                                 echo '<a class="btn btn-default col-md-12" href="' . base_url("index.php/player/edit/".$row->playerID) . '">Edit</a>';
                             echo '</td>';
                             echo '<td class="col-md-1">';
-                                echo '<a class="btn btn-default col-md-12" href="' . base_url() . '">Delete</a>';
+                                echo '<a class="btn btn-default col-md-12" href="' . base_url("index.php/player/delete/".$row->playerID) . '">Delete</a>';
                             echo '</td>';
                         echo '</tr>';
                     echo '</tbody>';

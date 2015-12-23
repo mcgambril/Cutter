@@ -13,6 +13,32 @@
             echo '<h1>' . $row->playerName . ' - <small>Edit Player</small></h1>';
         }?>
     </div>
+
+    <?php foreach($getPlayerByIDQuery as $row) {
+        echo '<div class="panel panel-default">';
+            echo '<!-- Default panel contents -->';
+            echo '<div class="panel-heading">' . $row->playerName . '&#39s Current Information</div>';
+            echo'<div class="table-responsive">';
+                echo '<table class ="table table-condensed table-bordered" style="border-collapse:collapse;">';
+                    echo '<thead>';
+                        echo '<tr>';
+                            echo '<th class="col-md-2">Name</th>';
+                            echo '<th class="col-md-1">Handicap</th>';
+                            echo '<th class="col-md-1">Handicap Index</th>';
+                        echo '</tr>';
+                    echo '</thead>';
+                    echo '<tbody>';
+                        echo '<tr>';
+                            echo '<td class="col-md-2">' . $row->playerName . '</td>';
+                            echo '<td class="col-md-1">' . $row->playerHandicap . '</td>';
+                            echo '<td class="col-md-1">' . $row->playerHandicapIndex . '</td>';
+                        echo '</tr>';
+                    echo '</tbody>';
+                echo '</table>';
+            echo '</div>';
+        echo '</div>';
+    }?>
+
 </div>
 
 <?php echo validation_errors(); ?>

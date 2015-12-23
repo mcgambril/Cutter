@@ -19,10 +19,10 @@ class Player extends CI_Controller
         $data['getPlayersQuery'] = $this->player_model->getPlayers();
         foreach($data['getPlayersQuery'] as $row) {
             if ($row->playerHandicap == "" || 0 || null) {
-                $row->playerHandicap = "N/A";
+                $row->playerHandicap = "TBD";
             }
             if ($row->playerHandicapIndex == "" || 0 || null) {
-                $row->playerHandicapIndex = "N/A";
+                $row->playerHandicapIndex = "TBD";
             }
         }
 
@@ -31,7 +31,7 @@ class Player extends CI_Controller
         $this->load->view('footer_view');
     }
 
-    public function Add() {
+    public function add() {
         $this->load->helper('form');
         $this->load->library('form_validation');
         $this->load->view('header_view');
@@ -39,17 +39,60 @@ class Player extends CI_Controller
         $this->load->view('footer_view');
     }
 
-    public function Edit() {
+    public function edit() {
         $this->load->helper('form');
         $this->load->library('form_validation');
         $this->load->model('player_model');
 
         $id = $this->uri->segment(3);
         $data['getPlayerByIDQuery'] = $this->player_model->getPlayerByID($id);
+        foreach($data['getPlayerByIDQuery'] as $row) {
+            if(is_null($row->playerHandicap)) {
+                $row->playerHandicap = 'TBD';
+            }
+            if(is_null($row->playerHandicapIndex)) {
+                $row->playerHandicapIndex = 'TBD';
+            }
+        }
 
         $this->load->view('header_view');
         $this->load->view('player_edit_view', $data);
         $this->load->view('footer_view');
+    }
+
+    public function delete() {
+        $this->load->helper('form');
+        $this->load->model('player_model');
+
+        $id = $this->uri->segment(3);
+        $data['getPlayerByIDQuery'] = $this->player_model->getPlayerByID($id);
+        foreach($data['getPlayerByIDQuery'] as $row) {
+            if (is_null($row->playerHandicap)) {
+                $row->playerHandicap = 'TBD';
+            }
+            if (is_null($row->playerHandicapIndex)) {
+                $row->playerHandicapIndex = 'TBD';
+            }
+        }
+
+        $this->load->view('header_view');
+        $this->load->view('player_delete_view', $data);
+        $this->load->view('footer_view');
+    }
+
+    public function submitDelete() {
+        $this->load->model('player_model');
+        $this->load->helper('form');
+
+        $id = $this->input->post('playerID');
+        if ($this->player_model->deletePlayer($id) == TRUE) {
+            //create delete success message data
+            //open delete result view
+        }
+        else {
+            //create delete failed message data
+            //open delete result view
+        }
     }
 
     public function submitEditPlayer() {
@@ -97,7 +140,7 @@ class Player extends CI_Controller
         $this->form_validation->set_rules('lastName', 'Last Name', 'required');
 
         if($this->form_validation->run()== FALSE) {
-            $this->Add();
+            $this->add();
         }
         else {
             $tempFirst = $this->input->post('firstName');

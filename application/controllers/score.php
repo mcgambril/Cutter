@@ -373,8 +373,12 @@ class Score extends CI_Controller {
             }
 
             if($this->validateNotEmpty($deleteScores) == TRUE) {
-                $this->db->where_in('scoreID', $deleteScores);
-                $this->db->delete('score');
+                if ($this->score_model->deleteScores($deleteScores) == TRUE) {
+                    $messageData['deleteMessage'] = 'The indicated scores were successfully deleted from the database';
+                }
+                else {
+                    $messageData['deleteMessage'] = 'Error:  The indicated scores failed to be deleted from the database';
+                }
             }
 
             $updateScores = array();
@@ -401,11 +405,13 @@ class Score extends CI_Controller {
                 array_push($updateScores, $tempUpdate);
             }
             if ($this->score_model->updateScoresBatch($updateScores) == TRUE) {
+                //insert message about whether scores were successfully deleted or not
                 //insert success data messages here
                 //might want to show what updates were made
                 $messageData['title'] = 'Success!';
             }
             else {
+                //insert message about whether scores were successfully deleted or not
                 //insert failed update messages here
                 //might want to show which updates failed
                 $messageData['title'] = 'Failure';
