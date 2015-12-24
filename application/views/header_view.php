@@ -65,7 +65,7 @@
                         <ul class="dropdown-menu">
                             <li><a href="<?php echo base_url("index.php/score/index"); ?>">Score - Home</a></li>
                             <li><a href="<?php echo base_url("index.php/score/postDate"); ?>">Score - Post</a></li>
-                            <li><a href="<?php echo base_url("index.php/score/chooseEditDate"); ?>">Score - Edit</a></li>
+                            <li><a href="<?php echo base_url("index.php/score/chooseEditDate"); ?>">Score - Batch Edit By Date</a></li>
                         </ul>
                     </li>
                     <li class="dropdown">

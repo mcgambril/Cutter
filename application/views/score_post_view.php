@@ -112,7 +112,8 @@
                                         echo '<tr>';
                                             echo '<td class="col-md-2">' . $row->playerName . '<input type="hidden" name="' . $row->playerID . '" value="' . $row->playerID . '" /></td>';
                                             echo '<td class="col-md-2">';
-                                                echo '<input type="checkbox" id="' . $row->playerID . '-played" data-toggle="collapse" data-target=".' . $row->playerID . '" disabled="disabled"/>No';
+                                                //echo '<input type="checkbox" id="' . $row->playerID . '-played" data-toggle="collapse" data-target=".' . $row->playerID . '" disabled="disabled"/>No';
+                                                echo 'Scores are full';
                                             echo '</td>';
                                             foreach($row->amScore as $score) {
                                                 echo '<td class="col-md-2">' . $score->scoreScore . '';

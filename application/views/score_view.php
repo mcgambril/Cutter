@@ -47,7 +47,7 @@
                             echo '<td class="col-md-2">' . $row->courseName . '</td>';
                             echo '<td class="col-md-2">' . $row->scoreScore . '</td>';
                             echo '<td class="col-md-2">';
-                                echo '<a class="btn btn-default" href="' . base_url("index.php/score/edit/".$row->scoreID) . '">Edit</a>';
+                                echo '<a class="btn btn-default col-md-12" href="' . base_url("index.php/score/edit/".$row->scoreID) . '">Edit</a>';
                             echo '</td>';
                         echo '</tr>';
                     echo '</tbody>';

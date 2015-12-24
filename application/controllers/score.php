@@ -252,12 +252,12 @@ class Score extends CI_Controller {
 
     }
 
-    public function scoreEditSuccess($data) {
+    public function scoreEditResult($data) {
         $this->load->helper('date');
         date_default_timezone_set('America/Mexico_City');
 
         $this->load->view('header_view');
-        $this->load->view('score_edit_success_view', $data);
+        $this->load->view('score_edit_result_view', $data);
         $this->load->view('footer_view');
     }
 
@@ -421,7 +421,7 @@ class Score extends CI_Controller {
                 $messageData['message'] = 'Error:  The changes were unable to be updated to the database.  Please try again later.';
             }
 
-            $this->scoreEditSuccess($messageData);
+            $this->scoreEditResult($messageData);
 
         return;
     }
