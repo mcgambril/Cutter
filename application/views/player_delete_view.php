@@ -7,6 +7,10 @@
  */
  -->
 
+<?php echo validation_errors(); ?>
+
+<?php echo form_open('player/submitDelete') ?>
+
 <div class="container">
     <div class="page-header">
         <?php foreach($getPlayerByIDQuery as $row) {
@@ -41,9 +45,6 @@
 
 </div>
 
-<?php echo validation_errors(); ?>
-
-<?php echo form_open('player/submitDelete') ?>
 <div class="form-group">
     <div class="container">
         <div class="row">
