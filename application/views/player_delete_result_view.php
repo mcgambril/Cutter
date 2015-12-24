@@ -7,6 +7,7 @@
      */
 -->
 
+
 <div class="text-center">
     <h1> <?php echo $title ?> </h1>
     <br>

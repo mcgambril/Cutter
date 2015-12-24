@@ -252,12 +252,12 @@ class Score extends CI_Controller {
 
     }
 
-    public function scoreEditSuccess() {
+    public function scoreEditSuccess($data) {
         $this->load->helper('date');
         date_default_timezone_set('America/Mexico_City');
 
         $this->load->view('header_view');
-        $this->load->view('score_edit_success_view');
+        $this->load->view('score_edit_success_view', $data);
         $this->load->view('footer_view');
     }
 
@@ -374,12 +374,19 @@ class Score extends CI_Controller {
 
             if($this->validateNotEmpty($deleteScores) == TRUE) {
                 if ($this->score_model->deleteScores($deleteScores) == TRUE) {
+                    $messageData['deleteResult'] = 'Success!';
                     $messageData['deleteMessage'] = 'The indicated scores were successfully deleted from the database';
                 }
                 else {
+                    $messageData['deleteResult'] = 'Failed';
                     $messageData['deleteMessage'] = 'Error:  The indicated scores failed to be deleted from the database';
                 }
+
             }
+            else {
+                $messageData['deleteResult'] = 'NULL';
+            }
+        }
 
             $updateScores = array();
             foreach ($temp['scoreList'] as $key => $row) {
@@ -404,21 +411,17 @@ class Score extends CI_Controller {
                 );
                 array_push($updateScores, $tempUpdate);
             }
+
             if ($this->score_model->updateScoresBatch($updateScores) == TRUE) {
-                //insert message about whether scores were successfully deleted or not
-                //insert success data messages here
-                //might want to show what updates were made
                 $messageData['title'] = 'Success!';
+                $messageData['message'] = 'The appropriate changes were made and the database updated accordingly.';
             }
             else {
-                //insert message about whether scores were successfully deleted or not
-                //insert failed update messages here
-                //might want to show which updates failed
                 $messageData['title'] = 'Failure';
+                $messageData['message'] = 'Error:  The changes were unable to be updated to the database.  Please try again later.';
             }
-            //$this->db->update_batch('score', $updateScores, 'scoreID');
+
             $this->scoreEditSuccess($messageData);
-        }
 
         return;
     }
