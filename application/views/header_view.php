@@ -87,8 +87,8 @@
                     <li class="dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Course<span class="caret"></span></a>
                         <ul class="dropdown-menu">
-                            <li><a href="<?php echo base_url("index.php/header/loadCourseHomeView"); ?>">Course - Home</a></li>
-                            <li><a href="<?php echo base_url("index.php/header/loadCourseAddView"); ?>">Course - Add</a></li>
+                            <li><a href="<?php echo base_url("index.php/course/index"); ?>">Course - Home</a></li>
+                            <li><a href="<?php echo base_url("index.php/course/add"); ?>">Course - Add</a></li>
                             <li><a href="<?php echo base_url("index.php/header/loadCourseEditView"); ?>">Course - Edit</a></li>
                             <li><a href="<?php echo base_url("index.php/header/loadCourseDeleteView"); ?>">Course - Delete</a></li>
                         </ul>

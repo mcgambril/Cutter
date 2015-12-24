@@ -30,7 +30,7 @@
                     <th class="col-md-2">Date</th>
                     <th class="col-md-2">Course</th>
                     <th class="col-md-2">Score</th>
-                    <th class="col-md-2">Edit</th>
+                    <th class="col-md-2 centered">Actions</th>
                 </tr>
             </table>
         </div>

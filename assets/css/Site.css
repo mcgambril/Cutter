@@ -5,3 +5,7 @@ td .delete_box:checked {
 .fixed {
     position: fixed;
 }
+
+.centered {
+    text-align: center;
+}

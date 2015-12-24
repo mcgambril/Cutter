@@ -64,7 +64,7 @@
         <?php
             foreach($getPlayersAndScoresQuery as $row) {
                 echo '<div class="table-responsive">';
-                    echo '<table class ="table table-condensed table-bordered table-striped" style="border-collapse:collapse;">';
+                    echo '<table class ="table table-condensed table-bordered" style="border-collapse:collapse;">';
                         echo '<thead>';
                         echo '</thead>';
                         echo '<tbody>';

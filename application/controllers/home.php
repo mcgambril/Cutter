@@ -54,17 +54,4 @@ class Home extends CI_Controller {
 
     }
 
-    /*public function update() {
-
-        $data = array(
-                        "name" => "Vestavia",
-                        "slope" => 132.00,
-                        "rating" => 72,
-                        "default" => 0
-        );
-
-        $this->load->model('course_model');
-
-        $this->course_model->test_entry($data);
-    }*/
 }
