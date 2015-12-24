@@ -85,15 +85,30 @@ class Player extends CI_Controller
         $this->load->helper('form');
 
         $id = $this->input->post('playerID');
-        if ($this->player_model->deletePlayer((int)$id) == TRUE) {
-            //create delete success message data
-            //open delete result view
-            $this->index();
+        $data['name'] = $this->player_model->getPlayerNameByID($id);
+
+        $queryResult = $this->player_model->deletePlayer((int)$id);
+
+        $this->playerDeleteResult($queryResult, $data);
+    }
+
+    public function playerDeleteResult($queryResult, $data) {
+        foreach($data['name'] as $row) {
+            $deletedPlayer = $row->playerName;
+        }
+
+        if ($queryResult == TRUE) {
+            $data['title'] = 'Success!';
+            $data['message'] = $deletedPlayer . ' was successfully deleted from the database.';
         }
         else {
-            //create delete failed message data
-            //open delete result view
+            $data['title'] = 'Failed';
+            $data['message'] = 'Error: ' . $deletedPlayer . ' failed to be deleted from the database.  Please try again later.';
         }
+
+        $this->load->view('header_view');
+        $this->load->view('player_delete_result_view', $data);
+        $this->load->view('footer_view');
     }
 
     public function submitEditPlayer() {

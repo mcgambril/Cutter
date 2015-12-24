@@ -1,12 +1,11 @@
 <!--
-/**
- * Created by PhpStorm.
- * User: Matthew
- * Date: 7/28/2015
- * Time: 9:29 PM
- */
- -->
-
+    /**
+     * Created by PhpStorm.
+     * User: Matthew
+     * Date: 12/23/2015
+     * Time: 10:43 PM
+     */
+-->
 
 <div class="text-center">
     <h1> <?php echo $title ?> </h1>
