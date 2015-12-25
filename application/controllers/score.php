@@ -349,8 +349,8 @@ class Score extends CI_Controller {
         $this->load->library('form_validation');
         date_default_timezone_set('America/Mexico_City');
 
-        $this->form_validation->set_rules('datepicker', 'Date', 'required|callback_validateDate');
-        $date = $this->input->post('datepicker');
+        $this->form_validation->set_rules('date', 'Date', 'required|callback_validateDate');
+        $date = $this->input->post('date');
 
         $temp['scoreList'] = $this->score_model->getFullScoreInfoByDate($date);
 

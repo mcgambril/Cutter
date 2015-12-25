@@ -10,10 +10,9 @@
 <div class="container">
     <div class="page-header">
         <h1>Course - <small>Home</small></h1>
-        <a class="btn btn-default col-md-3" href="<?php echo base_url("index.php/course/add"); ?>">Add Course</a>
-        <br>
-        <br>
     </div>
+    <a class="btn btn-default col-md-3" href="<?php echo base_url("index.php/course/add"); ?>">Add Course</a>
+    <div class="page-header"><br></div>
 
     <div class="panel panel-default">
         <!-- Default panel contents -->
@@ -26,7 +25,7 @@
                     <th class="col-md-2">Name</th>
                     <th class="col-md-1">Slope</th>
                     <th class="col-md-1">Rating</th>
-                    <th class="col-md-1 centered">Default</th>
+                    <th class="col-md-1 centered">Home Course</th>
                     <th class="col-md-2 centered" colspan="2">Actions</th>
                 </tr>
             </table>

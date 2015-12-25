@@ -34,6 +34,7 @@ class Player extends CI_Controller
     public function add() {
         $this->load->helper('form');
         $this->load->library('form_validation');
+
         $this->load->view('header_view');
         $this->load->view('player_add_view');
         $this->load->view('footer_view');

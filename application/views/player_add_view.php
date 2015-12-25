@@ -16,14 +16,31 @@
 <div class="form-group">
     <div class="container">
         <div class="row">
-            <h4>Enter the name of the player you would like to add to the group:</h4><br>
-            <div class="col-md-3">
-                <p>First Name: <input type="text" name="firstName" id="firstName" class="form-control"></p>
-                <p>Last Name: <input type="text" name="lastName" id="lastName" class="form-control"></p>
-                <br />
-                <div class="text-center">
-                    <input type="submit" class="btn btn-default" value="Add Player" name="submitName">
-                    <a class="btn btn-default" href="<?php echo base_url("index.php/player/index"); ?>">Back</a>
+            <div class="col-md-6">
+                <h4>Enter the name of the player you would like to add to the group:</h4>
+                <br>
+                <table class="col-md-8">
+                    <tbody>
+                        <tr>
+                            <td class="headingLeft">First Name:  </td>
+                            <td class="centered tableData">
+                                <input type="text" name="firstName" id="firstName" class="form-control">
+                                <br>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="headingLeft">Last Name:  </td>
+                            <td class="centered tableData">
+                                <input type="text" name="lastName" id="lastName" class="form-control">
+                                <br>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+                <div class="text-center col-md-8">
+                    <br><br>
+                    <input type="submit" class="btn btn-default col-md-6" value="Add Player" name="submitName">
+                    <a class="btn btn-default col-md-6" href="<?php echo base_url("index.php/player/index"); ?>">Back</a>
                 </div>
             </div>
         </div>

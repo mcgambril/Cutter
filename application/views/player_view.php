@@ -10,10 +10,9 @@
 <div class="container">
     <div class="page-header">
         <h1>Player - <small>Home</small></h1>
-        <a class="btn btn-default col-md-3" href="<?php echo base_url("index.php/player/Add"); ?>">Add Player</a>
-        <br>
-        <br>
     </div>
+    <a class="btn btn-default col-md-3" href="<?php echo base_url("index.php/player/add"); ?>">Add Player</a>
+    <div class="page-header"><br></div>
 
     <div class="panel panel-default">
         <!-- Default panel contents -->

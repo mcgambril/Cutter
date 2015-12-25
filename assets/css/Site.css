@@ -1,4 +1,8 @@
-td .delete_box:checked {
+body {
+    padding-top: 60px;
+}
+
+tr td input .delete_box:checked {
     background-color: indianred;
 }
 
@@ -8,4 +12,22 @@ td .delete_box:checked {
 
 .centered {
     text-align: center;
+}
+
+.headingLeft {
+    text-align: right;
+    vertical-align: middle;
+}
+
+.tableData {
+    padding-left: 10%;
+    vertical-align: middle;
+}
+
+.leftPadFive {
+    padding-left: 5%;
+}
+
+.relative {
+    position: relative;
 }

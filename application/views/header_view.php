@@ -22,7 +22,7 @@
 <script type="text/javascript" src="<?php echo base_url("assets/js/bootstrap.js"); ?>"></script>
 <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
 <link rel="stylesheet" type="text/css" href="<?php echo base_url("assets/css/Site.css"); ?>" />
-
+<meta name="viewport" content="width=device-width, initial-scale=1">
 <script>
     $(function() {
         $( "#datepicker" ).datepicker({
@@ -35,11 +35,11 @@
     });
 </script>
 
-<style type="text/css">
+<!--<style type="text/css">
     body {
         padding-top: 60px;
     }
-</style>
+</style>-->
 
 <?php
     date_default_timezone_set('America/Mexico_City');

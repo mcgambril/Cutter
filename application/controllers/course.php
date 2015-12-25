@@ -32,6 +32,16 @@ class Course extends CI_Controller
     }
 
     public function add() {
+        $this->load->helper('form');
+        $this->load->library('form_validation');
+
+        $this->load->view('header_view');
+        $this->load->view('course_add_view');
+        $this->load->view('footer_view');
+
+    }
+
+    public function submitCourseAdd() {
 
     }
 
