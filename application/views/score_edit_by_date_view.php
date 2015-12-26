@@ -19,16 +19,11 @@
         <div class="row">
             <div class="col-md-2">
                 <div class="col-md-2 fixed">
-                   <!-- <div class="col-md-12">-->
-                        <!--<p><strong>Date:  </strong></p>-->
-                        <?php
-                            /*echo '<p class="col-md-12"><input type="text" value="' . $date . '" name="datepicker"  class="form-control" readonly></p>';
-                        */?>
-                        <input type="hidden" name="date" value="<?php echo $date ?>">
-                        <input type="submit" class="btn btn-default col-md-12" value="Enter Scores" name="submit">
-                        <br><br>
-                        <a class="btn btn-default col-md-12" href="<?php echo base_url("index.php/score/chooseEditDate"); ?>">Back</a>
-                    <!--</div>-->
+                    <br><br><br>
+                    <input type="hidden" name="date" value="<?php echo $date ?>">
+                    <input type="submit" class="btn btn-default col-md-12" value="Submit Changes" name="submit">
+                    <br><br>
+                    <a class="btn btn-default col-md-12" href="<?php echo base_url("index.php/score/chooseEditDate"); ?>">Back</a>
                 </div>
             </div>
 

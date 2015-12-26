@@ -48,11 +48,14 @@
 <div class="form-group">
     <div class="container">
         <div class="row">
-            <div class="text-center">
+            <div class="text-center col-md-12">
                 <h3>Are you sure you want to Delete this player from the database?</h3>
+                <br>
                 <?php echo '<input type = "hidden" name = "playerID" value = "' . $row->playerID . '" />'; ?>
-                <input type="submit" class="btn btn-default" value="Yes. Delete Player" name="submitName">
-                <a class="btn btn-default" href="<?php echo base_url("index.php/player/index"); ?>">Back</a>
+                <p class="col-md-4"></p>
+                <input type="submit" class="btn btn-default col-md-2" value="Yes. Delete Player" name="submitName">
+                <a class="btn btn-default col-md-2" href="<?php echo base_url("index.php/player/index"); ?>">Back</a>
+                <p class="col-md-4"></p>
             </div>
         </div>
     </div>

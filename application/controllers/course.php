@@ -101,8 +101,32 @@ class Course extends CI_Controller
     }
 
     public function edit() {
+        $this->load->helper('form');
+        $this->load->library('form_validation');
+        $this->load->model('course_model');
 
+        $id = $this->uri->segment(3);
+        $data['getCourseQuery'] = $this->course_model->getCourse($id, 0);
+        foreach($data['getCourseQuery'] as $row) {
+            $data['courseName'] = $row->courseName;
+            if($row->courseDefault == 0) {
+                $data['checkedLabel'] = 'No ';
+                $data['checked'] = 'unchecked';
+                $data['changePrompt'] = 'Set as Home Course?';
+            }
+            else {
+                $data['checkedLabel'] = 'Yes ';
+                $data['checked'] = 'checked';
+                $data['changePrompt'] = 'Remove as Home Course?';
+            }
+        }
+
+        $this->load->view('header_view');
+        $this->load->view('course_edit_view', $data);
+        $this->load->view('footer_view');
     }
+
+    public function submitCourseEdit() {}
 
     public function delete() {
 

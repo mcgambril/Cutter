@@ -31,3 +31,7 @@ tr td input .delete_box:checked {
 .relative {
     position: relative;
 }
+
+.contentCenter {
+    align-content: center;
+}
