@@ -26,7 +26,16 @@ class Admin extends CI_Controller {
         $this->load->helper('form');
         $this->load->library('form_validation');
 
-        $this->form_validation->set_rules('password', 'Password', 'required|callback_passwordConfirm');
+        $config = array(
+            array(
+                'field' => 'password',
+                'label' => 'Password',
+                'rules' => 'required|callback_passwordConfirm'
+            )
+        );
+
+        //$this->form_validation->set_rules('password', 'Password', 'required|callback_passwordConfirm');
+        $this->form_validation->set_rules($config);
 
         if($this->form_validation->run()== FALSE) {
             $this->index();

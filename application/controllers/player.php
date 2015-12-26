@@ -117,8 +117,20 @@ class Player extends CI_Controller
         $this->load->helper('form');
         $this->load->library('form_validation');
 
-        $this->form_validation->set_rules('newFirstName', 'First Name', 'required');
-        $this->form_validation->set_rules('newLastName', 'Last Name', 'required');
+        $config = array(
+            array(
+                'field' => 'newFirstName',
+                'label' => 'First Name',
+                'rules' => 'required'
+            ),
+            array(
+                'field' => 'newLastName',
+                'label' => 'Last Name',
+                'rules' => 'required'
+            )
+        );
+
+        $this->form_validation->set_rules($config);
 
         if($this->form_validation->run() ==FALSE ) {
             //need to go back to the Edit screen for the current player
@@ -153,8 +165,20 @@ class Player extends CI_Controller
         $this->load->helper('form');
         $this->load->library('form_validation');
 
-        $this->form_validation->set_rules('firstName', 'First Name', 'required');
-        $this->form_validation->set_rules('lastName', 'Last Name', 'required');
+        $config = array(
+            array(
+                'field' => 'firstName',
+                'label' => 'First Name',
+                'rules' => 'required'
+            ),
+            array(
+                'field' => 'lastName',
+                'label' => 'Last Name',
+                'rules' => 'required'
+            )
+        );
+
+        $this->form_validation->set_rules($config);
 
         if($this->form_validation->run()== FALSE) {
             $this->add();

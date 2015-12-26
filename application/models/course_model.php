@@ -73,6 +73,30 @@ class Course_model extends CI_Model {
         }
     }
 
+    public function insertCourse($courseName, $courseRating, $courseSlope, $courseDefault) {
+        $queryString = "INSERT INTO course (courseName, courseRating, courseSlope, courseDefault)
+                        VALUES ('$courseName', $courseRating, $courseSlope, $courseDefault)";
+
+        if($this->db->query($queryString) == TRUE) {
+            return TRUE;
+        }
+        else {
+            return FALSE;
+        }
+    }
+
+    public function updateHomeCourse() {
+        $data['courseDefault'] = 0;
+        $this->db->where('courseDefault', 1);
+        if ($this->db->update('course', $data) == TRUE) {
+            return TRUE;
+        }
+        else {
+            return FALSE;
+        }
+    }
+
+
     /*public function test_entry($data) {
         $this->db->insert('course', $data);
     }*/

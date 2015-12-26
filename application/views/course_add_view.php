@@ -13,7 +13,7 @@
 
 <?php echo validation_errors(); ?>
 
-<?php echo form_open('player/submitCourseAdd') ?>
+<?php echo form_open('course/submitCourseAdd') ?>
 <div class="form-group">
     <div class="container">
         <div class="row">

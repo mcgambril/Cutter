@@ -24,7 +24,7 @@
                         <?php
                             /*echo '<p class="col-md-12"><input type="text" value="' . $date . '" name="datepicker"  class="form-control" readonly></p>';
                         */?>
-                        <input type="hidden" name="date" value="<?php $date ?>">
+                        <input type="hidden" name="date" value="<?php echo $date ?>">
                         <input type="submit" class="btn btn-default col-md-12" value="Enter Scores" name="submit">
                         <br><br>
                         <a class="btn btn-default col-md-12" href="<?php echo base_url("index.php/score/chooseEditDate"); ?>">Back</a>
@@ -35,7 +35,7 @@
              <div class="col-md-10 relative">
                  <div class="panel panel-default">
                      <!-- Default panel contents -->
-                     <div class="panel-heading">Existing Scores for <?php echo $date?></div>
+                     <div class="panel-heading">Existing Scores for <?php echo $date ?></div>
 
                      <div class="table-responsive">
                          <table class ="table table-condensed table-bordered" style="border-collapse:collapse;">

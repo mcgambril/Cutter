@@ -94,13 +94,35 @@ class Score extends CI_Controller {
         $this->load->library('form_validation');
         date_default_timezone_set('America/Mexico_City');
 
-        $this->form_validation->set_rules('datepicker', 'Date', 'required|callback_validateDate');
+        $config = array(
+            array(
+                'field' => 'datepicker',
+                'label' => 'Date',
+                'rules' => 'required|callback_validateDate'
+            )
+        );
+
+        //$this->form_validation->set_rules('datepicker', 'Date', 'required|callback_validateDate');
 
         $temp['players'] = $this->player_model->getPlayers();
+
         foreach($temp['players'] as $row) {
-            $this->form_validation->set_rules($row->playerID.'am-score', $row->playerName.' AM Score', 'integer|greater_than[17]');
-            $this->form_validation->set_rules($row->playerID.'pm-score', $row->playerName.' PM Score', 'integer|greater_than[17]');
+            $temp2 = array(
+                    'field' => $row->playerID.'am-score',
+                    'label' => $row->playerName.' AM Score',
+                    'rules' => 'integer|greater_than[17]'
+                );
+            $temp3 = array(
+                    'field' => $row->playerID.'pm-score',
+                    'label' => $row->playerName.' PM Score',
+                    'rules' => 'integer|greater_than[17]'
+                );
+            array_push($config, $temp2);
+            array_push($config, $temp3);
+            /*$this->form_validation->set_rules($row->playerID.'am-score', $row->playerName.' AM Score', 'integer|greater_than[17]');
+            $this->form_validation->set_rules($row->playerID.'pm-score', $row->playerName.' PM Score', 'integer|greater_than[17]');*/
         }
+        $this->form_validation->set_rules($config);
 
         if($this->form_validation->run()== FALSE) {
             $buffer['date'] = $this->input->post('datepicker');
@@ -269,7 +291,15 @@ class Score extends CI_Controller {
         $this->load->library('form_validation');
         date_default_timezone_set('America/Mexico_City');
 
-        $this->form_validation->set_rules('datepicker', 'Date', 'required|callback_validateDate');
+        $config = array(
+            array(
+                'field' => 'datepicker',
+                'label' => 'Date',
+                'rules' => 'required|callback_validateDate'
+            )
+        );
+        //$this->form_validation->set_rules('datepicker', 'Date', 'required|callback_validateDate');
+        $this->form_validation->set_rules($config);
 
         if($this->form_validation->run()== FALSE) {
             $this->postDate();
@@ -326,7 +356,15 @@ class Score extends CI_Controller {
         $this->load->library('form_validation');
         date_default_timezone_set('America/Mexico_City');
 
-        $this->form_validation->set_rules('datepicker', 'Date', 'required|callback_validateDate');
+        $config = array(
+            array(
+                'field' => 'datepicker',
+                'label' => 'Date',
+                'rules' => 'required|callback_validateDate'
+            )
+        );
+        //$this->form_validation->set_rules('datepicker', 'Date', 'required|callback_validateDate');
+        $this->form_validation->set_rules($config);
 
         if($this->form_validation->run()== FALSE) {
             $this->chooseEditDate();
@@ -349,14 +387,29 @@ class Score extends CI_Controller {
         $this->load->library('form_validation');
         date_default_timezone_set('America/Mexico_City');
 
+        $config = array(
+            array(
+                'field' => 'date',
+                'label' => 'Date',
+                'rules' => 'required|callback_validateDate'
+            )
+        );
         $this->form_validation->set_rules('date', 'Date', 'required|callback_validateDate');
+        //$this->form_validation->set_rules($config);
         $date = $this->input->post('date');
 
         $temp['scoreList'] = $this->score_model->getFullScoreInfoByDate($date);
 
         foreach ($temp['scoreList'] as $row) {
-            $this->form_validation->set_rules($row->playerID.'-new-score', $row->playerName.' New Score', 'integer|greater_than[17]');
+            $temp2 = array(
+                'field' => $row->playerID.'-new-score',
+                'label' => $row->playerName.' New Score',
+                'rules' => 'integer|greater_than[17]'
+            );
+            array_push($config, $temp2);
+            //$this->form_validation->set_rules($row->playerID.'-new-score', $row->playerName.' New Score', 'integer|greater_than[17]');
         }
+        $this->form_validation->set_rules($config);
 
         if($this->form_validation->run()== FALSE) {
             //Need to figure out what to do if the date for some reason does not pass the validation rules
@@ -386,42 +439,58 @@ class Score extends CI_Controller {
             else {
                 $messageData['deleteResult'] = 'NULL';
             }
-        }
 
-            $updateScores = array();
-            foreach ($temp['scoreList'] as $key => $row) {
-                $id = $row->scoreID;
-                if ($this->input->post($row->playerID . '-course_change') == "yes") {
-                    $newCourse = $this->input->post('course-' . $row->scoreID);
+            if($this->validateNotEmpty($temp['scoreList'] == TRUE)) {
+                $updateScores = array();
+                foreach ($temp['scoreList'] as $key => $row) {
+                    $change = FALSE;
+                    $id = $row->scoreID;
+                    if ($this->input->post($row->playerID . '-course_change') == "yes") {
+                        $newCourse = $this->input->post('course-' . $row->scoreID);
+                        $change = TRUE;
+                    }
+                    else {
+                        $newCourse = $row->scoreCourseID;
+                    }
+                    $tempNewScore = $this->input->post($row->playerID . '-new-score');
+                    if($tempNewScore == "" || $tempNewScore == null || $tempNewScore == 0){
+                        $newScore = $row->scoreScore;
+                    }
+                    else {
+                        $newScore = $tempNewScore;
+                        $change = TRUE;
+                    }
+                    if ($change == TRUE) {
+                        $tempUpdate = array (
+                            "scoreID" => $id,
+                            "scoreCourseID" => $newCourse,
+                            "scoreScore" => $newScore
+                        );
+                        array_push($updateScores, $tempUpdate);
+                    }
+                }
+
+                if($this->validateNotEmpty($updateScores) == TRUE) {
+                    if ($this->score_model->updateScoresBatch($updateScores) == TRUE) {
+                        $messageData['title'] = 'Success!';
+                        $messageData['message'] = 'The appropriate changes were made and the database updated accordingly.';
+                    }
+                    else {
+                        $messageData['title'] = 'Failure';
+                        $messageData['message'] = 'Error:  The changes were unable to be updated to the database.  Please try again later.';
+                    }
                 }
                 else {
-                    $newCourse = $row->scoreCourseID;
+                    $messageData['title'] = 'Note:';
+                    $messageData['message'] = 'There were no changes entered to be made.  No scores were updated.';
                 }
-                $tempNewScore = $this->input->post($row->playerID . '-new-score');
-                if($tempNewScore == "" || $tempNewScore == null || $tempNewScore == 0){
-                    $newScore = $row->scoreScore;
-                }
-                else {
-                    $newScore = $tempNewScore;
-                }
-                $tempUpdate = array (
-                    "scoreID" => $id,
-                    "scoreCourseID" => $newCourse,
-                    "scoreScore" => $newScore
-                );
-                array_push($updateScores, $tempUpdate);
-            }
-
-            if ($this->score_model->updateScoresBatch($updateScores) == TRUE) {
-                $messageData['title'] = 'Success!';
-                $messageData['message'] = 'The appropriate changes were made and the database updated accordingly.';
             }
             else {
-                $messageData['title'] = 'Failure';
-                $messageData['message'] = 'Error:  The changes were unable to be updated to the database.  Please try again later.';
+                $messageData['title'] = 'Note:';
+                $messageData['message'] = 'There were no changes entered to be made.  No scores were updated.';
             }
-
             $this->scoreEditResult($messageData);
+        }
 
         return;
     }
