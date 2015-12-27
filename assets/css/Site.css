@@ -35,3 +35,7 @@ tr td input .delete_box:checked {
 .contentCenter {
     align-content: center;
 }
+
+.resultDataTable {
+    padding-left: 40%;
+}

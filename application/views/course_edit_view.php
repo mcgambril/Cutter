@@ -13,7 +13,7 @@
     </div>
 
     <?php echo validation_errors(); ?>
-    <?php echo form_open('course/submitEditCourse') ?>
+    <?php echo form_open('course/submitCourseEdit') ?>
         <div class="form-group">
             <div class="container">
                 <div class="row col-md-8">

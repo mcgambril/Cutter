@@ -232,7 +232,6 @@ class Score extends CI_Controller {
     public function validateDate($date) {
         $future = date("Y-m-d");
         $future = date("Y-m-d", strtotime($future. ' + 1 days'));
-        /*$future = date("Y-m-d", strtotime('+1 days', $future));*/
 
         $dateStamp = strtotime($date);
         $futureStamp = strtotime($future);

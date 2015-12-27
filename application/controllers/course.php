@@ -104,12 +104,18 @@ class Course extends CI_Controller
         return;
     }
 
-    public function edit() {
+    public function edit($paramID = NULL) {
         $this->load->helper('form');
         $this->load->library('form_validation');
         $this->load->model('course_model');
 
-        $id = $this->uri->segment(3);
+        if($paramID == NULL) {
+            $id = $this->uri->segment(3);
+        }
+        else {
+            $id = $paramID;
+        }
+
         $data['getCourseQuery'] = $this->course_model->getCourse($id, 0);
         foreach($data['getCourseQuery'] as $row) {
             $data['courseName'] = $row->courseName;
@@ -157,8 +163,7 @@ class Course extends CI_Controller
         $courseID = $this->input->post('courseID');
 
         if($this->form_validation->run()== FALSE) {
-            $this->edit();
-            redirect('index.php/course/edit/' . $courseID);
+            $this->edit($courseID);
         }
         else {
             $newCourseName = $this->input->post('newCourseName');
@@ -211,18 +216,32 @@ class Course extends CI_Controller
                 $data['courseSlope'] = $newCourseSlope;
                 $data['courseRating'] = $newCourseRating;
                 $data['courseDefault'] = $newCourseDefault;
-                if ($this->course_model->updateCourse($courseID, $data) == TRUE) {
 
+                if ($this->course_model->updateCourse($courseID, $data) == TRUE) {
+                    $data['title'] = 'Success!';
+                    $data['message1'] = 'The appropriate changes were made and the database updated accordingly.';
+                    $data['message2'] = $newCourseName . "'s information was updated as follows:";
                 }
                 else {
-
+                    $data['title'] = 'Failure';
+                    $data['message1'] = 'Error:  Something went wrong and the changes were not able to be applied to the database.';
+                    $data['message2'] = 'Please try again later.';
                 }
+
+                if ($newCourseDefault == 0) {
+                    $data['courseDefault'] = 'No';
+                }
+                else {
+                    $data['courseDefault'] = 'Yes';
+                }
+
+                $data['courseID'] = $courseID;
+
+                $this->courseEditResult($data);
             }
             else {
-                //either redirect to edit page again or customize the success message
-                redirect('index.php/course/edit/' . $courseID);
+                $this->edit($courseID);
             }
-
         }
     }
 
@@ -233,6 +252,12 @@ class Course extends CI_Controller
     public function courseAddResult($data) {
         $this->load->view('header_view');
         $this->load->view('course_add_result_view', $data);
+        $this->load->view('footer_view');
+    }
+
+    public function courseEditResult($data) {
+        $this->load->view('header_view');
+        $this->load->view('course_edit_result_view', $data);
         $this->load->view('footer_view');
     }
 

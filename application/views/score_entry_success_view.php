@@ -14,15 +14,7 @@
 <br>
 <?php
     foreach ($getTempScoresQuery as $row) {
-        /*echo '<p style="padding-left:40%;">';
-        echo 'Player Name:  ' . $row->tempPlayerName . '<br>';
-        echo 'Date:  ' . $row->tempDate . '<br>';
-        echo 'Course:  ' . $row->tempCourseName . '<br>';
-        echo 'Score:  ' . $row->tempScore . '<br>';
-        echo 'Differential:  ' . $row->tempDifferential . '<br>';
-        echo 'Time:  ' . $row->tempTime . '<br><br></p>';*/
-
-        echo '<div style="padding-left:40%;">';
+        echo '<div class="resultDataTable">';
         echo '<table>';
         echo '<th></th>';
         echo '<tbody>';
