@@ -53,14 +53,14 @@ class Course extends CI_Controller
                 'rules' => 'required|max_length[45]'
             ),
             array(
-                'field' => 'courseRating',
-                'label' => 'Course Rating',
-                'rules' => 'required|decimal'
-            ),
-            array(
                 'field' => 'courseSlope',
                 'label' => 'Course Slope',
                 'rules' => 'required|numeric'
+            ),
+            array(
+                'field' => 'courseRating',
+                'label' => 'Course Rating',
+                'rules' => 'required|decimal'
             )
         );
 
@@ -71,8 +71,12 @@ class Course extends CI_Controller
         }
         else {
             $courseName = $this->input->post('courseName');
-            $courseRating = $this->input->post('courseRating');
             $courseSlope = $this->input->post('courseSlope');
+            //need to make sure slope is in the proper format
+            //actuall, mysql should do the rounding and formatting before insertion
+            $courseRating = $this->input->post('courseRating');
+            //need to make sure rating is in the proper format
+            //mysql should handle the rounding and decimal formatting
             $courseDefault = $this->input->post('courseDefault');
             if ($courseDefault == 'True') {
                 $courseDefault = 1;
@@ -82,7 +86,7 @@ class Course extends CI_Controller
                 $courseDefault = 0;
             }
 
-            if ($this->course_model->insertCourse($courseName, $courseRating, $courseSlope, $courseDefault) == TRUE) {
+            if ($this->course_model->insertCourse($courseName, $courseSlope, $courseRating, $courseDefault) == TRUE) {
                 $data['title'] = 'Success!';
                 if($courseDefault == 1) {
                     $data['message'] = $courseName . ' was successfully added to the database and is set to be the new Home Course.';
@@ -126,7 +130,101 @@ class Course extends CI_Controller
         $this->load->view('footer_view');
     }
 
-    public function submitCourseEdit() {}
+    public function submitCourseEdit() {
+        $this->load->model('course_model');
+        $this->load->helper('form');
+        $this->load->library('form_validation');
+
+        $config = array(
+            array(
+                'field' => 'newCourseName',
+                'label' => 'Course Name',
+                'rules' => 'max_length[45]'
+            ),
+            array(
+                'field' => 'newCourseRating',
+                'label' => 'Course Rating',
+                'rules' => 'decimal'
+            ),
+            array(
+                'field' => 'newCourseSlope',
+                'label' => 'Course Slope',
+                'rules' => 'numeric'
+            )
+        );
+
+        $this->form_validation->set_rules($config);
+        $courseID = $this->input->post('courseID');
+
+        if($this->form_validation->run()== FALSE) {
+            $this->edit();
+            redirect('index.php/course/edit/' . $courseID);
+        }
+        else {
+            $newCourseName = $this->input->post('newCourseName');
+            $newCourseSlope = $this->input->post('newCourseSlope');
+            $newCourseRating = $this->input->post('newCourseRating');
+            $changeDefault = $this->input->post('changeDefault');
+            $newCourseDefault = NULL;
+
+            $change = FALSE;
+            $oldCourse = $this->course_model->getCourse($courseID, 0);
+            foreach ($oldCourse as $row) {
+                if ($changeDefault == TRUE) {
+                    $change = TRUE;
+                    if ($row->courseDefault == 0) {
+                        $newCourseDefault = 1;
+                    }
+                    else {
+                        $newCourseDefault = 0;
+                    }
+                }
+                else {
+                    $newCourseDefault = $row->courseDefault;
+                }
+
+                if ($newCourseName == "" || $newCourseName == NULL) {
+                    $newCourseName = $row->courseName;
+                }
+                else {
+                    $change = TRUE;
+                }
+
+                if ($newCourseSlope == "" || $newCourseSlope == 0 || $newCourseSlope == NULL) {
+                    $newCourseSlope = $row->courseSlope;
+                }
+                else {
+                    $change = TRUE;
+                }
+
+                if ($newCourseRating == "" || $newCourseRating == 0 || $newCourseRating == NULL) {
+                    $newCourseRating = $row->courseRating;
+                }
+                else {
+                    $change = TRUE;
+                }
+            }
+
+            if ($change == TRUE) {
+                //call model method to insert the data
+                $data['courseName'] = $newCourseName;
+                $data['courseSlope'] = $newCourseSlope;
+                $data['courseRating'] = $newCourseRating;
+                $data['courseDefault'] = $newCourseDefault;
+                if ($this->course_model->updateCourse($courseID, $data) == TRUE) {
+
+                }
+                else {
+
+                }
+            }
+            else {
+                //either redirect to edit page again or customize the success message
+                redirect('index.php/course/edit/' . $courseID);
+            }
+
+        }
+    }
 
     public function delete() {
 

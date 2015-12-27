@@ -75,7 +75,7 @@ class Course_model extends CI_Model {
 
     public function insertCourse($courseName, $courseRating, $courseSlope, $courseDefault) {
         $queryString = "INSERT INTO course (courseName, courseRating, courseSlope, courseDefault)
-                        VALUES ('$courseName', $courseRating, $courseSlope, $courseDefault)";
+                        VALUES ('$courseName', $courseSlope, $courseRating, $courseDefault)";
 
         if($this->db->query($queryString) == TRUE) {
             return TRUE;
@@ -88,6 +88,16 @@ class Course_model extends CI_Model {
     public function updateHomeCourse() {
         $data['courseDefault'] = 0;
         $this->db->where('courseDefault', 1);
+        if ($this->db->update('course', $data) == TRUE) {
+            return TRUE;
+        }
+        else {
+            return FALSE;
+        }
+    }
+
+    public function updateCourse($id, $data) {
+        $this->db->where('courseID', $id);
         if ($this->db->update('course', $data) == TRUE) {
             return TRUE;
         }

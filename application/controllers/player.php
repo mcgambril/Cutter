@@ -131,12 +131,13 @@ class Player extends CI_Controller
         );
 
         $this->form_validation->set_rules($config);
+        $id = $this->input->post('playerID');
 
-        if($this->form_validation->run() ==FALSE ) {
+        if($this->form_validation->run() == FALSE ) {
+            redirect('/player/edit/' . $id);
             //need to go back to the Edit screen for the current player
         }
         else {
-            $id = $this->input->post('playerID');
             $temp['oldName'] = $this->player_model->getPlayerNameByID($id);
             foreach($temp['oldName'] as $row) {
                 if(isset($row->playerName)) {

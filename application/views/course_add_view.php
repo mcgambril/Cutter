@@ -30,16 +30,16 @@
                             </td>
                         </tr>
                         <tr>
-                            <td class="headingLeft">Rating:  </td>
+                            <td class="headingLeft">Slope:  </td>
                             <td class="centered tableData">
-                                <input type="text" name="courseRating" id="courseRating" class="form-control">
+                                <input type="text" name="courseSlope" id="courseSlope" class="form-control">
                                 <br>
                             </td>
                         </tr>
                         <tr>
-                            <td class="headingLeft">Slope:  </td>
+                            <td class="headingLeft">Rating:  </td>
                             <td class="centered tableData">
-                                <input type="text" name="courseSlope" id="courseSlope" class="form-control">
+                                <input type="text" name="courseRating" id="courseRating" class="form-control">
                                 <br>
                             </td>
                         </tr>

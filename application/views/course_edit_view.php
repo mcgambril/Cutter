@@ -19,7 +19,9 @@
                 <div class="row col-md-8">
                     <div class="panel panel-default">
                         <div class="panel-heading"><?php echo $courseName ?> Course Information</div>
+
                             <?php foreach($getCourseQuery as $row) {
+                                echo '<input type="hidden" name="courseID" value="' . $row->courseID . '" />';
                                 echo'
                                     <div class="table-responsive">
                                         <table class ="table table-condensed table-bordered" style = "border-collapse:collapse;">
