@@ -16,6 +16,6 @@
 </div>
 
 <div class="text-center">
-    <a class="btn btn-default" href="<?php echo base_url("index.php/player/index"); ?>">Player - Home</a>
+    <a class="btn btn-default" href="<?php echo base_url("index.php/course/index"); ?>">Course - Home</a>
 </div>
 <br><br><br>

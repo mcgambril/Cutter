@@ -106,6 +106,16 @@ class Course_model extends CI_Model {
         }
     }
 
+    public function deleteCourse($courseID) {
+        $this->db->where('courseID', $courseID);
+        if ($this->db->delete('course') == TRUE) {
+            return TRUE;
+        }
+        else {
+            return FALSE;
+        }
+    }
+
 
     /*public function test_entry($data) {
         $this->db->insert('course', $data);

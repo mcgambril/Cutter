@@ -266,6 +266,36 @@ class Course extends CI_Controller
         $this->load->view('footer_view');
     }
 
+    public function submitDelete() {
+        $this->load->model('course_model');
+        $this->load->helper('form');
+
+        $courseID = $this->input->post('courseID');
+        $data['getCourseNameQuery'] = $this->course_model->getCourseName($courseID, 0);
+        foreach ($data['getCourseNameQuery'] as $row) {
+            $courseName = $row->courseName;
+        }
+
+        $queryResult = $this->course_model->deleteCourse((int)$courseID);
+
+        $this->courseDeleteResult($queryResult, $courseName);
+    }
+
+    public function courseDeleteResult($queryResult, $courseName) {
+        if ($queryResult == TRUE) {
+            $dataMessage['title'] = 'Success!';
+            $dataMessage['message'] = $courseName . ' was deleted from the database.';
+        }
+        else {
+            $dataMessage['title'] = 'Failed';
+            $dataMessage['message'] = 'Error:  Something went wrong and ' . $courseName . ' was not deleted. Please try again later.';
+        }
+
+        $this->load->view('header_view');
+        $this->load->view('player_delete_result_view', $dataMessage);
+        $this->load->view('footer_view');
+    }
+
     public function courseAddResult($data) {
         $this->load->view('header_view');
         $this->load->view('course_add_result_view', $data);
