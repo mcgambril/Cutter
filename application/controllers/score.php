@@ -427,11 +427,11 @@ class Score extends CI_Controller {
             if($this->validateNotEmpty($deleteScores) == TRUE) {
                 if ($this->score_model->deleteScores($deleteScores) == TRUE) {
                     $messageData['deleteResult'] = 'Success!';
-                    $messageData['deleteMessage'] = 'The indicated scores were successfully deleted from the database';
+                    $messageData['deleteMessage'] = 'The indicated score(s) were successfully deleted from the database';
                 }
                 else {
                     $messageData['deleteResult'] = 'Failed';
-                    $messageData['deleteMessage'] = 'Error:  The indicated scores failed to be deleted from the database';
+                    $messageData['deleteMessage'] = 'Error:  The indicated score(s) failed to be deleted from the database';
                 }
 
             }
@@ -472,11 +472,11 @@ class Score extends CI_Controller {
                 if($this->validateNotEmpty($updateScores) == TRUE) {
                     if ($this->score_model->updateScoresBatch($updateScores) == TRUE) {
                         $messageData['title'] = 'Success!';
-                        $messageData['message'] = 'The appropriate changes were made and the database updated accordingly.';
+                        $messageData['message'] = 'The appropriate change(s) were made and the database updated accordingly.';
                     }
                     else {
                         $messageData['title'] = 'Failure';
-                        $messageData['message'] = 'Error:  The changes were unable to be updated to the database.  Please try again later.';
+                        $messageData['message'] = 'Error:  The change(s) were unable to be updated to the database.  Please try again later.';
                     }
                 }
                 else {
