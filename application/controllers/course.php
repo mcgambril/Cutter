@@ -246,7 +246,24 @@ class Course extends CI_Controller
     }
 
     public function delete() {
+        $this->load->helper('form');
+        $this->load->library('form_validation');
+        $this->load->model('course_model');
 
+        $courseID = $this->uri->segment(3);
+        $data['getCourseQuery'] = $this->course_model->getCourse($courseID, 0);
+        foreach ($data['getCourseQuery'] as $row) {
+            if ($row->courseDefault == 0) {
+                $row->courseDefault = '-';
+            }
+            else {
+                $row->courseDefault = 'Yes';
+            }
+        }
+
+        $this->load->view('header_view');
+        $this->load->view('course_delete_view', $data);
+        $this->load->view('footer_view');
     }
 
     public function courseAddResult($data) {
