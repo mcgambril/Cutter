@@ -106,6 +106,21 @@ class Player_model extends CI_Model {
         }
     }
 
+    public function updatePlayerHandicaps($playerID, $handicapIndex, $handicap) {
+        $handicapUpdates = array(
+            'playerHandicap' => $handicap,
+            'playerHandicapIndex' => $handicapIndex
+        );
+
+        $this->db->where('playerID', $playerID);
+        if($this->db->update('player', $handicapUpdates) == TRUE) {
+            return TRUE;
+        }
+        else {
+            return FALSE;
+        }
+    }
+
     public function deletePlayer($id) {
         $this->db->where('playerID', $id);
         if ($this->db->delete('player') == TRUE) {

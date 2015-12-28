@@ -73,14 +73,13 @@
                         <ul class="dropdown-menu">
                             <li><a href="<?php echo base_url("index.php/player/index"); ?>">Player - Home</a></li>
                             <li><a href="<?php echo base_url("index.php/player/add"); ?>">Player - Add</a></li>
-                            <li><a href="<?php echo base_url("index.php/header/loadPlayerEditView"); ?>">Player - Edit</a></li>
-                            <li><a href="<?php echo base_url("index.php/header/loadPlayerDeleteView"); ?>">Player - Delete</a></li>
+                            <li><a href="<?php echo base_url("index.php/header/loadPlayerDeleteView"); ?>">Player - Batch Delete</a></li>
                         </ul>
                     </li>
                     <li class="dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Handicap<span class="caret"></span></a>
                         <ul class="dropdown-menu">
-                            <li><a href="<?php echo base_url("index.php/header/loadHandicapUpdateView"); ?>">Handicap - Update</a></li>
+                            <li><a href="<?php echo base_url("index.php/handicap/index"); ?>">Handicap - Update</a></li>
                         </ul>
                     </li>
 
@@ -89,8 +88,8 @@
                         <ul class="dropdown-menu">
                             <li><a href="<?php echo base_url("index.php/course/index"); ?>">Course - Home</a></li>
                             <li><a href="<?php echo base_url("index.php/course/add"); ?>">Course - Add</a></li>
-                            <li><a href="<?php echo base_url("index.php/header/loadCourseEditView"); ?>">Course - Edit</a></li>
-                            <li><a href="<?php echo base_url("index.php/header/loadCourseDeleteView"); ?>">Course - Delete</a></li>
+                            <li><a href="<?php echo base_url("index.php/header/loadCourseEditView"); ?>">Course - Set Home Course</a></li>
+                            <li><a href="<?php echo base_url("index.php/header/loadCourseDeleteView"); ?>">Course - Batch Delete</a></li>
                         </ul>
                     </li>
                 </ul>

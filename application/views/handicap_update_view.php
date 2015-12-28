@@ -7,4 +7,21 @@
  */
  -->
 
-<p>This is the handicap update view</p>
+<div class="container">
+    <div class="page-header">
+        <h1>Handicaps - <small>Update</small></h1>
+    </div>
+    <div class="container">
+        <div class="row">
+            <div class="text-center">
+                <h3>Are you sure you want to Update all Players' Handicaps?</h3>
+                <br>
+                <p class="col-md-4"></p>
+                <a class="btn btn-default col-md-2" href="<?php echo base_url("index.php/handicap/update"); ?>">Yes. Update Handicaps</a>
+                <a class="btn btn-default col-md-2" href="<?php echo base_url("index.php/course/index"); ?>">Back</a>
+                <p class="col-md-4"></p>
+                <br><br><br>
+            </div>
+        </div>
+    </div>
+</div>

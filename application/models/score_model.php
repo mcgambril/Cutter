@@ -107,4 +107,70 @@ class Score_model extends CI_Model {
         }
     }
 
+    public function getScoreCounts() {
+        $this->db->select('scorePlayerID, count(scoreScore) as scoreCount');
+        $this->db->from('score');
+        $this->db->group_by('scorePlayerID');
+        $getScoreCountsQuery = $this->db->get();
+        return $getScoreCountsQuery->result();
+    }
+
+    public function getRecentScores($playerID) {
+        $this->db->select('*');
+        $this->db->from('score');
+        $this->db->where('scorePlayerID', $playerID);
+        $this->db->order_by('scoreDate', 'desc');
+        $this->db->order_by('scoreTime', 'desc');
+        $this->db->limit(20);
+        $getRecentScoresQuery = $this->db->get();
+        return $getRecentScoresQuery->result();
+    }
+
+    public function getAllHandicapScores() {
+        $this->db->select('scoreID');
+        $this->db->from('score');
+        $this->db->where('scoreUsedInHandicap', 1);
+        $getAllHandicapScoresQuery = $this->db->get();
+        return $getAllHandicapScoresQuery->result();
+    }
+
+    public function clearHandicapScores() {
+        $update = array(
+            'scoreUsedInHandicap' => 0
+        );
+
+        $this->db->where('scoreUsedInHandicap', 1);
+        if ($this->db->update('score', $update) == TRUE) {
+            return TRUE;
+        }
+        else {
+            return FALSE;
+        }
+    }
+
+    public function setHandicapScores($recentScoreIDs) {
+        $update = array(
+            'scoreUsedInHandicap' => 1
+        );
+
+        $this->db->where_in($recentScoreIDs);
+        if ($this->db->updte('score', $update) == TRUE) {
+            return TRUE;
+        }
+        else {
+            return FALSE;
+        }
+    }
+
+    public function getHandicapDifferentials($playerID) {
+        $this->db->select('scoreDifferential');
+        $this->db->from('score');
+        $this->db->where('scorePlayerID', $playerID);
+        $this->db->where('scoreUsedInHandicap', 1);
+        $this->db->order_by('scoreDifferential', 'asc');
+        $this->db->limit(10);
+        $getHandicapDifferentialsQuery = $this->db->get();
+        return $getHandicapDifferentialsQuery->result();
+    }
+
 }
