@@ -15,14 +15,24 @@ class Handicap extends CI_Controller
     }
 
     public function index() {
+        $this->load->model('player_model');
         $this->load->helper('form');
         $this->load->library('form_validation');
+
+        $data['getPlayersQuery'] = $this->player_model->getPlayers();
+
+        $this->load->view('header_view');
+        $this->load->view('handicap_view', $data);
+        $this->load->view('footer_view');
+    }
+
+    public function update() {
         $this->load->view('header_view');
         $this->load->view('handicap_update_view');
         $this->load->view('footer_view');
     }
 
-    public function update() {
+    public function submitUpdate() {
         $this->load->model('score_model');
         $this->load->model('player_model');
 
@@ -47,21 +57,9 @@ class Handicap extends CI_Controller
         );
 
         $playerScoreCounts = $this->score_model->getScoreCounts();
-        $data = array();
         $recentScoreIDs = array();
 
         foreach($playerScoreCounts as $row) {
-            /*$scoreCount = $row->scoreCount;
-            if ($scoreCount > 20) {
-                $scoreCount = 20;
-            }
-            $temp = array(
-                'scorePlayerID' => $row->scorePlayerID,
-                'scoreCount' => $scoreCount,
-                'diffNum' => $differentialSchedule[$scoreCount]
-            );
-            array_push($data, $temp);*/
-
             $recentScores = $this->score_model->getRecentScores($row->scorePlayerID);
             foreach ($recentScores as $row) {
                 array_push($recentScoreIDs, $row->scoreID);

@@ -39,3 +39,7 @@ tr td input .delete_box:checked {
 .resultDataTable {
     padding-left: 40%;
 }
+
+.noPadLeft {
+    padding-left: 0;
+}
