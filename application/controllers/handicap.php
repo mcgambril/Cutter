@@ -136,6 +136,16 @@ class Handicap extends CI_Controller
 
         $constant = 0.96;
         $playerDifferentials = $this->score_model->getHandicapDifferentials($playerID, $limit);
+        $diffIDs = array();
+        foreach ($playerDifferentials as $row) {
+            $temp = array(
+                'scoreID' => $row->scoreID,
+                'scoreDifferentialUsed' => 1
+            );
+            array_push($diffIDs, $temp);
+        }
+        $this->score_model->setDifferentialsUsed($diffIDs);
+
         $diffTotal = 0;
         foreach ($playerDifferentials as $row) {
             $diffTotal = $diffTotal + $row->scoreDifferential;
@@ -185,7 +195,7 @@ class Handicap extends CI_Controller
         }
         /*$length = $length + 3;
         $data['length'] = $length;*/
-        $data['trailer'] = "..................................................";
+        /*$data['trailer'] = "..................................................";*/
 
         $this->load->view('header_view');
         $this->load->view('handicap_update_result_view', $data);

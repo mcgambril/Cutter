@@ -23,15 +23,32 @@ class Player_model extends CI_Model {
         $this->db->select('*');
         $this->db->from('score');
         $this->db->where('scorePlayerID', $playerID);
+        //$this->db->where('scoreUsedInHandicap', 1);
         $getPlayerScoresQuery = $this->db->get();
         return $getPlayerScoresQuery->result();
+    }
+
+    public function getPlayerRecentScores($playerID) {
+        $this->db->select('*');
+        $this->db->from('score');
+        $this->db->where('scorePlayerID', $playerID);
+        $this->db->order_by('scoreDate', 'desc');
+        $this->db->order_by('scoreTime', 'desc');
+        $this->db->limit(20);
+        $getRecentScoresQuery = $this->db->get();
+        if ($getRecentScoresQuery->num_rows() == 0) {
+            return FALSE;
+        }
+        else {
+            return $getRecentScoresQuery->result();
+        }
     }
 
     public function getPlayersAndScores() {
         $query = $this->db->get('player');
         $getPlayersAndScoresQuery = $query->result();
         foreach($getPlayersAndScoresQuery as &$row) {
-            $row->scores = $this->getPlayerScores($row->playerID);
+            $row->scores = $this->getPlayerRecentScores($row->playerID);
             if(is_null($row->playerHandicap)) {
                 $row->playerHandicap = 'TBD';
             }

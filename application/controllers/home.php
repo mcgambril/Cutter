@@ -28,6 +28,18 @@ class Home extends CI_Controller {
         $data['getPlayersQuery'] = $this->player_model->getPlayers();
         $data['getScoresQuery'] = $this->score_model->getScores();
         $data['getPlayersAndScoresQuery'] = $this->player_model->getPlayersAndScores();
+        foreach ($data['getPlayersAndScoresQuery'] as $row) {
+            foreach ($row as $key => $r) {
+                if ($r->scoreDifferentialUsed == 1) {
+                    //$r[$key]['scoreDifferentialUsed'] = '*';
+                    //$r->scoreDifferentialUsed = '*';
+                }
+                else {
+                    //$r[$key]['scoreDifferentialUsed'] = '';
+                    //$r->scoreDifferentialUsed = '';
+                }
+            }
+        }
         $data['getHomeCourseQuery'] = $this->course_model->getHomeCourse();
         $data['IDs'] = $this->player_model->getPlayerIDs(0);
 
