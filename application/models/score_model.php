@@ -154,7 +154,7 @@ class Score_model extends CI_Model {
         );
 
         $this->db->where_in($recentScoreIDs);
-        if ($this->db->updte('score', $update) == TRUE) {
+        if ($this->db->update('score', $update) == TRUE) {
             return TRUE;
         }
         else {
@@ -162,13 +162,13 @@ class Score_model extends CI_Model {
         }
     }
 
-    public function getHandicapDifferentials($playerID) {
+    public function getHandicapDifferentials($playerID, $limit) {
         $this->db->select('scoreDifferential');
         $this->db->from('score');
         $this->db->where('scorePlayerID', $playerID);
         $this->db->where('scoreUsedInHandicap', 1);
         $this->db->order_by('scoreDifferential', 'asc');
-        $this->db->limit(10);
+        $this->db->limit($limit);
         $getHandicapDifferentialsQuery = $this->db->get();
         return $getHandicapDifferentialsQuery->result();
     }

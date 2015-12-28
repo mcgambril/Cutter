@@ -155,6 +155,7 @@ class Score extends CI_Controller {
                 $data[''.$i.'']['scoreDate'] = $temp['date'];
                 $data[''.$i.'']['scoreTime'] = 0;
                 $data[''.$i.'']['scoreDifferential'] = $this->calculateDifferential($amScores[''.$j.''], $temp['courseID']);
+                $data[''.$i.'']['scoreUsedInHandicap'] = 0;
 
                 $data2[''.$i.'']['scorePlayerID'] = $row;
                 $data2[''.$i.'']['tempPlayerName'] = $buffer;
@@ -178,6 +179,7 @@ class Score extends CI_Controller {
                 $data[''.$i.'']['scoreDate'] = $temp['date'];
                 $data[''.$i.'']['scoreTime'] = 1;
                 $data[''.$i.'']['scoreDifferential'] = $this->calculateDifferential($pmScores[''.$j.''], $temp['courseID']);
+                $data[''.$i.'']['scoreUsedInHandicap'] = 0;
 
                 $data2[''.$i.'']['scorePlayerID'] = $row;
                 $data2[''.$i.'']['tempPlayerName'] = $buffer;

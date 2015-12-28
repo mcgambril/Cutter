@@ -46,31 +46,38 @@ class Handicap extends CI_Controller
             20 => 10
         );
 
-        $playerScoreCounts= $this->score_model->getScoreCounts();
+        $playerScoreCounts = $this->score_model->getScoreCounts();
         $data = array();
         $recentScoreIDs = array();
 
         foreach($playerScoreCounts as $row) {
-
+            /*$scoreCount = $row->scoreCount;
+            if ($scoreCount > 20) {
+                $scoreCount = 20;
+            }
             $temp = array(
                 'scorePlayerID' => $row->scorePlayerID,
-                'scoreCount' => $row->scoreCount,
-                'diffNum' => $differentialSchedule[$row->scoreCount]
+                'scoreCount' => $scoreCount,
+                'diffNum' => $differentialSchedule[$scoreCount]
             );
-            array_push($data, $temp);
+            array_push($data, $temp);*/
 
             $recentScores = $this->score_model->getRecentScores($row->scorePlayerID);
             foreach ($recentScores as $row) {
                 array_push($recentScoreIDs, $row->scoreID);
             }
-            //$allHandicapScores = $this->score_model->getAllHandicapScores();
         }
 
         $this->score_model->clearHandicapScores();
         $this->score_model->setHandicapScores($recentScoreIDs);
 
         foreach($playerScoreCounts as $row) {
-            $handicapIndex = $this->calculateHandicapIndex($row->scorePlayerID);
+            $scoreCount = $row->scoreCount;
+            if ($scoreCount > 20) {
+                $scoreCount = 20;
+            }
+            $limit = $differentialSchedule[$scoreCount];
+            $handicapIndex = $this->calculateHandicapIndex($row->scorePlayerID, $limit);
             $handicap = $this->calculateHandicap($handicapIndex);
             $this->player_model->updatePlayerHandicaps($row->scorePlayerID, $handicapIndex, $handicap);
         }
@@ -78,11 +85,11 @@ class Handicap extends CI_Controller
         $this->handicapUpdateResult();
     }
 
-    public function calculateHandicapIndex($playerID) {
+    public function calculateHandicapIndex($playerID, $limit) {
         $this->load->model('score_model');
 
         $constant = 0.96;
-        $playerDifferentials = $this->score_model->getHandicapDifferentials($playerID);
+        $playerDifferentials = $this->score_model->getHandicapDifferentials($playerID, $limit);
         $diffTotal = 0;
         foreach ($playerDifferentials as $row) {
             $diffTotal = $diffTotal + $row->scoreDifferential;
