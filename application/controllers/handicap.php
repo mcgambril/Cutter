@@ -20,6 +20,14 @@ class Handicap extends CI_Controller
         $this->load->library('form_validation');
 
         $data['getPlayersQuery'] = $this->player_model->getPlayers();
+        foreach ($data['getPlayersQuery'] as $row) {
+            if ($row->playerHandicap == "" || $row->playerHandicap == 0 || $row->playerHandicap == NULL) {
+                $row->playerHandicap = "TBD";
+            }
+            if ($row->playerHandicapIndex == "" || $row->playerHandicapIndex == 0 || $row->playerHandicapIndex == NULL) {
+                $row->playerHandicapIndex = "TBD";
+            }
+        }
 
         $this->load->view('header_view');
         $this->load->view('handicap_view', $data);
@@ -57,30 +65,70 @@ class Handicap extends CI_Controller
         );
 
         $playerScoreCounts = $this->score_model->getScoreCounts();
-        $recentScoreIDs = array();
+        if ($playerScoreCounts == FALSE) {
+            $this->noHandicaps();
+        }
+        else {
+            $recentScoreIDs = array();
 
-        foreach($playerScoreCounts as $row) {
-            $recentScores = $this->score_model->getRecentScores($row->scorePlayerID);
-            foreach ($recentScores as $row) {
-                array_push($recentScoreIDs, $row->scoreID);
+            foreach($playerScoreCounts as $key => $row) {
+                if ($row->scoreCount < 4) {
+                    unset($playerScoreCounts[$key]);
+                }
+                else {
+                    $recentScores = $this->score_model->getRecentScores($row->scorePlayerID);
+                    if ($recentScores == FALSE) {
+                        unset($playerScoreCounts[$key]);
+                    }
+                    else {
+                        foreach ($recentScores as $r) {
+                            array_push($recentScoreIDs, $r->scoreID);
+                        }
+                    }
+                }
             }
+
+            if ($this->score_model->clearHandicapScores() == TRUE) {
+                if ($this->validateNotEmpty($recentScoreIDs) == TRUE) {
+                    if ($this->score_model->setHandicapScores($recentScoreIDs) == FALSE) {
+                        $this->error();
+                    }
+                }
+                else {
+                    $this->noHandicaps();
+                }
+            }
+            else {
+                $this->error();
+            }
+
+            $updatedHandicaps = array();
+            $errorUpdates = array();
+            if ($this->validateNotEmpty($playerScoreCounts) == TRUE) {
+                foreach($playerScoreCounts as $row) {
+                    $scoreCount = $row->scoreCount;
+                    if ($scoreCount > 20) {
+                        $scoreCount = 20;
+                    }
+                    $limit = $differentialSchedule[$scoreCount];
+                    $handicapIndex = $this->calculateHandicapIndex($row->scorePlayerID, $limit);
+                    $handicap = $this->calculateHandicap($handicapIndex);
+                    if ($this->player_model->updatePlayerHandicaps($row->scorePlayerID, $handicapIndex, $handicap) == FALSE) {
+                        array_push($errorUpdates, $row);
+                    }
+                    else {
+                        array_push($updatedHandicaps, $row);
+                    }
+                }
+
+                $this->handicapUpdateResult($updatedHandicaps, $errorUpdates);
+            }
+            else {
+                $this->noHandicaps();
+            }
+
         }
 
-        $this->score_model->clearHandicapScores();
-        $this->score_model->setHandicapScores($recentScoreIDs);
-
-        foreach($playerScoreCounts as $row) {
-            $scoreCount = $row->scoreCount;
-            if ($scoreCount > 20) {
-                $scoreCount = 20;
-            }
-            $limit = $differentialSchedule[$scoreCount];
-            $handicapIndex = $this->calculateHandicapIndex($row->scorePlayerID, $limit);
-            $handicap = $this->calculateHandicap($handicapIndex);
-            $this->player_model->updatePlayerHandicaps($row->scorePlayerID, $handicapIndex, $handicap);
-        }
-
-        $this->handicapUpdateResult();
     }
 
     public function calculateHandicapIndex($playerID, $limit) {
@@ -94,19 +142,74 @@ class Handicap extends CI_Controller
         }
         $diffAverage = $diffTotal / (count($playerDifferentials));
         $handicapIndexTemp = $diffAverage * $constant;
+
+        //PHP cannot truncate inherently. Use floor to simulate truncating to a single decimal place
         $handicapIndex = floor($handicapIndexTemp * 100) / 100;
         return $handicapIndex;
     }
 
     public function calculateHandicap($handicapIndex) {
+
+        //handicap formula as provided by client (and USGA)
         $handicapTemp = $handicapIndex * 131 / 113;
+
+        //rounding to nearest whole number
         $handicap = round($handicapTemp, 0);
         return $handicap;
     }
 
-    public function handicapUpdateResult() {
+    public function handicapUpdateResult($updatedHandicaps, $errorUpdates) {
+        $length = 0;
+        if ($this->validateNotEmpty($updatedHandicaps) == TRUE) {
+            $data['updatedHandicaps'] = $updatedHandicaps;
+            /*foreach ($updatedHandicaps as $row) {
+                if (strlen($row->playerName) > $length) {
+                    $length = strlen($row->playerName);
+                }
+            }*/
+        }
+        else {
+            $data['updatedHandicaps'] = NULL;
+        }
+
+        if ($this->validateNotEmpty($errorUpdates) == TRUE) {
+            $data['errorUpdates'] = $errorUpdates;
+            /*foreach($errorUpdates as $row) {
+                if (strlen($row->playerName) > $length) {
+                    $length = strlen($row->playerName);
+                }
+            }*/
+        }
+        else {
+            $data['errorUpdates'] = NULL;
+        }
+        /*$length = $length + 3;
+        $data['length'] = $length;*/
+        $data['trailer'] = "..................................................";
+
         $this->load->view('header_view');
-        $this->load->view('handicap_update_result_view');
+        $this->load->view('handicap_update_result_view', $data);
+        $this->load->view('footer_view');
+    }
+
+    public function validateNotEmpty($data) {
+        if(empty($data)) {
+            return FALSE;
+        }
+        else {
+            return TRUE;
+        }
+    }
+
+    public function noHandicaps() {
+        $this->load->view('header_view');
+        $this->load->view('handicap_no_handicaps_view');
+        $this->load->view('footer_view');
+    }
+
+    public function error() {
+        $this->load->view('header_view');
+        $this->load->view('handicap_error_view');
         $this->load->view('footer_view');
     }
 }

@@ -28,8 +28,8 @@
                             <thead>
                             <tr>
                                 <th class="col-md-2">Player</th>
-                                <th class="col-md-2">Handicap Index</th>
-                                <th class="col-md-2">Handicap</th>
+                                <th class="col-md-2 centered">Handicap Index</th>
+                                <th class="col-md-2 centered">Handicap</th>
                             </tr>
                         </table>
                     </div>
@@ -44,8 +44,8 @@
                                         <tbody>
                                             <tr>
                                                 <td class="col-md-2">' . $row->playerName . '</td>
-                                                <td class="col-md-2">' . $row->playerHandicapIndex . '</td>
-                                                <td class="col-md-2">' . $row->playerHandicap . '</td>
+                                                <td class="col-md-2 centered">' . $row->playerHandicapIndex . '</td>
+                                                <td class="col-md-2 centered">' . $row->playerHandicap . '</td>
                                             </tr>
                                         </tbody>
                                     </table>

@@ -108,11 +108,22 @@ class Score_model extends CI_Model {
     }
 
     public function getScoreCounts() {
-        $this->db->select('scorePlayerID, count(scoreScore) as scoreCount');
+        $groupByColumns = array(
+            "scorePlayerID",
+            "playerName"
+        );
+        $this->db->select('scorePlayerID, playerName, count(scoreScore) as scoreCount');
         $this->db->from('score');
-        $this->db->group_by('scorePlayerID');
+        $this->db->join('player', 'scorePlayerID = playerID', 'INNER');
+        $this->db->group_by($groupByColumns);
         $getScoreCountsQuery = $this->db->get();
-        return $getScoreCountsQuery->result();
+        if ($getScoreCountsQuery->num_rows() == 0) {
+            return FALSE;
+        }
+        else {
+            return $getScoreCountsQuery->result();
+        }
+
     }
 
     public function getRecentScores($playerID) {
@@ -123,7 +134,12 @@ class Score_model extends CI_Model {
         $this->db->order_by('scoreTime', 'desc');
         $this->db->limit(20);
         $getRecentScoresQuery = $this->db->get();
-        return $getRecentScoresQuery->result();
+        if ($getRecentScoresQuery->num_rows() == 0) {
+            return FALSE;
+        }
+        else {
+            return $getRecentScoresQuery->result();
+        }
     }
 
     public function getAllHandicapScores() {

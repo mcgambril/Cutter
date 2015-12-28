@@ -102,8 +102,6 @@ class Score extends CI_Controller {
             )
         );
 
-        //$this->form_validation->set_rules('datepicker', 'Date', 'required|callback_validateDate');
-
         $temp['players'] = $this->player_model->getPlayers();
 
         foreach($temp['players'] as $row) {
@@ -119,8 +117,6 @@ class Score extends CI_Controller {
                 );
             array_push($config, $temp2);
             array_push($config, $temp3);
-            /*$this->form_validation->set_rules($row->playerID.'am-score', $row->playerName.' AM Score', 'integer|greater_than[17]');
-            $this->form_validation->set_rules($row->playerID.'pm-score', $row->playerName.' PM Score', 'integer|greater_than[17]');*/
         }
         $this->form_validation->set_rules($config);
 
