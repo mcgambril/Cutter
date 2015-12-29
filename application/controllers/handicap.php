@@ -69,6 +69,7 @@ class Handicap extends CI_Controller
         $playerScoreCounts = $this->score_model->getScoreCounts();
         if ($playerScoreCounts == FALSE) {
             $this->noHandicaps();
+            return;
         }
         else {
             $recentScoreIDs = array();
@@ -95,6 +96,7 @@ class Handicap extends CI_Controller
                 if ($this->validateNotEmpty($recentScoreIDs) == TRUE) {
                     if ($this->score_model->setHandicapScores($recentScoreIDs) == FALSE) {
                         $this->error();
+                        return;
                     }
                     /*else {
                         $this->score_model->setHandicapScores($recentScoreIDs);
@@ -102,10 +104,12 @@ class Handicap extends CI_Controller
                 }
                 else {
                     $this->noHandicaps();
+                    return;
                 }
             }
             else {
                 $this->error();
+                return;
             }
 
             $updatedHandicaps = array();
@@ -132,9 +136,11 @@ class Handicap extends CI_Controller
                 //unset($row);
 
                 $this->handicapUpdateResult($updatedHandicaps, $errorUpdates);
+                return;
             }
             else {
                 $this->noHandicaps();
+                return;
             }
 
         }
@@ -154,7 +160,7 @@ class Handicap extends CI_Controller
             );*/
             array_push($diffIDs, $row->scoreID);
         }
-        $this->score_model->setDifferentialsUsed($diffIDs);
+        $this->score_model->setDifferentialsUsed($playerID, $diffIDs);
 
         $diffTotal = 0;
         foreach ($playerDifferentials as $row) {

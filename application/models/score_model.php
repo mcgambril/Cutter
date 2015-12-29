@@ -97,8 +97,8 @@ class Score_model extends CI_Model {
         }
     }
 
-    public function setDifferentialsUsed($diffIDs) {
-        if ($this->clearDifferentialsUsed() == TRUE) {
+    public function setDifferentialsUsed($playerID, $diffIDs) {
+        if ($this->clearDifferentialsUsed($playerID) == TRUE) {
             /*$this->db->trans_start();
             $this->db->update_batch('score', $data, 'scoreID');
             $this->db->trans_complete();
@@ -190,12 +190,13 @@ class Score_model extends CI_Model {
         }
     }
 
-    public function clearDifferentialsUsed() {
+    public function clearDifferentialsUsed($playerID) {
         $update = array(
             'scoreDifferentialUsed' => 0
         );
 
         //$this->db->where('scoreDifferentialUsed', 1);
+        $this->db->where('scorePlayerID', $playerID);
         if ($this->db->update('score', $update) == TRUE) {
             return TRUE;
         }
