@@ -12,6 +12,7 @@
         <h1>Course - <small>Home</small></h1>
     </div>
     <a class="btn btn-default col-md-3" href="<?php echo base_url("index.php/course/add"); ?>">Add Course</a>
+    <a class="btn btn-default col-md-3" href="<?php echo base_url("index.php/course/setHomeCourse"); ?>">Update Home Course</a>
     <div class="page-header"><br></div>
 
     <div class="panel panel-default">

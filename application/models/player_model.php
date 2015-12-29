@@ -19,6 +19,14 @@ class Player_model extends CI_Model {
         return $getPlayersQuery->result();
     }
 
+    public function getPlayersAZ() {
+        $this->db->select('*');
+        $this->db->from('player');
+        $this->db->order_by('playerName', 'asc');
+        $getPlayersQuery = $this->db->get();
+        return $getPlayersQuery->result();
+    }
+
     public function getPlayerScores($playerID) {
         $this->db->select('*');
         $this->db->from('score');
@@ -45,7 +53,11 @@ class Player_model extends CI_Model {
     }
 
     public function getPlayersAndScores() {
-        $query = $this->db->get('player');
+        //$query = $this->db->get('player');
+        $this->db->select('*');
+        $this->db->from('player');
+        $this->db->order_by('playerName', 'asc');
+        $query = $this->db->get();
         $getPlayersAndScoresQuery = $query->result();
         foreach($getPlayersAndScoresQuery as &$row) {
             $row->scores = $this->getPlayerRecentScores($row->playerID);

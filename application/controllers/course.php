@@ -308,4 +308,74 @@ class Course extends CI_Controller
         $this->load->view('footer_view');
     }
 
+    public function setHomeCourse() {
+        $this->load->model('course_model');
+        $this->load->helper('form');
+        $this->load->library('form_validation');
+
+        $data['getHomeCourseQuery'] = $this->course_model->getHomeCourse();
+        $data['getCoursesQuery'] = $this->course_model->getCourses();
+
+        $this->load->view('header_view');
+        $this->load->view('course_set_home_view', $data);
+        $this->load->view('footer_view');
+    }
+
+    public function submitSetHomeCourse() {
+        $this->load->model('course_model');
+        $this->load->helper('form');
+        $this->load->library('form_validation');
+
+        $config = array(
+            array(
+                'field' => 'course',
+                'label' => 'New Home Course',
+                'rules' => 'required'
+            )
+        );
+
+        $this->form_validation->set_rules($config);
+
+        if($this->form_validation->run()== FALSE) {
+            $this->setHomeCourse();
+            return;
+        }
+        else {
+            $newHomeCourse = $this->input->post('course');
+            $temp['newHomeCourse'] = $this->course_model->getCourse($newHomeCourse, 0);
+            foreach ($temp['newHomeCourse'] as $row) {
+                $newHomeCourseName = $row->courseName;
+            }
+            $updateResult = $this->course_model->updateHomeCourse($newHomeCourse);
+            if ($updateResult == 'Fail 1') {
+                //fail 1 - clear home didn't work
+                $data['title'] = 'Failed';
+                $data['message1'] = 'Error:  The Home course failed to update at this time.';
+                $data['message2'] = 'Please try again later.';
+            }
+            else if ($updateResult == 'Fail 2') {
+                //fail 2 - update to new home didn't work. No home course is set here
+                $data['title'] = 'Failed';
+                $data['message1'] = 'Error:  The previous home course was cleared however the update failed:  There may not be a home course set for the time being';
+                $data['message2'] = 'Please try setting a new home course again.';
+            }
+            else {
+                //success
+                $data['title'] = 'Success!';
+                $data['message1'] = $newHomeCourseName . ' was successfuly set as the new Home Course.';
+                $data['message2'] = '';
+            }
+
+            $this->setHomeCourseResult($data);
+            return;
+        }
+    }
+
+    public function setHomeCourseResult($data) {
+        $this->load->view('header_view');
+        $this->load->view('course_set_home_result_view', $data);
+        $this->load->view('footer_view');
+        return;
+    }
+
 }

@@ -89,8 +89,8 @@
                         <ul class="dropdown-menu">
                             <li><a href="<?php echo base_url("index.php/course/index"); ?>">Course - Home</a></li>
                             <li><a href="<?php echo base_url("index.php/course/add"); ?>">Course - Add</a></li>
-                            <li><a href="<?php echo base_url("index.php/header/loadCourseEditView"); ?>">Course - Set Home Course</a></li>
-                            <li><a href="<?php echo base_url("index.php/header/loadCourseDeleteView"); ?>">Course - Batch Delete</a></li>
+                            <li><a href="<?php echo base_url("index.php/course/setHomeCourse"); ?>">Course - Set Home Course</a></li>
+                            <li><a href="<?php echo base_url("index.php/course/loadCourseDeleteView"); ?>">Course - Batch Delete</a></li>
                         </ul>
                     </li>
                 </ul>

@@ -16,8 +16,8 @@ class Player extends CI_Controller
 
     public function index () {
         $this->load->model('player_model');
-        $data['getPlayersQuery'] = $this->player_model->getPlayers();
-        foreach($data['getPlayersQuery'] as $row) {
+        $data['getPlayersAZQuery'] = $this->player_model->getPlayersAZ();
+        foreach($data['getPlayersAZQuery'] as $row) {
             if ($row->playerHandicap == "" || 0 || null) {
                 $row->playerHandicap = "TBD";
             }

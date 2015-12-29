@@ -15,33 +15,14 @@ class Home extends CI_Controller {
 
 
     public function index() {
-
-        //$this->update();
-
         $this->load->model('course_model');
         $this->load->model('player_model');
         $this->load->model('score_model');
 
         date_default_timezone_set('America/Mexico_City');
 
-        $data['getCoursesQuery'] = $this->course_model->getCourses();
-        $data['getPlayersQuery'] = $this->player_model->getPlayers();
-        $data['getScoresQuery'] = $this->score_model->getScores();
         $data['getPlayersAndScoresQuery'] = $this->player_model->getPlayersAndScores();
-        foreach ($data['getPlayersAndScoresQuery'] as $row) {
-            foreach ($row as $key => $r) {
-                if ($r->scoreDifferentialUsed == 1) {
-                    //$r[$key]['scoreDifferentialUsed'] = '*';
-                    //$r->scoreDifferentialUsed = '*';
-                }
-                else {
-                    //$r[$key]['scoreDifferentialUsed'] = '';
-                    //$r->scoreDifferentialUsed = '';
-                }
-            }
-        }
         $data['getHomeCourseQuery'] = $this->course_model->getHomeCourse();
-        $data['IDs'] = $this->player_model->getPlayerIDs(0);
 
         $this->load->view('home_header_view');
         $this->load->view('home_view', $data);
@@ -53,12 +34,8 @@ class Home extends CI_Controller {
         $this->load->model('player_model');
         $this->load->model('score_model');
 
-        $data['getCoursesQuery'] = $this->course_model->getCourses();
-        $data['getPlayersQuery'] = $this->player_model->getPlayers();
-        $data['getScoresQuery'] = $this->score_model->getScores();
         $data['getPlayersAndScoresQuery'] = $this->player_model->getPlayersAndScores();
         $data['getHomeCourseQuery'] = $this->course_model->getHomeCourse();
-        $data['IDs'] = $this->player_model->getPlayerIDs(0);
 
         $this->load->view('header_view');
         $this->load->view('home_view', $data);

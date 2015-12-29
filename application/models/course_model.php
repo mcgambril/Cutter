@@ -85,15 +85,38 @@ class Course_model extends CI_Model {
         }
     }
 
-    public function updateHomeCourse() {
-        $data['courseDefault'] = 0;
+    public function clearHomeCourse() {
+        //$data['courseDefault'] = 0;
+        $update = array(
+            'courseDefault' => 0
+        );
         $this->db->where('courseDefault', 1);
-        if ($this->db->update('course', $data) == TRUE) {
+        /*if ($this->db->update('course', $update) == TRUE) {
             return TRUE;
         }
         else {
             return FALSE;
-        }
+        }*/
+        $this->db->update('course', $update);
+    }
+
+    public function updateHomeCourse($courseID) {
+        //if ($this->clearHomeCourse() == TRUE) {
+            $this->clearHomeCourse();
+            $update = array(
+                'courseDefault' => 1
+            );
+            $this->db->where('courseID', $courseID);
+            if ($this->db->update('course', $update) == TRUE) {
+                return TRUE;
+            }
+            else {
+                return 'Fail 2';
+            }
+        //}
+        //else {
+            //return 'Fail 1';
+        //}
     }
 
     public function updateCourse($id, $data) {

@@ -72,20 +72,20 @@ class Handicap extends CI_Controller
             return;
         }
         else {
-            $recentScoreIDs = array();
+            $dataSetScoreIDs = array();
 
             foreach($playerScoreCounts as $key => $row) {
                 if ($row->scoreCount < 4) {
                     unset($playerScoreCounts[$key]);
                 }
                 else {
-                    $recentScores = $this->score_model->getRecentScores($row->scorePlayerID);
-                    if ($recentScores == FALSE) {
+                    $dataSetScores = $this->score_model->getDataSetScores($row->scorePlayerID);
+                    if ($dataSetScores == FALSE) {
                         unset($playerScoreCounts[$key]);
                     }
                     else {
-                        foreach ($recentScores as $r) {
-                            array_push($recentScoreIDs, $r->scoreID);
+                        foreach ($dataSetScores as $r) {
+                            array_push($dataSetScoreIDs, $r->scoreID);
                         }
                     }
                 }
@@ -93,14 +93,11 @@ class Handicap extends CI_Controller
             //unset($row);
 
             if ($this->score_model->clearHandicapScores() == TRUE) {
-                if ($this->validateNotEmpty($recentScoreIDs) == TRUE) {
-                    if ($this->score_model->setHandicapScores($recentScoreIDs) == FALSE) {
+                if ($this->validateNotEmpty($dataSetScoreIDs) == TRUE) {
+                    if ($this->score_model->setHandicapScores($dataSetScoreIDs) == FALSE) {
                         $this->error();
                         return;
                     }
-                    /*else {
-                        $this->score_model->setHandicapScores($recentScoreIDs);
-                    }*/
                 }
                 else {
                     $this->noHandicaps();

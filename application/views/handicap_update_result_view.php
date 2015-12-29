@@ -12,8 +12,10 @@
 <div class="resultDataTable">
     <table>
         <thead>
-            <th>Player</th>
-            <th class="centered">Result</th>
+            <tr>
+                <th class="centered bottomPadTiny">Player</th>
+                <th class="centered bottomPadTiny">Result</th>
+            </tr>
         </thead>
         <tbody>
             <?php

@@ -32,7 +32,7 @@
             </table>
         </div>
 
-        <?php foreach($getPlayersQuery as $row) {
+        <?php foreach($getPlayersAZQuery as $row) {
             echo'<div class="table-responsive">';
                 echo '<table class ="table table-condensed table-bordered">';
                     echo '<thead>';
