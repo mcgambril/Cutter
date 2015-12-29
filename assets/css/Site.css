@@ -52,3 +52,11 @@ tr td input .delete_box:checked {
     padding-left: 10px;
 }
 
+.row:checked td {
+    background-color: #cd5c5c;
+}
+
+.delete {
+    background-color: indianred;
+}
+
