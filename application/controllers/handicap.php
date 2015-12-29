@@ -41,6 +41,7 @@ class Handicap extends CI_Controller
     }
 
     public function submitUpdate() {
+        //create $data array and put the queries into []...maybe that somehow has something to do with it
         $this->load->model('score_model');
         $this->load->model('player_model');
 
@@ -87,12 +88,16 @@ class Handicap extends CI_Controller
                     }
                 }
             }
+            //unset($row);
 
             if ($this->score_model->clearHandicapScores() == TRUE) {
                 if ($this->validateNotEmpty($recentScoreIDs) == TRUE) {
                     if ($this->score_model->setHandicapScores($recentScoreIDs) == FALSE) {
                         $this->error();
                     }
+                    /*else {
+                        $this->score_model->setHandicapScores($recentScoreIDs);
+                    }*/
                 }
                 else {
                     $this->noHandicaps();
@@ -110,6 +115,9 @@ class Handicap extends CI_Controller
                     if ($scoreCount > 20) {
                         $scoreCount = 20;
                     }
+                    else {
+                        $scoreCount = $row->scoreCount;
+                    }
                     $limit = $differentialSchedule[$scoreCount];
                     $handicapIndex = $this->calculateHandicapIndex($row->scorePlayerID, $limit);
                     $handicap = $this->calculateHandicap($handicapIndex);
@@ -120,6 +128,7 @@ class Handicap extends CI_Controller
                         array_push($updatedHandicaps, $row);
                     }
                 }
+                //unset($row);
 
                 $this->handicapUpdateResult($updatedHandicaps, $errorUpdates);
             }
@@ -138,11 +147,11 @@ class Handicap extends CI_Controller
         $playerDifferentials = $this->score_model->getHandicapDifferentials($playerID, $limit);
         $diffIDs = array();
         foreach ($playerDifferentials as $row) {
-            $temp = array(
+            /*$temp = array(
                 'scoreID' => $row->scoreID,
                 'scoreDifferentialUsed' => 1
-            );
-            array_push($diffIDs, $temp);
+            );*/
+            array_push($diffIDs, $row->scoreID);
         }
         $this->score_model->setDifferentialsUsed($diffIDs);
 
@@ -169,7 +178,7 @@ class Handicap extends CI_Controller
     }
 
     public function handicapUpdateResult($updatedHandicaps, $errorUpdates) {
-        $length = 0;
+        //$length = 0;
         if ($this->validateNotEmpty($updatedHandicaps) == TRUE) {
             $data['updatedHandicaps'] = $updatedHandicaps;
             /*foreach ($updatedHandicaps as $row) {

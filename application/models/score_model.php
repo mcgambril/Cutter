@@ -97,17 +97,26 @@ class Score_model extends CI_Model {
         }
     }
 
-    public function setDifferentialsUsed($data) {
+    public function setDifferentialsUsed($diffIDs) {
         if ($this->clearDifferentialsUsed() == TRUE) {
-            $this->db->trans_start();
+            /*$this->db->trans_start();
             $this->db->update_batch('score', $data, 'scoreID');
             $this->db->trans_complete();
-            if ($this->db->trans_status() == TRUE) {
+            $this->db->trans_status();
+           */
+
+            $update = array(
+                'scoreDifferentialUsed' => 1
+            );
+
+            $this->db->where_in('scoreID', $diffIDs);
+            if ($this->db->update('score', $update) == TRUE) {
                 return TRUE;
             }
             else {
                 return FALSE;
             }
+
         }
         else {
             return FALSE;
@@ -186,7 +195,7 @@ class Score_model extends CI_Model {
             'scoreDifferentialUsed' => 0
         );
 
-        $this->db->where('scoreDifferentialUsed', 1);
+        //$this->db->where('scoreDifferentialUsed', 1);
         if ($this->db->update('score', $update) == TRUE) {
             return TRUE;
         }
@@ -215,6 +224,8 @@ class Score_model extends CI_Model {
         $this->db->where('scorePlayerID', $playerID);
         $this->db->where('scoreUsedInHandicap', 1);
         $this->db->order_by('scoreDifferential', 'asc');
+        $this->db->order_by('scoreDate', 'desc');
+        $this->db->order_by('scoreTime', 'desc');
         $this->db->limit($limit);
         $getHandicapDifferentialsQuery = $this->db->get();
         return $getHandicapDifferentialsQuery->result();

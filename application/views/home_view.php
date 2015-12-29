@@ -91,7 +91,13 @@
                                                 echo'<tr>';
                                                     echo'<td>'.$r->scoreDate.'</td>';
                                                     echo'<td>'.$r->scoreScore.'</td>';
-                                                    echo'<td>'.$r->scoreDifferential.$r->scoreDifferentialUsed.'</td>';
+                                                    if ($r->scoreDifferentialUsed == 1) {
+                                                        echo'<td>'.$r->scoreDifferential . '*</td>';
+                                                    }
+                                                    else {
+                                                        echo'<td>'.$r->scoreDifferential.'</td>';
+                                                    }
+                                                    //echo'<td>'.$r->scoreDifferential.$r->scoreDifferentialUsed.'</td>';
                                                 echo'</tr>';
                                             }
                                         echo'</tbody>';
