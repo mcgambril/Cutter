@@ -42,6 +42,7 @@ class Handicap extends CI_Controller
 
     public function submitUpdate() {
         //create $data array and put the queries into []...maybe that somehow has something to do with it
+        //commit
         $this->load->model('score_model');
         $this->load->model('player_model');
 
