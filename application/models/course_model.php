@@ -86,23 +86,21 @@ class Course_model extends CI_Model {
     }
 
     public function clearHomeCourse() {
-        //$data['courseDefault'] = 0;
         $update = array(
             'courseDefault' => 0
         );
         $this->db->where('courseDefault', 1);
-        /*if ($this->db->update('course', $update) == TRUE) {
+        if ($this->db->update('course', $update) == TRUE) {
             return TRUE;
         }
         else {
             return FALSE;
-        }*/
-        $this->db->update('course', $update);
+        }
     }
 
     public function updateHomeCourse($courseID) {
-        //if ($this->clearHomeCourse() == TRUE) {
-            $this->clearHomeCourse();
+        if ($this->clearHomeCourse() == TRUE) {
+            //$this->clearHomeCourse();
             $update = array(
                 'courseDefault' => 1
             );
@@ -111,12 +109,12 @@ class Course_model extends CI_Model {
                 return TRUE;
             }
             else {
-                return 'Fail 2';
+                return FALSE;
             }
-        //}
-        //else {
-            //return 'Fail 1';
-        //}
+        }
+        else {
+            return FALSE;
+        }
     }
 
     public function updateCourse($id, $data) {

@@ -346,24 +346,16 @@ class Course extends CI_Controller
             foreach ($temp['newHomeCourse'] as $row) {
                 $newHomeCourseName = $row->courseName;
             }
-            $updateResult = $this->course_model->updateHomeCourse($newHomeCourse);
-            if ($updateResult == 'Fail 1') {
-                //fail 1 - clear home didn't work
-                $data['title'] = 'Failed';
-                $data['message1'] = 'Error:  The Home course failed to update at this time.';
-                $data['message2'] = 'Please try again later.';
-            }
-            else if ($updateResult == 'Fail 2') {
-                //fail 2 - update to new home didn't work. No home course is set here
-                $data['title'] = 'Failed';
-                $data['message1'] = 'Error:  The previous home course was cleared however the update failed:  There may not be a home course set for the time being';
-                $data['message2'] = 'Please try setting a new home course again.';
+
+            if ($this->course_model->updateHomeCourse($newHomeCourse) == TRUE) {
+                $data['title'] = 'Success!';
+                $data['message1'] = $newHomeCourseName . ' was successfully set as the new Home Course.';
+                $data['message2'] = '';
             }
             else {
-                //success
-                $data['title'] = 'Success!';
-                $data['message1'] = $newHomeCourseName . ' was successfuly set as the new Home Course.';
-                $data['message2'] = '';
+                $data['title'] = 'Failed';
+                $data['message1'] = 'Error:  The Home course failed to update at this time.  However, the Previous Home Course may have already been cleared.';
+                $data['message2'] = 'Please try setting a new home course again to ensure there is one on record.';
             }
 
             $this->setHomeCourseResult($data);
