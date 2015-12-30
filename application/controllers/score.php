@@ -217,7 +217,7 @@ class Score extends CI_Controller {
                 if ($this->tempscore_model->updateTempScores() == True) {
                     $data3['getTempScoresQuery'] = $this->tempscore_model->getTempScores();
                     //might want to do a query to delete the temp scores instead of deactivate
-                    $this->tempscore_model->deactivateTempScores();
+                    $this->tempscore_model->deleteTempScores();
 
                     $this->scoreEntrySuccess($data3);
                 }
@@ -263,8 +263,8 @@ class Score extends CI_Controller {
     }
 
     public function scoreEntrySuccess($data) {
-        $this->load->helper('date');
-        date_default_timezone_set('America/Mexico_City');
+        //$this->load->helper('date');
+        //date_default_timezone_set('America/Mexico_City');
 
         $this->load->view('header_view');
         $this->load->view('score_entry_success_view', $data);
