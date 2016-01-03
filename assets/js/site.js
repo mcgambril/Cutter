@@ -15,6 +15,16 @@ $(function () {
     });
 });
 
+$('.viewScoresBtn').click(function(){
+    var $this = $(this);
+    $this.toggleClass('viewScoresBtn');
+    if($this.hasClass('viewScoresBtn')){
+        $this.text('Expand Scores');
+    } else {
+        $this.text('Collapse Scores');
+    }
+});
+
 $(function() {
     $( "#datepicker" ).datepicker({
         changeMonth: true,

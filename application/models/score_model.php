@@ -24,6 +24,9 @@ class Score_model extends CI_Model {
         $this->db->from('score');
         $this->db->join('player', 'score.scorePlayerID = player.playerID', 'INNER');
         $this->db->join('course', 'score.scoreCourseID = course.courseID', 'INNER');
+        $this->db->order_by('scoreDate', 'desc');
+        $this->db->order_by('scoreTime', 'desc');
+        $this->db->order_by('playerName', 'asc');
         $getFullScoreInfoQuery = $this->db->get();
         return $getFullScoreInfoQuery->result();
     }

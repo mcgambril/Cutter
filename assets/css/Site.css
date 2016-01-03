@@ -19,6 +19,18 @@ tr td input .delete_box:checked {
     vertical-align: middle;
 }
 
+.scoresTitle {
+    text-align:  center;
+    vertical-align: middle;
+    font-weight: bold;
+    font-size: 20pt;
+    text-decoration: underline;
+}
+
+tr:hover {
+    background-color: #f5f5f5
+}
+
 .tableData {
     padding-left: 10%;
     vertical-align: middle;
@@ -56,3 +68,23 @@ tr td input .delete_box:checked {
     background-color: #F08080;
 }
 
+.delete:hover {
+    background-color: #F08080
+}
+
+.noHover:hover {
+    background-color: #ffffff;
+}
+
+.noBorders {
+    border: none;
+}
+
+.scoresHeader {
+    text-align: center;
+    text-decoration: underline;
+}
+
+.viewScoresBtn {
+
+}

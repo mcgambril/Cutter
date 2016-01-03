@@ -26,8 +26,6 @@
                     <th class="col-md-1">Handicap</th>
                     <th class="col-md-1">Handicap Index</th>
                     <th class="col-md-2 centered" colspan="2">Actions</th>
-                    <!--<th class="col-md-1">Edit</th>
-                    <th class="col-md-1">Delete</th>-->
                 </tr>
             </table>
         </div>

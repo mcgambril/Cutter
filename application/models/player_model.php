@@ -58,7 +58,9 @@ class Player_model extends CI_Model {
         $this->db->from('player');
         $this->db->order_by('playerName', 'asc');
         $query = $this->db->get();
+        /*$this->db->_protect_identifiers = FALSE;*/
         $getPlayersAndScoresQuery = $query->result();
+        /*$this->db->_protect_identifiers = FALSE;*/
         foreach($getPlayersAndScoresQuery as &$row) {
             $row->scores = $this->getPlayerRecentScores($row->playerID);
             if(is_null($row->playerHandicap)) {

@@ -22,6 +22,9 @@ class Home extends CI_Controller {
         date_default_timezone_set('America/Mexico_City');
 
         $data['getPlayersAndScoresQuery'] = $this->player_model->getPlayersAndScores();
+        foreach ($data['getPlayersAndScoresQuery'] as $row) {
+            $row->playerScoreCount = count($row->scores);
+        }
         $data['getHomeCourseQuery'] = $this->course_model->getHomeCourse();
 
         $this->load->view('home_header_view');
