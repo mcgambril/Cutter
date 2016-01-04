@@ -31,6 +31,19 @@ class Score_model extends CI_Model {
         return $getFullScoreInfoQuery->result();
     }
 
+    public function getFullScoreInfoByID($scoreID) {
+        $this->db->select('score.*, player.playerName, course.courseName');
+        $this->db->from('score');
+        $this->db->join('player', 'score.scorePlayerID = player.playerID', 'INNER');
+        $this->db->join('course', 'score.scoreCourseID = course.courseID', 'INNER');
+        $this->db->where('score.scoreID', $scoreID);
+        $this->db->order_by('scoreDate', 'desc');
+        $this->db->order_by('scoreTime', 'desc');
+        $this->db->order_by('playerName', 'asc');
+        $getFullScoreInfoByIDQuery = $this->db->get();
+        return $getFullScoreInfoByIDQuery->result();
+    }
+
     public function getPlayersScoresByDate($date) {
 
         $selectVar = "p.playerID

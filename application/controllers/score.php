@@ -342,13 +342,28 @@ class Score extends CI_Controller {
         }
     }
 
-    public function edit() {
+    public function edit($paramID = NULL) {
+        $this->load->model('score_model');
+        $this->load->model('course_model');
+        $this->load->helper('form');
+        $this->load->library('form_validation');
 
-        $id['id'] = $this->uri->segment(3);
+        if ($paramID == NULL) {
+            $id = $this->uri->segment(3);
+        }
+        else {
+            $id = $paramID;
+        }
+
+        $data['getFullScoreInfoByIDQuery'] = $this->score_model->getFullScoreInfoByID($id);
+        $data['getCoursesQuery'] = $this->course_model->getCourses();
+
         $this->load->view('header_view');
-        $this->load->view('score_edit_view', $id);
+        $this->load->view('score_edit_view', $data);
         $this->load->view('footer_view');
     }
+
+    public function submitScoreEditIndividual() {}
 
     //adding parameters to maybe know whether it needs to bring in date from form or just use the one it is given
     public function submitEditScore() {

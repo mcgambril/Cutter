@@ -75,7 +75,7 @@
                                             echo '
                                                 <tr data-toggle="collapse" data-target="#'.$row->playerID.'" class="accordion-toggle">';
                                             echo '
-                                                    <td class="col-md-3"><a class="btn btn-default col-md-12 viewScoresBtn">Scores</a></td>
+                                                    <td class="col-md-3"><a class="btn btn-default col-md-12 viewScoresBtn">Scores Details</a></td>
                                                     <td class="col-md-3">' . $row->playerName . '</td>
                                                     <td class="col-md-3">' . $row->playerHandicap . '</td>
                                                     <td class="col-md-3">' . $row->playerHandicapIndex . '</td>

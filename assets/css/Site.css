@@ -23,7 +23,7 @@ tr td input .delete_box:checked {
     text-align:  center;
     vertical-align: middle;
     font-weight: bold;
-    font-size: 20pt;
+    font-size: 16pt;
     text-decoration: underline;
 }
 
@@ -96,3 +96,4 @@ tr:hover th {
 .test {
     background-color: red;
 }
+

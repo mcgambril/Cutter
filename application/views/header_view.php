@@ -59,7 +59,7 @@
                         <ul class="dropdown-menu">
                             <li><a href="<?php echo base_url("index.php/score/index"); ?>">Score - Home</a></li>
                             <li><a href="<?php echo base_url("index.php/score/postDate"); ?>">Score - Post</a></li>
-                            <li><a href="<?php echo base_url("index.php/score/chooseEditDate"); ?>">Score - Batch Edit By Date</a></li>
+                            <li><a href="<?php echo base_url("index.php/score/chooseEditDate"); ?>">Score - Edit Scores By Date</a></li>
                         </ul>
                     </li>
                     <li class="dropdown">
@@ -67,7 +67,6 @@
                         <ul class="dropdown-menu">
                             <li><a href="<?php echo base_url("index.php/player/index"); ?>">Player - Home</a></li>
                             <li><a href="<?php echo base_url("index.php/player/add"); ?>">Player - Add</a></li>
-                            <li><a href="<?php echo base_url("index.php/header/loadPlayerDeleteView"); ?>">Player - Batch Delete</a></li>
                         </ul>
                     </li>
                     <li class="dropdown">
@@ -84,7 +83,6 @@
                             <li><a href="<?php echo base_url("index.php/course/index"); ?>">Course - Home</a></li>
                             <li><a href="<?php echo base_url("index.php/course/add"); ?>">Course - Add</a></li>
                             <li><a href="<?php echo base_url("index.php/course/setHomeCourse"); ?>">Course - Set Home Course</a></li>
-                            <li><a href="<?php echo base_url("index.php/course/loadCourseDeleteView"); ?>">Course - Batch Delete</a></li>
                         </ul>
                     </li>
                 </ul>
