@@ -42,7 +42,8 @@ class Admin extends CI_Controller {
         }
         else {
             $this->load->helper('url');
-            redirect('/home/loadHomeLoggedIn');
+            //redirect('/home/loadHomeLoggedIn');
+            $this->loadHomeLoggedIn();
         }
     }
 
@@ -61,5 +62,37 @@ class Admin extends CI_Controller {
             return FALSE;
         }
 
+    }
+
+    public function loadHomeLoggedIn() {
+        $this->load->model('course_model');
+        $this->load->model('player_model');
+        $this->load->model('score_model');
+
+        $data['getPlayersAndScoresQuery'] = $this->player_model->getPlayersAndScores();
+        foreach ($data['getPlayersAndScoresQuery'] as $row) {
+            $row->playerScoreCount = count($row->scores);
+        }
+        $data['getHomeCourseQuery'] = $this->course_model->getHomeCourse();
+        if ($this->validateNotEmpty($data['getHomeCourseQuery'] == TRUE)) {
+            $data['empty'] = FALSE;
+        }
+        else {
+            $data['empty'] = TRUE;
+        }
+
+        $this->load->view('header_view');
+        $this->load->view('home_view', $data);
+        $this->load->view('footer_view');
+
+    }
+
+    public function validateNotEmpty($data) {
+        if(empty($data)) {
+            return FALSE;
+        }
+        else {
+            return TRUE;
+        }
     }
 }
