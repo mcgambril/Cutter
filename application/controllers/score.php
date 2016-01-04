@@ -20,17 +20,17 @@ class Score extends CI_Controller {
         $this->load->model('score_model');
 
         $data['getFullScoreInfoQuery'] = $this->score_model->getFullScoreInfo();
+        foreach($data['getFullScoreInfoQuery'] as $row) {
+            if ($row->scoreTime == 0) {
+                $row->scoreTime = 'AM';
+            }
+            else {
+                $row->scoreTime = 'PM';
+            }
+        }
 
         $this->load->view('header_view');
         $this->load->view('score_view', $data);
-        $this->load->view('footer_view');
-    }
-
-    public function edit() {
-
-        $id['id'] = $this->uri->segment(3);
-        $this->load->view('header_view');
-        $this->load->view('score_edit_view', $id);
         $this->load->view('footer_view');
     }
 
@@ -46,6 +46,59 @@ class Score extends CI_Controller {
         $this->load->view('footer_view');
     }
 
+    public function submitDate() {
+        $this->load->model('score_model');
+        $this->load->model('player_model');
+        $this->load->model('course_model');
+        $this->load->helper('form');
+        $this->load->library('form_validation');
+        date_default_timezone_set('America/Mexico_City');
+
+        $config = array(
+            array(
+                'field' => 'datepicker',
+                'label' => 'Date',
+                'rules' => 'required|callback_validateDate'
+            )
+        );
+        //$this->form_validation->set_rules('datepicker', 'Date', 'required|callback_validateDate');
+        $this->form_validation->set_rules($config);
+
+        if($this->form_validation->run()== FALSE) {
+            $this->postDate();
+        }
+        else {
+            $data['date'] = $this->input->post('datepicker');
+
+            $data['getCoursesQuery'] = $this->course_model->getCourses();
+
+            $data['getPlayersScoresByDateQuery'] = $this->score_model->getPlayersScoresByDate($data['date']);
+            foreach ($data['getPlayersScoresByDateQuery'] as $row) {
+                if ($row->scoreSummary == 'am empty') {
+                    $row->amScore = 'empty';
+                    $row->pmScore = $this->score_model->getScore($row->playerID, 1, $data['date']);
+                }
+                else if ($row->scoreSummary == 'pm empty') {
+                    $row->amScore = $this->score_model->getScore($row->playerID, 0, $data['date']);
+                    $row->pmScore = 'empty';
+                }
+                else if ($row->scoreSummary == 'full') {
+                    $row->amScore = $this->score_model->getScore($row->playerID, 0, $data['date']);
+                    $row->pmScore = $this->score_model->getScore($row->playerID, 1, $data['date']);
+                }
+                else if ($row->scoreSummary == 'empty') {
+                    $row->amScore = 'empty';
+                    $row->pmScore = 'empty';
+                }
+            }
+
+            $this->load->view('header_view');
+            $this->load->view('score_post_view', $data);
+            $this->load->view('footer_view');
+
+        }
+    }
+
     public function post($buffer) {
 
         $this->load->model('course_model');
@@ -58,6 +111,7 @@ class Score extends CI_Controller {
         $data['date'] = $buffer['date'];
 
         $data['getCoursesQuery'] = $this->course_model->getCourses();
+
 
         $data['getPlayersScoresByDateQuery'] = $this->score_model->getPlayersScoresByDate($data['date']);
         foreach ($data['getPlayersScoresByDateQuery'] as $row) {
@@ -106,15 +160,15 @@ class Score extends CI_Controller {
 
         foreach($temp['players'] as $row) {
             $temp2 = array(
-                    'field' => $row->playerID.'am-score',
-                    'label' => $row->playerName.' AM Score',
-                    'rules' => 'integer|greater_than[17]'
-                );
+                'field' => $row->playerID.'am-score',
+                'label' => $row->playerName.' AM Score',
+                'rules' => 'integer|greater_than[17]'
+            );
             $temp3 = array(
-                    'field' => $row->playerID.'pm-score',
-                    'label' => $row->playerName.' PM Score',
-                    'rules' => 'integer|greater_than[17]'
-                );
+                'field' => $row->playerID.'pm-score',
+                'label' => $row->playerName.' PM Score',
+                'rules' => 'integer|greater_than[17]'
+            );
             array_push($config, $temp2);
             array_push($config, $temp3);
         }
@@ -229,39 +283,6 @@ class Score extends CI_Controller {
         }
     }
 
-    public function validateDate($date) {
-        $future = date("Y-m-d");
-        $future = date("Y-m-d", strtotime($future. ' + 1 days'));
-
-        $dateStamp = strtotime($date);
-        $futureStamp = strtotime($future);
-        if($dateStamp < $futureStamp) {
-            return TRUE;
-        }
-        else {
-            $this->form_validation->set_message('validateDate', 'Cannot enter or edit scores for a future date.');
-            return FALSE;
-        }
-    }
-
-    public function validateNotEmpty($data) {
-        if(empty($data)) {
-            return FALSE;
-        }
-        else {
-            return TRUE;
-        }
-    }
-
-    public function calculateDifferential($score, $courseID) {
-        $this->load->model('course_model');
-        $query['course'] = $this->course_model->getCourse((int)$courseID, 1);
-        foreach($query['course'] as $row) {
-            $differential = ((($score - $row['courseRating'])*113)/($row['courseSlope']));
-        }
-        return round($differential, 1);
-    }
-
     public function scoreEntrySuccess($data) {
         //$this->load->helper('date');
         //date_default_timezone_set('America/Mexico_City');
@@ -271,68 +292,6 @@ class Score extends CI_Controller {
         $this->load->view('footer_view');
 
 
-    }
-
-    public function scoreEditResult($data) {
-        $this->load->helper('date');
-        date_default_timezone_set('America/Mexico_City');
-
-        $this->load->view('header_view');
-        $this->load->view('score_edit_result_view', $data);
-        $this->load->view('footer_view');
-    }
-
-    public function submitDate() {
-        $this->load->model('score_model');
-        $this->load->model('player_model');
-        $this->load->model('course_model');
-        $this->load->helper('form');
-        $this->load->library('form_validation');
-        date_default_timezone_set('America/Mexico_City');
-
-        $config = array(
-            array(
-                'field' => 'datepicker',
-                'label' => 'Date',
-                'rules' => 'required|callback_validateDate'
-            )
-        );
-        //$this->form_validation->set_rules('datepicker', 'Date', 'required|callback_validateDate');
-        $this->form_validation->set_rules($config);
-
-        if($this->form_validation->run()== FALSE) {
-            $this->postDate();
-        }
-        else {
-            $data['date'] = $this->input->post('datepicker');
-
-            $data['getCoursesQuery'] = $this->course_model->getCourses();
-
-            $data['getPlayersScoresByDateQuery'] = $this->score_model->getPlayersScoresByDate($data['date']);
-            foreach ($data['getPlayersScoresByDateQuery'] as $row) {
-                if ($row->scoreSummary == 'am empty') {
-                    $row->amScore = 'empty';
-                    $row->pmScore = $this->score_model->getScore($row->playerID, 1, $data['date']);
-                }
-                else if ($row->scoreSummary == 'pm empty') {
-                    $row->amScore = $this->score_model->getScore($row->playerID, 0, $data['date']);
-                    $row->pmScore = 'empty';
-                }
-                else if ($row->scoreSummary == 'full') {
-                    $row->amScore = $this->score_model->getScore($row->playerID, 0, $data['date']);
-                    $row->pmScore = $this->score_model->getScore($row->playerID, 1, $data['date']);
-                }
-                else if ($row->scoreSummary == 'empty') {
-                    $row->amScore = 'empty';
-                    $row->pmScore = 'empty';
-                }
-            }
-
-            $this->load->view('header_view');
-            $this->load->view('score_post_view', $data);
-            $this->load->view('footer_view');
-
-        }
     }
 
     public function chooseEditDate() {
@@ -346,8 +305,6 @@ class Score extends CI_Controller {
         $this->load->view('footer_view');
     }
 
-    //adding parameters to maybe know whether it needs to bring in date from form or just use the one it is given
-    //need to post message if there are no scores for the current date to be edited
     public function postEditDate() {
         $this->load->model('score_model');
         $this->load->model('course_model');
@@ -362,7 +319,7 @@ class Score extends CI_Controller {
                 'rules' => 'required|callback_validateDate'
             )
         );
-        //$this->form_validation->set_rules('datepicker', 'Date', 'required|callback_validateDate');
+
         $this->form_validation->set_rules($config);
 
         if($this->form_validation->run()== FALSE) {
@@ -371,6 +328,12 @@ class Score extends CI_Controller {
         else {
             $data['date'] = $this->input->post('datepicker');
             $data['getFullScoreInfoByDate'] = $this->score_model->getFullScoreInfoByDate($data['date']);
+            if ($this->validateNotEmpty($data['getFullScoreInfoByDate'] == FALSE)) {
+                $data['empty'] = TRUE;
+            }
+            else {
+                $data['empty'] = FALSE;
+            }
             $data['getCoursesQuery'] = $this->course_model->getCourses();
 
             $this->load->view('header_view');
@@ -379,6 +342,15 @@ class Score extends CI_Controller {
         }
     }
 
+    public function edit() {
+
+        $id['id'] = $this->uri->segment(3);
+        $this->load->view('header_view');
+        $this->load->view('score_edit_view', $id);
+        $this->load->view('footer_view');
+    }
+
+    //adding parameters to maybe know whether it needs to bring in date from form or just use the one it is given
     public function submitEditScore() {
 
         $this->load->model('score_model');
@@ -493,4 +465,47 @@ class Score extends CI_Controller {
 
         return;
     }
+
+    public function scoreEditResult($data) {
+        $this->load->helper('date');
+        date_default_timezone_set('America/Mexico_City');
+
+        $this->load->view('header_view');
+        $this->load->view('score_edit_result_view', $data);
+        $this->load->view('footer_view');
+    }
+
+    public function validateDate($date) {
+        $future = date("Y-m-d");
+        $future = date("Y-m-d", strtotime($future. ' + 1 days'));
+
+        $dateStamp = strtotime($date);
+        $futureStamp = strtotime($future);
+        if($dateStamp < $futureStamp) {
+            return TRUE;
+        }
+        else {
+            $this->form_validation->set_message('validateDate', 'Cannot enter or edit scores for a future date.');
+            return FALSE;
+        }
+    }
+
+    public function validateNotEmpty($data) {
+        if(empty($data)) {
+            return FALSE;
+        }
+        else {
+            return TRUE;
+        }
+    }
+
+    public function calculateDifferential($score, $courseID) {
+        $this->load->model('course_model');
+        $query['course'] = $this->course_model->getCourse((int)$courseID, 1);
+        foreach($query['course'] as $row) {
+            $differential = ((($score - $row['courseRating'])*113)/($row['courseSlope']));
+        }
+        return round($differential, 1);
+    }
+
 }

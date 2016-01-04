@@ -31,7 +31,13 @@ class Course_model extends CI_Model {
         $this->db->from('course');
         $this->db->where('courseDefault', 1);
         $getHomeCourseQuery = $this->db->get();
-        return $getHomeCourseQuery->result();
+        if ($getHomeCourseQuery->num_rows() > 0) {
+            return $getHomeCourseQuery->result();
+        }
+        else {
+            return FALSE;
+        }
+
     }
 
     public function getCourseID($courseName, $var) {

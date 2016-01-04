@@ -15,15 +15,17 @@ $(function () {
     });
 });
 
-$('.viewScoresBtn').click(function(){
-    var $this = $(this);
-    $this.toggleClass('viewScoresBtn');
-    if($this.hasClass('viewScoresBtn')){
-        $this.text('Expand Scores');
-    } else {
-        $this.text('Collapse Scores');
-    }
-});
+/*$(function () {
+    $(".accordion-toggle").on('click', function(){
+        //$(this).addClass('test');
+        if ($(".viewScoresBtn").text('Expand Scores')){
+            $(".viewScoresBtn").text('Collapse Scores');
+        } else {
+            $(".viewScoresBtn").text('Expand Scores');
+        }
+    });
+});*/
+
 
 $(function() {
     $( "#datepicker" ).datepicker({

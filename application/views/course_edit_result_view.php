@@ -47,7 +47,20 @@
 </div>
 
 <div class="text-center">
-    <a class="btn btn-default" href="<?php echo base_url("index.php/course/index"); ?>">Course - Home</a>
-    <a class="btn btn-default" href="<?php echo base_url("index.php/course/edit/" . $courseID); ?>">Back to Course Edit</a>
+    <?php
+        if ($noHomeCourse == TRUE) {
+            echo'
+                <p>You unset the home course.  Please set a new one:</p>
+                <a class="btn btn-default" href="' . base_url("index.php/course/setHomeCourse") . '">Set New Home Course</a>
+            ';
+        }
+        else {
+            echo '
+                <a class="btn btn-default" href="' . base_url("index.php/course/index") . '">Course - Home</a>
+                <a class="btn btn-default" href="' . base_url("index.php/course/edit/" . $courseID) . '">Back to Course Edit</a>
+            ';
+        }
+    ?>
+
 </div>
 <br><br><br>

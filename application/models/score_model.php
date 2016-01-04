@@ -69,8 +69,15 @@ class Score_model extends CI_Model {
     }
 
     public function insertScoreBatch($data) {
+        $this->db->trans_start();
         $this->db->insert_batch('score', $data);
-        return;
+        $this->db->trans_complete();
+        if ($this->db->trans_status() == FALSE) {
+            return FALSE;
+        }
+        else {
+            return TRUE;
+        }
     }
 
     public function getFullScoreInfoByDate($date) {
@@ -84,7 +91,7 @@ class Score_model extends CI_Model {
             return $getFullScoreInfoByDateQuery->result();
         }
         else {
-            //return False?
+            return FALSE;
         }
     }
 

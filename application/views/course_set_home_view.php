@@ -31,11 +31,18 @@
                             <tbody>
                             <tr>
                                 <?php
-                                foreach($getHomeCourseQuery as $row) {
-                                    echo '<td>' . $row->courseName . '</td>';
-                                    echo '<td>' . $row->courseSlope . '</td>';
-                                    echo '<td>' . $row->courseRating . '</td>';
-                                }
+                                    if ($emptyHome == TRUE) {
+                                        echo '
+                                            <td colspan="3" class="centered">No Home Course is currently set.</td>
+                                        ';
+                                    }
+                                    else {
+                                        foreach ($getHomeCourseQuery as $row) {
+                                            echo '<td>' . $row->courseName . '</td>';
+                                            echo '<td>' . $row->courseSlope . '</td>';
+                                            echo '<td>' . $row->courseRating . '</td>';
+                                        }
+                                    }
                                 ?>
                             </tr>
                             </tbody>

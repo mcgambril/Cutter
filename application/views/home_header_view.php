@@ -19,10 +19,11 @@
 <link rel="icon" href="<?php echo base_url("assets/images/golfball2.jpg");?>" />
 <script type="text/javascript" src="<?php echo base_url("assets/js/jQuery-1.11.3.js"); ?>"></script>
 <script type="text/javascript" src="<?php echo base_url("assets/js/bootstrap.js"); ?>"></script>
+<script type="text/javascript" src="<?php echo base_url("assets/js/site.js"); ?>"></script>
 <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
 <link rel="stylesheet" type="text/css" href="<?php echo base_url("assets/css/Site.css"); ?>" />
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<script>
+<!--<script>
     $(function() {
         $( "#datepicker" ).datepicker({
             changeMonth: true,
@@ -32,11 +33,11 @@
             showAnim: 'slideDown'
         });
     });
-</script>
+</script>-->
 
 <?php
-    date_default_timezone_set('America/Mexico_City');
-?>
+/*    date_default_timezone_set('America/Mexico_City');
+*/?>
 
 <body>
 

@@ -40,7 +40,7 @@
                     echo '<tbody>';
                         echo '<tr>';
                             echo '<td class="col-md-2">' . $row->playerName . '</td>';
-                            echo '<td class="col-md-2">' . $row->scoreDate . '</td>';
+                            echo '<td class="col-md-2">' . $row->scoreDate . ' - ' . $row->scoreTime . '</td>';
                             echo '<td class="col-md-2">' . $row->courseName . '</td>';
                             echo '<td class="col-md-2">' . $row->scoreScore . '</td>';
                             echo '<td class="col-md-2">';

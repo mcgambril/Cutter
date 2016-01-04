@@ -171,6 +171,7 @@ class Course extends CI_Controller
             $newCourseRating = $this->input->post('newCourseRating');
             $changeDefault = $this->input->post('changeDefault');
             $newCourseDefault = NULL;
+            $noHomeCourse = FALSE;
 
             $change = FALSE;
             $oldCourse = $this->course_model->getCourse($courseID, 0);
@@ -182,6 +183,7 @@ class Course extends CI_Controller
                     }
                     else {
                         $newCourseDefault = 0;
+                        $noHomeCourse = TRUE;
                     }
                 }
                 else {
@@ -236,6 +238,7 @@ class Course extends CI_Controller
                 }
 
                 $data['courseID'] = $courseID;
+                $data['noHomeCourse'] = $noHomeCourse;
 
                 $this->courseEditResult($data);
             }
@@ -314,6 +317,12 @@ class Course extends CI_Controller
         $this->load->library('form_validation');
 
         $data['getHomeCourseQuery'] = $this->course_model->getHomeCourse();
+        if ($this->validateNotEmpty($data['getHomeCourseQuery'] == TRUE)) {
+            $data['emptyHome'] = FALSE;
+        }
+        else {
+            $data['emptyHome'] = TRUE;
+        }
         $data['getCoursesQuery'] = $this->course_model->getCourses();
 
         $this->load->view('header_view');
@@ -368,6 +377,15 @@ class Course extends CI_Controller
         $this->load->view('course_set_home_result_view', $data);
         $this->load->view('footer_view');
         return;
+    }
+
+    public function validateNotEmpty($data) {
+        if(empty($data)) {
+            return FALSE;
+        }
+        else {
+            return TRUE;
+        }
     }
 
 }
