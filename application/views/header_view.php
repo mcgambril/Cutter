@@ -56,19 +56,14 @@
                     </li>
                     <li class="dropdown">
                         <a href="<?php echo base_url("index.php/score/chooseDate"); ?>">Scores</a>
-                       <!-- <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Score<span class="caret"></span></a>
-                        <ul class="dropdown-menu">
-                            <li><a href="<?php /*echo base_url("index.php/score/index"); */?>">Score - Home</a></li>
-                            <li><a href="<?php /*echo base_url("index.php/score/postDate"); */?>">Score - Post</a></li>
-                            <li><a href="<?php /*echo base_url("index.php/score/chooseEditDate"); */?>">Score - Edit Scores By Date</a></li>
-                        </ul>-->
                     </li>
                     <li class="dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Player<span class="caret"></span></a>
+                        <a href="<?php echo base_url("index.php/player/index"); ?>">Players</a>
+                        <!--<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Player<span class="caret"></span></a>
                         <ul class="dropdown-menu">
-                            <li><a href="<?php echo base_url("index.php/player/index"); ?>">Player - Home</a></li>
-                            <li><a href="<?php echo base_url("index.php/player/add"); ?>">Player - Add</a></li>
-                        </ul>
+                            <li><a href="<?php /*echo base_url("index.php/player/index"); */?>">Player - Home</a></li>
+                            <li><a href="<?php /*echo base_url("index.php/player/add"); */?>">Player - Add</a></li>
+                        </ul>-->
                     </li>
                     <li class="dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Handicap<span class="caret"></span></a>
