@@ -58,7 +58,7 @@
 <div class="row">
     <div class="text-center col-md-12">
     <p class="col-md-5"><br><br><br></p>
-    <a class="btn btn-default col-md-2" href="<?php echo base_url("index.php/score/index"); ?>">Score - Home</a>
+    <a class="btn btn-default col-md-2" href="<?php echo base_url("index.php/score/chooseDate"); ?>">Score - Home</a>
     <p class="col-md-5"></p>
     </div>
     <br><br><br>

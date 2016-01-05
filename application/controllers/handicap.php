@@ -174,6 +174,7 @@ class Handicap extends CI_Controller
     public function calculateHandicap($handicapIndex) {
 
         //handicap formula as provided by client (and USGA)
+        //needs to take slope from current home course
         $handicapTemp = $handicapIndex * 131 / 113;
 
         //rounding to nearest whole number

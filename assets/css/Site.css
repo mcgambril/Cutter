@@ -35,6 +35,14 @@ tr:hover th {
     background-color: #ffffff;
 }
 
+.homeCourseHeader {
+    background-color: #f5f5f5;
+}
+
+tr:hover .homeCourseHeader {
+    background-color: #f5f5f5;
+}
+
 .tableData {
     padding-left: 10%;
     vertical-align: middle;
@@ -96,4 +104,6 @@ tr:hover th {
 .test {
     background-color: red;
 }
+
+
 
