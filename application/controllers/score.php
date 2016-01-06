@@ -44,7 +44,9 @@ class Score extends CI_Controller {
             $this->chooseDate();
         }
         else {
+            //date is currently posted in mm/dd/yyyy format
             $date = $this->input->post('datepicker');
+
             $submit = $this->input->post('submit');
             if ($submit == "Post Scores") {
                 $this->postByDate($date);
@@ -64,7 +66,10 @@ class Score extends CI_Controller {
         $this->load->helper('date');
         date_default_timezone_set('America/Mexico_City');
 
-        $data['date'] = $date;
+        $data['date'] = $date; // date is posted from date picker in format mm/dd/yyyy, passed to view in this format
+
+        //reformat date here to MySQL date format to retrieve scores from db
+        $date = date('Y-m-d', strtotime($date));
         $data['getCoursesQuery'] = $this->course_model->getCourses();
 
         $data['getPlayersScoresByDateQuery'] = $this->score_model->getPlayersScoresByDate($date);
@@ -130,10 +135,13 @@ class Score extends CI_Controller {
 
         if($this->form_validation->run()== FALSE) {
             $buffer = $this->input->post('datepicker');
+            //workOnDate
             $this->post($buffer);
         }
         else {
+            //workOnDate
             $temp['date'] = $this->input->post('datepicker');
+            $temp['date'] = date("Y-m-d", strtotime($temp['date']));
             $temp['courseID'] = $this->input->post('course');
             $temp['ids'] = $this->player_model->getPlayerIDsAtoZ(1);
             $ids = array();
@@ -218,12 +226,17 @@ class Score extends CI_Controller {
                 $this->load->view('score_empty_post_view');
             }
             else {
+                //workOnDate
                 $this->score_model->insertScoreBatch($data);
 
+                //workOnDate
                 $this->tempscore_model->insertTempscoreBatch($data2);
                 //run the update tempscore function here
                 if ($this->tempscore_model->updateTempScores() == True) {
                     $data3['getTempScoresQuery'] = $this->tempscore_model->getTempScores();
+                    foreach ($data3['getTempScoresQuery'] as $row) {
+                        $row->tempDate = date("m/d/Y", strtotime($row->tempDate));
+                    }
                     //might want to do a query to delete the temp scores instead of deactivate
                     $this->tempscore_model->deleteTempScores();
 
@@ -265,13 +278,21 @@ class Score extends CI_Controller {
         }
         else {
             $data['date'] = $this->input->post('datepicker');*/
+
+        //sending date to view in mm/dd/yyyy format
         $data['date'] = $date;
-        $data['getFullScoreInfoByDate'] = $this->score_model->getFullScoreInfoByDate($date);
-        if ($this->validateNotEmpty($data['getFullScoreInfoByDate'] == FALSE)) {
+
+        //reformat date to MySQL yyyy-mm-dd to query from db
+        $date = date('Y-m-d', strtotime($date));
+        $data['getFullScoreInfoByDateQuery'] = $this->score_model->getFullScoreInfoByDate($date);
+        if ($this->validateNotEmpty($data['getFullScoreInfoByDateQuery'] == FALSE)) {
             $data['empty'] = TRUE;
         }
         else {
             $data['empty'] = FALSE;
+            foreach ($data['getFullScoreInfoByDateQuery'] as $row) {
+                $row->scoreDate = date("m/d/Y", strtotime($row->scoreDate));
+            }
         }
         $data['getCoursesQuery'] = $this->course_model->getCourses();
 
@@ -297,7 +318,13 @@ class Score extends CI_Controller {
         );
         $this->form_validation->set_rules('date', 'Date', 'required|callback_validateDate');
         //$this->form_validation->set_rules($config);
+
+        //date is posted in mm/dd/yyyy format
         $date = $this->input->post('date');
+
+        //reformat date to MySQL yyyy-mm-dd to retrieve scores from db
+        $date = date("Y-m-d", strtotime($date));
+
 
         $temp['scoreList'] = $this->score_model->getFullScoreInfoByDate($date);
 
@@ -353,7 +380,7 @@ class Score extends CI_Controller {
                     else {
                         $newCourse = $row->scoreCourseID;
                     }
-                    $tempNewScore = $this->input->post($row->playerID . '-new-score');
+                    $tempNewScore = $this->input->post($row->scoreID . '-new-score');
                     if($tempNewScore == "" || $tempNewScore == null || $tempNewScore == 0){
                         $newScore = $row->scoreScore;
                     }
@@ -372,6 +399,7 @@ class Score extends CI_Controller {
                 }
 
                 if($this->validateNotEmpty($updateScores) == TRUE) {
+                    //workOnDate
                     if ($this->score_model->updateScoresBatch($updateScores) == TRUE) {
                         $messageData['title'] = 'Success!';
                         $messageData['message'] = 'The appropriate change(s) were made and the database updated accordingly.';
@@ -399,6 +427,7 @@ class Score extends CI_Controller {
     public function scoreEditResult($data) {
         $this->load->helper('date');
         date_default_timezone_set('America/Mexico_City');
+        //workOnDate
 
         $this->load->view('header_view');
         $this->load->view('score_edit_result_view', $data);
@@ -406,10 +435,14 @@ class Score extends CI_Controller {
     }
 
     public function validateDate($date) {
-        $future = date("Y-m-d");
-        $future = date("Y-m-d", strtotime($future. ' + 1 days'));
 
+        $future = date("m/d/Y");
+        $future = date("m/d/Y", strtotime($future. ' + 1 days'));
+
+        //http://php.net/manual/en/function.strtotime.php
+        //Note:  dates formatted with '-' instead of '/' are assumed to be european so m-d-Y is inherently switched to d-m-Y
         $dateStamp = strtotime($date);
+
         $futureStamp = strtotime($future);
         if($dateStamp < $futureStamp) {
             return TRUE;

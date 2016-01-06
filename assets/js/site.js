@@ -32,7 +32,7 @@ $(function() {
         changeMonth: true,
         changeYear: true,
         showButtonPanel: true,
-        dateFormat:  'yy-mm-dd',
+        dateFormat:  'mm/dd/yy', /*'yy-mm-dd*/
         showAnim: 'slideDown'
     });
 });

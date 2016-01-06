@@ -63,7 +63,7 @@
                             ';
                         }
                         else {
-                            foreach ($getFullScoreInfoByDate as $row) {
+                            foreach ($getFullScoreInfoByDateQuery as $row) {
                                 echo '<tr>';
                                     echo '<td class="col-md-2">' . $row->playerName . '</td>';
                                     echo '<td class="col-md-1">' . $row->scoreDate . '</td>';
@@ -77,7 +77,7 @@
                                     echo '</select></td>';
                                     echo '<td class="col-md-1">' . $row->scoreScore . '</td>';
                                     echo '<td class="col-md-1">';
-                                        echo '<input type="text" class="col-md-12" name="' . $row->playerID . '-new-score"  id="' . $row->playerID . '-new-score" ' . $row->playerID . 'score">';
+                                        echo '<input type="text" class="col-md-12" name="' . $row->scoreID . '-new-score"  id="' . $row->scoreID . '-new-score">';
                                     echo '</td>';
                                     if ($row->scoreTime == 0) {
                                         echo '<td class="col-md-1">AM</td>';

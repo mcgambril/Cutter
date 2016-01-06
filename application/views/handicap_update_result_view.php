@@ -46,9 +46,8 @@
 <br><br><br>
 
 <div class="text-center col-md-12">
-    <p class="col-md-4"></p>
-    <a class="btn btn-default col-md-2" href="<?php echo base_url("index.php/handicap/index"); ?>">Handicap - Home</a>
+    <p class="col-md-5"></p>
     <a class="btn btn-default col-md-2" href="<?php echo base_url("index.php/handicap/update"); ?>">Back to Handicap Update</a>
-    <p class="col-md-4"></p>
+    <p class="col-md-5"></p>
 </div>
 <br><br><br>

@@ -14,25 +14,7 @@ class Handicap extends CI_Controller
         parent::__construct();
     }
 
-    public function index() {
-        $this->load->model('player_model');
-        $this->load->helper('form');
-        $this->load->library('form_validation');
 
-        $data['getPlayersQuery'] = $this->player_model->getPlayers();
-        foreach ($data['getPlayersQuery'] as $row) {
-            if ($row->playerHandicap == "" || $row->playerHandicap == 0 || $row->playerHandicap == NULL) {
-                $row->playerHandicap = "TBD";
-            }
-            if ($row->playerHandicapIndex == "" || $row->playerHandicapIndex == 0 || $row->playerHandicapIndex == NULL) {
-                $row->playerHandicapIndex = "TBD";
-            }
-        }
-
-        $this->load->view('header_view');
-        $this->load->view('handicap_view', $data);
-        $this->load->view('footer_view');
-    }
 
     public function update() {
         $this->load->view('header_view');
@@ -172,14 +154,26 @@ class Handicap extends CI_Controller
     }
 
     public function calculateHandicap($handicapIndex) {
+        $this->load->model('course_model');
+        $data['getHomeCourseQuery'] = $this->course_model->getHomeCourse();
+        if ($data['getHomeCourseQuery'] != FALSE) {
+            foreach ($data['getHomeCourseQuery'] as $row) {
+                $homeSlope = $row->courseSlope;
+            }
 
-        //handicap formula as provided by client (and USGA)
-        //needs to take slope from current home course
-        $handicapTemp = $handicapIndex * 131 / 113;
+            //handicap formula as provided by client (and USGA)
+            //needs to take slope from current home course
+            $handicapTemp = $handicapIndex * $homeSlope / 113;
 
-        //rounding to nearest whole number
-        $handicap = round($handicapTemp, 0);
-        return $handicap;
+            //rounding to nearest whole number
+            $handicap = round($handicapTemp, 0);
+            return $handicap;
+        }
+        else {
+            return FALSE;
+        }
+
+
     }
 
     public function handicapUpdateResult($updatedHandicaps, $errorUpdates) {
@@ -236,4 +230,25 @@ class Handicap extends CI_Controller
         $this->load->view('handicap_error_view');
         $this->load->view('footer_view');
     }
+
+    /*public function index() {
+        $this->load->model('player_model');
+        $this->load->helper('form');
+        $this->load->library('form_validation');
+
+        $data['getPlayersQuery'] = $this->player_model->getPlayersAZ();
+        foreach ($data['getPlayersQuery'] as $row) {
+            if ($row->playerHandicap == "" || $row->playerHandicap == 0 || $row->playerHandicap == NULL) {
+                $row->playerHandicap = "TBD";
+            }
+            if ($row->playerHandicapIndex == "" || $row->playerHandicapIndex == 0 || $row->playerHandicapIndex == NULL) {
+                $row->playerHandicapIndex = "TBD";
+            }
+        }
+
+        $this->load->view('header_view');
+        $this->load->view('handicap_view', $data);
+        $this->load->view('footer_view');
+    }*/
+
 }

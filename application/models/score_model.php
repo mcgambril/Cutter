@@ -65,6 +65,7 @@ class Score_model extends CI_Model {
         $this->db->from('player p');
         $this->db->join('score s', 'p.playerID = s.scorePlayerID  AND s.scoreDate = "' . $date . '"', 'LEFT OUTER');
         $this->db->group_by('p.playerID, p.playerName');
+        $this->db->order_by('p.playerName', 'asc');
         $getPlayersScoresByDateQuery = $this->db->get();
         $this->db->_protect_identifiers = true;
 
@@ -99,6 +100,7 @@ class Score_model extends CI_Model {
         $this->db->join('player', 'score.scorePlayerID = player.playerID', 'INNER');
         $this->db->join('course', 'score.scoreCourseID = course.courseID', 'INNER');
         $this->db->where('score.scoreDate', $date);
+        $this->db->order_by('player.playerName', 'asc');
         $getFullScoreInfoByDateQuery = $this->db->get();
         if($getFullScoreInfoByDateQuery->num_rows() > 0) {
             return $getFullScoreInfoByDateQuery->result();
