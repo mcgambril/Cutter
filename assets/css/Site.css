@@ -68,6 +68,11 @@ tr:hover .homeCourseHeader {
     padding-left: 40%;
 }
 
+.resultDataPad {
+    padding-left: 0;
+    padding-right: 0;
+}
+
 .bottomPadTiny {
     padding-bottom: 10px;
 }

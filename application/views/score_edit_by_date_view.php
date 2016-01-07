@@ -30,13 +30,13 @@
                         }
                     ?>
                     <br><br>
-                    <a class="btn btn-default col-md-12" href="<?php echo base_url("index.php/score/chooseEditDate"); ?>">Back</a>
+                    <a class="btn btn-default col-md-12" href="<?php echo base_url("index.php/score/chooseDate"); ?>">Back</a>
                 </div>
             </div>
 
              <div class="col-md-10 relative">
                  <div class="panel panel-default">
-                     <!-- Default panel contents -->
+
                      <div class="panel-heading">Existing Scores for <?php echo $date ?></div>
 
                      <div class="table-responsive">

@@ -148,7 +148,15 @@ class Handicap extends CI_Controller
         $diffAverage = $diffTotal / (count($playerDifferentials));
         $handicapIndexTemp = $diffAverage * $constant;
 
+        //potential truncating solution...probably would want to return the variable casted with int() to be sure it is interpreted properly
+        /*function truncate($number, $decimals)
+        {
+            $point_index = strrpos($number, '.');
+            return substr($number, 0, $point_index + $decimals+ 1);
+        }*/
+
         //PHP cannot truncate inherently. Use floor to simulate truncating to a single decimal place
+        //http://stackoverflow.com/questions/10643273/no-truncate-function-in-php-options
         $handicapIndex = floor($handicapIndexTemp * 100) / 100;
         return $handicapIndex;
     }

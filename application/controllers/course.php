@@ -295,7 +295,7 @@ class Course extends CI_Controller
         }
 
         $this->load->view('header_view');
-        $this->load->view('player_delete_result_view', $dataMessage);
+        $this->load->view('course_delete_result_view', $dataMessage);
         $this->load->view('footer_view');
     }
 

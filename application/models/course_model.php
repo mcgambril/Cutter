@@ -22,7 +22,11 @@ class Course_model extends CI_Model {
     }
 
     public function getCourses() {
-        $getCoursesQuery = $this->db->get('course');
+        //$getCoursesQuery = $this->db->get('course');
+        $this->db->select('*');
+        $this->db->from('course');
+        $this->db->order_by('courseName', 'asc');
+        $getCoursesQuery = $this->db->get();
         return $getCoursesQuery->result();
     }
 

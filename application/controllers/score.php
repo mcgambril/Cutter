@@ -226,12 +226,10 @@ class Score extends CI_Controller {
                 $this->load->view('score_empty_post_view');
             }
             else {
-                //workOnDate
                 $this->score_model->insertScoreBatch($data);
 
-                //workOnDate
                 $this->tempscore_model->insertTempscoreBatch($data2);
-                //run the update tempscore function here
+
                 if ($this->tempscore_model->updateTempScores() == True) {
                     $data3['getTempScoresQuery'] = $this->tempscore_model->getTempScores();
                     foreach ($data3['getTempScoresQuery'] as $row) {

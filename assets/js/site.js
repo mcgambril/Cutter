@@ -15,18 +15,6 @@ $(function () {
     });
 });
 
-/*$(function () {
-    $(".accordion-toggle").on('click', function(){
-        //$(this).addClass('test');
-        if ($(".viewScoresBtn").text('Expand Scores')){
-            $(".viewScoresBtn").text('Collapse Scores');
-        } else {
-            $(".viewScoresBtn").text('Expand Scores');
-        }
-    });
-});*/
-
-
 $(function() {
     $( "#datepicker" ).datepicker({
         changeMonth: true,

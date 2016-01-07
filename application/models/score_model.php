@@ -101,6 +101,7 @@ class Score_model extends CI_Model {
         $this->db->join('course', 'score.scoreCourseID = course.courseID', 'INNER');
         $this->db->where('score.scoreDate', $date);
         $this->db->order_by('player.playerName', 'asc');
+        $this->db->order_by('score.scoreTime', 'asc');
         $getFullScoreInfoByDateQuery = $this->db->get();
         if($getFullScoreInfoByDateQuery->num_rows() > 0) {
             return $getFullScoreInfoByDateQuery->result();
