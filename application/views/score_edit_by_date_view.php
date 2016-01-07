@@ -34,7 +34,8 @@
                 </div>
             </div>
 
-             <div class="col-md-10 relative">
+
+             <div class="col-md-9 relative">
                  <div class="panel panel-default">
 
                      <div class="panel-heading">Existing Scores for <?php echo $date ?></div>
@@ -44,13 +45,13 @@
                              <thead>
                                  <tr>
                                      <th class="col-md-2">Player</th>
-                                     <th class="col-md-1">Date</th>
-                                     <th class="col-md-2">Course</th>
-                                     <th class="col-md-2">New Course</th>
-                                     <th class="col-md-1">Score</th>
-                                     <th class="col-md-1">New Score</th>
-                                     <th class="col-md-1">Time</th>
-                                     <th class="col-md-1">Delete?</th>
+                                     <th class="col-md-1 centered">Date</th>
+                                     <!--<th class="col-md-2">Course</th>-->
+                                     <th class="col-md-2 centered">Course</th>
+                                     <th class="col-md-1 centered">Score</th>
+                                     <th class="col-md-1 centered">New Score</th>
+                                     <th class="col-md-1 centered">Time</th>
+                                     <th class="col-md-1 centered">Delete?</th>
                                  </tr>
                              </thead>
 
@@ -66,25 +67,32 @@
                             foreach ($getFullScoreInfoByDateQuery as $row) {
                                 echo '<tr>';
                                     echo '<td class="col-md-2">' . $row->playerName . '</td>';
-                                    echo '<td class="col-md-1">' . $row->scoreDate . '</td>';
-                                    echo '<td class="col-md-2">' . $row->courseName . '</td>';
-                                    echo '<td class="col-md-2">';
-                                        echo 'Yes <input type="checkbox" id="' . $row->playerID . '-course_change" name="' . $row->playerID . '-course_change" value="yes"/>';
+                                    echo '<td class="col-md-1 centered">' . $row->scoreDate . '</td>';
+                                    /*echo '<td class="col-md-2">' . $row->courseName . '</td>';*/
+                                    echo '<td class="col-md-2 centered">';
+                                        /*echo 'Yes <input type="checkbox" id="' . $row->playerID . '-course_change" name="' . $row->playerID . '-course_change" value="yes"/>';*/
                                         echo ' <select class="form-control" id="pick-course-' . $row->scoreID . '" name="course-' . $row->scoreID . '">';
                                         foreach ($getCoursesQuery as $r) {
-                                            echo '<option value="' . $r->courseID . '">' . $r->courseName . '</option>';
+                                            //selecting the current course as the default in the select box.  Change in db if value changes upon submitting
+                                            if ($row->courseName == $r->courseName) {
+                                                echo '<option selected="selected" value="' . $r->courseID . '">' . $r->courseName . '</option>';
+                                            }
+                                            else {
+                                                echo '<option value="' . $r->courseID . '">' . $r->courseName . '</option>';
+                                            }
+
                                         }
                                     echo '</select></td>';
-                                    echo '<td class="col-md-1">' . $row->scoreScore . '</td>';
-                                    echo '<td class="col-md-1">';
+                                    echo '<td class="col-md-1 centered">' . $row->scoreScore . '</td>';
+                                    echo '<td class="col-md-1 centered">';
                                         echo '<input type="text" class="col-md-12" name="' . $row->scoreID . '-new-score"  id="' . $row->scoreID . '-new-score">';
                                     echo '</td>';
                                     if ($row->scoreTime == 0) {
-                                        echo '<td class="col-md-1">AM</td>';
+                                        echo '<td class="col-md-1 centered">AM</td>';
                                     } else {
-                                        echo '<td class="col-md-1">PM</td>';
+                                        echo '<td class="col-md-1 centered">PM</td>';
                                     }
-                                    echo '<td class="col-md-1">';
+                                    echo '<td class="col-md-1 centered">';
                                         echo 'Delete? <input type="checkbox" class="delete_box" id="' . $row->scoreID . '-delete" name="' . $row->scoreID . '-delete"  value="delete"/>';
                                     echo '</td>';
                                 echo '</tr>';

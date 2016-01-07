@@ -47,8 +47,6 @@ class Tempscore_model extends CI_Model
 
     public function insertTempscoreBatch($data) {
         $this->db->insert_batch('tempscore', $data);
-
         return;
     }
-
 }

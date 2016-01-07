@@ -235,7 +235,7 @@ class Score extends CI_Controller {
                     foreach ($data3['getTempScoresQuery'] as $row) {
                         $row->tempDate = date("m/d/Y", strtotime($row->tempDate));
                     }
-                    //might want to do a query to delete the temp scores instead of deactivate
+
                     $this->tempscore_model->deleteTempScores();
 
                     $this->scoreEntryResult($data3);
@@ -354,11 +354,11 @@ class Score extends CI_Controller {
             if($this->validateNotEmpty($deleteScores) == TRUE) {
                 if ($this->score_model->deleteScores($deleteScores) == TRUE) {
                     $messageData['deleteResult'] = 'Success!';
-                    $messageData['deleteMessage'] = 'The indicated score(s) were successfully deleted from the database';
+                    $messageData['deleteMessage'] = 'The selected score(s) were successfully deleted from the database';
                 }
                 else {
                     $messageData['deleteResult'] = 'Failed';
-                    $messageData['deleteMessage'] = 'Error:  The indicated score(s) failed to be deleted from the database';
+                    $messageData['deleteMessage'] = 'Error:  The selected score(s) failed to be deleted from the database';
                 }
 
             }
@@ -371,12 +371,10 @@ class Score extends CI_Controller {
                 foreach ($temp['scoreList'] as $key => $row) {
                     $change = FALSE;
                     $id = $row->scoreID;
-                    if ($this->input->post($row->playerID . '-course_change') == "yes") {
-                        $newCourse = $this->input->post('course-' . $row->scoreID);
+
+                    $newCourseID = $this->input->post('course-' . $row->scoreID);
+                    if($newCourseID != $row->scoreCourseID) {
                         $change = TRUE;
-                    }
-                    else {
-                        $newCourse = $row->scoreCourseID;
                     }
                     $tempNewScore = $this->input->post($row->scoreID . '-new-score');
                     if($tempNewScore == "" || $tempNewScore == null || $tempNewScore == 0){
@@ -389,7 +387,7 @@ class Score extends CI_Controller {
                     if ($change == TRUE) {
                         $tempUpdate = array (
                             "scoreID" => $id,
-                            "scoreCourseID" => $newCourse,
+                            "scoreCourseID" => $newCourseID,
                             "scoreScore" => $newScore
                         );
                         array_push($updateScores, $tempUpdate);
