@@ -23,11 +23,13 @@ class Handicap extends CI_Controller
     }
 
     public function submitUpdate() {
-        //create $data array and put the queries into []...maybe that somehow has something to do with it
-        //commit
         $this->load->model('score_model');
         $this->load->model('player_model');
 
+        //differential schedule as defined by John Lyon and/or USGA
+        //# of most recent scores available is key on left
+        //# of highest recent scores to use in calculations is value on right
+        //no more than the 20 most recent scores will ever be used
         $differentialSchedule = array(
             4 => 2,
             5 => 3,
@@ -55,9 +57,18 @@ class Handicap extends CI_Controller
         }
         else {
             $dataSetScoreIDs = array();
+            $resetHandicaps = array();
 
             foreach($playerScoreCounts as $key => $row) {
                 if ($row->scoreCount < 4) {
+                    //players w/ less than 4 scores will have handicaps and indexes of TBD
+                    //this is updating them whether they are already set or not in order to cover any players whose score totals fell back below 4
+                    $temp = array(
+                        'playerID' => $row->scorePlayerID,
+                        'playerHandicap' => NULL,
+                        'playerHandicapIndex' => NULL
+                    );
+                    array_push($resetHandicaps, $temp);
                     unset($playerScoreCounts[$key]);
                 }
                 else {
@@ -93,6 +104,26 @@ class Handicap extends CI_Controller
 
             $updatedHandicaps = array();
             $errorUpdates = array();
+
+            //this query ensures players with 0 scores have handicaps and indexes of NULL
+            //this is mostly for players whose scores were all deleted; this is the only place where their previous handicaps could be reset to reflect no scores
+            $getNoScorePlayersQuery = $this->player_model->getNoScorePlayers();
+            if ($getNoScorePlayersQuery != FALSE) {
+                foreach ($getNoScorePlayersQuery as $row) {
+                    $temp = array(
+                        'playerID' => $row->playerID,
+                        'playerHandicap' => NULL,
+                        'playerHandicapIndex' => NULL
+                    );
+                    array_push($resetHandicaps, $temp);
+                }
+            }
+
+            if ($this->validateNotEmpty($resetHandicaps) == TRUE) {
+                $this->player_model->resetHandicapsBatch($resetHandicaps);
+
+            }
+
             if ($this->validateNotEmpty($playerScoreCounts) == TRUE) {
                 foreach($playerScoreCounts as $row) {
                     $scoreCount = $row->scoreCount;
@@ -148,16 +179,23 @@ class Handicap extends CI_Controller
         $diffAverage = $diffTotal / (count($playerDifferentials));
         $handicapIndexTemp = $diffAverage * $constant;
 
-        //potential truncating solution...probably would want to return the variable casted with int() to be sure it is interpreted properly
-        /*function truncate($number, $decimals)
-        {
-            $point_index = strrpos($number, '.');
-            return substr($number, 0, $point_index + $decimals+ 1);
-        }*/
-
         //PHP cannot truncate inherently. Use floor to simulate truncating to a single decimal place
+        //potential solution commented below. doesnt seem to work for all instances...if average comes out to too many decimal points, it won't truncate to just 1 decimal
         //http://stackoverflow.com/questions/10643273/no-truncate-function-in-php-options
-        $handicapIndex = floor($handicapIndexTemp * 100) / 100;
+        //$handicapIndex = floor($handicapIndexTemp * 100) / 100;
+
+        $handicapIndex = $this->truncate($handicapIndexTemp, 1);
+        return $handicapIndex;
+    }
+
+    public function truncate($handicapIndexTemp, $decimals) {
+        //function found below
+        //http://stackoverflow.com/questions/10643273/no-truncate-function-in-php-options
+        //EX:  12.345
+        $pos = strrpos((string)$handicapIndexTemp, '.');    //finds position index of the decimal in the index:  $pos = 3
+        $length = $pos + $decimals + 1;     //calculates the length of the desired index:  3 + 1 + 1 = 4
+        $truncatedIndex = substr((string)$handicapIndexTemp, 0, $length);   //grabs the truncated index:  12.345 -> takes substring, starting at position 0, and counts 4 characters:  12.3
+        $handicapIndex = (float)$truncatedIndex;    //cast to float to ensure proper number format
         return $handicapIndex;
     }
 
@@ -171,7 +209,7 @@ class Handicap extends CI_Controller
 
             //handicap formula as provided by client (and USGA)
             //needs to take slope from current home course
-            $handicapTemp = $handicapIndex * $homeSlope / 113;
+            $handicapTemp = $handicapIndex * ($homeSlope / 113);
 
             //rounding to nearest whole number
             $handicap = round($handicapTemp, 0);

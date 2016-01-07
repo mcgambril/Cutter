@@ -462,7 +462,10 @@ class Score extends CI_Controller {
         $this->load->model('course_model');
         $query['course'] = $this->course_model->getCourse((int)$courseID, 1);
         foreach($query['course'] as $row) {
-            $differential = ((($score - $row['courseRating'])*113)/($row['courseSlope']));
+            //score - rating = A
+            // A x 113 = B
+            //B / Slope = Differential->round to nearest 10th
+            $differential = ((($score - $row['courseRating']) * 113) / ($row['courseSlope']));
         }
         return round($differential, 1);
     }

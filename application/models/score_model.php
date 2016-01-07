@@ -158,6 +158,7 @@ class Score_model extends CI_Model {
             "scorePlayerID",
             "playerName"
         );
+
         $this->db->select('scorePlayerID, playerName, count(scoreScore) as scoreCount');
         $this->db->from('score');
         $this->db->join('player', 'scorePlayerID = playerID', 'INNER');

@@ -22,12 +22,18 @@ class Home extends CI_Controller {
 
         $data['getPlayersAndScoresQuery'] = $this->player_model->getPlayersAndScores();
         foreach ($data['getPlayersAndScoresQuery'] as $row) {
-            $row->playerScoreCount = count($row->scores);
-            foreach( $row->scores as $r) {
-                //workOnDate
-                $r->scoreDate = date("m/d/Y", strtotime($r->scoreDate));
+            //getRecentScores returns FALSE to getPlayersAndScores if no scores are entered for that player
+            if ($row->scores == FALSE) {
+                $row->playerScoreCount = 0;
+            }
+            else {
+                $row->playerScoreCount = count($row->scores);
+                foreach( $row->scores as $r) {
+                    $r->scoreDate = date("m/d/Y", strtotime($r->scoreDate));
+                }
             }
         }
+
         $data['getHomeCourseQuery'] = $this->course_model->getHomeCourse();
         if ($this->validateNotEmpty($data['getHomeCourseQuery'] == TRUE)) {
             $data['empty'] = FALSE;
@@ -49,11 +55,15 @@ class Home extends CI_Controller {
 
         $data['getPlayersAndScoresQuery'] = $this->player_model->getPlayersAndScores();
         foreach ($data['getPlayersAndScoresQuery'] as $row) {
-            $row->playerScoreCount = count($row->scores);
-            foreach( $row->scores as $r) {
-                //workOnDate
-                //$r->scoreDate = date("Y-m-d", strtotime($r->scoreDate));
-                $r->scoreDate = date("m/d/Y", strtotime($r->scoreDate));
+            //getRecentScores returns FALSE to getPlayersAndScores if no scores are entered for that player
+            if ($row->scores == FALSE) {
+                $row->playerScoreCount = 0;
+            }
+            else {
+                $row->playerScoreCount = count($row->scores);
+                foreach( $row->scores as $r) {
+                    $r->scoreDate = date("m/d/Y", strtotime($r->scoreDate));
+                }
             }
         }
 

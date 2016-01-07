@@ -31,7 +31,12 @@
                             <select class="form-control" id="pick-course" name="course">
                                 <?php
                                     foreach($getCoursesQuery as $row) {
-                                        echo '<option value="' . $row->courseID . '">' . $row->courseName . '</option>';
+                                        if ($row->courseDefault == 1) {
+                                            echo '<option selected="selected" value="' . $row->courseID . '">' . $row->courseName . '</option>';
+                                        }
+                                        else {
+                                            echo '<option value="' . $row->courseID . '">' . $row->courseName . '</option>';
+                                        }
                                     }
                                 ?>
                             </select>

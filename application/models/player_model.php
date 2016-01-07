@@ -137,6 +137,39 @@ class Player_model extends CI_Model {
         }
     }
 
+    public function getNoScorePlayers() {
+        $queryString = "
+          SELECT playerID
+          FROM player
+          WHERE playerID NOT IN (
+            SELECT scorePlayerID
+            FROM score
+            GROUP BY scorePlayerID
+          )";
+        $this->db->_protect_identifiers = FALSE;
+        $getNoScorePlayers = $this->db->query($queryString);
+        $this->db->_protect_identifiers = TRUE;
+        if ($getNoScorePlayers->num_rows()>0){
+            return $getNoScorePlayers->result();
+        }
+        else {
+            return FALSE;
+        }
+
+    }
+
+    public function resetHandicapsBatch($playerIDs) {
+        $this->db->trans_start();
+        $this->db->update_batch('player', $playerIDs, 'playerID');
+        $this->db->trans_complete();
+        if( $this->db->trans_status() == FALSE) {
+            return FALSE;
+        }
+        else {
+            return TRUE;
+        }
+    }
+
     public function updatePlayerHandicaps($playerID, $handicapIndex, $handicap) {
         $handicapUpdates = array(
             'playerHandicap' => $handicap,

@@ -98,20 +98,28 @@
                                                                     </tr>
                                                                 </thead>
                                                                 <tbody>';
-                                                                foreach($row->scores as $r) {
+                                                                if ($row->playerScoreCount == 0) {
                                                                     echo '
                                                                         <tr>
-                                                                            <td class="col-xs-12 col-md-4">'.$r->scoreDate.'</td>
-                                                                            <td class="col-xs-12 col-md-4">'.$r->scoreScore.'</td>';
+                                                                            <td colspan="3" class="centered">No scores are entered for this player.</td>
+                                                                        </tr>
+                                                                    ';
+                                                                }
+                                                                else {
+                                                                    foreach ($row->scores as $r) {
+                                                                        echo '
+                                                                        <tr>
+                                                                            <td class="col-xs-12 col-md-4">' . $r->scoreDate . '</td>
+                                                                            <td class="col-xs-12 col-md-4">' . $r->scoreScore . '</td>';
                                                                         if ($r->scoreDifferentialUsed == 1) {
                                                                             echo '
-                                                                                <td class="col-xs-12 col-md-4">'.$r->scoreDifferential . '*</td>';
-                                                                        }
-                                                                        else {
+                                                                                <td class="col-xs-12 col-md-4">' . $r->scoreDifferential . '*</td>';
+                                                                        } else {
                                                                             echo '
-                                                                                <td class="col-xs-12 col-md-4">'.$r->scoreDifferential.'</td>';
+                                                                                <td class="col-xs-12 col-md-4">' . $r->scoreDifferential . '</td>';
                                                                         }
-                                                                    echo'</tr>';
+                                                                        echo '</tr>';
+                                                                    }
                                                                 }
                                             echo '
                                                                 </tbody>
