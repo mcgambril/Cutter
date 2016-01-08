@@ -2,7 +2,6 @@
 <project version="4">
   <component name="SqlDialectMappings">
     <file url="file://$PROJECT_DIR$/application/models/course_model.php" dialect="MySQL" />
-    <file url="file://$PROJECT_DIR$/application/models/cutterpassword_model.php" dialect="MySQL" />
     <file url="file://$PROJECT_DIR$/application/models/player_model.php" dialect="MySQL" />
     <file url="file://$PROJECT_DIR$/application/models/score_model.php" dialect="MySQL" />
     <file url="file://$PROJECT_DIR$/application/models/tempscore_model.php" dialect="MySQL" />

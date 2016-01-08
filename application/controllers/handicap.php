@@ -14,8 +14,6 @@ class Handicap extends CI_Controller
         parent::__construct();
     }
 
-
-
     public function update() {
         $this->load->view('header_view');
         $this->load->view('handicap_update_view');

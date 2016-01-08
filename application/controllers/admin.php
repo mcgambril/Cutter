@@ -22,7 +22,7 @@ class Admin extends CI_Controller {
     }
 
     public function submitPass() {
-        $this->load->model('cutterpassword_model');
+        $this->load->model('cutteradmin_model');
         $this->load->helper('form');
         $this->load->library('form_validation');
 
@@ -41,15 +41,13 @@ class Admin extends CI_Controller {
             $this->index();
         }
         else {
-            $this->load->helper('url');
-            //redirect('/home/loadHomeLoggedIn');
             $this->loadHomeLoggedIn();
         }
     }
 
     public function passwordConfirm($str) {
-        $this->load->model('cutterpassword_model');
-        $data['currentPass'] = $this->cutterpassword_model->getPassword();
+        $this->load->model('cutteradmin_model');
+        $data['currentPass'] = $this->cutteradmin_model->getPassword();
         $string = "";
         foreach($data['currentPass'] as $row) {
             $string = $row->password;
@@ -62,6 +60,71 @@ class Admin extends CI_Controller {
             return FALSE;
         }
 
+    }
+
+    public function changePassword() {
+        $this->load->model('cutteradmin_model');
+        $this->load->helper('form');
+        $this->load->library('form_validation');
+
+        $this->load->view('header_view');
+        $this->load->view('admin_change_pass_view');
+        $this->load->view('footer_view');
+    }
+
+    public function submitChangePassword() {
+        $this->load->model('cutteradmin_model');
+        $this->load->helper('form');
+        $this->load->library('form_validation');
+
+        $config = array(
+            array(
+                'field' => 'password',
+                'label' => 'Password',
+                'rules' => 'required|callback_passwordConfirm'
+            ),
+            array(
+                'field' => 'newPass',
+                'label' => 'New Password',
+                'rules' => 'required|matches[confirmPass]'
+            ),
+            array(
+                'field' => 'confirmPass',
+                'label' => 'Confirm New Password',
+                'rules' =>'required|matches[newPass]'
+            )
+        );
+
+        $this->form_validation->set_rules($config);
+
+        if($this->form_validation->run()== FALSE) {
+            $this->changePassword();
+        }
+        else {
+            $newPass = $this->input->post('newPass');
+            $oldPassID = NULL;
+            $currentPass = $this->cutteradmin_model->getPassword();
+            foreach ($currentPass as $row) {
+                if ($row->current == 1) {
+                    $oldPassID = $row->passwordID;
+                }
+            }
+
+            if ($this->cutteradmin_model->insertNewPass($newPass) == TRUE) {
+                if ($this->cutteradmin_model->deactivateOldPass($oldPassID) == TRUE) {
+                    $data['message1'] = 'Success!';
+                    $data ['message2'] = 'The password has been successfully updated.';
+                }
+            }
+            else {
+                $data['message1'] = 'Failed.';
+                $data['message2'] = 'Error:  Something went wrong and the password was not able to be updated';
+            }
+
+            $this->load->view('header_view');
+            $this->load->view('admin_change_pass_result_view', $data);
+            $this->load->view('footer_view');
+        }
     }
 
     public function loadHomeLoggedIn() {
