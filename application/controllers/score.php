@@ -135,13 +135,11 @@ class Score extends CI_Controller {
 
         if($this->form_validation->run()== FALSE) {
             $buffer = $this->input->post('datepicker');
-            //workOnDate
             $this->postByDate($buffer);
         }
         else {
-            //workOnDate
-            $temp['date'] = $this->input->post('datepicker');
-            $temp['date'] = date("Y-m-d", strtotime($temp['date']));
+            $date = $this->input->post('datepicker');  //submitted as mm/dd/YYYY
+            $temp['date'] = date("Y-m-d", strtotime($date));
             $temp['courseID'] = $this->input->post('course');
             $temp['ids'] = $this->player_model->getPlayerIDsAtoZ(1);
             $ids = array();
@@ -163,7 +161,7 @@ class Score extends CI_Controller {
 
             if ($this->validateNotEmpty($amScores) == FALSE) {
                 if ($this->validateNotEmpty($pmScores) == FALSE) {
-                    $this->postByDate($temp['date']);
+                    $this->postByDate($date);
                     RETURN;
                 }
             }
@@ -268,27 +266,7 @@ class Score extends CI_Controller {
     public function editByDate($date) {
         $this->load->model('score_model');
         $this->load->model('course_model');
-        /*$this->load->helper('form');
-        $this->load->library('form_validation');
-        date_default_timezone_set('America/Mexico_City');
 
-        $config = array(
-            array(
-                'field' => 'datepicker',
-                'label' => 'Date',
-                'rules' => 'required|callback_validateDate'
-            )
-        );
-
-        $this->form_validation->set_rules($config);
-
-        if($this->form_validation->run()== FALSE) {
-            $this->chooseEditDate();
-        }
-        else {
-            $data['date'] = $this->input->post('datepicker');*/
-
-        //sending date to view in mm/dd/yyyy format
         $data['date'] = $date;
 
         //reformat date to MySQL yyyy-mm-dd to query from db

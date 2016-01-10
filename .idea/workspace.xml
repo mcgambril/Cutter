@@ -2,21 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="bf1f04b8-8018-444a-9bbe-e11b375c07b1" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/controllers/course.php" afterPath="$PROJECT_DIR$/application/controllers/course.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/views/course_add_view.php" afterPath="$PROJECT_DIR$/application/views/course_add_view.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/views/handicap_error_view.php" afterPath="$PROJECT_DIR$/application/views/handicap_error_view.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/views/handicap_no_handicaps_view.php" afterPath="$PROJECT_DIR$/application/views/handicap_no_handicaps_view.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/views/handicap_update_result_view.php" afterPath="$PROJECT_DIR$/application/views/handicap_update_result_view.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/views/handicap_update_view.php" afterPath="$PROJECT_DIR$/application/views/handicap_update_view.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/views/header_view.php" afterPath="$PROJECT_DIR$/application/views/header_view.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/views/home_header_view.php" afterPath="$PROJECT_DIR$/application/views/home_header_view.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/views/player_delete_result_view.php" afterPath="$PROJECT_DIR$/application/views/player_delete_result_view.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/views/player_update_result_view.php" afterPath="$PROJECT_DIR$/application/views/player_update_result_view.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/views/admin_change_pass_result_view.php" afterPath="$PROJECT_DIR$/application/views/admin_change_pass_result_view.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/views/course_add_result_view.php" afterPath="$PROJECT_DIR$/application/views/course_add_result_view.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/views/course_delete_result_view.php" afterPath="$PROJECT_DIR$/application/views/course_delete_result_view.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/controllers/score.php" afterPath="$PROJECT_DIR$/application/controllers/score.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/views/score_edit_result_view.php" afterPath="$PROJECT_DIR$/application/views/score_edit_result_view.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/views/score_entry_result_view.php" afterPath="$PROJECT_DIR$/application/views/score_entry_result_view.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/js/site.js" afterPath="$PROJECT_DIR$/assets/js/site.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="Cutter.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -44,18 +33,42 @@
       <file leaf-file-name="score.php" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/application/controllers/score.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.5387324" vertical-offset="1020" max-vertical-offset="6936">
-              <caret line="164" column="66" selection-start-line="164" selection-start-column="66" selection-end-line="164" selection-end-column="66" />
+            <state vertical-scroll-proportion="-2.4285715" vertical-offset="3536" max-vertical-offset="4828">
+              <caret line="143" column="68" selection-start-line="143" selection-start-column="68" selection-end-line="143" selection-end-column="68" />
               <folding>
                 <element signature="n#__construct#0;n#Score#0;n#!!top" expanded="false" />
                 <element signature="n#chooseDate#0;n#Score#0;n#!!top" expanded="false" />
-                <element signature="n#submitDate#0;n#Score#0;n#!!top" expanded="false" />
-                <element signature="n#postByDate#0;n#Score#0;n#!!top" expanded="false" />
-                <element signature="e#18869#19241#0#PHP" expanded="false" />
-                <element signature="e#19246#19907#0#PHP" expanded="false" />
-                <element signature="e#19912#21878#0#PHP" expanded="false" />
-                <element signature="e#21883#22436#0#PHP" expanded="false" />
+                <element signature="n#scoreEntryResult#0;n#Score#0;n#!!top" expanded="false" />
+                <element signature="n#editByDate#0;n#Score#0;n#!!top" expanded="false" />
+                <element signature="n#submitEditScore#0;n#Score#0;n#!!top" expanded="false" />
+                <element signature="n#scoreEditResult#0;n#Score#0;n#!!top" expanded="false" />
+                <element signature="n#validateNotEmpty#0;n#Score#0;n#!!top" expanded="false" />
+                <element signature="n#calculateDifferential#0;n#Score#0;n#!!top" expanded="false" />
+                <element signature="e#18186#18558#0#PHP" expanded="false" />
+                <element signature="e#18563#19224#0#PHP" expanded="false" />
+                <element signature="e#19229#21195#0#PHP" expanded="false" />
+                <element signature="e#21200#21753#0#PHP" expanded="false" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="site.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/assets/js/site.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1224">
+              <caret line="35" column="34" selection-start-line="35" selection-start-column="34" selection-end-line="35" selection-end-column="34" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="score_post_view.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/application/views/score_post_view.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="-12.423077" vertical-offset="0" max-vertical-offset="2193">
+              <caret line="19" column="1" selection-start-line="19" selection-start-column="1" selection-end-line="19" selection-end-column="1" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -68,7 +81,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/application/views/course_delete_view.php" />
         <option value="$PROJECT_DIR$/application/views/handicap_no_scores_view.php" />
         <option value="$PROJECT_DIR$/application/views/handicap_view.php" />
         <option value="$PROJECT_DIR$/application/controllers/player.php" />
@@ -85,7 +97,6 @@
         <option value="$PROJECT_DIR$/application/views/score_entry_success_view.php" />
         <option value="$PROJECT_DIR$/application/views/score_choose_date_view.php" />
         <option value="$PROJECT_DIR$/application/models/course_model.php" />
-        <option value="$PROJECT_DIR$/application/views/course_delete_result_view.php" />
         <option value="$PROJECT_DIR$/application/views/score_edit_by_date_view.php" />
         <option value="$PROJECT_DIR$/application/views/score_post_view.php" />
         <option value="$PROJECT_DIR$/application/views/course_set_home_view.php" />
@@ -97,7 +108,6 @@
         <option value="$PROJECT_DIR$/assets/css/Site.css" />
         <option value="$PROJECT_DIR$/application/models/cutterpassword_model.php" />
         <option value="$PROJECT_DIR$/application/models/cutteradmin.php" />
-        <option value="$PROJECT_DIR$/application/views/admin_change_pass_result_view.php" />
         <option value="$PROJECT_DIR$/application/models/cutteradmin_model.php" />
         <option value="$PROJECT_DIR$/application/views/admin_change_pass_view.php" />
         <option value="$PROJECT_DIR$/application/views/player_add_view.php" />
@@ -118,6 +128,9 @@
         <option value="$PROJECT_DIR$/application/views/handicap_no_handicaps_view.php" />
         <option value="$PROJECT_DIR$/application/views/handicap_error_view.php" />
         <option value="$PROJECT_DIR$/application/views/score_entry_result_view.php" />
+        <option value="$PROJECT_DIR$/application/views/course_add_result_view.php" />
+        <option value="$PROJECT_DIR$/application/views/course_delete_result_view.php" />
+        <option value="$PROJECT_DIR$/application/views/admin_change_pass_result_view.php" />
         <option value="$PROJECT_DIR$/application/controllers/score.php" />
       </list>
     </option>
@@ -623,14 +636,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/application/views/score_post_view.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.15454546" vertical-offset="221" max-vertical-offset="2193">
-          <caret line="18" column="31" selection-start-line="18" selection-start-column="31" selection-end-line="18" selection-end-column="31" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/application/views/course_set_home_view.php">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.15275311" vertical-offset="560" max-vertical-offset="1445">
@@ -786,22 +791,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/application/views/home_view.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.35915494" vertical-offset="1224" max-vertical-offset="2516">
-          <caret line="84" column="37" selection-start-line="84" selection-start-column="37" selection-end-line="84" selection-end-column="37" />
-          <folding>
-            <marker date="1452148823024" expanded="true" signature="-1:-1" placeholder="..." />
-            <marker date="1452148823024" expanded="true" signature="-1:-1" placeholder="..." />
-            <marker date="1452148823024" expanded="true" signature="-1:-1" placeholder="..." />
-            <marker date="1452148823024" expanded="true" signature="-1:-1" placeholder="..." />
-            <marker date="1452148823024" expanded="true" signature="-1:-1" placeholder="..." />
-            <marker date="1452148823024" expanded="true" signature="-1:-1" placeholder="..." />
-            <marker date="1452148823024" expanded="true" signature="-1:-1" placeholder="..." />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/application/controllers/handicap.php">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.26333907" vertical-offset="0" max-vertical-offset="581">
@@ -838,14 +827,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/assets/js/site.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.92421746" vertical-offset="34" max-vertical-offset="1224">
-          <caret line="35" column="34" selection-start-line="35" selection-start-column="34" selection-end-line="35" selection-end-column="34" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/application/controllers/admin.php">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.14629948" vertical-offset="0" max-vertical-offset="1122">
@@ -865,19 +846,6 @@
         <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="607">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/application/controllers/home.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.08777969" vertical-offset="0" max-vertical-offset="581">
-          <caret line="9" column="10" selection-start-line="9" selection-start-column="10" selection-end-line="9" selection-end-column="10" />
-          <folding>
-            <element signature="n#__construct#0;n#Home#0;n#!!top" expanded="false" />
-            <element signature="n#index#0;n#Home#0;n#!!top" expanded="false" />
-            <element signature="n#loadHomeLoggedIn#0;n#Home#0;n#!!top" expanded="false" />
-            <element signature="n#validateNotEmpty#0;n#Home#0;n#!!top" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -914,55 +882,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/application/views/course_delete_result_view.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-4.576923" vertical-offset="0" max-vertical-offset="425">
-          <caret line="7" column="4" selection-start-line="7" selection-start-column="4" selection-end-line="7" selection-end-column="4" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/application/controllers/course.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.35211268" vertical-offset="259" max-vertical-offset="1819">
-          <caret line="55" column="41" selection-start-line="55" selection-start-column="41" selection-end-line="55" selection-end-column="41" />
-          <folding>
-            <element signature="n#index#0;n#Course#0;n#!!top" expanded="false" />
-            <element signature="n#add#0;n#Course#0;n#!!top" expanded="false" />
-            <element signature="n#edit#0;n#Course#0;n#!!top" expanded="false" />
-            <element signature="n#submitCourseEdit#0;n#Course#0;n#!!top" expanded="false" />
-            <element signature="n#delete#0;n#Course#0;n#!!top" expanded="false" />
-            <element signature="n#submitDelete#0;n#Course#0;n#!!top" expanded="false" />
-            <element signature="n#courseDeleteResult#0;n#Course#0;n#!!top" expanded="false" />
-            <element signature="n#courseAddResult#0;n#Course#0;n#!!top" expanded="false" />
-            <element signature="n#courseEditResult#0;n#Course#0;n#!!top" expanded="false" />
-            <element signature="n#submitSetHomeCourse#0;n#Course#0;n#!!top" expanded="false" />
-            <element signature="n#setHomeCourseResult#0;n#Course#0;n#!!top" expanded="false" />
-            <element signature="n#validateNotEmpty#0;n#Course#0;n#!!top" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/application/config/config.php">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.7521515" vertical-offset="73" max-vertical-offset="6324">
           <caret line="30" column="34" selection-start-line="30" selection-start-column="34" selection-end-line="30" selection-end-column="34" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/application/views/course_add_result_view.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="607">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/application/views/admin_change_pass_result_view.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-1.9615384" vertical-offset="0" max-vertical-offset="476">
-          <caret line="3" column="16" selection-start-line="3" selection-start-column="16" selection-end-line="3" selection-end-column="16" />
           <folding />
         </state>
       </provider>
@@ -1082,19 +1005,113 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/application/views/course_add_result_view.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.23407917" vertical-offset="0" max-vertical-offset="581">
+          <caret line="8" column="0" selection-start-line="8" selection-start-column="0" selection-end-line="8" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/application/views/home_view.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.44894367" vertical-offset="0" max-vertical-offset="2516">
+          <caret line="15" column="21" selection-start-line="15" selection-start-column="21" selection-end-line="15" selection-end-column="21" />
+          <folding>
+            <marker date="1452148823024" expanded="true" signature="-1:-1" placeholder="..." />
+            <marker date="1452148823024" expanded="true" signature="-1:-1" placeholder="..." />
+            <marker date="1452148823024" expanded="true" signature="-1:-1" placeholder="..." />
+            <marker date="1452148823024" expanded="true" signature="-1:-1" placeholder="..." />
+            <marker date="1452148823024" expanded="true" signature="-1:-1" placeholder="..." />
+            <marker date="1452148823024" expanded="true" signature="-1:-1" placeholder="..." />
+            <marker date="1452148823024" expanded="true" signature="-1:-1" placeholder="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/application/controllers/home.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.22891566" vertical-offset="156" max-vertical-offset="850">
+          <caret line="58" column="40" selection-start-line="58" selection-start-column="40" selection-end-line="58" selection-end-column="40" />
+          <folding>
+            <element signature="n#__construct#0;n#Home#0;n#!!top" expanded="false" />
+            <element signature="n#index#0;n#Home#0;n#!!top" expanded="false" />
+            <element signature="n#validateNotEmpty#0;n#Home#0;n#!!top" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/application/views/admin_change_pass_result_view.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.08777969" vertical-offset="0" max-vertical-offset="581">
+          <caret line="3" column="16" selection-start-line="3" selection-start-column="16" selection-end-line="3" selection-end-column="16" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/application/views/course_delete_result_view.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.6729776" vertical-offset="0" max-vertical-offset="581">
+          <caret line="23" column="12" selection-start-line="23" selection-start-column="12" selection-end-line="23" selection-end-column="12" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/application/controllers/course.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.31841654" vertical-offset="70" max-vertical-offset="1054">
+          <caret line="43" column="39" selection-start-line="43" selection-start-column="39" selection-end-line="43" selection-end-column="39" />
+          <folding>
+            <element signature="n#index#0;n#Course#0;n#!!top" expanded="false" />
+            <element signature="n#add#0;n#Course#0;n#!!top" expanded="false" />
+            <element signature="n#submitCourseAdd#0;n#Course#0;n#!!top" expanded="false" />
+            <element signature="n#edit#0;n#Course#0;n#!!top" expanded="false" />
+            <element signature="n#submitCourseEdit#0;n#Course#0;n#!!top" expanded="false" />
+            <element signature="n#delete#0;n#Course#0;n#!!top" expanded="false" />
+            <element signature="n#submitDelete#0;n#Course#0;n#!!top" expanded="false" />
+            <element signature="n#courseDeleteResult#0;n#Course#0;n#!!top" expanded="false" />
+            <element signature="n#courseAddResult#0;n#Course#0;n#!!top" expanded="false" />
+            <element signature="n#courseEditResult#0;n#Course#0;n#!!top" expanded="false" />
+            <element signature="n#submitSetHomeCourse#0;n#Course#0;n#!!top" expanded="false" />
+            <element signature="n#setHomeCourseResult#0;n#Course#0;n#!!top" expanded="false" />
+            <element signature="n#validateNotEmpty#0;n#Course#0;n#!!top" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/assets/js/site.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1224">
+          <caret line="35" column="34" selection-start-line="35" selection-start-column="34" selection-end-line="35" selection-end-column="34" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/application/views/score_post_view.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-12.423077" vertical-offset="0" max-vertical-offset="2193">
+          <caret line="19" column="1" selection-start-line="19" selection-start-column="1" selection-end-line="19" selection-end-column="1" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/application/controllers/score.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.5387324" vertical-offset="1020" max-vertical-offset="6936">
-          <caret line="164" column="66" selection-start-line="164" selection-start-column="66" selection-end-line="164" selection-end-column="66" />
+        <state vertical-scroll-proportion="-2.4285715" vertical-offset="3536" max-vertical-offset="4828">
+          <caret line="143" column="68" selection-start-line="143" selection-start-column="68" selection-end-line="143" selection-end-column="68" />
           <folding>
             <element signature="n#__construct#0;n#Score#0;n#!!top" expanded="false" />
             <element signature="n#chooseDate#0;n#Score#0;n#!!top" expanded="false" />
-            <element signature="n#submitDate#0;n#Score#0;n#!!top" expanded="false" />
-            <element signature="n#postByDate#0;n#Score#0;n#!!top" expanded="false" />
-            <element signature="e#18869#19241#0#PHP" expanded="false" />
-            <element signature="e#19246#19907#0#PHP" expanded="false" />
-            <element signature="e#19912#21878#0#PHP" expanded="false" />
-            <element signature="e#21883#22436#0#PHP" expanded="false" />
+            <element signature="n#scoreEntryResult#0;n#Score#0;n#!!top" expanded="false" />
+            <element signature="n#editByDate#0;n#Score#0;n#!!top" expanded="false" />
+            <element signature="n#submitEditScore#0;n#Score#0;n#!!top" expanded="false" />
+            <element signature="n#scoreEditResult#0;n#Score#0;n#!!top" expanded="false" />
+            <element signature="n#validateNotEmpty#0;n#Score#0;n#!!top" expanded="false" />
+            <element signature="n#calculateDifferential#0;n#Score#0;n#!!top" expanded="false" />
+            <element signature="e#18186#18558#0#PHP" expanded="false" />
+            <element signature="e#18563#19224#0#PHP" expanded="false" />
+            <element signature="e#19229#21195#0#PHP" expanded="false" />
+            <element signature="e#21200#21753#0#PHP" expanded="false" />
           </folding>
         </state>
       </provider>
