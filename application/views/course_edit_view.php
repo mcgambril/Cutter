@@ -48,13 +48,6 @@
                                                     <td>' . $row->courseRating . '</td>
                                                     <td><input type="text" name="newCourseRating" id="newCourseRating" class="form-control"></td>
                                                 </tr>
-                                                <tr>
-                                                    <th scope="row">Home Course?:  </th>
-                                                    <td>' . $checkedLabel . '</td>
-                                                    <td>
-                                                        ' . $changePrompt . '  <input type="checkbox"  id="changeDefault" name="changeDefault"  value="True"/>
-                                                    </td >
-                                                </tr >
                                             </tbody >
                                         </table >
                                     </div >';

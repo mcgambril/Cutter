@@ -18,7 +18,6 @@
     <div class="form-group">
         <div class="container">
             <div class="row">
-
                 <div class="col-md-4">
                     <div class="col-md-3 fixed">
                         <div class="col-md-12">
@@ -117,7 +116,6 @@
                         </div>
                     </div>
                 </div>
-
             </div>
         </div>
     </div>

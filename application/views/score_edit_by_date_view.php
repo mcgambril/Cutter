@@ -68,9 +68,7 @@
                                 echo '<tr>';
                                     echo '<td class="col-md-2">' . $row->playerName . '</td>';
                                     echo '<td class="col-md-1 centered">' . $row->scoreDate . '</td>';
-                                    /*echo '<td class="col-md-2">' . $row->courseName . '</td>';*/
                                     echo '<td class="col-md-2 centered">';
-                                        /*echo 'Yes <input type="checkbox" id="' . $row->playerID . '-course_change" name="' . $row->playerID . '-course_change" value="yes"/>';*/
                                         echo ' <select class="form-control" id="pick-course-' . $row->scoreID . '" name="course-' . $row->scoreID . '">';
                                         foreach ($getCoursesQuery as $r) {
                                             //selecting the current course as the default in the select box.  Change in db if value changes upon submitting

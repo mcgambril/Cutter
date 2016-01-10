@@ -18,44 +18,49 @@
         }?>
     </div>
 
-    <?php foreach($getPlayerByIDQuery as $row) {
-        echo '<div class="panel panel-default">';
-            echo '<!-- Default panel contents -->';
-            echo '<div class="panel-heading">' . $row->playerName . '&#39s Current Information</div>';
-            echo'<div class="table-responsive">';
-                echo '<table class ="table table-condensed table-bordered" style="border-collapse:collapse;">';
-                    echo '<thead>';
-                        echo '<tr>';
-                            echo '<th class="col-md-2">Name</th>';
-                            echo '<th class="col-md-1">Handicap</th>';
-                            echo '<th class="col-md-1">Handicap Index</th>';
-                        echo '</tr>';
-                    echo '</thead>';
-                    echo '<tbody>';
-                        echo '<tr>';
-                            echo '<td class="col-md-2">' . $row->playerName . '</td>';
-                            echo '<td class="col-md-1">' . $row->playerHandicap . '</td>';
-                            echo '<td class="col-md-1">' . $row->playerHandicapIndex . '</td>';
-                        echo '</tr>';
-                    echo '</tbody>';
-                echo '</table>';
-            echo '</div>';
-        echo '</div>';
-    }?>
-
+    <div class="row">
+        <div class="col-md-5">
+            <?php foreach($getPlayerByIDQuery as $row) {
+                echo '
+                    <div class="panel panel-default">
+                        <div class="panel-heading">' . $row->playerName . '&#39s Current Information</div>
+                        <div class="table-responsive">
+                            <table class ="table table-condensed table-bordered" style="border-collapse:collapse;">
+                                <thead>
+                                    <tr>
+                                        <th class="col-md-6">Name</th>
+                                        <th class="col-md-3 centered">Handicap</th>
+                                        <th class="col-md-3 centered">Index</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td class="col-md-6">' . $row->playerName . '</td>
+                                        <td class="col-md-3 centered">' . $row->playerHandicap . '</td>
+                                        <td class="col-md-3 centered">' . $row->playerHandicapIndex . '</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                ';
+            }?>
+            <br>
+        </div>
+    </div>
 </div>
 
 <div class="form-group">
     <div class="container">
         <div class="row">
-            <div class="text-center col-md-12">
+            <div class="text-center col-md-5">
                 <h3>Are you sure you want to Delete this player from the database?</h3>
                 <br>
                 <?php echo '<input type = "hidden" name = "playerID" value = "' . $row->playerID . '" />'; ?>
-                <p class="col-md-4"></p>
-                <input type="submit" class="btn btn-default col-md-2" value="Yes. Delete Player" name="submitName">
-                <a class="btn btn-default col-md-2" href="<?php echo base_url("index.php/player/index"); ?>">Back</a>
-                <p class="col-md-4"></p>
+                <p class="col-md-2"></p>
+                <input type="submit" class="btn btn-default col-md-4" value="Yes. Delete Player" name="submitName">
+                <a class="btn btn-default col-md-4" href="<?php echo base_url("index.php/player/index"); ?>">Back</a>
+                <p class="col-md-2"></p>
             </div>
         </div>
     </div>

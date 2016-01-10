@@ -62,10 +62,10 @@
                     <h3>Are you sure you want to Delete this course from the database?</h3>
                     <br>
                     <?php echo '<input type = "hidden" name = "courseID" value = "' . $row->courseID . '" />'; ?>
-                    <p class="col-md-2"></p>
-                    <input type="submit" class="btn btn-default col-md-4" value="Yes. Delete Course" name="submitName">
-                    <a class="btn btn-default col-md-4" href="<?php echo base_url("index.php/course/index"); ?>">Back</a>
-                    <p class="col-md-2"></p>
+                    <p class="col-md-3"></p>
+                    <input type="submit" class="btn btn-default col-md-3" value="Yes. Delete Course" name="submitName">
+                    <a class="btn btn-default col-md-3" href="<?php echo base_url("index.php/course/index"); ?>">Back</a>
+                    <p class="col-md-3"></p>
                 </div>
             </div>
         </div>

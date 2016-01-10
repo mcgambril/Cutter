@@ -33,23 +33,23 @@
         </div>
 
         <?php foreach($getFullScoreInfoQuery as $row) {
-            echo'<div class="table-responsive">';
-                echo '<table class ="table table-condensed table-bordered">';
-                    echo '<thead>';
-                    echo '</thead>';
-                    echo '<tbody>';
-                        echo '<tr>';
-                            echo '<td class="col-md-2">' . $row->playerName . '</td>';
-                            echo '<td class="col-md-2">' . $row->scoreDate . ' - ' . $row->scoreTime . '</td>';
-                            echo '<td class="col-md-2">' . $row->courseName . '</td>';
-                            echo '<td class="col-md-2">' . $row->scoreScore . '</td>';
-                            echo '<td class="col-md-2">';
-                                echo '<a class="btn btn-default col-md-12" href="' . base_url("index.php/score/edit/".$row->scoreID) . '">Edit</a>';
-                            echo '</td>';
-                        echo '</tr>';
-                    echo '</tbody>';
-                echo '</table>';
-            echo '</div>';
+            echo'<div class="table-responsive">
+                <table class ="table table-condensed table-bordered">
+                    <thead>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td class="col-md-2">' . $row->playerName . '</td>
+                            <td class="col-md-2">' . $row->scoreDate . ' - ' . $row->scoreTime . '</td>
+                            <td class="col-md-2">' . $row->courseName . '</td>
+                            <td class="col-md-2">' . $row->scoreScore . '</td>
+                            <td class="col-md-2">
+                                <a class="btn btn-default col-md-12" href="' . base_url("index.php/score/edit/".$row->scoreID) . '">Edit</a>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>';
             }
         ?>
         </div>

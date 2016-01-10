@@ -15,6 +15,7 @@ $(function () {
     });
 });
 
+//datepicker widget initializer
 $(function() {
     $( "#datepicker" ).datepicker({
         changeMonth: true,
@@ -28,10 +29,11 @@ $(function() {
 //able to derive solution for the confirm pop up box through onclick using the following 2 links
 //http://uly.me/codeigniter-anchor-with-onclick/
 //http://stackoverflow.com/questions/24756248/codeigniter-before-submit-confirm-popup-box-using-javascript
-function confirmHandicapUpdate() {
+/*function confirmHandicapUpdate() {
     return confirm("Are you sure you want to Update all Player Handicaps?");
-}
+}*/
 
+//jquery dialog box widget initializer:  used for handicap update confirmation
 //http://api.jqueryui.com/dialog/#option-autoOpen
 $(function dialogHandicapUpdate(){
     //http://stackoverflow.com/questions/503093/how-can-i-make-a-redirect-page-using-jquery

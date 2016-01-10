@@ -22,16 +22,16 @@
                 <table class="col-md-8">
                     <tbody>
                         <tr>
-                            <td class="headingLeft">First Name:  </td>
-                            <td class="centered tableData">
-                                <input type="text" name="firstName" id="firstName" class="form-control">
+                            <td class="headingLeft col-md-4">First Name:  </td>
+                            <td class="centered tableData col-md-8 bottomPadTiny">
+                                <input type="text" name="firstName" id="firstName" class="form-control col-md-12">
                                 <br>
                             </td>
                         </tr>
                         <tr>
-                            <td class="headingLeft">Last Name:  </td>
-                            <td class="centered tableData">
-                                <input type="text" name="lastName" id="lastName" class="form-control">
+                            <td class="headingLeft col-md-4">Last Name:  </td>
+                            <td class="centered tableData col-md-8 bottomPadTiny">
+                                <input type="text" name="lastName" id="lastName" class="form-control col-md-12">
                                 <br>
                             </td>
                         </tr>

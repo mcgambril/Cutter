@@ -126,5 +126,9 @@ tr:hover .homeCourseHeader {
     text-align: right;
 }
 
+.bottomBorder {
+    border-bottom: 1px solid #eee;
+}
+
 
 

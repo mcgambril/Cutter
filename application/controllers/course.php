@@ -88,6 +88,12 @@ class Course extends CI_Controller
         return;
     }
 
+    public function courseAddResult($data) {
+        $this->load->view('header_view');
+        $this->load->view('course_add_result_view', $data);
+        $this->load->view('footer_view');
+    }
+
     public function edit($paramID = NULL) {
         $this->load->helper('form');
         $this->load->library('form_validation');
@@ -103,7 +109,7 @@ class Course extends CI_Controller
         $data['getCourseQuery'] = $this->course_model->getCourse($id, 0);
         foreach($data['getCourseQuery'] as $row) {
             $data['courseName'] = $row->courseName;
-            if($row->courseDefault == 0) {
+            /*if($row->courseDefault == 0) {
                 $data['checkedLabel'] = 'No ';
                 $data['checked'] = 'unchecked';
                 $data['changePrompt'] = 'Set as Home Course?';
@@ -112,7 +118,7 @@ class Course extends CI_Controller
                 $data['checkedLabel'] = 'Yes ';
                 $data['checked'] = 'checked';
                 $data['changePrompt'] = 'Remove as Home Course?';
-            }
+            }*/
         }
 
         $this->load->view('header_view');
@@ -153,27 +159,10 @@ class Course extends CI_Controller
             $newCourseName = $this->input->post('newCourseName');
             $newCourseSlope = $this->input->post('newCourseSlope');
             $newCourseRating = $this->input->post('newCourseRating');
-            $changeDefault = $this->input->post('changeDefault');
-            $newCourseDefault = NULL;
-            $noHomeCourse = FALSE;
 
             $change = FALSE;
             $oldCourse = $this->course_model->getCourse($courseID, 0);
             foreach ($oldCourse as $row) {
-                if ($changeDefault == TRUE) {
-                    $change = TRUE;
-                    if ($row->courseDefault == 0) {
-                        $newCourseDefault = 1;
-                    }
-                    else {
-                        $newCourseDefault = 0;
-                        $noHomeCourse = TRUE;
-                    }
-                }
-                else {
-                    $newCourseDefault = $row->courseDefault;
-                }
-
                 if ($newCourseName == "" || $newCourseName == NULL) {
                     $newCourseName = $row->courseName;
                 }
@@ -197,11 +186,9 @@ class Course extends CI_Controller
             }
 
             if ($change == TRUE) {
-                //call model method to insert the data
                 $data['courseName'] = $newCourseName;
                 $data['courseSlope'] = $newCourseSlope;
                 $data['courseRating'] = $newCourseRating;
-                $data['courseDefault'] = $newCourseDefault;
 
                 if ($this->course_model->updateCourse($courseID, $data) == TRUE) {
                     $data['title'] = 'Success!';
@@ -214,22 +201,24 @@ class Course extends CI_Controller
                     $data['message2'] = 'Please try again later.';
                 }
 
-                if ($newCourseDefault == 0) {
-                    $data['courseDefault'] = 'No';
-                }
-                else {
-                    $data['courseDefault'] = 'Yes';
-                }
-
                 $data['courseID'] = $courseID;
-                $data['noHomeCourse'] = $noHomeCourse;
 
                 $this->courseEditResult($data);
+                RETURN;
+
             }
             else {
                 $this->edit($courseID);
+                RETURN;
             }
         }
+    }
+
+    public function courseEditResult($data) {
+        $this->load->view('header_view');
+        $this->load->view('course_edit_result_view', $data);
+        $this->load->view('footer_view');
+        RETURN;
     }
 
     public function delete() {
@@ -280,18 +269,6 @@ class Course extends CI_Controller
 
         $this->load->view('header_view');
         $this->load->view('course_delete_result_view', $dataMessage);
-        $this->load->view('footer_view');
-    }
-
-    public function courseAddResult($data) {
-        $this->load->view('header_view');
-        $this->load->view('course_add_result_view', $data);
-        $this->load->view('footer_view');
-    }
-
-    public function courseEditResult($data) {
-        $this->load->view('header_view');
-        $this->load->view('course_edit_result_view', $data);
         $this->load->view('footer_view');
     }
 

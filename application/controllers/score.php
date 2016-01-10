@@ -150,21 +150,17 @@ class Score extends CI_Controller {
                 $var = $this->input->post(''.$row['playerID'].'');
                 array_push($ids, $var);
                 $var2 = $this->input->post(''.$row['playerID'].'am-score');
-                if ($var2 != "" || $var2 != 0 || $var2 != NULL){
-                    array_push($amScores, $var2);
-                }
+                array_push($amScores, $var2);
                 $var3 = $this->input->post(''.$row['playerID'].'pm-score');
-                if ($var3 != "" || $var3 != 0 || $var3 != NULL) {
-                    array_push($pmScores, $var3);
-                }
+                array_push($pmScores, $var3);
             }
 
-            if ($this->validateNotEmpty($amScores) == FALSE) {
+            /*if ($this->validateNotEmpty($amScores) == FALSE) {
                 if ($this->validateNotEmpty($pmScores) == FALSE) {
                     $this->postByDate($date);
                     RETURN;
                 }
-            }
+            }*/
 
             $i = 0;
             $j = 0;
@@ -232,7 +228,7 @@ class Score extends CI_Controller {
             }
 
             if($this->validateNotEmpty($data) == FALSE) {
-                $this->load->view('score_empty_post_view');
+                $this->postByDate($date);
             }
             else {
                 $this->score_model->insertScoreBatch($data);

@@ -40,12 +40,70 @@ class Player extends CI_Controller
         $this->load->view('footer_view');
     }
 
-    public function edit() {
+    public function submitNewPlayer() {
+        $this->load->model('player_model');
+        $this->load->helper('form');
+        $this->load->library('form_validation');
+
+        $config = array(
+            array(
+                'field' => 'firstName',
+                'label' => 'First Name',
+                'rules' => 'required'
+            ),
+            array(
+                'field' => 'lastName',
+                'label' => 'Last Name',
+                'rules' => 'required'
+            )
+        );
+
+        $this->form_validation->set_rules($config);
+
+        if($this->form_validation->run()== FALSE) {
+            $this->add();
+        }
+        else {
+            $tempFirst = $this->input->post('firstName');
+            $tempLast = $this->input->post('lastName');
+            $newPlayer = $tempLast . ', ' . $tempFirst;
+            $queryResult = $this->player_model->insertPlayer($newPlayer);
+            $this->playerAddResult($newPlayer, $queryResult);
+        }
+    }
+
+    public function playerAddResult($player, $queryResult) {
+        if ($queryResult == TRUE) {
+            $data['player'] = $player;
+            $data['title'] = 'Success!';
+            $data['message1'] = $player . ' was successfully added to the database.';
+            $data['message2'] = 'You can now enter scores for this player.';
+        }
+
+        else {
+            $data['player'] = $player;
+            $data['title'] = 'Failure';
+            $data['message1'] = 'Something went wrong and ' . $player . ' failed to be added to the database.';
+            $data['message2'] = 'Please go back and try again.';
+        }
+
+        $this->load->view('header_view');
+        $this->load->view('player_add_result_view', $data);
+        $this->load->view('footer_view');
+    }
+
+    public function edit($paramID = NULL) {
         $this->load->helper('form');
         $this->load->library('form_validation');
         $this->load->model('player_model');
 
-        $id = $this->uri->segment(3);
+        if (is_null($paramID)) {
+            $id = $this->uri->segment(3);
+        }
+        else {
+            $id = $paramID;
+        }
+
         $data['getPlayerByIDQuery'] = $this->player_model->getPlayerByID($id);
         foreach($data['getPlayerByIDQuery'] as $row) {
             if(is_null($row->playerHandicap)) {
@@ -58,6 +116,62 @@ class Player extends CI_Controller
 
         $this->load->view('header_view');
         $this->load->view('player_edit_view', $data);
+        $this->load->view('footer_view');
+    }
+
+    public function submitEditPlayer() {
+        $this->load->model('player_model');
+        $this->load->helper('form');
+        $this->load->library('form_validation');
+
+        $config = array(
+            array(
+                'field' => 'newFirstName',
+                'label' => 'First Name',
+                'rules' => 'required'
+            ),
+            array(
+                'field' => 'newLastName',
+                'label' => 'Last Name',
+                'rules' => 'required'
+            )
+        );
+
+        $this->form_validation->set_rules($config);
+        $id = $this->input->post('playerID');
+
+        if($this->form_validation->run() == FALSE ) {
+            //redirect('/player/edit/' . $id);
+            $this->edit($id);
+            //need to go back to the Edit screen for the current player
+        }
+        else {
+            $temp['oldName'] = $this->player_model->getPlayerNameByID($id);
+            foreach($temp['oldName'] as $row) {
+                if(isset($row->playerName)) {
+                    $oldName = $row->playerName;
+                }
+            }
+            $newFirst = $this->input->post('newFirstName');
+            $newLast = $this->input->post('newLastName');
+            $newName = $newLast . ', ' . $newFirst;
+            $data['playerName'] = $newName;
+            $queryResult = $this->player_model->updatePlayer($id, $data);
+            if ($queryResult == TRUE) {
+                $data['title'] = 'Success!';
+                $data['message'] = "'" . $oldName . "'s' name was changed to '" . $newName . ".'";
+            }
+            else {
+                $data['title'] = 'Failure';
+                $data['message'] = "'" . $oldName . "'s' name failed to updated to '" . $newName . ".'  Please try again later";
+            }
+            $this->playerEditResult($data);
+        }
+    }
+
+    public function playerEditResult($data) {
+        $this->load->view('header_view');
+        $this->load->view('player_edit_result_view', $data);
         $this->load->view('footer_view');
     }
 
@@ -112,110 +226,4 @@ class Player extends CI_Controller
         $this->load->view('footer_view');
     }
 
-    public function submitEditPlayer() {
-        $this->load->model('player_model');
-        $this->load->helper('form');
-        $this->load->library('form_validation');
-
-        $config = array(
-            array(
-                'field' => 'newFirstName',
-                'label' => 'First Name',
-                'rules' => 'required'
-            ),
-            array(
-                'field' => 'newLastName',
-                'label' => 'Last Name',
-                'rules' => 'required'
-            )
-        );
-
-        $this->form_validation->set_rules($config);
-        $id = $this->input->post('playerID');
-
-        if($this->form_validation->run() == FALSE ) {
-            redirect('/player/edit/' . $id);
-            //need to go back to the Edit screen for the current player
-        }
-        else {
-            $temp['oldName'] = $this->player_model->getPlayerNameByID($id);
-            foreach($temp['oldName'] as $row) {
-                if(isset($row->playerName)) {
-                    $oldName = $row->playerName;
-                }
-            }
-            $newFirst = $this->input->post('newFirstName');
-            $newLast = $this->input->post('newLastName');
-            $newName = $newLast . ', ' . $newFirst;
-            $data['playerName'] = $newName;
-            $queryResult = $this->player_model->updatePlayer($id, $data);
-            if ($queryResult == TRUE) {
-                $data['title'] = 'Success!';
-                $data['message'] = "'" . $oldName . "'s' name was changed to '" . $newName . ".'";
-            }
-            else {
-                $data['title'] = 'Failure';
-                $data['message'] = "'" . $oldName . "'s' name failed to updated to '" . $newName . ".'  Please try again later";
-            }
-            $this->playerUpdateResult($data);
-        }
-    }
-
-    public function submitNewPlayer() {
-        $this->load->model('player_model');
-        $this->load->helper('form');
-        $this->load->library('form_validation');
-
-        $config = array(
-            array(
-                'field' => 'firstName',
-                'label' => 'First Name',
-                'rules' => 'required'
-            ),
-            array(
-                'field' => 'lastName',
-                'label' => 'Last Name',
-                'rules' => 'required'
-            )
-        );
-
-        $this->form_validation->set_rules($config);
-
-        if($this->form_validation->run()== FALSE) {
-            $this->add();
-        }
-        else {
-            $tempFirst = $this->input->post('firstName');
-            $tempLast = $this->input->post('lastName');
-            $newPlayer = $tempLast . ', ' . $tempFirst;
-            $queryResult = $this->player_model->insertPlayer($newPlayer);
-            $this->playerAddResult($newPlayer, $queryResult);
-        }
-    }
-
-    public function playerAddResult($player, $queryResult) {
-        if ($queryResult == TRUE) {
-            $data['player'] = $player;
-            $data['title'] = 'Success!';
-            $data['message1'] = $player . ' was successfully added to the database.';
-            $data['message2'] = 'You can now enter scores for this player.';
-        }
-
-        else {
-            $data['player'] = $player;
-            $data['title'] = 'Failure';
-            $data['message1'] = 'Something went wrong and ' . $player . ' failed to be added to the database.';
-            $data['message2'] = 'Please go back and try again.';
-        }
-
-        $this->load->view('header_view');
-        $this->load->view('player_add_result_view', $data);
-        $this->load->view('footer_view');
-    }
-
-    public function playerUpdateResult($data) {
-        $this->load->view('header_view');
-        $this->load->view('player_update_result_view', $data);
-        $this->load->view('footer_view');
-    }
 }
