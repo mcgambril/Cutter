@@ -45,9 +45,11 @@
 </div>
 <br><br><br>
 
-<div class="text-center col-md-12">
-    <p class="col-md-5"></p>
-    <a class="btn btn-default col-md-2" href="<?php echo base_url("index.php/handicap/update"); ?>">Back to Handicap Update</a>
-    <p class="col-md-5"></p>
+<div class="row">
+    <div class="text-center col-md-12">
+        <p class="col-md-5"></p>
+        <a class="btn btn-default col-md-2" href="<?php echo base_url("index.php/handicap/update"); ?>">Back to Handicap Update</a>
+        <p class="col-md-5"></p>
+    </div>
 </div>
 <br><br><br>

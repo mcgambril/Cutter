@@ -23,26 +23,18 @@
 <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
 <link rel="stylesheet" type="text/css" href="<?php echo base_url("assets/css/Site.css"); ?>" />
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<!--<script>
-    $(function() {
-        $( "#datepicker" ).datepicker({
-            changeMonth: true,
-            changeYear: true,
-            showButtonPanel: true,
-            dateFormat:  'yy-mm-dd',
-            showAnim: 'slideDown'
-        });
-    });
-</script>-->
-
-<?php
-/*    date_default_timezone_set('America/Mexico_City');
-*/?>
 
 <body>
 
 <nav class="navbar navbar-default navbar-fixed-top">
     <div class="container-fluid">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+        </div>
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
             <ul class="nav navbar-nav">
                 <li><a href="<?php echo base_url("index.php/home/index"); ?>">Home</a></li>

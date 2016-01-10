@@ -23,21 +23,6 @@
 <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
 <link rel="stylesheet" type="text/css" href="<?php echo base_url("assets/css/Site.css"); ?>" />
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<!--<script>
-    $(function() {
-        $( "#datepicker" ).datepicker({
-            changeMonth: true,
-            changeYear: true,
-            showButtonPanel: true,
-            dateFormat:  'yy-mm-dd',
-            showAnim: 'slideDown'
-        });
-    });
-</script>-->
-
-<?php
-/*    date_default_timezone_set('America/Mexico_City');
-*/?>
 
 <body>
 

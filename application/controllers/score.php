@@ -136,7 +136,7 @@ class Score extends CI_Controller {
         if($this->form_validation->run()== FALSE) {
             $buffer = $this->input->post('datepicker');
             //workOnDate
-            $this->post($buffer);
+            $this->postByDate($buffer);
         }
         else {
             //workOnDate
@@ -152,9 +152,20 @@ class Score extends CI_Controller {
                 $var = $this->input->post(''.$row['playerID'].'');
                 array_push($ids, $var);
                 $var2 = $this->input->post(''.$row['playerID'].'am-score');
-                array_push($amScores, $var2);
+                if ($var2 != "" || $var2 != 0 || $var2 != NULL){
+                    array_push($amScores, $var2);
+                }
                 $var3 = $this->input->post(''.$row['playerID'].'pm-score');
-                array_push($pmScores, $var3);
+                if ($var3 != "" || $var3 != 0 || $var3 != NULL) {
+                    array_push($pmScores, $var3);
+                }
+            }
+
+            if ($this->validateNotEmpty($amScores) == FALSE) {
+                if ($this->validateNotEmpty($pmScores) == FALSE) {
+                    $this->postByDate($temp['date']);
+                    RETURN;
+                }
             }
 
             $i = 0;

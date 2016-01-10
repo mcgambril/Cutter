@@ -55,7 +55,7 @@ class Course extends CI_Controller
             array(
                 'field' => 'courseSlope',
                 'label' => 'Course Slope',
-                'rules' => 'required|numeric'
+                'rules' => 'required|integer'
             ),
             array(
                 'field' => 'courseRating',
@@ -72,28 +72,12 @@ class Course extends CI_Controller
         else {
             $courseName = $this->input->post('courseName');
             $courseSlope = $this->input->post('courseSlope');
-            //need to make sure slope is in the proper format
-            //actuall, mysql should do the rounding and formatting before insertion
             $courseRating = $this->input->post('courseRating');
-            //need to make sure rating is in the proper format
-            //mysql should handle the rounding and decimal formatting
-            $courseDefault = $this->input->post('courseDefault');
-            if ($courseDefault == 'True') {
-                $courseDefault = 1;
-                $this->course_model->updateHomeCourse();
-            }
-            else {
-                $courseDefault = 0;
-            }
+            $courseDefault = 0;
 
             if ($this->course_model->insertCourse($courseName, $courseSlope, $courseRating, $courseDefault) == TRUE) {
                 $data['title'] = 'Success!';
-                if($courseDefault == 1) {
-                    $data['message'] = $courseName . ' was successfully added to the database and is set to be the new Home Course.';
-                }
-                else {
-                    $data['message'] = $courseName . ' was successfully added to the database.';
-                }
+                $data['message'] = $courseName . ' was successfully added to the database.';
             }
             else {
                 $data['title'] = 'Failure';
@@ -155,7 +139,7 @@ class Course extends CI_Controller
             array(
                 'field' => 'newCourseSlope',
                 'label' => 'Course Slope',
-                'rules' => 'numeric'
+                'rules' => 'integer'
             )
         );
 

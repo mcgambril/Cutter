@@ -43,13 +43,6 @@
                                 <br>
                             </td>
                         </tr>
-                        <tr>
-                            <td class="headingLeft">Home Course?:  </td>
-                            <td class="tableData">
-                                <input type="checkbox"  id="courseDefault" name="courseDefault"  value="True"/>
-                                <br>
-                            </td>
-                        </tr>
                     </tbody>
                 </table>
                 <br><br>

@@ -32,7 +32,9 @@ function confirmHandicapUpdate() {
     return confirm("Are you sure you want to Update all Player Handicaps?");
 }
 
+//http://api.jqueryui.com/dialog/#option-autoOpen
 $(function dialogHandicapUpdate(){
+    //http://stackoverflow.com/questions/503093/how-can-i-make-a-redirect-page-using-jquery
     var $currentPath = window.location.pathname;        //  /handicap/update
     var $length = $currentPath.length;
     var $endPos = $length - 6;    //take 6 away b/c 'update' is 6 letters;
