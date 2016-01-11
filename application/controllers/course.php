@@ -50,17 +50,17 @@ class Course extends CI_Controller
             array(
                 'field' => 'courseName',
                 'label' => 'Course Name',
-                'rules' => 'required|max_length[45]'
+                'rules' => 'required|max_length[45]|valid_base64|min_length[1]|callback_uniqueName'
             ),
             array(
                 'field' => 'courseSlope',
                 'label' => 'Course Slope',
-                'rules' => 'required|integer'
+                'rules' => 'required|integer|trim'
             ),
             array(
                 'field' => 'courseRating',
                 'label' => 'Course Rating',
-                'rules' => 'required|decimal'
+                'rules' => 'required|decimal|trim'
             )
         );
 
@@ -135,17 +135,17 @@ class Course extends CI_Controller
             array(
                 'field' => 'newCourseName',
                 'label' => 'Course Name',
-                'rules' => 'max_length[45]'
+                'rules' => 'required|max_length[45]|valid_base64|min_length[1]|is_unique[course.courseName]'
             ),
             array(
                 'field' => 'newCourseRating',
                 'label' => 'Course Rating',
-                'rules' => 'decimal'
+                'rules' => 'decimal|trim'
             ),
             array(
                 'field' => 'newCourseSlope',
                 'label' => 'Course Slope',
-                'rules' => 'integer'
+                'rules' => 'integer|trim'
             )
         );
 
@@ -347,6 +347,19 @@ class Course extends CI_Controller
         else {
             return TRUE;
         }
+    }
+
+    public function uniqueName($courseName) {
+        $this->load->model('course_model');
+        $value = TRUE;
+        $courses = $this->course_model->getCourses();
+        foreach ($courses as $row) {
+            if ($courseName == $row->courseName) {
+                $value = FALSE;
+            }
+        }
+        $this->form_validation->set_message('uniqueName', 'A course with this name already exists.');
+        return $value;
     }
 
 }

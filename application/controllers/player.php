@@ -49,12 +49,12 @@ class Player extends CI_Controller
             array(
                 'field' => 'firstName',
                 'label' => 'First Name',
-                'rules' => 'required'
+                'rules' => 'required|trim|min_length[1]|max_length[45]|valid_base64'
             ),
             array(
                 'field' => 'lastName',
                 'label' => 'Last Name',
-                'rules' => 'required'
+                'rules' => 'required|trim|min_length[1]|max_length[45]|valid_base64'
             )
         );
 
@@ -128,12 +128,12 @@ class Player extends CI_Controller
             array(
                 'field' => 'newFirstName',
                 'label' => 'First Name',
-                'rules' => 'required'
+                'rules' => 'required|trim|min_length[1]|max_length[45]'
             ),
             array(
                 'field' => 'newLastName',
                 'label' => 'Last Name',
-                'rules' => 'required'
+                'rules' => 'required|trim|min_length[1]|max_length[45]'
             )
         );
 

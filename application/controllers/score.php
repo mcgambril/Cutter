@@ -34,7 +34,7 @@ class Score extends CI_Controller {
             array(
                 'field' => 'datepicker',
                 'label' => 'Date',
-                'rules' => 'required|callback_validateDate'
+                'rules' => 'required|callback_validateDate|trim'
             )
         );
 
@@ -111,7 +111,7 @@ class Score extends CI_Controller {
             array(
                 'field' => 'datepicker',
                 'label' => 'Date',
-                'rules' => 'required|callback_validateDate'
+                'rules' => 'required|callback_validateDate|trim'
             )
         );
 
@@ -121,12 +121,12 @@ class Score extends CI_Controller {
             $temp2 = array(
                 'field' => $row->playerID.'am-score',
                 'label' => $row->playerName.' AM Score',
-                'rules' => 'integer|greater_than[17]'
+                'rules' => 'trim|integer|greater_than[17]'
             );
             $temp3 = array(
                 'field' => $row->playerID.'pm-score',
                 'label' => $row->playerName.' PM Score',
-                'rules' => 'integer|greater_than[17]'
+                'rules' => 'trim|integer|greater_than[17]'
             );
             array_push($config, $temp2);
             array_push($config, $temp3);
@@ -294,10 +294,10 @@ class Score extends CI_Controller {
             array(
                 'field' => 'date',
                 'label' => 'Date',
-                'rules' => 'required|callback_validateDate'
+                'rules' => 'required|trim|callback_validateDate'
             )
         );
-        $this->form_validation->set_rules('date', 'Date', 'required|callback_validateDate');
+        $this->form_validation->set_rules('date', 'Date', 'required|trim|callback_validateDate');
         //$this->form_validation->set_rules($config);
 
         //date is posted in mm/dd/yyyy format
@@ -313,7 +313,7 @@ class Score extends CI_Controller {
             $temp2 = array(
                 'field' => $row->playerID.'-new-score',
                 'label' => $row->playerName.' New Score',
-                'rules' => 'integer|greater_than[17]'
+                'rules' => '|trim|integer|greater_than[17]'
             );
             array_push($config, $temp2);
             //$this->form_validation->set_rules($row->playerID.'-new-score', $row->playerName.' New Score', 'integer|greater_than[17]');

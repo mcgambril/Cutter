@@ -30,7 +30,7 @@ class Admin extends CI_Controller {
             array(
                 'field' => 'password',
                 'label' => 'Password',
-                'rules' => 'required|callback_passwordConfirm'
+                'rules' => 'required|trim|callback_passwordConfirm|'
             )
         );
 
@@ -81,17 +81,17 @@ class Admin extends CI_Controller {
             array(
                 'field' => 'password',
                 'label' => 'Password',
-                'rules' => 'required|callback_passwordConfirm'
+                'rules' => 'required|trim|callback_passwordConfirm'
             ),
             array(
                 'field' => 'newPass',
                 'label' => 'New Password',
-                'rules' => 'required|matches[confirmPass]'
+                'rules' => 'required|trim|matches[confirmPass]|max_length[45]|is_unique[cutteradmin.password]|min_length[4]|valid_base64'
             ),
             array(
                 'field' => 'confirmPass',
                 'label' => 'Confirm New Password',
-                'rules' =>'required|matches[newPass]'
+                'rules' =>'required|trim|matches[newPass]|max_length[45]'
             )
         );
 
