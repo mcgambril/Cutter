@@ -4,8 +4,10 @@
     <list default="true" id="bf1f04b8-8018-444a-9bbe-e11b375c07b1" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/controllers/admin.php" afterPath="$PROJECT_DIR$/application/controllers/admin.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/controllers/course.php" afterPath="$PROJECT_DIR$/application/controllers/course.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/controllers/player.php" afterPath="$PROJECT_DIR$/application/controllers/player.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/controllers/score.php" afterPath="$PROJECT_DIR$/application/controllers/score.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/views/course_view.php" afterPath="$PROJECT_DIR$/application/views/course_view.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/controllers/home.php" afterPath="$PROJECT_DIR$/application/controllers/home.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/views/home_view.php" afterPath="$PROJECT_DIR$/application/views/home_view.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="Cutter.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -29,7 +31,88 @@
     <favorites_list name="Cutter" />
   </component>
   <component name="FileEditorManager">
-    <leaf />
+    <leaf>
+      <file leaf-file-name="course.php" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/application/controllers/course.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.31161973" vertical-offset="180" max-vertical-offset="748">
+              <caret line="233" column="0" selection-start-line="233" selection-start-column="0" selection-end-line="233" selection-end-column="0" />
+              <folding>
+                <element signature="n#__construct#0;n#Course#0;n#!!top" expanded="false" />
+                <element signature="n#index#0;n#Course#0;n#!!top" expanded="false" />
+                <element signature="n#add#0;n#Course#0;n#!!top" expanded="false" />
+                <element signature="n#submitCourseAdd#0;n#Course#0;n#!!top" expanded="false" />
+                <element signature="n#courseAddResult#0;n#Course#0;n#!!top" expanded="false" />
+                <element signature="n#edit#0;n#Course#0;n#!!top" expanded="false" />
+                <element signature="n#submitCourseEdit#0;n#Course#0;n#!!top" expanded="false" />
+                <element signature="e#5552#6335#0#PHP" expanded="false" />
+                <element signature="n#courseEditResult#0;n#Course#0;n#!!top" expanded="false" />
+                <element signature="n#delete#0;n#Course#0;n#!!top" expanded="false" />
+                <element signature="n#submitDelete#0;n#Course#0;n#!!top" expanded="false" />
+                <element signature="n#courseDeleteResult#0;n#Course#0;n#!!top" expanded="false" />
+                <element signature="n#setHomeCourse#0;n#Course#0;n#!!top" expanded="false" />
+                <element signature="n#submitSetHomeCourse#0;n#Course#0;n#!!top" expanded="false" />
+                <element signature="n#setHomeCourseResult#0;n#Course#0;n#!!top" expanded="false" />
+                <element signature="n#validateNotEmpty#0;n#Course#0;n#!!top" expanded="false" />
+                <element signature="n#uniqueName#0;n#Course#0;n#!!top" expanded="false" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="handicap_error_view.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/application/views/handicap_error_view.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="-5.8846154" vertical-offset="0" max-vertical-offset="527">
+              <caret line="9" column="0" selection-start-line="9" selection-start-column="0" selection-end-line="25" selection-end-column="12" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="course_edit_view.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/application/views/course_edit_view.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="-7.0" vertical-offset="600" max-vertical-offset="1241">
+              <caret line="46" column="35" selection-start-line="46" selection-start-column="35" selection-end-line="46" selection-end-column="35" />
+              <folding>
+                <marker date="1452456788314" expanded="true" signature="880:2884" placeholder="..." />
+                <marker date="1452456788314" expanded="false" signature="984:1009" placeholder="..." />
+                <marker date="1452456788314" expanded="true" signature="1010:2840" placeholder="..." />
+                <marker date="1452456788314" expanded="true" signature="1062:1424" placeholder="..." />
+                <marker date="1452456788314" expanded="true" signature="1115:1371" placeholder="..." />
+                <marker date="1452456788314" expanded="true" signature="1476:2790" placeholder="..." />
+                <marker date="1452456788314" expanded="true" signature="1529:1892" placeholder="..." />
+                <marker date="1452456788314" expanded="true" signature="1945:2312" placeholder="..." />
+                <marker date="1452456788314" expanded="true" signature="2365:2736" placeholder="..." />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="course_model.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/application/models/course_model.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="-3.2692308" vertical-offset="0" max-vertical-offset="765">
+              <caret line="11" column="23" selection-start-line="11" selection-start-column="23" selection-end-line="11" selection-end-column="23" />
+              <folding>
+                <element signature="n#__construct#0;n#Course_model#0;n#!!top" expanded="false" />
+                <element signature="n#getCourses#0;n#Course_model#0;n#!!top" expanded="false" />
+                <element signature="n#getCourseID#0;n#Course_model#0;n#!!top" expanded="false" />
+                <element signature="n#getCourse#0;n#Course_model#0;n#!!top" expanded="false" />
+                <element signature="n#getCourseName#0;n#Course_model#0;n#!!top" expanded="false" />
+                <element signature="n#insertCourse#0;n#Course_model#0;n#!!top" expanded="false" />
+                <element signature="n#clearHomeCourse#0;n#Course_model#0;n#!!top" expanded="false" />
+                <element signature="n#updateHomeCourse#0;n#Course_model#0;n#!!top" expanded="false" />
+                <element signature="n#updateCourse#0;n#Course_model#0;n#!!top" expanded="false" />
+                <element signature="n#deleteCourse#0;n#Course_model#0;n#!!top" expanded="false" />
+                <marker date="1452470084354" expanded="true" signature="2749:2914" placeholder="INSERT INTO ..." />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+    </leaf>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -37,11 +120,9 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/application/views/admin_view.php" />
         <option value="$PROJECT_DIR$/application/.htaccess" />
         <option value="$PROJECT_DIR$/application/views/score_edit_view.php" />
         <option value="$PROJECT_DIR$/application/views/score_entry_success_view.php" />
-        <option value="$PROJECT_DIR$/application/views/home_view.php" />
         <option value="$PROJECT_DIR$/application/controllers/handicap.php" />
         <option value="$PROJECT_DIR$/application/models/cutterpassword_model.php" />
         <option value="$PROJECT_DIR$/application/models/cutteradmin.php" />
@@ -49,7 +130,6 @@
         <option value="$PROJECT_DIR$/application/views/home_header_view.php" />
         <option value="$PROJECT_DIR$/application/views/header_view.php" />
         <option value="$PROJECT_DIR$/application/views/course_add_view.php" />
-        <option value="$PROJECT_DIR$/application/controllers/home.php" />
         <option value="$PROJECT_DIR$/application/config/config.php" />
         <option value="$PROJECT_DIR$/application/views/score_edit_result_view.php" />
         <option value="$PROJECT_DIR$/application/views/player_delete_result_view.php" />
@@ -65,7 +145,6 @@
         <option value="$PROJECT_DIR$/application/views/course_edit_result_view.php" />
         <option value="$PROJECT_DIR$/application/views/course_delete_view.php" />
         <option value="$PROJECT_DIR$/application/views/course_set_home_view.php" />
-        <option value="$PROJECT_DIR$/application/views/course_view.php" />
         <option value="$PROJECT_DIR$/application/views/handicap_update_view.php" />
         <option value="$PROJECT_DIR$/assets/css/Site.css" />
         <option value="$PROJECT_DIR$/application/views/handicap_no_handicaps_view.php" />
@@ -84,9 +163,13 @@
         <option value="$PROJECT_DIR$/application/views/score_choose_date_view.php" />
         <option value="$PROJECT_DIR$/application/models/tempscore_model.php" />
         <option value="$PROJECT_DIR$/application/views/score_entry_result_view.php" />
-        <option value="$PROJECT_DIR$/application/controllers/admin.php" />
         <option value="$PROJECT_DIR$/application/controllers/player.php" />
         <option value="$PROJECT_DIR$/application/controllers/score.php" />
+        <option value="$PROJECT_DIR$/application/controllers/admin.php" />
+        <option value="$PROJECT_DIR$/application/controllers/home.php" />
+        <option value="$PROJECT_DIR$/application/views/home_view.php" />
+        <option value="$PROJECT_DIR$/application/views/course_view.php" />
+        <option value="$PROJECT_DIR$/application/views/Error.php" />
         <option value="$PROJECT_DIR$/application/controllers/course.php" />
       </list>
     </option>
@@ -387,7 +470,7 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
-    <editor active="false" />
+    <editor active="true" />
     <layout>
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
@@ -395,7 +478,7 @@
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.16764276" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.20937042" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32913387" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
@@ -456,14 +539,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/application/config/config.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.7521515" vertical-offset="73" max-vertical-offset="6324">
-          <caret line="30" column="34" selection-start-line="30" selection-start-column="34" selection-end-line="30" selection-end-column="34" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/application/views/course_add_result_view.php">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.23407917" vertical-offset="0" max-vertical-offset="581">
@@ -499,24 +574,6 @@
             <marker date="1452458836084" expanded="true" signature="-1:-1" placeholder="..." />
             <marker date="1452458836084" expanded="true" signature="-1:-1" placeholder="..." />
             <marker date="1452458836084" expanded="true" signature="-1:-1" placeholder="..." />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/application/views/course_edit_view.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.19190142" vertical-offset="673" max-vertical-offset="1241">
-          <caret line="46" column="35" selection-start-line="46" selection-start-column="35" selection-end-line="46" selection-end-column="35" />
-          <folding>
-            <marker date="1452456788314" expanded="true" signature="-1:-1" placeholder="..." />
-            <marker date="1452456788314" expanded="false" signature="-1:-1" placeholder="..." />
-            <marker date="1452456788314" expanded="true" signature="-1:-1" placeholder="..." />
-            <marker date="1452456788314" expanded="true" signature="-1:-1" placeholder="..." />
-            <marker date="1452456788314" expanded="true" signature="-1:-1" placeholder="..." />
-            <marker date="1452456788314" expanded="true" signature="-1:-1" placeholder="..." />
-            <marker date="1452456788314" expanded="true" signature="-1:-1" placeholder="..." />
-            <marker date="1452456788314" expanded="true" signature="-1:-1" placeholder="..." />
-            <marker date="1452456788314" expanded="true" signature="-1:-1" placeholder="..." />
           </folding>
         </state>
       </provider>
@@ -566,54 +623,11 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/application/views/course_view.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.20950705" vertical-offset="0" max-vertical-offset="1122">
-          <caret line="7" column="4" selection-start-line="7" selection-start-column="4" selection-end-line="7" selection-end-column="4" />
-          <folding>
-            <marker date="1452462248581" expanded="true" signature="-1:-1" placeholder="..." />
-            <marker date="1452462248581" expanded="true" signature="-1:-1" placeholder="..." />
-            <marker date="1452462248581" expanded="true" signature="-1:-1" placeholder="..." />
-            <marker date="1452462248581" expanded="true" signature="-1:-1" placeholder="..." />
-            <marker date="1452462248581" expanded="true" signature="-1:-1" placeholder="..." />
-            <marker date="1452462248581" expanded="true" signature="-1:-1" placeholder="..." />
-            <marker date="1452462248581" expanded="true" signature="-1:-1" placeholder="..." />
-            <marker date="1452462248581" expanded="true" signature="-1:-1" placeholder="..." />
-            <marker date="1452462248581" expanded="true" signature="-1:-1" placeholder="..." />
-            <marker date="1452462248581" expanded="true" signature="-1:-1" placeholder="..." />
-            <marker date="1452462248581" expanded="true" signature="-1:-1" placeholder="..." />
-            <marker date="1452462248581" expanded="true" signature="-1:-1" placeholder="..." />
-            <marker date="1452462248581" expanded="true" signature="-1:-1" placeholder="..." />
-            <marker date="1452462248581" expanded="true" signature="-1:-1" placeholder="..." />
-            <marker date="1452462248581" expanded="true" signature="-1:-1" placeholder="..." />
-            <marker date="1452462248581" expanded="true" signature="-1:-1" placeholder="..." />
-            <marker date="1452462248581" expanded="true" signature="-1:-1" placeholder="..." />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/assets/css/bootstrap.css">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.42300886" vertical-offset="23782" max-vertical-offset="115702">
           <caret line="1413" column="2" selection-start-line="1413" selection-start-column="2" selection-end-line="1413" selection-end-column="32" />
           <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/application/views/home_view.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.12852113" vertical-offset="216" max-vertical-offset="1921">
-          <caret line="17" column="28" selection-start-line="17" selection-start-column="28" selection-end-line="17" selection-end-column="28" />
-          <folding>
-            <element signature="n#div#0;n#div#0;n#div#0;n#div#1;n#!!top" expanded="false" />
-            <marker date="1452148823024" expanded="true" signature="-1:-1" placeholder="..." />
-            <marker date="1452148823024" expanded="true" signature="-1:-1" placeholder="..." />
-            <marker date="1452148823024" expanded="true" signature="-1:-1" placeholder="..." />
-            <marker date="1452148823024" expanded="true" signature="-1:-1" placeholder="..." />
-            <marker date="1452148823024" expanded="true" signature="-1:-1" placeholder="..." />
-            <marker date="1452148823024" expanded="true" signature="-1:-1" placeholder="..." />
-            <marker date="1452148823024" expanded="true" signature="-1:-1" placeholder="..." />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -657,14 +671,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-13.076923" vertical-offset="0" max-vertical-offset="510">
           <caret line="20" column="96" selection-start-line="20" selection-start-column="96" selection-end-line="20" selection-end-column="96" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/application/views/handicap_error_view.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.23407917" vertical-offset="0" max-vertical-offset="581">
-          <caret line="8" column="0" selection-start-line="8" selection-start-column="0" selection-end-line="8" selection-end-column="0" />
           <folding />
         </state>
       </provider>
@@ -865,45 +871,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/application/models/cutteradmin_model.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="1.4578314" vertical-offset="3" max-vertical-offset="952">
-          <caret line="59" column="0" selection-start-line="59" selection-start-column="0" selection-end-line="59" selection-end-column="0" />
-          <folding>
-            <element signature="n#__construct#0;n#Cutteradmin_model#0;n#!!top" expanded="false" />
-            <marker date="1452470462138" expanded="true" signature="-1:-1" placeholder="INSERT INTO ..." />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/application/models/player_model.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="1.1118761" vertical-offset="0" max-vertical-offset="748">
-          <caret line="244" column="0" selection-start-line="244" selection-start-column="0" selection-end-line="244" selection-end-column="0" />
-          <folding>
-            <element signature="n#__construct#0;n#Player_model#0;n#!!top" expanded="false" />
-            <element signature="n#getPlayers#0;n#Player_model#0;n#!!top" expanded="false" />
-            <element signature="n#getPlayersAZ#0;n#Player_model#0;n#!!top" expanded="false" />
-            <element signature="n#getPlayerScores#0;n#Player_model#0;n#!!top" expanded="false" />
-            <element signature="n#getPlayerRecentScores#0;n#Player_model#0;n#!!top" expanded="false" />
-            <element signature="n#getPlayersAndScores#0;n#Player_model#0;n#!!top" expanded="false" />
-            <element signature="n#getPlayerIDs#0;n#Player_model#0;n#!!top" expanded="false" />
-            <element signature="n#getPlayerIDsAtoZ#0;n#Player_model#0;n#!!top" expanded="false" />
-            <element signature="n#getPlayerByID#0;n#Player_model#0;n#!!top" expanded="false" />
-            <element signature="n#getPlayerNameByID#0;n#Player_model#0;n#!!top" expanded="false" />
-            <element signature="n#insertPlayer#0;n#Player_model#0;n#!!top" expanded="false" />
-            <element signature="n#updatePlayer#0;n#Player_model#0;n#!!top" expanded="false" />
-            <element signature="n#getNoScorePlayers#0;n#Player_model#0;n#!!top" expanded="false" />
-            <element signature="n#resetHandicapsBatch#0;n#Player_model#0;n#!!top" expanded="false" />
-            <element signature="n#updatePlayerHandicaps#0;n#Player_model#0;n#!!top" expanded="false" />
-            <element signature="n#deletePlayer#0;n#Player_model#0;n#!!top" expanded="false" />
-            <marker date="1452471303234" expanded="true" signature="-1:-1" placeholder="INSERT INTO ..." />
-            <marker date="1452471303234" expanded="true" signature="-1:-1" placeholder="SELECT playe..player..." />
-            <marker date="1452471303234" expanded="true" signature="-1:-1" placeholder="SELECT score..score..." />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/application/models/score_model.php">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.29259896" vertical-offset="0" max-vertical-offset="799">
@@ -1039,22 +1006,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/application/controllers/admin.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.52667814" vertical-offset="0" max-vertical-offset="581">
-          <caret line="74" column="44" selection-start-line="74" selection-start-column="44" selection-end-line="74" selection-end-column="44" />
-          <folding>
-            <element signature="n#index#0;n#Admin#0;n#!!top" expanded="false" />
-            <element signature="n#submitPass#0;n#Admin#0;n#!!top" expanded="false" />
-            <element signature="n#passwordConfirm#0;n#Admin#0;n#!!top" expanded="false" />
-            <element signature="n#changePassword#0;n#Admin#0;n#!!top" expanded="false" />
-            <element signature="n#submitChangePassword#0;n#Admin#0;n#!!top" expanded="false" />
-            <element signature="n#loadHomeLoggedIn#0;n#Admin#0;n#!!top" expanded="false" />
-            <element signature="n#validateNotEmpty#0;n#Admin#0;n#!!top" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/application/controllers/handicap.php">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.28169015" vertical-offset="61" max-vertical-offset="629">
@@ -1070,19 +1021,6 @@
             <element signature="n#noHandicaps#0;n#Handicap#0;n#!!top" expanded="false" />
             <element signature="n#error#0;n#Handicap#0;n#!!top" expanded="false" />
             <element signature="e#10014#10805#0#PHP" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/application/controllers/home.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.26333907" vertical-offset="0" max-vertical-offset="581">
-          <caret line="50" column="40" selection-start-line="50" selection-start-column="40" selection-end-line="50" selection-end-column="40" />
-          <folding>
-            <element signature="n#__construct#0;n#Home#0;n#!!top" expanded="false" />
-            <element signature="n#index#0;n#Home#0;n#!!top" expanded="false" />
-            <element signature="n#loadHomeLoggedIn#0;n#Home#0;n#!!top" expanded="false" />
-            <element signature="n#validateNotEmpty#0;n#Home#0;n#!!top" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -1107,49 +1045,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/application/controllers/course.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.61962134" vertical-offset="1153" max-vertical-offset="1751">
-          <caret line="356" column="50" selection-start-line="356" selection-start-column="50" selection-end-line="356" selection-end-column="50" />
-          <folding>
-            <element signature="n#index#0;n#Course#0;n#!!top" expanded="false" />
-            <element signature="n#add#0;n#Course#0;n#!!top" expanded="false" />
-            <element signature="n#courseAddResult#0;n#Course#0;n#!!top" expanded="false" />
-            <element signature="n#edit#0;n#Course#0;n#!!top" expanded="false" />
-            <element signature="n#submitCourseEdit#0;n#Course#0;n#!!top" expanded="false" />
-            <element signature="n#courseEditResult#0;n#Course#0;n#!!top" expanded="false" />
-            <element signature="n#delete#0;n#Course#0;n#!!top" expanded="false" />
-            <element signature="n#submitDelete#0;n#Course#0;n#!!top" expanded="false" />
-            <element signature="n#courseDeleteResult#0;n#Course#0;n#!!top" expanded="false" />
-            <element signature="n#setHomeCourse#0;n#Course#0;n#!!top" expanded="false" />
-            <element signature="n#submitSetHomeCourse#0;n#Course#0;n#!!top" expanded="false" />
-            <element signature="n#setHomeCourseResult#0;n#Course#0;n#!!top" expanded="false" />
-            <element signature="n#validateNotEmpty#0;n#Course#0;n#!!top" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/application/models/course_model.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.14629948" vertical-offset="0" max-vertical-offset="581">
-          <caret line="11" column="23" selection-start-line="11" selection-start-column="23" selection-end-line="11" selection-end-column="23" />
-          <folding>
-            <element signature="n#__construct#0;n#Course_model#0;n#!!top" expanded="false" />
-            <element signature="n#getCourses#0;n#Course_model#0;n#!!top" expanded="false" />
-            <element signature="n#getHomeCourse#0;n#Course_model#0;n#!!top" expanded="false" />
-            <element signature="n#getCourseID#0;n#Course_model#0;n#!!top" expanded="false" />
-            <element signature="n#getCourse#0;n#Course_model#0;n#!!top" expanded="false" />
-            <element signature="n#getCourseName#0;n#Course_model#0;n#!!top" expanded="false" />
-            <element signature="n#insertCourse#0;n#Course_model#0;n#!!top" expanded="false" />
-            <element signature="n#clearHomeCourse#0;n#Course_model#0;n#!!top" expanded="false" />
-            <element signature="n#updateHomeCourse#0;n#Course_model#0;n#!!top" expanded="false" />
-            <element signature="n#updateCourse#0;n#Course_model#0;n#!!top" expanded="false" />
-            <element signature="n#deleteCourse#0;n#Course_model#0;n#!!top" expanded="false" />
-            <marker date="1452470084354" expanded="true" signature="-1:-1" placeholder="INSERT INTO ..." />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/application/controllers/score.php">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.15318416" vertical-offset="13" max-vertical-offset="1496">
@@ -1169,6 +1064,178 @@
             <element signature="e#18345#19006#0#PHP" expanded="false" />
             <element signature="e#19011#20977#0#PHP" expanded="false" />
             <element signature="e#20982#21535#0#PHP" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/application/models/cutteradmin_model.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-24.692308" vertical-offset="4" max-vertical-offset="748">
+          <caret line="59" column="0" selection-start-line="59" selection-start-column="0" selection-end-line="59" selection-end-column="0" />
+          <folding>
+            <element signature="n#__construct#0;n#Cutteradmin_model#0;n#!!top" expanded="false" />
+            <element signature="n#getPassword#0;n#Cutteradmin_model#0;n#!!top" expanded="false" />
+            <marker date="1452470462138" expanded="true" signature="-1:-1" placeholder="INSERT INTO ..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/application/controllers/admin.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.5851979" vertical-offset="0" max-vertical-offset="581">
+          <caret line="173" column="1" selection-start-line="173" selection-start-column="1" selection-end-line="173" selection-end-column="1" />
+          <folding>
+            <element signature="n#__construct#0;n#Admin#0;n#!!top" expanded="false" />
+            <element signature="n#index#0;n#Admin#0;n#!!top" expanded="false" />
+            <element signature="n#submitPass#0;n#Admin#0;n#!!top" expanded="false" />
+            <element signature="n#passwordConfirm#0;n#Admin#0;n#!!top" expanded="false" />
+            <element signature="n#changePassword#0;n#Admin#0;n#!!top" expanded="false" />
+            <element signature="n#submitChangePassword#0;n#Admin#0;n#!!top" expanded="false" />
+            <element signature="n#loadHomeLoggedIn#0;n#Admin#0;n#!!top" expanded="false" />
+            <element signature="n#validateNotEmpty#0;n#Admin#0;n#!!top" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/application/controllers/home.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.38037866" vertical-offset="0" max-vertical-offset="581">
+          <caret line="98" column="1" selection-start-line="98" selection-start-column="1" selection-end-line="98" selection-end-column="1" />
+          <folding>
+            <element signature="n#__construct#0;n#Home#0;n#!!top" expanded="false" />
+            <element signature="n#index#0;n#Home#0;n#!!top" expanded="false" />
+            <element signature="n#loadHomeLoggedIn#0;n#Home#0;n#!!top" expanded="false" />
+            <element signature="n#validateNotEmpty#0;n#Home#0;n#!!top" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/application/models/player_model.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.43889844" vertical-offset="0" max-vertical-offset="748">
+          <caret line="74" column="43" selection-start-line="74" selection-start-column="43" selection-end-line="74" selection-end-column="43" />
+          <folding>
+            <element signature="n#__construct#0;n#Player_model#0;n#!!top" expanded="false" />
+            <element signature="n#getPlayers#0;n#Player_model#0;n#!!top" expanded="false" />
+            <element signature="n#getPlayersAZ#0;n#Player_model#0;n#!!top" expanded="false" />
+            <element signature="n#getPlayerScores#0;n#Player_model#0;n#!!top" expanded="false" />
+            <element signature="n#getPlayerRecentScores#0;n#Player_model#0;n#!!top" expanded="false" />
+            <element signature="n#getPlayersAndScores#0;n#Player_model#0;n#!!top" expanded="false" />
+            <element signature="n#getPlayerIDs#0;n#Player_model#0;n#!!top" expanded="false" />
+            <element signature="n#getPlayerIDsAtoZ#0;n#Player_model#0;n#!!top" expanded="false" />
+            <element signature="n#getPlayerByID#0;n#Player_model#0;n#!!top" expanded="false" />
+            <element signature="n#getPlayerNameByID#0;n#Player_model#0;n#!!top" expanded="false" />
+            <element signature="n#insertPlayer#0;n#Player_model#0;n#!!top" expanded="false" />
+            <element signature="n#updatePlayer#0;n#Player_model#0;n#!!top" expanded="false" />
+            <element signature="n#getNoScorePlayers#0;n#Player_model#0;n#!!top" expanded="false" />
+            <element signature="n#resetHandicapsBatch#0;n#Player_model#0;n#!!top" expanded="false" />
+            <element signature="n#updatePlayerHandicaps#0;n#Player_model#0;n#!!top" expanded="false" />
+            <element signature="n#deletePlayer#0;n#Player_model#0;n#!!top" expanded="false" />
+            <marker date="1452471303234" expanded="true" signature="-1:-1" placeholder="INSERT INTO ..." />
+            <marker date="1452471303234" expanded="true" signature="-1:-1" placeholder="SELECT playe..player..." />
+            <marker date="1452471303234" expanded="true" signature="-1:-1" placeholder="SELECT score..score..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/application/views/home_view.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.44894367" vertical-offset="969" max-vertical-offset="2652">
+          <caret line="72" column="60" selection-start-line="72" selection-start-column="60" selection-end-line="72" selection-end-column="60" />
+          <folding>
+            <marker date="1452482045615" expanded="true" signature="-1:-1" placeholder="..." />
+            <marker date="1452482045615" expanded="true" signature="-1:-1" placeholder="..." />
+            <marker date="1452482045615" expanded="true" signature="-1:-1" placeholder="..." />
+            <marker date="1452482045615" expanded="true" signature="-1:-1" placeholder="..." />
+            <marker date="1452482045615" expanded="true" signature="-1:-1" placeholder="..." />
+            <marker date="1452482045615" expanded="true" signature="-1:-1" placeholder="..." />
+            <marker date="1452482045615" expanded="true" signature="-1:-1" placeholder="..." />
+            <marker date="1452482045615" expanded="true" signature="-1:-1" placeholder="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/application/views/course_view.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.60387325" vertical-offset="405" max-vertical-offset="1275">
+          <caret line="44" column="26" selection-start-line="44" selection-start-column="26" selection-end-line="44" selection-end-column="26" />
+          <folding>
+            <marker date="1452482382998" expanded="true" signature="-1:-1" placeholder="..." />
+            <marker date="1452482382998" expanded="true" signature="-1:-1" placeholder="..." />
+            <marker date="1452482382998" expanded="true" signature="-1:-1" placeholder="..." />
+            <marker date="1452482382998" expanded="true" signature="-1:-1" placeholder="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/application/views/handicap_error_view.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-5.8846154" vertical-offset="0" max-vertical-offset="527">
+          <caret line="9" column="0" selection-start-line="9" selection-start-column="0" selection-end-line="25" selection-end-column="12" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/application/views/course_edit_view.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-7.0" vertical-offset="600" max-vertical-offset="1241">
+          <caret line="46" column="35" selection-start-line="46" selection-start-column="35" selection-end-line="46" selection-end-column="35" />
+          <folding>
+            <marker date="1452456788314" expanded="true" signature="880:2884" placeholder="..." />
+            <marker date="1452456788314" expanded="false" signature="984:1009" placeholder="..." />
+            <marker date="1452456788314" expanded="true" signature="1010:2840" placeholder="..." />
+            <marker date="1452456788314" expanded="true" signature="1062:1424" placeholder="..." />
+            <marker date="1452456788314" expanded="true" signature="1115:1371" placeholder="..." />
+            <marker date="1452456788314" expanded="true" signature="1476:2790" placeholder="..." />
+            <marker date="1452456788314" expanded="true" signature="1529:1892" placeholder="..." />
+            <marker date="1452456788314" expanded="true" signature="1945:2312" placeholder="..." />
+            <marker date="1452456788314" expanded="true" signature="2365:2736" placeholder="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/application/models/course_model.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-3.2692308" vertical-offset="0" max-vertical-offset="765">
+          <caret line="11" column="23" selection-start-line="11" selection-start-column="23" selection-end-line="11" selection-end-column="23" />
+          <folding>
+            <element signature="n#__construct#0;n#Course_model#0;n#!!top" expanded="false" />
+            <element signature="n#getCourses#0;n#Course_model#0;n#!!top" expanded="false" />
+            <element signature="n#getCourseID#0;n#Course_model#0;n#!!top" expanded="false" />
+            <element signature="n#getCourse#0;n#Course_model#0;n#!!top" expanded="false" />
+            <element signature="n#getCourseName#0;n#Course_model#0;n#!!top" expanded="false" />
+            <element signature="n#insertCourse#0;n#Course_model#0;n#!!top" expanded="false" />
+            <element signature="n#clearHomeCourse#0;n#Course_model#0;n#!!top" expanded="false" />
+            <element signature="n#updateHomeCourse#0;n#Course_model#0;n#!!top" expanded="false" />
+            <element signature="n#updateCourse#0;n#Course_model#0;n#!!top" expanded="false" />
+            <element signature="n#deleteCourse#0;n#Course_model#0;n#!!top" expanded="false" />
+            <marker date="1452470084354" expanded="true" signature="2749:2914" placeholder="INSERT INTO ..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/application/controllers/course.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.31161973" vertical-offset="180" max-vertical-offset="748">
+          <caret line="233" column="0" selection-start-line="233" selection-start-column="0" selection-end-line="233" selection-end-column="0" />
+          <folding>
+            <element signature="n#__construct#0;n#Course#0;n#!!top" expanded="false" />
+            <element signature="n#index#0;n#Course#0;n#!!top" expanded="false" />
+            <element signature="n#add#0;n#Course#0;n#!!top" expanded="false" />
+            <element signature="n#submitCourseAdd#0;n#Course#0;n#!!top" expanded="false" />
+            <element signature="n#courseAddResult#0;n#Course#0;n#!!top" expanded="false" />
+            <element signature="n#edit#0;n#Course#0;n#!!top" expanded="false" />
+            <element signature="n#submitCourseEdit#0;n#Course#0;n#!!top" expanded="false" />
+            <element signature="e#5552#6335#0#PHP" expanded="false" />
+            <element signature="n#courseEditResult#0;n#Course#0;n#!!top" expanded="false" />
+            <element signature="n#delete#0;n#Course#0;n#!!top" expanded="false" />
+            <element signature="n#submitDelete#0;n#Course#0;n#!!top" expanded="false" />
+            <element signature="n#courseDeleteResult#0;n#Course#0;n#!!top" expanded="false" />
+            <element signature="n#setHomeCourse#0;n#Course#0;n#!!top" expanded="false" />
+            <element signature="n#submitSetHomeCourse#0;n#Course#0;n#!!top" expanded="false" />
+            <element signature="n#setHomeCourseResult#0;n#Course#0;n#!!top" expanded="false" />
+            <element signature="n#validateNotEmpty#0;n#Course#0;n#!!top" expanded="false" />
+            <element signature="n#uniqueName#0;n#Course#0;n#!!top" expanded="false" />
           </folding>
         </state>
       </provider>

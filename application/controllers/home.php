@@ -21,27 +21,30 @@ class Home extends CI_Controller {
         date_default_timezone_set('America/Mexico_City');
 
         $data['getPlayersAndScoresQuery'] = $this->player_model->getPlayersAndScores();
-        foreach ($data['getPlayersAndScoresQuery'] as $row) {
-            //getRecentScores returns FALSE to getPlayersAndScores if no scores are entered for that player
-            if ($row->scores == FALSE) {
-                $row->playerScoreCount = 0;
-            }
-            else {
-                $row->playerScoreCount = count($row->scores);
-                foreach( $row->scores as $r) {
-                    $r->scoreDate = date("m/d/Y", strtotime($r->scoreDate));
+        if ($data['getPlayersAndScoresQuery'] != FALSE) {
+            $data['noPlayers'] = FALSE;
+            foreach ($data['getPlayersAndScoresQuery'] as $row) {
+                //getRecentScores returns FALSE to getPlayersAndScores if no scores are entered for that player
+                if ($row->scores == FALSE) {
+                    $row->playerScoreCount = 0;
+                } else {
+                    $row->playerScoreCount = count($row->scores);
+                    foreach ($row->scores as $r) {
+                        $r->scoreDate = date("m/d/Y", strtotime($r->scoreDate));
+                    }
                 }
             }
-        }
 
-        $data['getHomeCourseQuery'] = $this->course_model->getHomeCourse();
-        if ($this->validateNotEmpty($data['getHomeCourseQuery'] == TRUE)) {
-            $data['empty'] = FALSE;
+            $data['getHomeCourseQuery'] = $this->course_model->getHomeCourse();
+            if ($this->validateNotEmpty($data['getHomeCourseQuery'] == TRUE)) {
+                $data['empty'] = FALSE;
+            } else {
+                $data['empty'] = TRUE;
+            }
         }
         else {
-            $data['empty'] = TRUE;
+            $data['noPlayers'] = TRUE;
         }
-
 
         $this->load->view('home_header_view');
         $this->load->view('home_view', $data);
@@ -54,31 +57,34 @@ class Home extends CI_Controller {
         $this->load->model('score_model');
 
         $data['getPlayersAndScoresQuery'] = $this->player_model->getPlayersAndScores();
-        foreach ($data['getPlayersAndScoresQuery'] as $row) {
-            //getRecentScores returns FALSE to getPlayersAndScores if no scores are entered for that player
-            if ($row->scores == FALSE) {
-                $row->playerScoreCount = 0;
-            }
-            else {
-                $row->playerScoreCount = count($row->scores);
-                foreach( $row->scores as $r) {
-                    $r->scoreDate = date("m/d/Y", strtotime($r->scoreDate));
+        if ($data['getPlayersAndScoresQuery'] != FALSE) {
+            $data['noPlayers'] = FALSE;
+            foreach ($data['getPlayersAndScoresQuery'] as $row) {
+                //getRecentScores returns FALSE to getPlayersAndScores if no scores are entered for that player
+                if ($row->scores == FALSE) {
+                    $row->playerScoreCount = 0;
+                } else {
+                    $row->playerScoreCount = count($row->scores);
+                    foreach ($row->scores as $r) {
+                        $r->scoreDate = date("m/d/Y", strtotime($r->scoreDate));
+                    }
                 }
             }
-        }
 
-        $data['getHomeCourseQuery'] = $this->course_model->getHomeCourse();
-        if ($this->validateNotEmpty($data['getHomeCourseQuery'] == TRUE)) {
-            $data['empty'] = FALSE;
+            $data['getHomeCourseQuery'] = $this->course_model->getHomeCourse();
+            if ($this->validateNotEmpty($data['getHomeCourseQuery'] == TRUE)) {
+                $data['empty'] = FALSE;
+            } else {
+                $data['empty'] = TRUE;
+            }
         }
         else {
-            $data['empty'] = TRUE;
+            $data['noPlayers'] = TRUE;
         }
 
         $this->load->view('header_view');
         $this->load->view('home_view', $data);
         $this->load->view('footer_view');
-
     }
 
     public function validateNotEmpty($data) {

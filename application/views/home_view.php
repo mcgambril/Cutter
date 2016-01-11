@@ -70,20 +70,28 @@
                                 </thead>
                                 <tbody>
                                     <?php
-                                        foreach ($getPlayersAndScoresQuery as $row) {
-                                            //echo'
+                                        if ($noPlayers == TRUE) {
                                             echo '
-                                                <tr data-toggle="collapse" data-target="#'.$row->playerID.'" class="accordion-toggle pointer">';
-                                            echo '
+                                                <tr>
+                                                    <td colspan="3" class="centered">No Players exist in the system.</td>
+                                                </tr>
+                                            ';
+                                        }
+                                        else {
+                                            foreach ($getPlayersAndScoresQuery as $row) {
+                                                //echo'
+                                                echo '
+                                                <tr data-toggle="collapse" data-target="#' . $row->playerID . '" class="accordion-toggle pointer">';
+                                                echo '
                                                     <!--<td class="col-md-3"><a class="btn btn-default col-md-12 viewScoresBtn">Scores Details</a></td>-->
                                                     <td class="col-xs-12 col-md-4"><span class="caret"></span> ' . $row->playerName . '</td>
                                                     <td class="col-xs-12 col-md-4 centered">' . $row->playerHandicap . '</td>
                                                     <td class="col-xs-12 col-md-4 centered">' . $row->playerHandicapIndex . '</td>
                                                 </tr>';
-                                            echo '
-                                                <tr id="'.$row->playerID.'" class="collapse noHover">';
-                                            /*<td colspan="1" class="scoresTitle">Last ' . $row->playerScoreCount . ' Score(s):  </td>*/
-                                            echo '
+                                                echo '
+                                                <tr id="' . $row->playerID . '" class="collapse noHover">';
+                                                /*<td colspan="1" class="scoresTitle">Last ' . $row->playerScoreCount . ' Score(s):  </td>*/
+                                                echo '
 
                                                     <td colspan="3">
                                                         <p class="leftPadFive">Last ' . $row->playerScoreCount . ' Scores: </p>
@@ -98,30 +106,29 @@
                                                                     </tr>
                                                                 </thead>
                                                                 <tbody>';
-                                                                if ($row->playerScoreCount == 0) {
-                                                                    echo '
+                                                if ($row->playerScoreCount == 0) {
+                                                    echo '
                                                                         <tr>
                                                                             <td colspan="3" class="centered">No scores are entered for this player.</td>
                                                                         </tr>
                                                                     ';
-                                                                }
-                                                                else {
-                                                                    foreach ($row->scores as $r) {
-                                                                        echo '
+                                                } else {
+                                                    foreach ($row->scores as $r) {
+                                                        echo '
                                                                         <tr>
                                                                             <td class="col-xs-12 col-md-4">' . $r->scoreDate . '</td>
                                                                             <td class="col-xs-12 col-md-4">' . $r->scoreScore . '</td>';
-                                                                        if ($r->scoreDifferentialUsed == 1) {
-                                                                            echo '
+                                                        if ($r->scoreDifferentialUsed == 1) {
+                                                            echo '
                                                                                 <td class="col-xs-12 col-md-4">' . $r->scoreDifferential . '*</td>';
-                                                                        } else {
-                                                                            echo '
+                                                        } else {
+                                                            echo '
                                                                                 <td class="col-xs-12 col-md-4">' . $r->scoreDifferential . '</td>';
-                                                                        }
-                                                                        echo '</tr>';
-                                                                    }
-                                                                }
-                                            echo '
+                                                        }
+                                                        echo '</tr>';
+                                                    }
+                                                }
+                                                echo '
                                                                 </tbody>
                                                             </table>
 
@@ -129,7 +136,8 @@
                                                         <br />
                                                     </td>
                                                 </tr>';
-                                            //';
+                                                //';
+                                            }
                                         }
                                     ?>
                                 </tbody>

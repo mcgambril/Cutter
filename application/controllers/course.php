@@ -17,13 +17,18 @@ class Course extends CI_Controller
     public function index() {
         $this->load->model('course_model');
         $data['getCoursesQuery'] = $this->course_model->getCourses();
-        foreach($data['getCoursesQuery'] as $row) {
-            if ($row->courseDefault == 1) {
-                $row->courseDefault = 'Home Course';
+        if ($data['getCoursesQuery'] != FALSE) {
+            $data['noCourses'] = FALSE;
+            foreach ($data['getCoursesQuery'] as $row) {
+                if ($row->courseDefault == 1) {
+                    $row->courseDefault = 'Home Course';
+                } else {
+                    $row->courseDefault = '-';
+                }
             }
-            else {
-                $row->courseDefault = '-';
-            }
+        }
+        else {
+            $data['noCourses'] = TRUE;
         }
 
         $this->load->view('header_view');
@@ -107,23 +112,24 @@ class Course extends CI_Controller
         }
 
         $data['getCourseQuery'] = $this->course_model->getCourse($id, 0);
-        foreach($data['getCourseQuery'] as $row) {
-            $data['courseName'] = $row->courseName;
-            /*if($row->courseDefault == 0) {
-                $data['checkedLabel'] = 'No ';
-                $data['checked'] = 'unchecked';
-                $data['changePrompt'] = 'Set as Home Course?';
+        if ($data['getCourseQuery'] != FALSE) {
+            foreach ($data['getCourseQuery'] as $row) {
+                $data['courseName'] = $row->courseName;
             }
-            else {
-                $data['checkedLabel'] = 'Yes ';
-                $data['checked'] = 'checked';
-                $data['changePrompt'] = 'Remove as Home Course?';
-            }*/
-        }
 
-        $this->load->view('header_view');
-        $this->load->view('course_edit_view', $data);
-        $this->load->view('footer_view');
+            $this->load->view('header_view');
+            $this->load->view('course_edit_view', $data);
+            $this->load->view('footer_view');
+        }
+        else {
+            $data['errorMessage'] = "The course's information was unable to be loaded at this time.  Please try again later.";
+            $data['link'] = 'index.php/course/index';
+            $data['buttonText'] = 'Course - Home';
+
+            $this->load->view('header_view');
+            $this->load->view('error_view', $data);
+            $this->load->view('footer_view');
+        }
     }
 
     public function submitCourseEdit() {
@@ -162,53 +168,58 @@ class Course extends CI_Controller
 
             $change = FALSE;
             $oldCourse = $this->course_model->getCourse($courseID, 0);
-            foreach ($oldCourse as $row) {
-                if ($newCourseName == "" || $newCourseName == NULL) {
-                    $newCourseName = $row->courseName;
-                }
-                else {
-                    $change = TRUE;
+            if ($oldCourse != FALSE) {
+                foreach ($oldCourse as $row) {
+                    if ($newCourseName == "" || $newCourseName == NULL) {
+                        $newCourseName = $row->courseName;
+                    } else {
+                        $change = TRUE;
+                    }
+
+                    if ($newCourseSlope == "" || $newCourseSlope == 0 || $newCourseSlope == NULL) {
+                        $newCourseSlope = $row->courseSlope;
+                    } else {
+                        $change = TRUE;
+                    }
+
+                    if ($newCourseRating == "" || $newCourseRating == 0 || $newCourseRating == NULL) {
+                        $newCourseRating = $row->courseRating;
+                    } else {
+                        $change = TRUE;
+                    }
                 }
 
-                if ($newCourseSlope == "" || $newCourseSlope == 0 || $newCourseSlope == NULL) {
-                    $newCourseSlope = $row->courseSlope;
-                }
-                else {
-                    $change = TRUE;
-                }
+                if ($change == TRUE) {
+                    $data['courseName'] = $newCourseName;
+                    $data['courseSlope'] = $newCourseSlope;
+                    $data['courseRating'] = $newCourseRating;
 
-                if ($newCourseRating == "" || $newCourseRating == 0 || $newCourseRating == NULL) {
-                    $newCourseRating = $row->courseRating;
+                    if ($this->course_model->updateCourse($courseID, $data) == TRUE) {
+                        $data['title'] = 'Success!';
+                        $data['message1'] = 'The appropriate changes were made and the database updated accordingly.';
+                        $data['message2'] = $newCourseName . "'s information was updated as follows:";
+                    } else {
+                        $data['title'] = 'Failure';
+                        $data['message1'] = 'Error:  Something went wrong and the changes were not able to be applied to the database.';
+                        $data['message2'] = 'Please try again later.';
+                    }
+
+                    $data['courseID'] = $courseID;
+
+                    $this->courseEditResult($data);
+                    RETURN;
+
+                } else {
+                    $this->edit($courseID);
+                    RETURN;
                 }
-                else {
-                    $change = TRUE;
-                }
-            }
-
-            if ($change == TRUE) {
-                $data['courseName'] = $newCourseName;
-                $data['courseSlope'] = $newCourseSlope;
-                $data['courseRating'] = $newCourseRating;
-
-                if ($this->course_model->updateCourse($courseID, $data) == TRUE) {
-                    $data['title'] = 'Success!';
-                    $data['message1'] = 'The appropriate changes were made and the database updated accordingly.';
-                    $data['message2'] = $newCourseName . "'s information was updated as follows:";
-                }
-                else {
-                    $data['title'] = 'Failure';
-                    $data['message1'] = 'Error:  Something went wrong and the changes were not able to be applied to the database.';
-                    $data['message2'] = 'Please try again later.';
-                }
-
-                $data['courseID'] = $courseID;
-
-                $this->courseEditResult($data);
-                RETURN;
-
             }
             else {
-                $this->edit($courseID);
+                $data['title'] = 'Failure';
+                $data['message1'] = 'Error:  Something went wrong and the changes were not able to be applied to the database.';
+                $data['message2'] = 'Please try again later.';
+
+                $this->courseEditResult($data);
                 RETURN;
             }
         }
@@ -228,18 +239,32 @@ class Course extends CI_Controller
 
         $courseID = $this->uri->segment(3);
         $data['getCourseQuery'] = $this->course_model->getCourse($courseID, 0);
-        foreach ($data['getCourseQuery'] as $row) {
-            if ($row->courseDefault == 0) {
-                $row->courseDefault = '-';
+        if ($data['getCourseQuery'] != FALSE) {
+            foreach ($data['getCourseQuery'] as $row) {
+                if ($row->courseDefault == 0) {
+                    $row->courseDefault = '-';
+                }
+                else {
+                    $row->courseDefault = 'Yes';
+                }
             }
-            else {
-                $row->courseDefault = 'Yes';
-            }
+
+            $this->load->view('header_view');
+            $this->load->view('course_delete_view', $data);
+            $this->load->view('footer_view');
+            RETURN;
+        }
+        else {
+            $data['errorMessage'] = "The course's information was unable to be loaded at this time.  Please try again later.";
+            $data['link'] = 'index.php/course/index';
+            $data['buttonText'] = 'Course - Home';
+
+            $this->load->view('header_view');
+            $this->load->view('error_view');
+            $this->load->view('footer_view');
+            RETURN;
         }
 
-        $this->load->view('header_view');
-        $this->load->view('course_delete_view', $data);
-        $this->load->view('footer_view');
     }
 
     public function submitDelete() {
@@ -251,10 +276,27 @@ class Course extends CI_Controller
         foreach ($data['getCourseNameQuery'] as $row) {
             $courseName = $row->courseName;
         }
+        if (empty($courseName) == TRUE) {
+            $courseName = 'The course';
+        }
 
         $queryResult = $this->course_model->deleteCourse((int)$courseID);
+        if ($queryResult != FALSE) {
+            $this->courseDeleteResult($queryResult, $courseName);
+            RETURN;
+        }
+        else {
+            $data['errorMessage'] = 'The course was unable to be deleted at this time. Please try again later.';
+            $data['link'] = 'index.php/course/index';
+            $data['buttonText'] = 'Course - Home';
 
-        $this->courseDeleteResult($queryResult, $courseName);
+            $this->load->view('header_view');
+            $this->load->view('error_view');
+            $this->load->view('footer_view');
+            RETURN;
+        }
+
+
     }
 
     public function courseDeleteResult($queryResult, $courseName) {
@@ -313,23 +355,36 @@ class Course extends CI_Controller
         else {
             $newHomeCourse = $this->input->post('course');
             $temp['newHomeCourse'] = $this->course_model->getCourse($newHomeCourse, 0);
-            foreach ($temp['newHomeCourse'] as $row) {
-                $newHomeCourseName = $row->courseName;
-            }
+            if ($temp['newHomeCourse'] != FALSE) {
+                foreach ($temp['newHomeCourse'] as $row) {
+                    $newHomeCourseName = $row->courseName;
+                }
 
-            if ($this->course_model->updateHomeCourse($newHomeCourse) == TRUE) {
-                $data['title'] = 'Success!';
-                $data['message1'] = $newHomeCourseName . ' was successfully set as the new Home Course.';
-                $data['message2'] = '';
+                if ($this->course_model->updateHomeCourse($newHomeCourse) == TRUE) {
+                    $data['title'] = 'Success!';
+                    $data['message1'] = $newHomeCourseName . ' was successfully set as the new Home Course.';
+                    $data['message2'] = '';
+                }
+                else {
+                    $data['title'] = 'Failed';
+                    $data['message1'] = 'Error:  The Home course failed to update at this time.  However, the Previous Home Course may have already been cleared.';
+                    $data['message2'] = 'Please try setting a new home course again to ensure there is one on record.';
+                }
+
+                $this->setHomeCourseResult($data);
+                return;
             }
             else {
-                $data['title'] = 'Failed';
-                $data['message1'] = 'Error:  The Home course failed to update at this time.  However, the Previous Home Course may have already been cleared.';
-                $data['message2'] = 'Please try setting a new home course again to ensure there is one on record.';
+                $data['errorMessage'] = "The new home course was unable to be set at this time.  Please try again later";
+                $data['link'] = 'index.php/course/setHomeCourse';
+                $data['buttonText'] = 'Back';
+
+                $this->load->view('header_view');
+                $this->load->view('error_view');
+                $this->load->view('footer_view');
+                RETURN;
             }
 
-            $this->setHomeCourseResult($data);
-            return;
         }
     }
 
