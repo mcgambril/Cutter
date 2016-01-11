@@ -47,8 +47,8 @@ $config['index_page'] = 'index.php';    //index.php
 |
 */
 
-$config['uri_protocol']	= 'AUTO';  //original setting that works
-//$config['uri_protocol'] = "REQUEST_URI";  //trying to get rid of index.php
+//$config['uri_protocol']	= 'AUTO';  //original setting that works
+$config['uri_protocol'] = "REQUEST_URI";  //trying to get rid of index.php
 
 /*
 |--------------------------------------------------------------------------

@@ -253,14 +253,17 @@ class Score extends CI_Controller {
                     else {
                         if ($this->score_model->insertScoreBatch($data) == TRUE) {
                             if ($this->tempscore_model->insertTempscoreBatch($data2) == TRUE) {
+
                                 if ($this->tempscore_model->updateTempScores() == True) {
                                     $data3['tempScoresError'] = FALSE;
                                     $data3['getTempScoresQuery'] = $this->tempscore_model->getTempScores();
+
                                     if ($data3['getTempScoresQuery'] != FALSE) {
                                         $data3['tempScoresError'] = FALSE;
                                         foreach ($data3['getTempScoresQuery'] as $row) {
                                             $row->tempDate = date("m/d/Y", strtotime($row->tempDate));
                                         }
+
                                         if ($this->tempscore_model->deleteTempScores() == FALSE) {
                                             $data3['tempScoresError'] = TRUE;
                                             $this->scoreEntryResult($data3);
@@ -426,6 +429,7 @@ class Score extends CI_Controller {
 
                 if($this->validateNotEmpty($temp['scoreList'] == TRUE)) {
                     $updateScores = array();
+                    $errors = array();
                     foreach ($temp['scoreList'] as $key => $row) {
                         $change = FALSE;
                         $id = $row->scoreID;
@@ -437,19 +441,42 @@ class Score extends CI_Controller {
                         $tempNewScore = $this->input->post($row->scoreID . '-new-score');
                         if($tempNewScore == "" || $tempNewScore == null || $tempNewScore == 0){
                             $newScore = $row->scoreScore;
+                            $newDiff = $row->scoreDifferential;
                         }
                         else {
                             $newScore = $tempNewScore;
-                            $change = TRUE;
+                            $newDiff = $this->calculateDifferential($newScore, $row->scoreCourseID);
+                            if ($newDiff == FALSE) {
+                                $tempError = array(
+                                    "scoreID" => $id,
+                                    "scoreCourseID" => $newCourseID,
+                                    "scoreScore" => $newScore,
+                                    "scoreDifferential" => $newDiff
+                                );
+                                array_push($errors, $tempError);
+                            }
+                            else {
+                                $change = TRUE;
+                            }
                         }
-                        if ($change == TRUE) {
+                        if ($change == TRUE && $newDiff != FALSE) {
                             $tempUpdate = array (
                                 "scoreID" => $id,
                                 "scoreCourseID" => $newCourseID,
-                                "scoreScore" => $newScore
+                                "scoreScore" => $newScore,
+                                "scoreDifferential" => $newDiff
                             );
                             array_push($updateScores, $tempUpdate);
                         }
+                    }
+
+                    if ($this->validateNotEmpty($errors) == TRUE) {
+                        $messageData['errors'] = TRUE;
+                        $messageData['errorTitle'] = 'Error:';
+                        $messageData['errorMessage'] = 'An error occurred and ' . count($errors) . ' of the edited scores were unable to be applied to the database.  Identify those that failed and try again later.';
+                    }
+                    else {
+                        $messageData['errors'] = FALSE;
                     }
 
                     if($this->validateNotEmpty($updateScores) == TRUE) {

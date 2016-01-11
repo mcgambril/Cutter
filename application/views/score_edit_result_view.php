@@ -20,6 +20,14 @@
     <br>
     <h3> <?php echo $message ?> </h3>
     <br><br>
+    <?php
+        if ($errors == TRUE) {
+            echo'<h1>' . $errorTitle . '</h1>
+            <br>
+            <h3>' . $errorMessage . '</h3>
+            <br><br>';
+        }
+    ?>
 </div>
 
 <div class="row">

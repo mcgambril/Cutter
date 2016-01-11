@@ -81,7 +81,6 @@ class Handicap extends CI_Controller
                     }
                 }
             }
-            //unset($row);
 
             if ($this->score_model->clearHandicapScores() == TRUE) {
                 if ($this->validateNotEmpty($dataSetScoreIDs) == TRUE) {
@@ -134,8 +133,9 @@ class Handicap extends CI_Controller
                     $limit = $differentialSchedule[$scoreCount];
                     $handicapIndex = $this->calculateHandicapIndex($row->scorePlayerID, $limit);
                     $handicap = $this->calculateHandicap($handicapIndex);
-                    if ($handicap != FALSE) {
+                    if ($handicap !== FALSE) {
                         if ($this->player_model->updatePlayerHandicaps($row->scorePlayerID, $handicapIndex, $handicap) == FALSE) {
+                            //$row->playerName = "This Guy";
                             array_push($errorUpdates, $row);
                         }
                         else {
@@ -143,6 +143,9 @@ class Handicap extends CI_Controller
                         }
                     }
                     else {
+                        //handiap for matthew gambril == false for some reason
+                        $this->load->view('error_view');
+                        $row->playerName = "This Guy";
                         array_push($errorUpdates, $row);
                     }
                 }
@@ -187,10 +190,14 @@ class Handicap extends CI_Controller
             }
             else {
                 return FALSE;
+                //return 100;   //debugging with this
+                //$this->load->view('error_view');
             }
         }
         else {
             return FALSE;
+            //return 100;     //debugging with this
+            //$this->load->view('error_view');
         }
 
     }
@@ -225,22 +232,20 @@ class Handicap extends CI_Controller
             }
             else {
                 return FALSE;
+                //return 100;
+                //$this->load->view('error_view');
             }
         }
         else {
             return FALSE;
+            //return 100;
+            //$this->load->view('error_view');
         }
     }
 
     public function handicapUpdateResult($updatedHandicaps, $errorUpdates) {
-        //$length = 0;
         if ($this->validateNotEmpty($updatedHandicaps) == TRUE) {
             $data['updatedHandicaps'] = $updatedHandicaps;
-            /*foreach ($updatedHandicaps as $row) {
-                if (strlen($row->playerName) > $length) {
-                    $length = strlen($row->playerName);
-                }
-            }*/
         }
         else {
             $data['updatedHandicaps'] = NULL;
@@ -248,18 +253,10 @@ class Handicap extends CI_Controller
 
         if ($this->validateNotEmpty($errorUpdates) == TRUE) {
             $data['errorUpdates'] = $errorUpdates;
-            /*foreach($errorUpdates as $row) {
-                if (strlen($row->playerName) > $length) {
-                    $length = strlen($row->playerName);
-                }
-            }*/
         }
         else {
             $data['errorUpdates'] = NULL;
         }
-        /*$length = $length + 3;
-        $data['length'] = $length;*/
-        /*$data['trailer'] = "..................................................";*/
 
         $this->load->view('header_view');
         $this->load->view('handicap_update_result_view', $data);
