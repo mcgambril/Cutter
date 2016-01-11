@@ -17,18 +17,31 @@ class Player extends CI_Controller
     public function index () {
         $this->load->model('player_model');
         $data['getPlayersAZQuery'] = $this->player_model->getPlayersAZ();
-        foreach($data['getPlayersAZQuery'] as $row) {
-            if ($row->playerHandicap == "" || 0 || null) {
-                $row->playerHandicap = "TBD";
+        if ($data['getPlayersAZQuery'] != FALSE) {
+            foreach($data['getPlayersAZQuery'] as $row) {
+                if ($row->playerHandicap == "" || 0 || null) {
+                    $row->playerHandicap = "TBD";
+                }
+                if ($row->playerHandicapIndex == "" || 0 || null) {
+                    $row->playerHandicapIndex = "TBD";
+                }
             }
-            if ($row->playerHandicapIndex == "" || 0 || null) {
-                $row->playerHandicapIndex = "TBD";
-            }
-        }
 
-        $this->load->view('header_view');
-        $this->load->view('player_view', $data);
-        $this->load->view('footer_view');
+            $this->load->view('header_view');
+            $this->load->view('player_view', $data);
+            $this->load->view('footer_view');
+            RETURN;
+        }
+        else {
+            $data['errorMessage'] = 'Something went wrong and player information was unable to be loaded at this time.';
+            $data['link'] = 'index.php/home/loadHomeLoggedIn';
+            $data['buttonText'] = 'Home';
+
+            $this->load->view('header_view');
+            $this->load->view('error_view', $data);
+            $this->load->view('footer_view');
+            RETURN;
+        }
     }
 
     public function add() {
@@ -105,18 +118,31 @@ class Player extends CI_Controller
         }
 
         $data['getPlayerByIDQuery'] = $this->player_model->getPlayerByID($id);
-        foreach($data['getPlayerByIDQuery'] as $row) {
-            if(is_null($row->playerHandicap)) {
-                $row->playerHandicap = 'TBD';
+        if ($data['getPlayerByIDQuery'] != FALSE) {
+            foreach($data['getPlayerByIDQuery'] as $row) {
+                if(is_null($row->playerHandicap)) {
+                    $row->playerHandicap = 'TBD';
+                }
+                if(is_null($row->playerHandicapIndex)) {
+                    $row->playerHandicapIndex = 'TBD';
+                }
             }
-            if(is_null($row->playerHandicapIndex)) {
-                $row->playerHandicapIndex = 'TBD';
-            }
-        }
 
-        $this->load->view('header_view');
-        $this->load->view('player_edit_view', $data);
-        $this->load->view('footer_view');
+            $this->load->view('header_view');
+            $this->load->view('player_edit_view', $data);
+            $this->load->view('footer_view');
+            RETURN;
+        }
+        else {
+            $data['errorMessage'] = "Something went wrong. The Player's information was unable to be loaded at this time.";
+            $data['link'] = 'index.php/player/index';
+            $data['buttonText'] = 'Player - Home';
+
+            $this->load->view('header_view');
+            $this->load->view('error_view', $data);
+            $this->load->view('footer_view');
+            RETURN;
+        }
     }
 
     public function submitEditPlayer() {
@@ -147,6 +173,9 @@ class Player extends CI_Controller
         }
         else {
             $temp['oldName'] = $this->player_model->getPlayerNameByID($id);
+            if ($temp['oldName'] == FALSE) {
+                $temp['oldName'] = 'The course';
+            }
             foreach($temp['oldName'] as $row) {
                 if(isset($row->playerName)) {
                     $oldName = $row->playerName;
@@ -181,18 +210,32 @@ class Player extends CI_Controller
 
         $id = $this->uri->segment(3);
         $data['getPlayerByIDQuery'] = $this->player_model->getPlayerByID($id);
-        foreach($data['getPlayerByIDQuery'] as $row) {
-            if (is_null($row->playerHandicap)) {
-                $row->playerHandicap = 'TBD';
+        if ($data['getPlayerByIDQuery'] != FALSE) {
+            foreach($data['getPlayerByIDQuery'] as $row) {
+                if (is_null($row->playerHandicap)) {
+                    $row->playerHandicap = 'TBD';
+                }
+                if (is_null($row->playerHandicapIndex)) {
+                    $row->playerHandicapIndex = 'TBD';
+                }
             }
-            if (is_null($row->playerHandicapIndex)) {
-                $row->playerHandicapIndex = 'TBD';
-            }
+
+            $this->load->view('header_view');
+            $this->load->view('player_delete_view', $data);
+            $this->load->view('footer_view');
+            RETURN;
+        }
+        else {
+            $data['errorMessage'] = "The player's information was unable to be loaded at this time.  Please try again later.";
+            $data['link'] = 'index.php/player/index';
+            $data['buttonText'] = 'Player - Home';
+
+            $this->load->view('header_view');
+            $this->load->view('error_view', $data);
+            $this->load->view('footer_view');
+            RETURN;
         }
 
-        $this->load->view('header_view');
-        $this->load->view('player_delete_view', $data);
-        $this->load->view('footer_view');
     }
 
     public function submitDelete() {

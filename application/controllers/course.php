@@ -260,7 +260,7 @@ class Course extends CI_Controller
             $data['buttonText'] = 'Course - Home';
 
             $this->load->view('header_view');
-            $this->load->view('error_view');
+            $this->load->view('error_view', $data);
             $this->load->view('footer_view');
             RETURN;
         }
@@ -291,7 +291,7 @@ class Course extends CI_Controller
             $data['buttonText'] = 'Course - Home';
 
             $this->load->view('header_view');
-            $this->load->view('error_view');
+            $this->load->view('error_view', $data);
             $this->load->view('footer_view');
             RETURN;
         }
@@ -380,7 +380,7 @@ class Course extends CI_Controller
                 $data['buttonText'] = 'Back';
 
                 $this->load->view('header_view');
-                $this->load->view('error_view');
+                $this->load->view('error_view', $data);
                 $this->load->view('footer_view');
                 RETURN;
             }
