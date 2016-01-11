@@ -4,7 +4,6 @@
     <list default="true" id="bf1f04b8-8018-444a-9bbe-e11b375c07b1" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/controllers/score.php" afterPath="$PROJECT_DIR$/application/controllers/score.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/views/score_entry_result_view.php" afterPath="$PROJECT_DIR$/application/views/score_entry_result_view.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/views/score_post_view.php" afterPath="$PROJECT_DIR$/application/views/score_post_view.php" />
     </list>
     <ignored path="Cutter.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -32,21 +31,50 @@
       <file leaf-file-name="score.php" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/application/controllers/score.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.69542253" vertical-offset="3481" max-vertical-offset="7429">
-              <caret line="258" column="51" selection-start-line="258" selection-start-column="51" selection-end-line="258" selection-end-column="51" />
+            <state vertical-scroll-proportion="0.59859157" vertical-offset="2210" max-vertical-offset="6358">
+              <caret line="246" column="25" selection-start-line="246" selection-start-column="25" selection-end-line="246" selection-end-column="25" />
               <folding>
                 <element signature="e#6#89#0#PHP" expanded="true" />
+                <element signature="n#chooseDate#0;n#Score#0;n#!!top" expanded="false" />
                 <element signature="n#submitDate#0;n#Score#0;n#!!top" expanded="false" />
+                <element signature="n#postByDate#0;n#Score#0;n#!!top" expanded="false" />
                 <element signature="n#scoreEntryResult#0;n#Score#0;n#!!top" expanded="false" />
                 <element signature="n#editByDate#0;n#Score#0;n#!!top" expanded="false" />
+                <element signature="n#submitEditScore#0;n#Score#0;n#!!top" expanded="false" />
                 <element signature="n#scoreEditResult#0;n#Score#0;n#!!top" expanded="false" />
                 <element signature="n#validateDate#0;n#Score#0;n#!!top" expanded="false" />
                 <element signature="n#validateNotEmpty#0;n#Score#0;n#!!top" expanded="false" />
-                <element signature="n#calculateDifferential#0;n#Score#0;n#!!top" expanded="false" />
-                <element signature="e#22720#23092#0#PHP" expanded="false" />
-                <element signature="e#23097#23758#0#PHP" expanded="false" />
-                <element signature="e#23763#25729#0#PHP" expanded="false" />
-                <element signature="e#25734#26287#0#PHP" expanded="false" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="score_entry_result_view.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/application/views/score_entry_result_view.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="-12.538462" vertical-offset="813" max-vertical-offset="1496">
+              <caret line="100" column="13" selection-start-line="100" selection-start-column="13" selection-end-line="100" selection-end-column="13" />
+              <folding>
+                <marker date="1452503223485" expanded="true" signature="184:310" placeholder="..." />
+                <marker date="1452503223485" expanded="true" signature="403:570" placeholder="..." />
+                <marker date="1452503223485" expanded="false" signature="683:2554" placeholder="..." />
+                <marker date="1452503223485" expanded="true" signature="723:2535" placeholder="..." />
+                <marker date="1452503223485" expanded="true" signature="823:2467" placeholder="..." />
+                <marker date="1452503223485" expanded="true" signature="855:2438" placeholder="..." />
+                <marker date="1452503223485" expanded="true" signature="888:1111" placeholder="..." />
+                <marker date="1452503223485" expanded="true" signature="1144:1368" placeholder="..." />
+                <marker date="1452503223485" expanded="true" signature="1401:1629" placeholder="..." />
+                <marker date="1452503223485" expanded="true" signature="1662:1886" placeholder="..." />
+                <marker date="1452503223485" expanded="true" signature="1919:2149" placeholder="..." />
+                <marker date="1452503223485" expanded="true" signature="2182:2405" placeholder="..." />
+                <marker date="1452503223485" expanded="true" signature="2703:2798" placeholder="..." />
+                <marker date="1452503223485" expanded="true" signature="2934:4192" placeholder="..." />
+                <marker date="1452503223485" expanded="true" signature="2982:4165" placeholder="..." />
+                <marker date="1452503223485" expanded="true" signature="3098:4081" placeholder="..." />
+                <marker date="1452503223485" expanded="true" signature="3138:4044" placeholder="..." />
+                <marker date="1452503223485" expanded="true" signature="3179:3426" placeholder="..." />
+                <marker date="1452503223485" expanded="true" signature="3467:3715" placeholder="..." />
+                <marker date="1452503223485" expanded="true" signature="3756:4003" placeholder="..." />
               </folding>
             </state>
           </provider>
@@ -1134,29 +1162,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/application/views/score_entry_result_view.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.27022377" vertical-offset="302" max-vertical-offset="1462">
-          <caret line="27" column="16" selection-start-line="27" selection-start-column="16" selection-end-line="27" selection-end-column="16" />
-          <folding>
-            <marker date="1452496741130" expanded="true" signature="-1:-1" placeholder="..." />
-            <marker date="1452496741130" expanded="true" signature="-1:-1" placeholder="..." />
-            <marker date="1452496741130" expanded="true" signature="-1:-1" placeholder="..." />
-            <marker date="1452496741130" expanded="true" signature="-1:-1" placeholder="..." />
-            <marker date="1452496741130" expanded="true" signature="-1:-1" placeholder="..." />
-            <marker date="1452496741130" expanded="true" signature="-1:-1" placeholder="..." />
-            <marker date="1452496741130" expanded="true" signature="-1:-1" placeholder="..." />
-            <marker date="1452496741130" expanded="true" signature="-1:-1" placeholder="..." />
-            <marker date="1452496741130" expanded="true" signature="-1:-1" placeholder="..." />
-            <marker date="1452496741130" expanded="true" signature="-1:-1" placeholder="..." />
-            <marker date="1452496741130" expanded="true" signature="-1:-1" placeholder="..." />
-            <marker date="1452496741130" expanded="true" signature="-1:-1" placeholder="..." />
-            <marker date="1452496741130" expanded="true" signature="-1:-1" placeholder="..." />
-            <marker date="1452496741130" expanded="true" signature="-1:-1" placeholder="..." />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/application/views/score_post_view.php">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-22.884615" vertical-offset="1343" max-vertical-offset="2312">
@@ -1206,23 +1211,50 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/application/views/score_entry_result_view.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-12.538462" vertical-offset="813" max-vertical-offset="1496">
+          <caret line="100" column="13" selection-start-line="100" selection-start-column="13" selection-end-line="100" selection-end-column="13" />
+          <folding>
+            <marker date="1452503223485" expanded="true" signature="184:310" placeholder="..." />
+            <marker date="1452503223485" expanded="true" signature="403:570" placeholder="..." />
+            <marker date="1452503223485" expanded="false" signature="683:2554" placeholder="..." />
+            <marker date="1452503223485" expanded="true" signature="723:2535" placeholder="..." />
+            <marker date="1452503223485" expanded="true" signature="823:2467" placeholder="..." />
+            <marker date="1452503223485" expanded="true" signature="855:2438" placeholder="..." />
+            <marker date="1452503223485" expanded="true" signature="888:1111" placeholder="..." />
+            <marker date="1452503223485" expanded="true" signature="1144:1368" placeholder="..." />
+            <marker date="1452503223485" expanded="true" signature="1401:1629" placeholder="..." />
+            <marker date="1452503223485" expanded="true" signature="1662:1886" placeholder="..." />
+            <marker date="1452503223485" expanded="true" signature="1919:2149" placeholder="..." />
+            <marker date="1452503223485" expanded="true" signature="2182:2405" placeholder="..." />
+            <marker date="1452503223485" expanded="true" signature="2703:2798" placeholder="..." />
+            <marker date="1452503223485" expanded="true" signature="2934:4192" placeholder="..." />
+            <marker date="1452503223485" expanded="true" signature="2982:4165" placeholder="..." />
+            <marker date="1452503223485" expanded="true" signature="3098:4081" placeholder="..." />
+            <marker date="1452503223485" expanded="true" signature="3138:4044" placeholder="..." />
+            <marker date="1452503223485" expanded="true" signature="3179:3426" placeholder="..." />
+            <marker date="1452503223485" expanded="true" signature="3467:3715" placeholder="..." />
+            <marker date="1452503223485" expanded="true" signature="3756:4003" placeholder="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/application/controllers/score.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.69542253" vertical-offset="3481" max-vertical-offset="7429">
-          <caret line="258" column="51" selection-start-line="258" selection-start-column="51" selection-end-line="258" selection-end-column="51" />
+        <state vertical-scroll-proportion="0.59859157" vertical-offset="2210" max-vertical-offset="6358">
+          <caret line="246" column="25" selection-start-line="246" selection-start-column="25" selection-end-line="246" selection-end-column="25" />
           <folding>
             <element signature="e#6#89#0#PHP" expanded="true" />
+            <element signature="n#chooseDate#0;n#Score#0;n#!!top" expanded="false" />
             <element signature="n#submitDate#0;n#Score#0;n#!!top" expanded="false" />
+            <element signature="n#postByDate#0;n#Score#0;n#!!top" expanded="false" />
             <element signature="n#scoreEntryResult#0;n#Score#0;n#!!top" expanded="false" />
             <element signature="n#editByDate#0;n#Score#0;n#!!top" expanded="false" />
+            <element signature="n#submitEditScore#0;n#Score#0;n#!!top" expanded="false" />
             <element signature="n#scoreEditResult#0;n#Score#0;n#!!top" expanded="false" />
             <element signature="n#validateDate#0;n#Score#0;n#!!top" expanded="false" />
             <element signature="n#validateNotEmpty#0;n#Score#0;n#!!top" expanded="false" />
-            <element signature="n#calculateDifferential#0;n#Score#0;n#!!top" expanded="false" />
-            <element signature="e#22720#23092#0#PHP" expanded="false" />
-            <element signature="e#23097#23758#0#PHP" expanded="false" />
-            <element signature="e#23763#25729#0#PHP" expanded="false" />
-            <element signature="e#25734#26287#0#PHP" expanded="false" />
           </folding>
         </state>
       </provider>

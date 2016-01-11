@@ -230,11 +230,19 @@ class Score extends CI_Controller {
                         $j++;
                     }
 
+                    $errors = array();
                     for($k=0; $k <= (count($ids)*2); $k++) {
                         if( empty($data[$k]['scoreScore'])) {
                             unset($data[$k]);
                         }
+                        else if ($data[$k]['scoreDifferential'] == FALSE) {
+                            array_push($errors, $data[$k]);
+                            unset($data[$k]);
+                        }
                         if (empty($data2[$k]['scoreScore'])) {
+                            unset($data2[$k]);
+                        }
+                        else if ($data2[$k]['scoreDifferential'] == FALSE) {
                             unset($data2[$k]);
                         }
                     }
@@ -259,6 +267,7 @@ class Score extends CI_Controller {
                                             RETURN;
                                         }
                                         else {
+                                            $data3['errors'] = $errors;
                                             $this->scoreEntryResult($data3);
                                             RETURN;
                                         }
@@ -368,109 +377,116 @@ class Score extends CI_Controller {
             )
         );
         $this->form_validation->set_rules('date', 'Date', 'required|trim|callback_validateDate');
-        //$this->form_validation->set_rules($config);
 
-        //date is posted in mm/dd/yyyy format
-        $date = $this->input->post('date');
+        $date = $this->input->post('date');         //date is posted in mm/dd/yyyy format
 
-        //reformat date to MySQL yyyy-mm-dd to retrieve scores from db
-        $date = date("Y-m-d", strtotime($date));
-
+        $date = date("Y-m-d", strtotime($date));            //reformat date to MySQL yyyy-mm-dd to retrieve scores from db
 
         $temp['scoreList'] = $this->score_model->getFullScoreInfoByDate($date);
-
-        foreach ($temp['scoreList'] as $row) {
-            $temp2 = array(
-                'field' => $row->playerID.'-new-score',
-                'label' => $row->playerName.' New Score',
-                'rules' => '|trim|integer|greater_than[17]'
-            );
-            array_push($config, $temp2);
-            //$this->form_validation->set_rules($row->playerID.'-new-score', $row->playerName.' New Score', 'integer|greater_than[17]');
-        }
-        $this->form_validation->set_rules($config);
-
-        if($this->form_validation->run()== FALSE) {
-            //Need to figure out what to do if the date for some reason does not pass the validation rules
-            //it should theoretically never fail the validation rules since it is being passed through after having passed the rules once
-            //plus it is a read only field so it shouldn't be able to be altered
-        }
-        else {
-            $deleteScores = array();
-            foreach ($temp['scoreList'] as $key => $row) {
-                if ($this->input->post($row->scoreID . '-delete') == "delete") {
-                    array_push($deleteScores, $row->scoreID);
-                    unset($temp['scoreList'][$key]);
-                }
+        if ($temp['scoreList'] != FALSE) {
+            foreach ($temp['scoreList'] as $row) {
+                $temp2 = array(
+                    'field' => $row->playerID.'-new-score',
+                    'label' => $row->playerName.' New Score',
+                    'rules' => '|trim|integer|greater_than[17]'
+                );
+                array_push($config, $temp2);
+                //$this->form_validation->set_rules($row->playerID.'-new-score', $row->playerName.' New Score', 'integer|greater_than[17]');
             }
+            $this->form_validation->set_rules($config);
 
-            if($this->validateNotEmpty($deleteScores) == TRUE) {
-                if ($this->score_model->deleteScores($deleteScores) == TRUE) {
-                    $messageData['deleteResult'] = 'Success!';
-                    $messageData['deleteMessage'] = 'The selected score(s) were successfully deleted from the database';
-                }
-                else {
-                    $messageData['deleteResult'] = 'Failed';
-                    $messageData['deleteMessage'] = 'Error:  The selected score(s) failed to be deleted from the database';
-                }
-
+            if($this->form_validation->run()== FALSE) {
+                //Need to figure out what to do if the date for some reason does not pass the validation rules
+                //it should theoretically never fail the validation rules since it is being passed through after having passed the rules once
+                //plus it is a read only field so it shouldn't be able to be altered
             }
             else {
-                $messageData['deleteResult'] = 'NULL';
-            }
-
-            if($this->validateNotEmpty($temp['scoreList'] == TRUE)) {
-                $updateScores = array();
+                $deleteScores = array();
                 foreach ($temp['scoreList'] as $key => $row) {
-                    $change = FALSE;
-                    $id = $row->scoreID;
-
-                    $newCourseID = $this->input->post('course-' . $row->scoreID);
-                    if($newCourseID != $row->scoreCourseID) {
-                        $change = TRUE;
-                    }
-                    $tempNewScore = $this->input->post($row->scoreID . '-new-score');
-                    if($tempNewScore == "" || $tempNewScore == null || $tempNewScore == 0){
-                        $newScore = $row->scoreScore;
-                    }
-                    else {
-                        $newScore = $tempNewScore;
-                        $change = TRUE;
-                    }
-                    if ($change == TRUE) {
-                        $tempUpdate = array (
-                            "scoreID" => $id,
-                            "scoreCourseID" => $newCourseID,
-                            "scoreScore" => $newScore
-                        );
-                        array_push($updateScores, $tempUpdate);
+                    if ($this->input->post($row->scoreID . '-delete') == "delete") {
+                        array_push($deleteScores, $row->scoreID);
+                        unset($temp['scoreList'][$key]);
                     }
                 }
 
-                if($this->validateNotEmpty($updateScores) == TRUE) {
-                    //workOnDate
-                    if ($this->score_model->updateScoresBatch($updateScores) == TRUE) {
-                        $messageData['title'] = 'Success!';
-                        $messageData['message'] = 'The appropriate change(s) were made and the database updated accordingly.';
+                if($this->validateNotEmpty($deleteScores) == TRUE) {
+                    if ($this->score_model->deleteScores($deleteScores) == TRUE) {
+                        $messageData['deleteResult'] = 'Success!';
+                        $messageData['deleteMessage'] = 'The selected score(s) were successfully deleted from the database';
                     }
                     else {
-                        $messageData['title'] = 'Failure';
-                        $messageData['message'] = 'Error:  The change(s) were unable to be updated to the database.  Please try again later.';
+                        $messageData['deleteResult'] = 'Failed';
+                        $messageData['deleteMessage'] = 'Error:  The selected score(s) failed to be deleted from the database';
+                    }
+
+                }
+                else {
+                    $messageData['deleteResult'] = 'NULL';
+                }
+
+                if($this->validateNotEmpty($temp['scoreList'] == TRUE)) {
+                    $updateScores = array();
+                    foreach ($temp['scoreList'] as $key => $row) {
+                        $change = FALSE;
+                        $id = $row->scoreID;
+
+                        $newCourseID = $this->input->post('course-' . $row->scoreID);
+                        if($newCourseID != $row->scoreCourseID) {
+                            $change = TRUE;
+                        }
+                        $tempNewScore = $this->input->post($row->scoreID . '-new-score');
+                        if($tempNewScore == "" || $tempNewScore == null || $tempNewScore == 0){
+                            $newScore = $row->scoreScore;
+                        }
+                        else {
+                            $newScore = $tempNewScore;
+                            $change = TRUE;
+                        }
+                        if ($change == TRUE) {
+                            $tempUpdate = array (
+                                "scoreID" => $id,
+                                "scoreCourseID" => $newCourseID,
+                                "scoreScore" => $newScore
+                            );
+                            array_push($updateScores, $tempUpdate);
+                        }
+                    }
+
+                    if($this->validateNotEmpty($updateScores) == TRUE) {
+                        //workOnDate
+                        if ($this->score_model->updateScoresBatch($updateScores) == TRUE) {
+                            $messageData['title'] = 'Success!';
+                            $messageData['message'] = 'The appropriate change(s) were made and the database updated accordingly.';
+                        }
+                        else {
+                            $messageData['title'] = 'Failure';
+                            $messageData['message'] = 'Error:  The change(s) were unable to be updated to the database.  Please try again later.';
+                        }
+                    }
+                    else {
+                        $messageData['title'] = 'Note:';
+                        $messageData['message'] = 'There were no changes entered to be made.  No scores were updated.';
                     }
                 }
                 else {
                     $messageData['title'] = 'Note:';
                     $messageData['message'] = 'There were no changes entered to be made.  No scores were updated.';
                 }
+                $this->scoreEditResult($messageData);
             }
-            else {
-                $messageData['title'] = 'Note:';
-                $messageData['message'] = 'There were no changes entered to be made.  No scores were updated.';
-            }
-            $this->scoreEditResult($messageData);
-        }
 
-        return;
+            return;
+        }
+        else {
+            $data['errorMessage'] = "Something went wrong and the scores were not able to be submitted. Please try again later.";
+            $data['link'] = 'index.php/score/chooseDate';
+            $data['buttonText'] = 'Score - Home';
+
+            $this->load->view('header_view');
+            $this->load->view('error_view', $data);
+            $this->load->view('footer_view');
+            RETURN;
+        }
     }
 
     public function scoreEditResult($data) {
@@ -514,13 +530,18 @@ class Score extends CI_Controller {
     public function calculateDifferential($score, $courseID) {
         $this->load->model('course_model');
         $query['course'] = $this->course_model->getCourse((int)$courseID, 1);
-        foreach($query['course'] as $row) {
-            //score - rating = A
-            // A x 113 = B
-            //B / Slope = Differential->round to nearest 10th
-            $differential = ((($score - $row['courseRating']) * 113) / ($row['courseSlope']));
+        if ($query['course'] != FALSE) {
+            foreach($query['course'] as $row) {
+                //score - rating = A
+                // A x 113 = B
+                //B / Slope = Differential->round to nearest 10th
+                $differential = ((($score - $row['courseRating']) * 113) / ($row['courseSlope']));
+            }
+            return round($differential, 1);
         }
-        return round($differential, 1);
+        else {
+            return FALSE;
+        }
     }
 
 

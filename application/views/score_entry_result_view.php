@@ -65,6 +65,41 @@
             </div>
             <br>';
         }
+        if (empty($errors) == FALSE) {
+            echo'
+                <br>
+                <div class="text-center">
+                    <h2>The following scores failed to be entered:</h2>
+                </div>
+                <br>
+            ';
+            foreach ($errors as $row) {
+                echo'
+                    <div class="row">
+                        <div class="col-md-12">
+                            <p class="col-md-5"></p>
+                            <table class="col-md-4 noPadLeft">
+                                <tbody>
+                                    <tr>
+                                        <td class="col-md-3 resultDataPad">Player Name....</td>
+                                        <td class="col-md-9 resultDataPad">' . $row->tempPlayerName . '</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="col-md-3 resultDataPad">Score................</td>
+                                        <td class="col-md-9 resultDataPad">' . $row->tempScore . '</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="col-md-3 resultDataPad">Time.................</td>
+                                        <td class="col-md-9 resultDataPad">' . $row->tempTime . '</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                            <p class="col-md-3"></p>
+                        </div>
+                    </div>
+                ';
+            }
+        }
     }
 ?>
 
