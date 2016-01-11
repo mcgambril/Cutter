@@ -22,8 +22,8 @@
                     <br>
                     <div class="col-md-6">
                         <p><strong>Date:  </strong></p>
-                        <input type="text" name="datepicker" id="datepicker" class="form-control" <!--data-date-format="mm-dd-yyyy"-->> <!--"yyyy-mm-dd"-->
-                        <br />
+                        <input type="text" name="datepicker" id="datepicker" class="form-control"> <!--data-date-format="mm-dd-yyyy"--> <!--"yyyy-mm-dd"-->
+                        <br>
                         <input type="submit" class="btn btn-default col-md-6" value="Post Scores" name="submit">
                         <input type="submit" class="btn btn-default col-md-6" value="Edit Scores" name="submit">
                         <br><br><br>

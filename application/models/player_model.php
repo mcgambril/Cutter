@@ -16,7 +16,13 @@ class Player_model extends CI_Model {
 
     public function getPlayers() {
         $getPlayersQuery = $this->db->get('player');
-        return $getPlayersQuery->result();
+        if ($getPlayersQuery->num_rows() > 0) {
+            return $getPlayersQuery->result();
+        }
+        else {
+            return FALSE;
+        }
+
     }
 
     public function getPlayersAZ() {
@@ -24,16 +30,25 @@ class Player_model extends CI_Model {
         $this->db->from('player');
         $this->db->order_by('playerName', 'asc');
         $getPlayersQuery = $this->db->get();
-        return $getPlayersQuery->result();
+        if ($getPlayersQuery->num_rows() > 0) {
+            return $getPlayersQuery->result();
+        }
+        else {
+            return FALSE;
+        }
     }
 
     public function getPlayerScores($playerID) {
         $this->db->select('*');
         $this->db->from('score');
         $this->db->where('scorePlayerID', $playerID);
-        //$this->db->where('scoreUsedInHandicap', 1);
         $getPlayerScoresQuery = $this->db->get();
-        return $getPlayerScoresQuery->result();
+        if ($getPlayerScoresQuery->num_rows() > 0) {
+            return $getPlayerScoresQuery->result();
+        }
+        else {
+            return FALSE;
+        }
     }
 
     public function getPlayerRecentScores($playerID) {
@@ -44,45 +59,59 @@ class Player_model extends CI_Model {
         $this->db->order_by('scoreTime', 'desc');
         $this->db->limit(20);
         $getRecentScoresQuery = $this->db->get();
-        if ($getRecentScoresQuery->num_rows() == 0) {
-            return FALSE;
+        if ($getRecentScoresQuery->num_rows() > 0) {
+            if ($getRecentScoresQuery->num_rows() == 0) {
+                return FALSE;
+            }
+            else {
+                return $getRecentScoresQuery->result();
+            }
         }
         else {
-            return $getRecentScoresQuery->result();
+            return FALSE;
         }
     }
 
     public function getPlayersAndScores() {
-        //$query = $this->db->get('player');
         $this->db->select('*');
         $this->db->from('player');
         $this->db->order_by('playerName', 'asc');
         $query = $this->db->get();
-        /*$this->db->_protect_identifiers = FALSE;*/
-        $getPlayersAndScoresQuery = $query->result();
-        /*$this->db->_protect_identifiers = FALSE;*/
-        foreach($getPlayersAndScoresQuery as &$row) {
-            $row->scores = $this->getPlayerRecentScores($row->playerID);
-            if(is_null($row->playerHandicap)) {
-                $row->playerHandicap = 'TBD';
+        if ($query->num_rows() > 0) {
+            $getPlayersAndScoresQuery = $query->result();
+            foreach($getPlayersAndScoresQuery as &$row) {
+                $row->scores = $this->getPlayerRecentScores($row->playerID);
+                if(is_null($row->playerHandicap)) {
+                    $row->playerHandicap = 'TBD';
+                }
+                if(is_null($row->playerHandicapIndex)) {
+                    $row->playerHandicapIndex = 'TBD';
+                }
             }
-            if(is_null($row->playerHandicapIndex)) {
-                $row->playerHandicapIndex = 'TBD';
-            }
+            return $getPlayersAndScoresQuery;
         }
-        return $getPlayersAndScoresQuery;
+        else {
+            return FALSE;
+        }
+
     }
 
     public function getPlayerIDs($var) {
         $this->db->select('playerID');
         $this->db->from('player');
         $getPlayerIDsQuery = $this->db->get();
-        if($var == 1) {
-            return $getPlayerIDsQuery->result_array();
+        if ($getPlayerIDsQuery->num_rows() > 0) {
+            if($var == 1) {
+                return $getPlayerIDsQuery->result_array();
+            }
+            else {
+                return $getPlayerIDsQuery->result();
+            }
         }
         else {
-            return $getPlayerIDsQuery->result();
+            return FALSE;
         }
+
     }
 
     public function getPlayerIDsAtoZ($var) {
@@ -90,12 +119,18 @@ class Player_model extends CI_Model {
         $this->db->from('player');
         $this->db->order_by('playerName', 'asc');
         $getPlayerIDsAtoZQuery = $this->db->get();
-        if($var == 1) {
-            return $getPlayerIDsAtoZQuery->result_array();
+        if ($getPlayerIDsAtoZQuery->num_rows() > 0) {
+            if($var == 1) {
+                return $getPlayerIDsAtoZQuery->result_array();
+            }
+            else {
+                return $getPlayerIDsAtoZQuery->result();
+            }
         }
         else {
-            return $getPlayerIDsAtoZQuery->result();
+            return FALSE;
         }
+
     }
 
     public function getPlayerByID($id) {
@@ -103,7 +138,13 @@ class Player_model extends CI_Model {
         $this->db->from('player');
         $this->db->where('playerID', $id);
         $getPlayerByIDQuery = $this->db->get();
-        return $getPlayerByIDQuery->result();
+        if ($getPlayerByIDQuery->num_rows() > 0) {
+            return $getPlayerByIDQuery->result();
+        }
+        else {
+            return FALSE;
+        }
+
     }
 
     public function getPlayerNameByID($id) {
@@ -111,7 +152,12 @@ class Player_model extends CI_Model {
         $this->db->from('player');
         $this->db->where('playerID', $id);
         $getPlayerNameByIDQuery = $this->db->get();
-        return $getPlayerNameByIDQuery->result();
+        if ($getPlayerNameByIDQuery->num_rows() > 0) {
+            return $getPlayerNameByIDQuery->result();
+        }
+        else {
+            return FALSE;
+        }
     }
 
     public function insertPlayer($player) {
@@ -142,14 +188,14 @@ class Player_model extends CI_Model {
           SELECT playerID
           FROM player
           WHERE playerID NOT IN (
-            SELECT scorePlayerID
-            FROM score
-            GROUP BY scorePlayerID
+                                  SELECT scorePlayerID
+                                  FROM score
+                                  GROUP BY scorePlayerID
           )";
         $this->db->_protect_identifiers = FALSE;
         $getNoScorePlayers = $this->db->query($queryString);
         $this->db->_protect_identifiers = TRUE;
-        if ($getNoScorePlayers->num_rows()>0){
+        if ($getNoScorePlayers->num_rows() > 0){
             return $getNoScorePlayers->result();
         }
         else {

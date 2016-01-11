@@ -9,7 +9,7 @@
 <div class="text-center">
     <h1>Success!</h1>
     <br>
-    <h2>The following scores were successfully entered into the database:</h2>
+    <h2>The following scores were successfully entered into the database:  </h2>
 </div>
 <br>
 

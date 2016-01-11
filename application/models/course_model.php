@@ -9,12 +9,6 @@
 
 class Course_model extends CI_Model {
 
-    var $courseID = '';
-    var $name = '';
-    var $slope = '';
-    var $rating = '';
-    var $default = '';
-
     function __construct()
     {
         // Call the Model constructor
@@ -27,7 +21,14 @@ class Course_model extends CI_Model {
         $this->db->from('course');
         $this->db->order_by('courseName', 'asc');
         $getCoursesQuery = $this->db->get();
-        return $getCoursesQuery->result();
+        if ($getCoursesQuery->num_rows() > 0)
+        {
+            return $getCoursesQuery->result();
+        }
+        else {
+            return FALSE;
+        }
+
     }
 
     public function getHomeCourse() {
@@ -49,12 +50,18 @@ class Course_model extends CI_Model {
         $this->db->from('course');
         $this->db->where('courseName', $courseName);
         $getCourseIDQuery = $this->db->get();
-        if($var == 1){
-            return $getCourseIDQuery->result_array();
+        if ($getCourseIDQuery->num_rows() > 0) {
+            if($var == 1){
+                return $getCourseIDQuery->result_array();
+            }
+            else {
+                return $getCourseIDQuery->result();
+            }
         }
         else {
-            return $getCourseIDQuery->result();
+            return FALSE;
         }
+
     }
 
     public function getCourse($id, $var) {
@@ -62,11 +69,16 @@ class Course_model extends CI_Model {
         $this->db->from('course');
         $this->db->where('courseID', (int)$id);
         $getCourseQuery = $this->db->get();
-        if($var == 1) {
-            return $getCourseQuery->result_array();
+        if ($getCourseQuery->num_rows() > 0) {
+            if($var == 1) {
+                return $getCourseQuery->result_array();
+            }
+            else {
+                return $getCourseQuery->result();
+            }
         }
         else {
-            return $getCourseQuery->result();
+            return FALSE;
         }
     }
 
@@ -75,11 +87,16 @@ class Course_model extends CI_Model {
         $this->db->from('course');
         $this->db->where('courseID', (int)$id);
         $getCourseNameQuery = $this->db->get();
-        if($var == 1) {
-            return $getCourseNameQuery->result_array();
+        if ($getCourseNameQuery->num_rows() > 0) {
+            if($var == 1) {
+                return $getCourseNameQuery->result_array();
+            }
+            else {
+                return $getCourseNameQuery->result();
+            }
         }
         else {
-            return $getCourseNameQuery->result();
+            return FALSE;
         }
     }
 
@@ -146,11 +163,5 @@ class Course_model extends CI_Model {
             return FALSE;
         }
     }
-
-
-    /*public function test_entry($data) {
-        $this->db->insert('course', $data);
-    }*/
-
 
 }

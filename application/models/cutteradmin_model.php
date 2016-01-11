@@ -19,7 +19,13 @@ class Cutteradmin_model extends CI_Model {
         $this->db->from('cutteradmin');
         $this->db->where('current', 1);
         $getPasswordQuery = $this->db->get();
-        return $getPasswordQuery->result();
+        if ($getPasswordQuery->num_rows() > 0) {
+            return $getPasswordQuery->result();
+        }
+        else {
+            return FALSE;
+        }
+
     }
 
     public function insertNewPass($newPass) {

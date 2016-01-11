@@ -20,12 +20,21 @@ class Tempscore_model extends CI_Model
         $this->db->from('tempscore');
         $this->db->where('tempActive', 1);
         $getTempScoresQuery = $this->db->get();
-        return $getTempScoresQuery->result();
+        if ($getTempScoresQuery->num_rows() > 0) {
+            return $getTempScoresQuery->result();
+        }
+        else {
+            return FALSE;
+        }
     }
 
     public function deleteTempScores() {
-        $this->db->empty_table('tempscore');
-        return;
+        if ($this->db->empty_table('tempscore') == TRUE){
+            return TRUE;
+        }
+        else {
+            return FALSE;
+        }
     }
 
     public function updateTempScores() {
@@ -42,7 +51,14 @@ class Tempscore_model extends CI_Model
     }
 
     public function insertTempscoreBatch($data) {
+        $this->db->trans_start();
         $this->db->insert_batch('tempscore', $data);
-        return;
+        $this->db->trans_complete();
+        if ($this->db->trans_status() == TRUE) {
+            return TRUE;
+        }
+        else {
+            return FALSE;
+        }
     }
 }

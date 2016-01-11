@@ -241,8 +241,6 @@ class Score extends CI_Controller {
                         $row->tempDate = date("m/d/Y", strtotime($row->tempDate));
                     }
 
-                    $this->tempscore_model->deleteTempScores();
-
                     $this->scoreEntryResult($data3);
                 }
                 else{

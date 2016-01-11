@@ -16,7 +16,12 @@ class Score_model extends CI_Model {
 
     public function getScores() {
         $getScoresQuery = $this->db->get('score');
-        return $getScoresQuery->result();
+        if ($getScoresQuery->num_rows() > 0) {
+            return $getScoresQuery->result();
+        }
+        else {
+            return FALSE;
+        }
     }
 
     public function getFullScoreInfo() {
@@ -28,7 +33,12 @@ class Score_model extends CI_Model {
         $this->db->order_by('scoreTime', 'desc');
         $this->db->order_by('playerName', 'asc');
         $getFullScoreInfoQuery = $this->db->get();
-        return $getFullScoreInfoQuery->result();
+        if ($getFullScoreInfoQuery->num_rows() > 0) {
+            return $getFullScoreInfoQuery->result();
+        }
+        else {
+            return FALSE;
+        }
     }
 
     public function getFullScoreInfoByID($scoreID) {
@@ -41,7 +51,12 @@ class Score_model extends CI_Model {
         $this->db->order_by('scoreTime', 'desc');
         $this->db->order_by('playerName', 'asc');
         $getFullScoreInfoByIDQuery = $this->db->get();
-        return $getFullScoreInfoByIDQuery->result();
+        if ($getFullScoreInfoByIDQuery->num_rows() > 0) {
+            return $getFullScoreInfoByIDQuery->result();
+        }
+        else {
+            return FALSE;
+        }
     }
 
     public function getPlayersScoresByDate($date) {
@@ -60,16 +75,20 @@ class Score_model extends CI_Model {
                         WHEN (COUNT(*) = 2)
                             THEN 'full'
                         END AS scoreSummary ";
-        $this->db->_protect_identifiers = false;
-        $this->db->select("$selectVar", false);
+        $this->db->_protect_identifiers = FALSE;
+        $this->db->select("$selectVar", FALSE);
         $this->db->from('player p');
         $this->db->join('score s', 'p.playerID = s.scorePlayerID  AND s.scoreDate = "' . $date . '"', 'LEFT OUTER');
         $this->db->group_by('p.playerID, p.playerName');
         $this->db->order_by('p.playerName', 'asc');
         $getPlayersScoresByDateQuery = $this->db->get();
-        $this->db->_protect_identifiers = true;
-
-        return $getPlayersScoresByDateQuery->result();
+        $this->db->_protect_identifiers = TRUE;
+        if ($getPlayersScoresByDateQuery->num_rows() > 0) {
+            return $getPlayersScoresByDateQuery->result();
+        }
+        else {
+            return FALSE;
+        }
     }
 
     public function getScore($scorePlayerID, $scoreTime, $scoreDate) {
@@ -79,7 +98,12 @@ class Score_model extends CI_Model {
         $this->db->where('scoreTime', $scoreTime);
         $this->db->where('scoreDate', $scoreDate);
         $getScoreQuery = $this->db->get();
-        return $getScoreQuery->result();
+        if ($getScoreQuery->num_rows() > 0) {
+            return $getScoreQuery->result();
+        }
+        else {
+            return FALSE;
+        }
     }
 
     public function insertScoreBatch($data) {
@@ -194,7 +218,12 @@ class Score_model extends CI_Model {
         $this->db->from('score');
         $this->db->where('scoreUsedInHandicap', 1);
         $getAllHandicapScoresQuery = $this->db->get();
-        return $getAllHandicapScoresQuery->result();
+        if ($getAllHandicapScoresQuery->num_rows() > 0) {
+            return $getAllHandicapScoresQuery->result();
+        }
+        else {
+            return FALSE;
+        }
     }
 
     public function clearHandicapScores() {
@@ -250,7 +279,12 @@ class Score_model extends CI_Model {
         $this->db->order_by('scoreTime', 'desc');
         $this->db->limit($limit);
         $getHandicapDifferentialsQuery = $this->db->get();
-        return $getHandicapDifferentialsQuery->result();
+        if ($getHandicapDifferentialsQuery->num_rows() > 0) {
+            return $getHandicapDifferentialsQuery->result();
+        }
+        else {
+            return FALSE;
+        }
     }
 
 }
