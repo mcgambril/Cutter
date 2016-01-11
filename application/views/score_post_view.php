@@ -64,42 +64,50 @@
                                 </thead>
                                 <tbody>
                                     <?php
-                                        foreach($getPlayersScoresByDateQuery as $row) {
-                                            if ($row->scoreSummary == 'empty'){
-                                                echo '<tr>';
+                                        if ($noPlayers == TRUE) {
+                                            echo'
+                                            <tr>
+                                                <td colspan="3" class="centered">There are no players in the system.</td>
+                                            </tr>
+                                            ';
+                                        }
+                                        else {
+                                            foreach($getPlayersScoresByDateQuery as $row) {
+                                                if ($row->scoreSummary == 'empty'){
+                                                    echo '<tr>';
                                                     echo '<td class="col-md-6">' . $row->playerName . '<input type="hidden" name="' . $row->playerID . '" value="' . $row->playerID . '" /></td>';
                                                     echo '<td class="col-md-3">';
-                                                        echo '<input type="text" name="' . $row->playerID . 'am-score"  id="' . $row->playerID . 'am-score" class="' . $row->playerID . 'score col-md-12">';
+                                                    echo '<input type="text" name="' . $row->playerID . 'am-score"  id="' . $row->playerID . 'am-score" class="' . $row->playerID . 'score col-md-12">';
                                                     echo '</td>';
                                                     echo '<td class="col-md-3">';
-                                                        echo '<input type="text" name="' . $row->playerID . 'pm-score" id ="' . $row->playerID . 'pm-score" class="' . $row->playerID . 'score col-md-12">';
+                                                    echo '<input type="text" name="' . $row->playerID . 'pm-score" id ="' . $row->playerID . 'pm-score" class="' . $row->playerID . 'score col-md-12">';
                                                     echo '</td>';
-                                                echo '</tr>';
-                                            }
-                                            else if ($row->scoreSummary == 'am empty'){
-                                                echo '<tr>';
+                                                    echo '</tr>';
+                                                }
+                                                else if ($row->scoreSummary == 'am empty'){
+                                                    echo '<tr>';
                                                     echo '<td class="col-md-6">' . $row->playerName . '<input type="hidden" name="' . $row->playerID . '" value="' . $row->playerID . '" /></td>';
                                                     echo '<td class="col-md-3">';
-                                                        echo '<input type="text" name="' . $row->playerID . 'am-score"  id="' . $row->playerID . 'am-score" class="' . $row->playerID . 'score col-md-12">';
+                                                    echo '<input type="text" name="' . $row->playerID . 'am-score"  id="' . $row->playerID . 'am-score" class="' . $row->playerID . 'score col-md-12">';
                                                     echo '</td>';
                                                     foreach ($row->pmScore as $score){
                                                         echo '<td class="col-md-3 centered">' . $score->scoreScore . '</td>';
                                                     }
-                                                        echo '</tr>';
-                                                    }
-                                            else if ($row->scoreSummary == 'pm empty'){
-                                                echo '<tr>';
+                                                    echo '</tr>';
+                                                }
+                                                else if ($row->scoreSummary == 'pm empty'){
+                                                    echo '<tr>';
                                                     echo '<td class="col-md-6">' . $row->playerName . '<input type="hidden" name="' . $row->playerID . '" value="' . $row->playerID . '" /></td>';
                                                     foreach($row->amScore as $score) {
                                                         echo '<td class="col-md-3 centered">' . $score->scoreScore . '</td>';
                                                     }
                                                     echo '<td class="col-md-3">';
-                                                        echo '<input type="text" name="' . $row->playerID . 'pm-score" id ="' . $row->playerID . 'pm-score" class="' . $row->playerID . 'score col-md-12">';
+                                                    echo '<input type="text" name="' . $row->playerID . 'pm-score" id ="' . $row->playerID . 'pm-score" class="' . $row->playerID . 'score col-md-12">';
                                                     echo '</td>';
-                                                echo '</tr>';
-                                            }
-                                            else if ($row->scoreSummary == 'full'){
-                                                echo '<tr>';
+                                                    echo '</tr>';
+                                                }
+                                                else if ($row->scoreSummary == 'full'){
+                                                    echo '<tr>';
                                                     echo '<td class="col-md-6">' . $row->playerName . '<input type="hidden" name="' . $row->playerID . '" value="' . $row->playerID . '" /></td>';
                                                     foreach($row->amScore as $score) {
                                                         echo '<td class="col-md-3 centered">' . $score->scoreScore . '</td>';
@@ -107,7 +115,8 @@
                                                     foreach ($row->pmScore as $score){
                                                         echo '<td class="col-md-3 centered">' . $score->scoreScore . '</td>';
                                                     }
-                                                echo '</tr>';
+                                                    echo '</tr>';
+                                                }
                                             }
                                         }
                                     ?>

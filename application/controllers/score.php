@@ -71,30 +71,48 @@ class Score extends CI_Controller {
         //reformat date here to MySQL date format to retrieve scores from db
         $date = date('Y-m-d', strtotime($date));
         $data['getCoursesQuery'] = $this->course_model->getCourses();
+        if ($data['getCoursesQuery'] != FALSE) {
+            $data['getPlayersScoresByDateQuery'] = $this->score_model->getPlayersScoresByDate($date);
+            if ($data['getPlayersScoresByDateQuery'] == FALSE) {
+                $data['noPlayers'] = TRUE;
+            }
+            else {
+                $data['noPlayers'] = FALSE;
+                foreach ($data['getPlayersScoresByDateQuery'] as $row) {
+                    if ($row->scoreSummary == 'am empty') {
+                        $row->amScore = 'empty';
+                        $row->pmScore = $this->score_model->getScore($row->playerID, 1, $date);
+                    }
+                    else if ($row->scoreSummary == 'pm empty') {
+                        $row->amScore = $this->score_model->getScore($row->playerID, 0, $date);
+                        $row->pmScore = 'empty';
+                    }
+                    else if ($row->scoreSummary == 'full') {
+                        $row->amScore = $this->score_model->getScore($row->playerID, 0, $date);
+                        $row->pmScore = $this->score_model->getScore($row->playerID, 1, $date);
+                    }
+                    else if ($row->scoreSummary == 'empty') {
+                        $row->amScore = 'empty';
+                        $row->pmScore = 'empty';
+                    }
+                }
+            }
 
-        $data['getPlayersScoresByDateQuery'] = $this->score_model->getPlayersScoresByDate($date);
-        foreach ($data['getPlayersScoresByDateQuery'] as $row) {
-            if ($row->scoreSummary == 'am empty') {
-                $row->amScore = 'empty';
-                $row->pmScore = $this->score_model->getScore($row->playerID, 1, $date);
-            }
-            else if ($row->scoreSummary == 'pm empty') {
-                $row->amScore = $this->score_model->getScore($row->playerID, 0, $date);
-                $row->pmScore = 'empty';
-            }
-            else if ($row->scoreSummary == 'full') {
-                $row->amScore = $this->score_model->getScore($row->playerID, 0, $date);
-                $row->pmScore = $this->score_model->getScore($row->playerID, 1, $date);
-            }
-            else if ($row->scoreSummary == 'empty') {
-                $row->amScore = 'empty';
-                $row->pmScore = 'empty';
-            }
+            $this->load->view('header_view');
+            $this->load->view('score_post_view', $data);
+            $this->load->view('footer_view');
+            RETURN;
         }
+        else {
+            $data['errorMessage'] = "Something went wrong.  Either there are no courses in the system or the courses' information failed to load at this time.";
+            $data['link'] = 'index.php/score/chooseDate';
+            $data['buttonText'] = 'Back';
 
-        $this->load->view('header_view');
-        $this->load->view('score_post_view', $data);
-        $this->load->view('footer_view');
+            $this->load->view('header_view');
+            $this->load->view('error_view', $data);
+            $this->load->view('footer_view');
+            RETURN;
+        }
     }
 
     public function submitPost() {
@@ -116,139 +134,191 @@ class Score extends CI_Controller {
         );
 
         $temp['players'] = $this->player_model->getPlayers();
-
-        foreach($temp['players'] as $row) {
-            $temp2 = array(
-                'field' => $row->playerID.'am-score',
-                'label' => $row->playerName.' AM Score',
-                'rules' => 'trim|integer|greater_than[17]'
-            );
-            $temp3 = array(
-                'field' => $row->playerID.'pm-score',
-                'label' => $row->playerName.' PM Score',
-                'rules' => 'trim|integer|greater_than[17]'
-            );
-            array_push($config, $temp2);
-            array_push($config, $temp3);
-        }
-        $this->form_validation->set_rules($config);
-
-        if($this->form_validation->run()== FALSE) {
-            $buffer = $this->input->post('datepicker');
-            $this->postByDate($buffer);
-        }
-        else {
-            $date = $this->input->post('datepicker');  //submitted as mm/dd/YYYY
-            $temp['date'] = date("Y-m-d", strtotime($date));
-            $temp['courseID'] = $this->input->post('course');
-            $temp['ids'] = $this->player_model->getPlayerIDsAtoZ(1);
-            $ids = array();
-            $amScores = array();
-            $pmScores = array();
-
-            foreach($temp['ids'] as $row) {
-                $var = $this->input->post(''.$row['playerID'].'');
-                array_push($ids, $var);
-                $var2 = $this->input->post(''.$row['playerID'].'am-score');
-                array_push($amScores, $var2);
-                $var3 = $this->input->post(''.$row['playerID'].'pm-score');
-                array_push($pmScores, $var3);
+        if ($temp['players'] != FALSE) {
+            foreach($temp['players'] as $row) {
+                $temp2 = array(
+                    'field' => $row->playerID.'am-score',
+                    'label' => $row->playerName.' AM Score',
+                    'rules' => 'trim|integer|greater_than[17]'
+                );
+                $temp3 = array(
+                    'field' => $row->playerID.'pm-score',
+                    'label' => $row->playerName.' PM Score',
+                    'rules' => 'trim|integer|greater_than[17]'
+                );
+                array_push($config, $temp2);
+                array_push($config, $temp3);
             }
+            $this->form_validation->set_rules($config);
 
-            /*if ($this->validateNotEmpty($amScores) == FALSE) {
-                if ($this->validateNotEmpty($pmScores) == FALSE) {
-                    $this->postByDate($date);
-                    RETURN;
-                }
-            }*/
-
-            $i = 0;
-            $j = 0;
-            $buffer = "temp";
-            foreach($ids as $row) {
-                $data[''.$i.'']['scorePlayerID'] = $row;
-                $data[''.$i.'']['scoreCourseID'] = $temp['courseID'];
-                $data[''.$i.'']['scoreScore'] = $amScores[''.$j.''];
-                $data[''.$i.'']['scoreDate'] = $temp['date'];
-                $data[''.$i.'']['scoreTime'] = 0;
-                $data[''.$i.'']['scoreDifferential'] = $this->calculateDifferential($amScores[''.$j.''], $temp['courseID']);
-                $data[''.$i.'']['scoreUsedInHandicap'] = 0;
-                $data[''.$i.'']['scoreDifferentialUsed'] = 0;
-
-                $data2[''.$i.'']['scorePlayerID'] = $row;
-                $data2[''.$i.'']['tempPlayerName'] = $buffer;
-                $data2[''.$i.'']['scoreCourseID'] = $temp['courseID'];
-                $data2[''.$i.'']['tempCourseName'] = $buffer;
-                $data2[''.$i.'']['scoreScore'] = $amScores[''.$j.''];
-                $data2[''.$i.'']['tempScore'] = $amScores[''.$j.''];
-                $data2[''.$i.'']['scoreDate'] = $temp['date'];
-                $data2[''.$i.'']['tempDate'] = $temp['date'];
-                $data2[''.$i.'']['scoreDifferential'] = $this->calculateDifferential($amScores[''.$j.''], $temp['courseID']);
-                $data2[''.$i.'']['tempDifferential'] = $data[''.$i.'']['scoreDifferential'];
-                $data2[''.$i.'']['scoreTime'] = 0;
-                $data2[''.$i.'']['tempTime'] = 'AM';
-                $data2[''.$i.'']['tempActive'] = 1;
-
-                $i++;
-
-                $data[''.$i.'']['scorePlayerID'] = $row;
-                $data[''.$i.'']['scoreCourseID'] = $temp['courseID'];
-                $data[''.$i.'']['scoreScore'] = $pmScores[''.$j.''];
-                $data[''.$i.'']['scoreDate'] = $temp['date'];
-                $data[''.$i.'']['scoreTime'] = 1;
-                $data[''.$i.'']['scoreDifferential'] = $this->calculateDifferential($pmScores[''.$j.''], $temp['courseID']);
-                $data[''.$i.'']['scoreUsedInHandicap'] = 0;
-                $data[''.$i.'']['scoreDifferentialUsed'] = 0;
-
-                $data2[''.$i.'']['scorePlayerID'] = $row;
-                $data2[''.$i.'']['tempPlayerName'] = $buffer;
-                $data2[''.$i.'']['scoreCourseID'] = $temp['courseID'];
-                $data2[''.$i.'']['tempCourseName'] = $buffer;
-                $data2[''.$i.'']['scoreScore'] = $pmScores[''.$j.''];
-                $data2[''.$i.'']['tempScore'] = $pmScores[''.$j.''];
-                $data2[''.$i.'']['scoreDate'] = $temp['date'];
-                $data2[''.$i.'']['tempDate'] = $temp['date'];
-                $data2[''.$i.'']['tempDifferential'] = $data[''.$i.'']['scoreDifferential'];
-                $data2[''.$i.'']['scoreDifferential'] = $this->calculateDifferential($pmScores[''.$j.''], $temp['courseID']);
-                $data2[''.$i.'']['scoreTime'] = 1;
-                $data2[''.$i.'']['tempTime'] = 'PM';
-                $data2[''.$i.'']['tempActive'] = 1;
-
-                $i++;
-                $j++;
-            }
-
-            for($k=0; $k <= (count($ids)*2); $k++) {
-                if( empty($data[$k]['scoreScore'])) {
-                    unset($data[$k]);
-                }
-                if (empty($data2[$k]['scoreScore'])) {
-                    unset($data2[$k]);
-                }
-            }
-
-            if($this->validateNotEmpty($data) == FALSE) {
-                $this->postByDate($date);
+            if($this->form_validation->run()== FALSE) {
+                $buffer = $this->input->post('datepicker');
+                $this->postByDate($buffer);
             }
             else {
-                $this->score_model->insertScoreBatch($data);
+                $date = $this->input->post('datepicker');  //submitted as mm/dd/YYYY
+                $temp['date'] = date("Y-m-d", strtotime($date));
+                $temp['courseID'] = $this->input->post('course');
+                $temp['ids'] = $this->player_model->getPlayerIDsAtoZ(1);
+                if ($temp['ids'] != FALSE) {
+                    $ids = array();
+                    $amScores = array();
+                    $pmScores = array();
 
-                $this->tempscore_model->insertTempscoreBatch($data2);
-
-                if ($this->tempscore_model->updateTempScores() == True) {
-                    $data3['getTempScoresQuery'] = $this->tempscore_model->getTempScores();
-                    foreach ($data3['getTempScoresQuery'] as $row) {
-                        $row->tempDate = date("m/d/Y", strtotime($row->tempDate));
+                    foreach($temp['ids'] as $row) {
+                        $var = $this->input->post(''.$row['playerID'].'');
+                        array_push($ids, $var);
+                        $var2 = $this->input->post(''.$row['playerID'].'am-score');
+                        array_push($amScores, $var2);
+                        $var3 = $this->input->post(''.$row['playerID'].'pm-score');
+                        array_push($pmScores, $var3);
                     }
 
-                    $this->scoreEntryResult($data3);
-                }
-                else{
-                    //return some error message or view...
-                };
+                    $i = 0;
+                    $j = 0;
+                    $buffer = "temp";
+                    foreach($ids as $row) {
+                        $data[''.$i.'']['scorePlayerID'] = $row;
+                        $data[''.$i.'']['scoreCourseID'] = $temp['courseID'];
+                        $data[''.$i.'']['scoreScore'] = $amScores[''.$j.''];
+                        $data[''.$i.'']['scoreDate'] = $temp['date'];
+                        $data[''.$i.'']['scoreTime'] = 0;
+                        $data[''.$i.'']['scoreDifferential'] = $this->calculateDifferential($amScores[''.$j.''], $temp['courseID']);
+                        $data[''.$i.'']['scoreUsedInHandicap'] = 0;
+                        $data[''.$i.'']['scoreDifferentialUsed'] = 0;
 
+                        $data2[''.$i.'']['scorePlayerID'] = $row;
+                        $data2[''.$i.'']['tempPlayerName'] = $buffer;
+                        $data2[''.$i.'']['scoreCourseID'] = $temp['courseID'];
+                        $data2[''.$i.'']['tempCourseName'] = $buffer;
+                        $data2[''.$i.'']['scoreScore'] = $amScores[''.$j.''];
+                        $data2[''.$i.'']['tempScore'] = $amScores[''.$j.''];
+                        $data2[''.$i.'']['scoreDate'] = $temp['date'];
+                        $data2[''.$i.'']['tempDate'] = $temp['date'];
+                        $data2[''.$i.'']['scoreDifferential'] = $this->calculateDifferential($amScores[''.$j.''], $temp['courseID']);
+                        $data2[''.$i.'']['tempDifferential'] = $data[''.$i.'']['scoreDifferential'];
+                        $data2[''.$i.'']['scoreTime'] = 0;
+                        $data2[''.$i.'']['tempTime'] = 'AM';
+                        $data2[''.$i.'']['tempActive'] = 1;
+
+                        $i++;
+
+                        $data[''.$i.'']['scorePlayerID'] = $row;
+                        $data[''.$i.'']['scoreCourseID'] = $temp['courseID'];
+                        $data[''.$i.'']['scoreScore'] = $pmScores[''.$j.''];
+                        $data[''.$i.'']['scoreDate'] = $temp['date'];
+                        $data[''.$i.'']['scoreTime'] = 1;
+                        $data[''.$i.'']['scoreDifferential'] = $this->calculateDifferential($pmScores[''.$j.''], $temp['courseID']);
+                        $data[''.$i.'']['scoreUsedInHandicap'] = 0;
+                        $data[''.$i.'']['scoreDifferentialUsed'] = 0;
+
+                        $data2[''.$i.'']['scorePlayerID'] = $row;
+                        $data2[''.$i.'']['tempPlayerName'] = $buffer;
+                        $data2[''.$i.'']['scoreCourseID'] = $temp['courseID'];
+                        $data2[''.$i.'']['tempCourseName'] = $buffer;
+                        $data2[''.$i.'']['scoreScore'] = $pmScores[''.$j.''];
+                        $data2[''.$i.'']['tempScore'] = $pmScores[''.$j.''];
+                        $data2[''.$i.'']['scoreDate'] = $temp['date'];
+                        $data2[''.$i.'']['tempDate'] = $temp['date'];
+                        $data2[''.$i.'']['tempDifferential'] = $data[''.$i.'']['scoreDifferential'];
+                        $data2[''.$i.'']['scoreDifferential'] = $this->calculateDifferential($pmScores[''.$j.''], $temp['courseID']);
+                        $data2[''.$i.'']['scoreTime'] = 1;
+                        $data2[''.$i.'']['tempTime'] = 'PM';
+                        $data2[''.$i.'']['tempActive'] = 1;
+
+                        $i++;
+                        $j++;
+                    }
+
+                    for($k=0; $k <= (count($ids)*2); $k++) {
+                        if( empty($data[$k]['scoreScore'])) {
+                            unset($data[$k]);
+                        }
+                        if (empty($data2[$k]['scoreScore'])) {
+                            unset($data2[$k]);
+                        }
+                    }
+
+                    if($this->validateNotEmpty($data) == FALSE) {
+                        $this->postByDate($date);
+                    }
+                    else {
+                        if ($this->score_model->insertScoreBatch($data) == TRUE) {
+                            if ($this->tempscore_model->insertTempscoreBatch($data2) == TRUE) {
+                                if ($this->tempscore_model->updateTempScores() == True) {
+                                    $data3['tempScoresError'] = FALSE;
+                                    $data3['getTempScoresQuery'] = $this->tempscore_model->getTempScores();
+                                    if ($data3['getTempScoresQuery'] != FALSE) {
+                                        $data3['tempScoresError'] = FALSE;
+                                        foreach ($data3['getTempScoresQuery'] as $row) {
+                                            $row->tempDate = date("m/d/Y", strtotime($row->tempDate));
+                                        }
+                                        if ($this->tempscore_model->deleteTempScores() == FALSE) {
+                                            $data3['tempScoresError'] = TRUE;
+                                            $this->scoreEntryResult($data3);
+                                            RETURN;
+                                        }
+                                        else {
+                                            $this->scoreEntryResult($data3);
+                                            RETURN;
+                                        }
+                                    }
+                                    else {
+                                        $data3['tempScoresError'] = TRUE;
+                                        $this->scoreEntryResult($data3);
+                                        RETURN;
+                                    }
+                                }
+                                else{
+                                    $data3['tempScoresError'] = TRUE;
+                                    $this->scoreEntryResult($data3);
+                                    RETURN;
+                                }
+                            }
+                            else {
+                                $data3['tempScoresError'] = TRUE;
+                                $this->scoreEntryResult($data3);
+                                RETURN;
+                            }
+                        }
+                        else {
+                            $data['errorMessage'] = 'Something went wrong and the scores were unable to be posted at this time. Please try again later.';
+                            $data['link'] = 'index.php/score/postByDate/' . $date;
+                            $data['buttonText'] = 'Back';
+
+                            $this->load->view('header_view');
+                            $this->load->view('error_view', $data);
+                            $this->load->view('footer_view');
+                            RETURN;
+                        }
+                    }
+                }
+                else {
+                    //$date = $this->input->post('datepicker');
+                    $data['errorMessage'] = 'Something went wrong and the scores were unable to be posted at this time. Please try again later.';
+                    $data['link'] = 'index.php/score/postByDate/' . $date;
+                    $data['buttonText'] = 'Back';
+
+                    $this->load->view('header_view');
+                    $this->load->view('error_view', $data);
+                    $this->load->view('footer_view');
+                    RETURN;
+                }
             }
         }
+        else {
+            $date = $this->input->post('datepicker');
+            $data['errorMessage'] = 'Something went wrong and the scores were unable to be posted at this time. Please try again later.';
+            $data['link'] = 'index.php/score/postByDate/' . $date;
+            $data['buttonText'] = 'Back';
+
+            $this->load->view('header_view');
+            $this->load->view('error_view', $data);
+            $this->load->view('footer_view');
+            RETURN;
+        }
+
+
     }
 
     public function scoreEntryResult($data) {
