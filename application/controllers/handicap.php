@@ -134,14 +134,18 @@ class Handicap extends CI_Controller
                     $limit = $differentialSchedule[$scoreCount];
                     $handicapIndex = $this->calculateHandicapIndex($row->scorePlayerID, $limit);
                     $handicap = $this->calculateHandicap($handicapIndex);
-                    if ($this->player_model->updatePlayerHandicaps($row->scorePlayerID, $handicapIndex, $handicap) == FALSE) {
-                        array_push($errorUpdates, $row);
+                    if ($handicap != FALSE) {
+                        if ($this->player_model->updatePlayerHandicaps($row->scorePlayerID, $handicapIndex, $handicap) == FALSE) {
+                            array_push($errorUpdates, $row);
+                        }
+                        else {
+                            array_push($updatedHandicaps, $row);
+                        }
                     }
                     else {
-                        array_push($updatedHandicaps, $row);
+                        array_push($errorUpdates, $row);
                     }
                 }
-                //unset($row);
 
                 $this->handicapUpdateResult($updatedHandicaps, $errorUpdates);
                 return;
@@ -160,64 +164,72 @@ class Handicap extends CI_Controller
 
         $constant = 0.96;
         $playerDifferentials = $this->score_model->getHandicapDifferentials($playerID, $limit);
-        $diffIDs = array();
-        foreach ($playerDifferentials as $row) {
-            /*$temp = array(
-                'scoreID' => $row->scoreID,
-                'scoreDifferentialUsed' => 1
-            );*/
-            array_push($diffIDs, $row->scoreID);
+        if ($playerDifferentials != FALSE) {
+            $diffIDs = array();
+            foreach ($playerDifferentials as $row) {
+                array_push($diffIDs, $row->scoreID);
+            }
+            if ($this->score_model->setDifferentialsUsed($playerID, $diffIDs) != FALSE) {
+                $diffTotal = 0;
+                foreach ($playerDifferentials as $row) {
+                    $diffTotal = $diffTotal + $row->scoreDifferential;
+                }
+                $diffAverage = $diffTotal / (count($playerDifferentials));
+                $handicapIndexTemp = $diffAverage * $constant;
+
+                //PHP cannot truncate inherently. Use floor to simulate truncating to a single decimal place
+                //potential solution commented below. doesnt seem to work for all instances...if average comes out to too many decimal points, it won't truncate to just 1 decimal
+                //http://stackoverflow.com/questions/10643273/no-truncate-function-in-php-options
+                //$handicapIndex = floor($handicapIndexTemp * 100) / 100;
+
+                $handicapIndex = $this->truncate($handicapIndexTemp, 1);
+                return $handicapIndex;
+            }
+            else {
+                return FALSE;
+            }
         }
-        $this->score_model->setDifferentialsUsed($playerID, $diffIDs);
-
-        $diffTotal = 0;
-        foreach ($playerDifferentials as $row) {
-            $diffTotal = $diffTotal + $row->scoreDifferential;
+        else {
+            return FALSE;
         }
-        $diffAverage = $diffTotal / (count($playerDifferentials));
-        $handicapIndexTemp = $diffAverage * $constant;
 
-        //PHP cannot truncate inherently. Use floor to simulate truncating to a single decimal place
-        //potential solution commented below. doesnt seem to work for all instances...if average comes out to too many decimal points, it won't truncate to just 1 decimal
-        //http://stackoverflow.com/questions/10643273/no-truncate-function-in-php-options
-        //$handicapIndex = floor($handicapIndexTemp * 100) / 100;
-
-        $handicapIndex = $this->truncate($handicapIndexTemp, 1);
-        return $handicapIndex;
     }
 
     public function truncate($handicapIndexTemp, $decimals) {
         //function found below
         //http://stackoverflow.com/questions/10643273/no-truncate-function-in-php-options
         //EX:  12.345
-        $pos = strrpos((string)$handicapIndexTemp, '.');    //finds position index of the decimal in the index:  $pos = 3
-        $length = $pos + $decimals + 1;     //calculates the length of the desired index:  3 + 1 + 1 = 4
+        $pos = strrpos((string)$handicapIndexTemp, '.');                    //finds position index of the decimal in the index:  $pos = 3
+        $length = $pos + $decimals + 1;                                     //calculates the length of the desired index:  3 + 1 + 1 = 4
         $truncatedIndex = substr((string)$handicapIndexTemp, 0, $length);   //grabs the truncated index:  12.345 -> takes substring, starting at position 0, and counts 4 characters:  12.3
-        $handicapIndex = (float)$truncatedIndex;    //cast to float to ensure proper number format
+        $handicapIndex = (float)$truncatedIndex;                            //cast to float to ensure proper number format
         return $handicapIndex;
     }
 
     public function calculateHandicap($handicapIndex) {
-        $this->load->model('course_model');
-        $data['getHomeCourseQuery'] = $this->course_model->getHomeCourse();
-        if ($data['getHomeCourseQuery'] != FALSE) {
-            foreach ($data['getHomeCourseQuery'] as $row) {
-                $homeSlope = $row->courseSlope;
+        if ($handicapIndex != FALSE) {
+            $this->load->model('course_model');
+            $data['getHomeCourseQuery'] = $this->course_model->getHomeCourse();
+            if ($data['getHomeCourseQuery'] != FALSE) {
+                foreach ($data['getHomeCourseQuery'] as $row) {
+                    $homeSlope = $row->courseSlope;
+                }
+
+                //handicap formula as provided by client (and USGA)
+                //needs to take slope from current home course
+                $handicapTemp = $handicapIndex * ($homeSlope / 113);
+
+                //rounding to nearest whole number
+                $handicap = round($handicapTemp, 0);
+                return $handicap;
             }
-
-            //handicap formula as provided by client (and USGA)
-            //needs to take slope from current home course
-            $handicapTemp = $handicapIndex * ($homeSlope / 113);
-
-            //rounding to nearest whole number
-            $handicap = round($handicapTemp, 0);
-            return $handicap;
+            else {
+                return FALSE;
+            }
         }
         else {
             return FALSE;
         }
-
-
     }
 
     public function handicapUpdateResult($updatedHandicaps, $errorUpdates) {
