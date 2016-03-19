@@ -37,11 +37,11 @@
         </div>
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
             <ul class="nav navbar-nav">
-                <li><a href="<?php echo base_url("index.php/home/index"); ?>">Home</a></li>
+                <li><a href="<?php echo base_url("home/index"); ?>">Home</a></li>
                 <li class="dropdown">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Admin<span class="caret"></span></a>
                     <ul class="dropdown-menu">
-                        <li><a href="<?php echo base_url("index.php/admin/index"); ?>">Login</a></li>
+                        <li><a href="<?php echo base_url("admin/index"); ?>">Login</a></li>
                     </ul>
                 </li>
             </ul>

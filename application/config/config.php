@@ -16,7 +16,7 @@
 | environments.
 |
 */
-$config['base_url'] = '';   //'http://www.cutterhdcp.com'
+$config['base_url'] = 'http://localhost:8000/Cutter';   //'http://www.cutterhdcp.com'
 
 /*
 |--------------------------------------------------------------------------
@@ -28,7 +28,7 @@ $config['base_url'] = '';   //'http://www.cutterhdcp.com'
 | variable so that it is blank.
 |
 */
-$config['index_page'] = 'index.php';    //index.php
+$config['index_page'] = '';    //index.php
 
 /*
 |--------------------------------------------------------------------------
@@ -48,7 +48,7 @@ $config['index_page'] = 'index.php';    //index.php
 */
 
 //$config['uri_protocol']	= 'AUTO';  //original setting that works
-$config['uri_protocol'] = "REQUEST_URI";  //trying to get rid of index.php
+$config['uri_protocol'] = "AUTO";  //"REQUEST_URI" trying to get rid of index.php
 
 /*
 |--------------------------------------------------------------------------

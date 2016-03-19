@@ -34,7 +34,7 @@ class Player extends CI_Controller
         }
         else {
             $data['errorMessage'] = 'Something went wrong and player information was unable to be loaded at this time.';
-            $data['link'] = 'index.php/home/loadHomeLoggedIn';
+            $data['link'] = 'home/loadHomeLoggedIn';
             $data['buttonText'] = 'Home';
 
             $this->load->view('header_view');
@@ -135,7 +135,7 @@ class Player extends CI_Controller
         }
         else {
             $data['errorMessage'] = "Something went wrong. The Player's information was unable to be loaded at this time.";
-            $data['link'] = 'index.php/player/index';
+            $data['link'] = 'player/index';
             $data['buttonText'] = 'Player - Home';
 
             $this->load->view('header_view');
@@ -227,7 +227,7 @@ class Player extends CI_Controller
         }
         else {
             $data['errorMessage'] = "The player's information was unable to be loaded at this time.  Please try again later.";
-            $data['link'] = 'index.php/player/index';
+            $data['link'] = 'player/index';
             $data['buttonText'] = 'Player - Home';
 
             $this->load->view('header_view');

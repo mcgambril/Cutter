@@ -11,8 +11,8 @@
         <h1>Score - <small>Home</small></h1>
     </div>
 
-    <a class="btn btn-default col-md-3" href="<?php echo base_url("index.php/score/postDate"); ?>">Post Scores</a>
-    <a class="btn btn-default col-md-3" href="<?php echo base_url("index.php/score/chooseEditDate"); ?>">Edit Scores By Date</a>
+    <a class="btn btn-default col-md-3" href="<?php echo base_url("score/postDate"); ?>">Post Scores</a>
+    <a class="btn btn-default col-md-3" href="<?php echo base_url("score/chooseEditDate"); ?>">Edit Scores By Date</a>
     <div class="page-header"><br></div>
 
     <div class="panel panel-default">
@@ -44,7 +44,7 @@
                             <td class="col-md-2">' . $row->courseName . '</td>
                             <td class="col-md-2">' . $row->scoreScore . '</td>
                             <td class="col-md-2">
-                                <a class="btn btn-default col-md-12" href="' . base_url("index.php/score/edit/".$row->scoreID) . '">Edit</a>
+                                <a class="btn btn-default col-md-12" href="' . base_url("score/edit/".$row->scoreID) . '">Edit</a>
                             </td>
                         </tr>
                     </tbody>

@@ -28,7 +28,7 @@
                 <div class="text-center col-md-12">
                     <br>
                     <input type="submit" class="btn btn-default col-md-6" value="Submit" name="submit">
-                    <a class="btn btn-default col-md-6" href="<?php echo base_url("index.php/home/index"); ?>">Back</a>
+                    <a class="btn btn-default col-md-6" href="<?php echo base_url("home/index"); ?>">Back</a>
                     <br><br><br>
                 </div>
             </div>

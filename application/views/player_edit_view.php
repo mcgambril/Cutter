@@ -85,7 +85,7 @@
             <div class="text-center col-md-5">
                 <div class="col-md-2"></div>
                 <input type="submit" class="btn btn-default col-md-4" value="Submit Changes" name="submitName">
-                <a class="btn btn-default col-md-4" href="<?php echo base_url("index.php/player/index"); ?>">Back</a>
+                <a class="btn btn-default col-md-4" href="<?php echo base_url("player/index"); ?>">Back</a>
                 <div class="col-md-2"></div>
             </div>
         </div>

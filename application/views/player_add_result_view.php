@@ -15,8 +15,8 @@
 
 <div class="text-center col-md-12">
     <p class="col-md-4"></p>
-    <a class="btn btn-default col-md-2" href="<?php echo base_url("index.php/player/index"); ?>">Player - Home</a>
-    <a class="btn btn-default col-md-2" href="<?php echo base_url("index.php/player/add"); ?>">Back to Add Player</a>
+    <a class="btn btn-default col-md-2" href="<?php echo base_url("player/index"); ?>">Player - Home</a>
+    <a class="btn btn-default col-md-2" href="<?php echo base_url("player/add"); ?>">Back to Add Player</a>
     <p class="col-md-4"></p>
 </div>
 <br><br><br>

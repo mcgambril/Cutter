@@ -105,7 +105,7 @@ class Score extends CI_Controller {
         }
         else {
             $data['errorMessage'] = "Something went wrong.  Either there are no courses in the system or the courses' information failed to load at this time.";
-            $data['link'] = 'index.php/score/chooseDate';
+            $data['link'] = 'score/chooseDate';
             $data['buttonText'] = 'Back';
 
             $this->load->view('header_view');
@@ -295,7 +295,7 @@ class Score extends CI_Controller {
                         }
                         else {
                             $data['errorMessage'] = 'Something went wrong and the scores were unable to be posted at this time. Please try again later.';
-                            $data['link'] = 'index.php/score/postByDate/' . $date;
+                            $data['link'] = 'score/postByDate/' . $date;
                             $data['buttonText'] = 'Back';
 
                             $this->load->view('header_view');
@@ -308,7 +308,7 @@ class Score extends CI_Controller {
                 else {
                     //$date = $this->input->post('datepicker');
                     $data['errorMessage'] = 'Something went wrong and the scores were unable to be posted at this time. Please try again later.';
-                    $data['link'] = 'index.php/score/postByDate/' . $date;
+                    $data['link'] = 'score/postByDate/' . $date;
                     $data['buttonText'] = 'Back';
 
                     $this->load->view('header_view');
@@ -321,7 +321,7 @@ class Score extends CI_Controller {
         else {
             $date = $this->input->post('datepicker');
             $data['errorMessage'] = 'Something went wrong and the scores were unable to be posted at this time. Please try again later.';
-            $data['link'] = 'index.php/score/postByDate/' . $date;
+            $data['link'] = 'score/postByDate/' . $date;
             $data['buttonText'] = 'Back';
 
             $this->load->view('header_view');
@@ -506,7 +506,7 @@ class Score extends CI_Controller {
         }
         else {
             $data['errorMessage'] = "Something went wrong and the scores were not able to be submitted. Please try again later.";
-            $data['link'] = 'index.php/score/chooseDate';
+            $data['link'] = 'score/chooseDate';
             $data['buttonText'] = 'Score - Home';
 
             $this->load->view('header_view');

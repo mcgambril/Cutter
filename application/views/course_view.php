@@ -12,8 +12,8 @@
         <h1>Course - <small>Home</small></h1>
     </div>
     <div class="col-md-4 noPadLeft">
-        <a class="btn btn-default col-md-6" href="<?php echo base_url("index.php/course/add"); ?>">Add Course</a>
-        <a class="btn btn-default col-md-6" href="<?php echo base_url("index.php/course/setHomeCourse"); ?>">Update Home Course</a>
+        <a class="btn btn-default col-md-6" href="<?php echo base_url("course/add"); ?>">Add Course</a>
+        <a class="btn btn-default col-md-6" href="<?php echo base_url("course/setHomeCourse"); ?>">Update Home Course</a>
     </div>
     <div class="page-header"><br></div>
 
@@ -51,10 +51,10 @@
                                     <td class="col-md-1 centered">' . $row->courseRating . '</td>
                                     <td class="col-md-2 centered">' . $row->courseDefault . '</td>
                                     <td class="col-md-2">
-                                        <a class="btn btn-default col-md-12" href="' . base_url("index.php/course/edit/" . $row->courseID) . '">Edit</a>
+                                        <a class="btn btn-default col-md-12" href="' . base_url("course/edit/" . $row->courseID) . '">Edit</a>
                                     </td>
                                     <td class="col-md-2">
-                                        <a class="btn btn-default col-md-12" href="' . base_url("index.php/course/delete/" . $row->courseID) . '">Delete</a>
+                                        <a class="btn btn-default col-md-12" href="' . base_url("course/delete/" . $row->courseID) . '">Delete</a>
                                     </td>
                                 </tr>
                             ';

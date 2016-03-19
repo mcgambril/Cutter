@@ -57,7 +57,7 @@
                     <div class="text-center col-md-12">
                         <p class="col-md-2"></p>
                         <input type="submit" class="btn btn-default col-md-4" value="Submit Course Changes" name="submitName">
-                        <a class="btn btn-default col-md-4" href="<?php echo base_url("index.php/course/index"); ?>">Back</a>
+                        <a class="btn btn-default col-md-4" href="<?php echo base_url("course/index"); ?>">Back</a>
                         <p class="col-md-2"></p>
                     </div>
                 </div>

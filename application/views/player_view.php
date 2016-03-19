@@ -11,7 +11,7 @@
     <div class="page-header">
         <h1>Player - <small>Home</small></h1>
     </div>
-    <a class="btn btn-default col-md-2" href="<?php echo base_url("index.php/player/add"); ?>">Add Player</a>
+    <a class="btn btn-default col-md-2" href="<?php echo base_url("player/add"); ?>">Add Player</a>
     <div class="page-header"><br></div>
 
     <div class="row">
@@ -38,10 +38,10 @@
                                             <td class="col-md-2">' . $row->playerHandicap . '</td>
                                             <td class="col-md-2">' . $row->playerHandicapIndex . '</td>
                                             <td class="col-md-2">
-                                                <a class="btn btn-default col-md-12" href="' . base_url("index.php/player/edit/".$row->playerID) . '">Edit</a>
+                                                <a class="btn btn-default col-md-12" href="' . base_url("player/edit/".$row->playerID) . '">Edit</a>
                                             </td>
                                             <td class="col-md-2">
-                                                <a class="btn btn-default col-md-12" href="' . base_url("index.php/player/delete/".$row->playerID) . '">Delete</a>
+                                                <a class="btn btn-default col-md-12" href="' . base_url("player/delete/".$row->playerID) . '">Delete</a>
                                             </td>
                                         </tr>
                                     ';

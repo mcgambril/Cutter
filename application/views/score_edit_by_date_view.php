@@ -30,7 +30,7 @@
                         }
                     ?>
                     <br><br>
-                    <a class="btn btn-default col-md-12" href="<?php echo base_url("index.php/score/chooseDate"); ?>">Back</a>
+                    <a class="btn btn-default col-md-12" href="<?php echo base_url("score/chooseDate"); ?>">Back</a>
                 </div>
             </div>
 

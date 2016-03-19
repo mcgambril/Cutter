@@ -123,7 +123,7 @@ class Course extends CI_Controller
         }
         else {
             $data['errorMessage'] = "The course's information was unable to be loaded at this time.  Please try again later.";
-            $data['link'] = 'index.php/course/index';
+            $data['link'] = 'course/index';
             $data['buttonText'] = 'Course - Home';
 
             $this->load->view('header_view');
@@ -256,7 +256,7 @@ class Course extends CI_Controller
         }
         else {
             $data['errorMessage'] = "The course's information was unable to be loaded at this time.  Please try again later.";
-            $data['link'] = 'index.php/course/index';
+            $data['link'] = 'course/index';
             $data['buttonText'] = 'Course - Home';
 
             $this->load->view('header_view');
@@ -287,7 +287,7 @@ class Course extends CI_Controller
         }
         else {
             $data['errorMessage'] = 'The course was unable to be deleted at this time. Please try again later.';
-            $data['link'] = 'index.php/course/index';
+            $data['link'] = 'course/index';
             $data['buttonText'] = 'Course - Home';
 
             $this->load->view('header_view');
@@ -376,7 +376,7 @@ class Course extends CI_Controller
             }
             else {
                 $data['errorMessage'] = "The new home course was unable to be set at this time.  Please try again later";
-                $data['link'] = 'index.php/course/setHomeCourse';
+                $data['link'] = 'course/setHomeCourse';
                 $data['buttonText'] = 'Back';
 
                 $this->load->view('header_view');

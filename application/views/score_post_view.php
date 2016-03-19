@@ -43,7 +43,7 @@
                         </div>
                         <div class="col-md-12">
                             <input type="submit" class="btn btn-default col-md-6" value="Enter Scores" name="submit">
-                            <a class="btn btn-default col-md-6" href="<?php echo base_url("index.php/score/chooseDate"); ?>">Back</a>
+                            <a class="btn btn-default col-md-6" href="<?php echo base_url("score/chooseDate"); ?>">Back</a>
                         </div>
                     </div>
                 </div>

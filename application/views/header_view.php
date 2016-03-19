@@ -40,34 +40,34 @@
                 <div class="navbar-collapse collapse" id="bs-example-navbar-collapse-1">
                     <ul class="nav navbar-nav">
                         <li class="nav-item">
-                            <a href="<?php echo base_url("index.php/home/loadHomeLoggedIn"); ?>">Home</a>
+                            <a href="<?php echo base_url("home/loadHomeLoggedIn"); ?>">Home</a>
                         </li>
                         <li class="dropdown nav-item">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Admin<span class="caret"></span></a>
                             <ul class="dropdown-menu">
-                                <li><a href="<?php echo base_url("index.php/admin/changePassword"); ?>">Change Password</a></li>
-                                <li><a href="<?php echo base_url("index.php/home/index"); ?>">Logout</a></li>
+                                <li><a href="<?php echo base_url("admin/changePassword"); ?>">Change Password</a></li>
+                                <li><a href="<?php echo base_url("home/index"); ?>">Logout</a></li>
                             </ul>
                         </li>
                         <li class="dropdown nav-item">
-                            <a href="<?php echo base_url("index.php/score/chooseDate"); ?>">Scores</a>
+                            <a href="<?php echo base_url("score/chooseDate"); ?>">Scores</a>
                         </li>
                         <li class="dropdown nav-item">
-                            <a href="<?php echo base_url("index.php/player/index"); ?>">Players</a>
+                            <a href="<?php echo base_url("player/index"); ?>">Players</a>
                         </li>
                         <li class="dropdown nav-item">
-                            <a href="<?php echo base_url("index.php/handicap/update"); ?>">Handicaps</a>
+                            <a href="<?php echo base_url("handicap/update"); ?>">Handicaps</a>
                         </li>
 
                         <li class="dropdown nav-item">
-                            <a href="<?php echo base_url("index.php/course/index"); ?>">Courses</a>
+                            <a href="<?php echo base_url("course/index"); ?>">Courses</a>
                         </li>
                     </ul>
                     <ul class="nav navbar-nav navbar-right">
                         <li class="dropdown nav-item">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Logged in as Admin<span class="caret"></span></a>
                             <ul class="dropdown-menu">
-                                <li><a href="<?php echo base_url("index.php/home/index"); ?>">Logout</a></li>
+                                <li><a href="<?php echo base_url("home/index"); ?>">Logout</a></li>
                             </ul>
                         </li>
                     </ul>

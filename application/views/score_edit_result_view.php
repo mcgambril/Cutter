@@ -33,7 +33,7 @@
 <div class="row">
     <div class="text-center col-md-12">
         <div class="col-md-5"></div>
-        <a class="btn btn-default col-md-2" href="<?php echo base_url("index.php/score/chooseDate"); ?>">Scores Home</a>
+        <a class="btn btn-default col-md-2" href="<?php echo base_url("score/chooseDate"); ?>">Scores Home</a>
         <div class="col-md-5"></div>
     </div>
 </div>

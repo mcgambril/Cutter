@@ -17,7 +17,7 @@
 <div class="row">
     <div class="text-center class=col-md-12">
         <div class="col-md-5"></div>
-        <a class="btn btn-default col-md-2" href="<?php echo base_url("index.php/course/index"); ?>">Course - Home</a>
+        <a class="btn btn-default col-md-2" href="<?php echo base_url("course/index"); ?>">Course - Home</a>
         <div class="col-md-5"></div>
     </div>
 </div>

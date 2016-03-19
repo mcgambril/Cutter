@@ -49,7 +49,7 @@
                 <div class="text-center col-md-8">
                     <br><br>
                     <input type="submit" class="btn btn-default col-md-6" value="Add Course" name="submitCourse">
-                    <a class="btn btn-default col-md-6" href="<?php echo base_url("index.php/course/index"); ?>">Back</a>
+                    <a class="btn btn-default col-md-6" href="<?php echo base_url("course/index"); ?>">Back</a>
                     <br><br><br>
                 </div>
             </div>
