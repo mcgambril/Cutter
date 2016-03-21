@@ -2,13 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="bf1f04b8-8018-444a-9bbe-e11b375c07b1" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.htaccess" afterPath="$PROJECT_DIR$/.htaccess" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/.htaccess" afterPath="$PROJECT_DIR$/application/.htaccess" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/controllers/course.php" afterPath="$PROJECT_DIR$/application/controllers/course.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/controllers/handicap.php" afterPath="$PROJECT_DIR$/application/controllers/handicap.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/index.php" afterPath="$PROJECT_DIR$/index.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/controllers/score.php" afterPath="$PROJECT_DIR$/application/controllers/score.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="Cutter.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -36,8 +30,8 @@
       <file leaf-file-name="handicap.php" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/application/controllers/handicap.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.50880283" vertical-offset="85" max-vertical-offset="4930">
-              <caret line="31" column="57" selection-start-line="31" selection-start-column="57" selection-end-line="31" selection-end-column="57" />
+            <state vertical-scroll-proportion="0.74823946" vertical-offset="0" max-vertical-offset="4964">
+              <caret line="34" column="45" selection-start-line="34" selection-start-column="45" selection-end-line="34" selection-end-column="45" />
               <folding>
                 <element signature="n#update#0;n#Handicap#0;n#!!top" expanded="false" />
               </folding>
@@ -58,7 +52,7 @@
       <file leaf-file-name="course_model.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/application/models/course_model.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="7.1923075" vertical-offset="187" max-vertical-offset="2822">
+            <state vertical-scroll-proportion="-0.0" vertical-offset="0" max-vertical-offset="2822">
               <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
               <folding>
                 <marker date="1452470084354" expanded="true" signature="2749:2914" placeholder="INSERT INTO ..." />
@@ -70,7 +64,7 @@
       <file leaf-file-name="home.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/application/controllers/home.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-9.269231" vertical-offset="133" max-vertical-offset="1666">
+            <state vertical-scroll-proportion="-7.3076925" vertical-offset="184" max-vertical-offset="1666">
               <caret line="28" column="47" selection-start-line="28" selection-start-column="47" selection-end-line="28" selection-end-column="47" />
               <folding />
             </state>
@@ -791,16 +785,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/application/models/course_model.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="7.1923075" vertical-offset="187" max-vertical-offset="2822">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding>
-            <marker date="1452470084354" expanded="true" signature="2749:2914" placeholder="INSERT INTO ..." />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/application/views/course_view.php">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.72289157" vertical-offset="668" max-vertical-offset="1275">
@@ -814,14 +798,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/application/controllers/home.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-9.269231" vertical-offset="133" max-vertical-offset="1666">
-          <caret line="28" column="47" selection-start-line="28" selection-start-column="47" selection-end-line="28" selection-end-column="47" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/application/views/error_view.php">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-3.2692308" vertical-offset="0" max-vertical-offset="510">
@@ -830,10 +806,28 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/application/models/course_model.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-0.0" vertical-offset="0" max-vertical-offset="2822">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding>
+            <marker date="1452470084354" expanded="true" signature="2749:2914" placeholder="INSERT INTO ..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/application/controllers/home.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-7.3076925" vertical-offset="184" max-vertical-offset="1666">
+          <caret line="28" column="47" selection-start-line="28" selection-start-column="47" selection-end-line="28" selection-end-column="47" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/application/controllers/handicap.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.50880283" vertical-offset="85" max-vertical-offset="4930">
-          <caret line="31" column="57" selection-start-line="31" selection-start-column="57" selection-end-line="31" selection-end-column="57" />
+        <state vertical-scroll-proportion="0.74823946" vertical-offset="0" max-vertical-offset="4964">
+          <caret line="34" column="45" selection-start-line="34" selection-start-column="45" selection-end-line="34" selection-end-column="45" />
           <folding>
             <element signature="n#update#0;n#Handicap#0;n#!!top" expanded="false" />
           </folding>

@@ -30,7 +30,9 @@ class Handicap extends CI_Controller
             $data['errorMessage'] = 'There is no Home Course currently set.  Therefore, Handicaps cannot be updated at this time.';
             $data['link'] = 'course/setHomeCourse';
             $data['buttonText'] = 'Set Home Course Here';
+            $this->load->view('header_view');
             $this->load->view('error_view', $data);
+            $this->load->view('footer_view');
             return;
         }
 
