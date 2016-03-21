@@ -1,5 +1,7 @@
 #Deny from all
 
+#Details for Mod Rewrite rules for codeigniter to remove index.php can be found here:
+#http://stackoverflow.com/questions/14783666/codeigniter-htaccess-and-url-rewrite-issues
 #Mod Rewrite rules below must be applied directly for local Abyss Web Server.
 #see http://aprelium.com/abyssws/articles/urlrewriting-modrewrite-conversion.html for details
 <IfModule mod_rewrite.c>

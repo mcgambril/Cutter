@@ -55,7 +55,9 @@ class Course extends CI_Controller
             array(
                 'field' => 'courseName',
                 'label' => 'Course Name',
-                'rules' => 'required|max_length[45]|valid_base64|min_length[1]|callback_uniqueName'
+                //'rules' => 'required|max_length[45]|valid_base64|min_length[1]|is_unique[course.courseName]'
+                //'rules' => 'required|max_length[45]|valid_base64|min_length[1]'
+                'rules' => 'required|max_length[45]|min_length[1]|valid_base64|is_unique[course.courseName]'
             ),
             array(
                 'field' => 'courseSlope',
@@ -302,7 +304,7 @@ class Course extends CI_Controller
     public function courseDeleteResult($queryResult, $courseName) {
         if ($queryResult == TRUE) {
             $dataMessage['title'] = 'Success!';
-            $dataMessage['message'] = $courseName . ' was deleted from the database.';
+            $dataMessage['message'] = $courseName . ' was deleted from the database along with its associated scores.';
         }
         else {
             $dataMessage['title'] = 'Failed';
@@ -411,10 +413,17 @@ class Course extends CI_Controller
         foreach ($courses as $row) {
             if ($courseName == $row->courseName) {
                 $value = FALSE;
+
             }
         }
-        $this->form_validation->set_message('uniqueName', 'A course with this name already exists.');
-        return $value;
+
+        if ($value == FALSE) {
+            $this->form_validation->set_message('uniqueName', 'A course with this name already exists.');
+            return FALSE;
+        }
+        else {
+            return TRUE;
+        }
     }
 
 }
