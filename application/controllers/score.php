@@ -570,5 +570,4 @@ class Score extends CI_Controller {
             return FALSE;
         }
     }
-
 }

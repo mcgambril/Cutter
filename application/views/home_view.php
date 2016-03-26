@@ -73,7 +73,7 @@
                                         if ($noPlayers == TRUE) {
                                             echo '
                                                 <tr>
-                                                    <td colspan="3" class="centered">No Players exist in the system.</td>
+                                                    <td colspan="3" class="centered">No players exist in the system.</td>
                                                 </tr>
                                             ';
                                         }

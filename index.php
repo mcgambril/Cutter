@@ -18,7 +18,16 @@
  * NOTE: If you change these, also change the error_reporting() code below
  *
  */
-	define('ENVIRONMENT', 'development');
+
+    switch (dirname(__FILE__)) {
+        case 'C:\Abyss Web Server\htdocs\Cutter':
+            define('ENVIRONMENT', 'development');
+            break;
+        default:
+            define('ENVIRONMENT', 'production');
+            break;
+    }
+	//define('ENVIRONMENT', 'development');
     //define('ENVIRONMENT', 'production');
 /*
  *---------------------------------------------------------------
@@ -29,23 +38,23 @@
  * By default development will show errors but testing and live will hide them.
  */
 
-if (defined('ENVIRONMENT'))
-{
-	switch (ENVIRONMENT)
+	if (defined('ENVIRONMENT'))
 	{
-		case 'development':
-			error_reporting(E_ALL);
-		break;
+		switch (ENVIRONMENT)
+		{
+			case 'development':
+				error_reporting(E_ALL);
+			break;
 
-		case 'testing':
-		case 'production':
-			error_reporting(0);
-		break;
+			case 'testing':
+			case 'production':
+				error_reporting(0);
+			break;
 
-		default:
-			exit('The application environment is not set correctly.');
+			default:
+				exit('The application environment is not set correctly.');
+		}
 	}
-}
 
 /*
  *---------------------------------------------------------------
@@ -57,7 +66,25 @@ if (defined('ENVIRONMENT'))
  * as this file.
  *
  */
-	$system_path = 'system';
+	
+	
+	if (defined('ENVIRONMENT')) {
+		switch (ENVIRONMENT) {
+			case 'development':
+				$system_path = 'system';
+			break;
+			
+			case 'testing':
+			
+			case 'production':
+				$system_path = '../system';
+			break;
+			
+			default:
+				exit('The system folder location is not set correctly');
+		}
+	}
+	
 
 /*
  *---------------------------------------------------------------
@@ -73,7 +100,23 @@ if (defined('ENVIRONMENT'))
  * NO TRAILING SLASH!
  *
  */
-	$application_folder = 'application';
+	if (defined('ENVIRONMENT')) {
+		switch (ENVIRONMENT) {
+			case 'development':
+				$application_folder = 'application';
+			break;
+			
+			case 'testing':
+			
+			case 'production':
+				$application_folder = '../application';
+			break;
+			
+			default:
+				exit('The application folder location is not set correctly');
+		}
+	}
+	
 
 /*
  * --------------------------------------------------------------------

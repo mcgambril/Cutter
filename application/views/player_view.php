@@ -31,6 +31,9 @@
                         </thead>
                         <tbody>
                             <?php
+                                if ($getPlayersAZQuery == 'empty') {
+                                    echo '<tr><td colspan="5">No players exist in the system</td></tr>';
+                                }
                                 foreach($getPlayersAZQuery as $row) {
                                     echo '
                                         <tr>

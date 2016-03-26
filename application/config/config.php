@@ -16,7 +16,22 @@
 | environments.
 |
 */
-$config['base_url'] = 'http://localhost:8000/Cutter';   //'http://www.cutterhdcp.com'
+
+if (defined('ENVIRONMENT')) {
+    switch (ENVIRONMENT) {
+        case 'development':
+            $config['base_url'] = 'http://localhost:8000/Cutter';
+            break;
+
+        case 'production':
+        $config['base_url'] = 'http://www.cutterhdcp.com';
+            break;
+
+        default:
+            exit('The system folder location is not set correctly');
+    }
+}
+//$config['base_url'] = 'http://localhost:8000/Cutter';   //'http://www.cutterhdcp.com'
 
 /*
 |--------------------------------------------------------------------------

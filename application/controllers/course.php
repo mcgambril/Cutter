@@ -55,9 +55,10 @@ class Course extends CI_Controller
             array(
                 'field' => 'courseName',
                 'label' => 'Course Name',
-                //'rules' => 'required|max_length[45]|valid_base64|min_length[1]|is_unique[course.courseName]'
-                //'rules' => 'required|max_length[45]|valid_base64|min_length[1]'
-                'rules' => 'required|max_length[45]|min_length[1]|valid_base64|is_unique[course.courseName]'
+                'rules' => 'required|max_length[45]|min_length[1]|is_unique[course.courseName]'
+                //valid_base64 does not work as expected for some reason
+                //using is_unique..created similar callback without realizing the standard one existed
+                //going with the standard one as it is probably more trustworthy
             ),
             array(
                 'field' => 'courseSlope',

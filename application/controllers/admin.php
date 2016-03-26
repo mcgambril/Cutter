@@ -155,6 +155,12 @@ class Admin extends CI_Controller {
             }
         }
         else {
+            $data['getHomeCourseQuery'] = $this->course_model->getHomeCourse();
+            if ($this->validateNotEmpty($data['getHomeCourseQuery'] == TRUE)) {
+                $data['empty'] = FALSE;
+            } else {
+                $data['empty'] = TRUE;
+            }
             $data['noPlayers'] = TRUE;
         }
 

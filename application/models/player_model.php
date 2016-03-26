@@ -26,15 +26,22 @@ class Player_model extends CI_Model {
     }
 
     public function getPlayersAZ() {
+        $this->db->trans_start();
         $this->db->select('*');
         $this->db->from('player');
         $this->db->order_by('playerName', 'asc');
         $getPlayersQuery = $this->db->get();
-        if ($getPlayersQuery->num_rows() > 0) {
-            return $getPlayersQuery->result();
+        $this->db->trans_complete();
+        if ($this->db->trans_status() == FALSE) {
+            return FALSE;
         }
         else {
-            return FALSE;
+            if ($getPlayersQuery->num_rows() > 0) {
+                return $getPlayersQuery->result();
+            }
+            else {
+                return 'empty';
+            }
         }
     }
 
