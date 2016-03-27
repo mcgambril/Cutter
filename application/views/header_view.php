@@ -58,7 +58,7 @@
                             <a href="<?php echo base_url("player/index"); ?>">Players</a>
                         </li>
                         <li class="dropdown nav-item">
-                            <a href="<?php echo base_url("handicap/update"); ?>">Handicaps</a>
+                            <a href="<?php echo base_url("handicap/update"); ?>">Update</a>
                         </li>
 
                         <li class="dropdown nav-item">

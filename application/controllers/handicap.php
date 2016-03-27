@@ -23,6 +23,18 @@ class Handicap extends CI_Controller
     public function submitUpdate() {
         $this->load->model('score_model');
         $this->load->model('player_model');
+        $this->load->model('course_model');
+
+        $data['getHomeCourseQuery'] = $this->course_model->getHomeCourse();
+        if ($this->validateNotEmpty($data['getHomeCourseQuery'] == FALSE)) {
+            $data['errorMessage'] = 'There is no Home Course currently set.  Therefore, Handicaps cannot be updated at this time.';
+            $data['link'] = 'course/setHomeCourse';
+            $data['buttonText'] = 'Set Home Course Here';
+            $this->load->view('header_view');
+            $this->load->view('error_view', $data);
+            $this->load->view('footer_view');
+            return;
+        }
 
         //differential schedule as defined by John Lyon and/or USGA
         //# of most recent scores available is key on left
@@ -135,7 +147,6 @@ class Handicap extends CI_Controller
                     $handicap = $this->calculateHandicap($handicapIndex);
                     if ($handicap !== FALSE) {
                         if ($this->player_model->updatePlayerHandicaps($row->scorePlayerID, $handicapIndex, $handicap) == FALSE) {
-                            //$row->playerName = "This Guy";
                             array_push($errorUpdates, $row);
                         }
                         else {
@@ -143,9 +154,8 @@ class Handicap extends CI_Controller
                         }
                     }
                     else {
-                        //handiap for matthew gambril == false for some reason
                         $this->load->view('error_view');
-                        $row->playerName = "This Guy";
+                        //$row->playerName = ;
                         array_push($errorUpdates, $row);
                     }
                 }
@@ -283,25 +293,4 @@ class Handicap extends CI_Controller
         $this->load->view('handicap_error_view');
         $this->load->view('footer_view');
     }
-
-    /*public function index() {
-        $this->load->model('player_model');
-        $this->load->helper('form');
-        $this->load->library('form_validation');
-
-        $data['getPlayersQuery'] = $this->player_model->getPlayersAZ();
-        foreach ($data['getPlayersQuery'] as $row) {
-            if ($row->playerHandicap == "" || $row->playerHandicap == 0 || $row->playerHandicap == NULL) {
-                $row->playerHandicap = "TBD";
-            }
-            if ($row->playerHandicapIndex == "" || $row->playerHandicapIndex == 0 || $row->playerHandicapIndex == NULL) {
-                $row->playerHandicapIndex = "TBD";
-            }
-        }
-
-        $this->load->view('header_view');
-        $this->load->view('handicap_view', $data);
-        $this->load->view('footer_view');
-    }*/
-
 }

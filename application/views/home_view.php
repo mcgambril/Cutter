@@ -19,7 +19,7 @@
                 <div class="col-xs-12 col-md-6">
                     <div class="panel panel-default">
                         <!--<div class="panel-heading">Home Course</div>-->
-                        <div class="table-responsive">
+                        <div class="table-responsive">  <!--table-responsive-->
                             <table class ="table table-condensed table-bordered">
                                 <thead>
                                 <tr>
@@ -58,14 +58,14 @@
                 <div class="col-xs-12 col-md-6">
                     <div class="panel panel-default">
                         <div class="panel-heading">Players</div>
-                        <div class="table-responsive">
-                            <table class="table table-condensed table-bordered table-striped">
+                        <div class="table"> <!--table-responsive-->
+                            <table class="table table-condensed table-bordered table-striped noBottomMargin">
                                 <thead>
                                     <tr>
                                         <!--<th class="col-md-3">See Scores</th>-->
-                                        <th class="col-xs-12 col-md-4">Name</th>
-                                        <th class="col-xs-12 col-md-4 centered">Handicap</th>
-                                        <th class="col-xs-12 col-md-4 centered">Index</th>
+                                        <th class="col-xs-6 col-md-4">Name</th>
+                                        <th class="col-xs-3 col-md-4 centered">Handicap</th>
+                                        <th class="col-xs-3 col-md-4 centered">Index</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -84,9 +84,9 @@
                                                 <tr data-toggle="collapse" data-target="#' . $row->playerID . '" class="accordion-toggle pointer">';
                                                 echo '
                                                     <!--<td class="col-md-3"><a class="btn btn-default col-md-12 viewScoresBtn">Scores Details</a></td>-->
-                                                    <td class="col-xs-12 col-md-4"><span class="caret"></span> ' . $row->playerName . '</td>
-                                                    <td class="col-xs-12 col-md-4 centered">' . $row->playerHandicap . '</td>
-                                                    <td class="col-xs-12 col-md-4 centered">' . $row->playerHandicapIndex . '</td>
+                                                    <td class="col-xs-6 col-md-4 vertMiddle fixedHeight"><span class="caret"></span> ' . $row->playerName . '</td>
+                                                    <td class="col-xs-3 col-md-4 centered fixedHeight">' . $row->playerHandicap . '</td>
+                                                    <td class="col-xs-3 col-md-4 centered fixedHeight">' . $row->playerHandicapIndex . '</td>
                                                 </tr>';
                                                 echo '
                                                 <tr id="' . $row->playerID . '" class="collapse noHover">';

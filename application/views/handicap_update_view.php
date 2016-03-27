@@ -17,7 +17,7 @@
                 <h3>Do you want to Update all Players' Handicaps?</h3>
                 <br>
                 <p class="col-md-4"></p>
-                <a class="btn btn-default col-md-2" id="openHandicapDialog">Yes. Update Handicaps</a>
+                <a class="btn btn-default col-md-2" id="openHandicapDialog">Update</a>
                     <!--This div sets the jquery ui dialog box for handicap update confirmation.  See assets/js/site.js for full fucntion-->
                     <div id="dialog-confirm" title="Are you sure?">Click continue to update every player's handicap.</div>
                 <a class="btn btn-default col-md-2" href="<?php echo base_url("home/loadHomeLoggedIn"); ?>">Home</a>
