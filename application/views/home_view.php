@@ -59,7 +59,7 @@
                     <div class="panel panel-default">
                         <div class="panel-heading">Players</div>
                         <div class="table"> <!--table-responsive-->
-                            <table class="table table-condensed table-bordered table-striped noBottomMargin">
+                            <table class="table table-condensed table-bordered table-striped noBottomMargin" style="border-collapse:collapse;">
                                 <thead>
                                     <tr>
                                         <!--<th class="col-md-3">See Scores</th>-->

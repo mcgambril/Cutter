@@ -18,14 +18,18 @@
     <div class="form-group">
         <div class="container">
             <div class="row">
-                <div class="col-md-4 col-xs-4">
-                    <div class="col-md-3 col-xs-3 fixed">
+                <div class="col-md-4 col-xs-12">
+                    <div class="col-md-3 col-xs-12 fixed noPad">
                         <div class="col-md-12 col-xs-12">
+                            <div class="col-xs-6 noPad">
                             <?php
-                                echo '<p><strong>Date: </strong></p>';
-                                echo '<input type="text" value="' . $date . '" name="datepicker"  class="form-control" readonly>';
+                                //echo '<p><strong>Date: </strong></p>';
+                                echo '<label for="datepicker">Date:</label>';
+                                echo '<input type="text" value="' . $date . '" name="datepicker"  id="datepicker" class="form-control" readonly>';
                             ?>
-                            <br />
+                            <!--<br />-->
+                            </div>
+                            <div class="col-xs-6 noPad">
                             <label for="pick-course">Course:</label>
                             <select class="form-control" id="pick-course" name="course">
                                 <?php
@@ -39,9 +43,10 @@
                                     }
                                 ?>
                             </select>
-                            <br/>
+                            <!--<br/>-->
+                            </div>
                         </div>
-                        <div class="col-md-12 col-xs-12">
+                        <div class="col-md-12 col-xs-12 bottomPadTiny">
                             <input type="submit" class="btn btn-default col-md-6 col-xs-6" value="Enter Scores" name="submit">
                             <a class="btn btn-default col-md-6 col-xs-6" href="<?php echo base_url("score/chooseDate"); ?>">Back</a>
                         </div>
@@ -53,8 +58,8 @@
 
                         <div class="panel-heading">Post New Scores</div>
 
-                        <div class="table-responsive">
-                            <table class ="table table-condensed table-bordered" style="border-collapse:collapse;">
+                        <div class="table"> <!--style="max-height:300px; overflow: auto;"-->
+                            <table class ="table table-condensed table-bordered noBottomMargin scrollBody" style="border-collapse:collapse;">
                                 <thead>
                                     <tr>
                                         <th class="col-md-6 col-xs-6">Player</th>
@@ -77,10 +82,10 @@
                                                     echo '<tr>';
                                                     echo '<td class="col-md-6 col-xs-6">' . $row->playerName . '<input type="hidden" name="' . $row->playerID . '" value="' . $row->playerID . '" /></td>';
                                                     echo '<td class="col-md-3 col-xs-3">';
-                                                    echo '<input type="text" name="' . $row->playerID . 'am-score"  id="' . $row->playerID . 'am-score" class="' . $row->playerID . 'score col-md-12">';
+                                                    echo '<input type="text" name="' . $row->playerID . 'am-score"  id="' . $row->playerID . 'am-score" class="' . $row->playerID . 'score col-md-12 col-xs-12 noPad">';
                                                     echo '</td>';
                                                     echo '<td class="col-md-3 col-xs-3">';
-                                                    echo '<input type="text" name="' . $row->playerID . 'pm-score" id ="' . $row->playerID . 'pm-score" class="' . $row->playerID . 'score col-md-12">';
+                                                    echo '<input type="text" name="' . $row->playerID . 'pm-score" id ="' . $row->playerID . 'pm-score" class="' . $row->playerID . 'score col-md-12 col-xs-12">';
                                                     echo '</td>';
                                                     echo '</tr>';
                                                 }
@@ -88,7 +93,7 @@
                                                     echo '<tr>';
                                                     echo '<td class="col-md-6 col-xs-6">' . $row->playerName . '<input type="hidden" name="' . $row->playerID . '" value="' . $row->playerID . '" /></td>';
                                                     echo '<td class="col-md-3 col-xs-3">';
-                                                    echo '<input type="text" name="' . $row->playerID . 'am-score"  id="' . $row->playerID . 'am-score" class="' . $row->playerID . 'score col-md-12">';
+                                                    echo '<input type="text" name="' . $row->playerID . 'am-score"  id="' . $row->playerID . 'am-score" class="' . $row->playerID . 'score col-md-12 col-xs-12">';
                                                     echo '</td>';
                                                     foreach ($row->pmScore as $score){
                                                         echo '<td class="col-md-3 col-xs-3 centered">' . $score->scoreScore . '</td>';
@@ -102,7 +107,7 @@
                                                         echo '<td class="col-md-3 col-xs-3 centered">' . $score->scoreScore . '</td>';
                                                     }
                                                     echo '<td class="col-md-3 col-xs-3">';
-                                                    echo '<input type="text" name="' . $row->playerID . 'pm-score" id ="' . $row->playerID . 'pm-score" class="' . $row->playerID . 'score col-md-12">';
+                                                    echo '<input type="text" name="' . $row->playerID . 'pm-score" id ="' . $row->playerID . 'pm-score" class="' . $row->playerID . 'score col-md-12 col-xs-12">';
                                                     echo '</td>';
                                                     echo '</tr>';
                                                 }

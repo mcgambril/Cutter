@@ -1,12 +1,29 @@
-body {
-    padding-top: 60px;
+
+/*http://stackoverflow.com/questions/10336194/twitter-bootstrap-top-nav-bar-blocking-top-content-of-the-page?answertab=votes#tab-top*/
+    body {
+        padding-top: 15px;
+        /*font-size: 8pt;*/
+    }
+
+.table tr td {
+    /*font-size: 8pt;*/
+    /*min-height:  55px;
+    max-height: 55px;
+    height: 55px;*/
 }
 
 tr td input .delete_box:checked {
     background-color: indianred;
 }
 
-.fixed {
+/*http://stackoverflow.com/questions/18424798/twitter-bootstrap-3-how-to-use-media-queries*/
+    @media(min-width:992px){
+        .fixed {
+            position: fixed;
+        }
+    }
+
+.fixedHeader {
     position: fixed;
 }
 
@@ -75,6 +92,10 @@ tr:hover .homeCourseHeader {
 .resultDataPad {
     padding-left: 0;
     padding-right: 0;
+}
+
+.noPad {
+    padding: 0;
 }
 
 .bottomPadTiny {
@@ -150,14 +171,31 @@ tr:hover .homeCourseHeader {
 }
 
 .fixedHeight {
-    min-height:  55px;
+   /* min-height:  55px;
     max-height: 55px;
-    height: 55px;
-
-    /*trying hanging indent*/
-    /*padding-left: 90px;*/
-    /*text-indent: -5px;*/
+    height: 55px;*/
 }
+
+/*http://stackoverflow.com/questions/17584702/how-to-add-a-scrollbar-to-an-html5-table*/
+   /* table.scrollBody {
+        display: table;
+        width: 100%;
+    }
+    table.scrollBody thead, table.scrollBody tbody {
+        float: left;
+        width: 100%;
+    }
+    table.scrollBody tbody {
+        overflow: auto;
+        height:100%;
+    }
+    table.scrollBody tr {
+        width: 100%;
+        display: table;
+        text-align: left;
+    }
+    table.scrollBody th, table.scrollBody td {
+    }*/
 
 
 
