@@ -15,43 +15,44 @@
 
 <?php echo form_open('score/submitEditScore') ?>
 <div class="form-group">
-    <!--<div class="container">-->
+    <div class="container">
         <div class="row">
-            <div class="col-md-2">
-                <div class="col-md-2 fixed">
-                    <br><br><br>
+            <div class="col-md-2 col-xs-12">
+                <div class="col-md-2 col-xs-12 littlePadRight fixed">
+                    <!--<br><br><br>-->
                     <input type="hidden" name="date" value="<?php echo $date ?>">
                     <?php
                         if ($empty == TRUE) {
-                            echo '<input type="submit" class="btn btn-default col-md-12" value="Submit Changes" disabled="disabled" name="submit">';
+                            echo '<input type="submit" class="btn btn-default col-md-12 col-xs-6" value="Submit Changes" disabled="disabled" name="submit">';
                         }
                         else {
-                            echo '<input type="submit" class="btn btn-default col-md-12" value="Submit Changes" name="submit">';
+                            echo '<input type="submit" class="btn btn-default col-md-12 col-xs-6" value="Submit Changes" name="submit">';
                         }
                     ?>
-                    <br><br>
-                    <a class="btn btn-default col-md-12" href="<?php echo base_url("score/chooseDate"); ?>">Back</a>
+                    <!--<br><br>-->
+                    <a class="btn btn-default col-md-12 col-xs-6" href="<?php echo base_url("score/chooseDate"); ?>">Back</a>
+                    <br /><br />
                 </div>
             </div>
 
 
-             <div class="col-md-9 relative">
+             <div class="col-md-9 col-xs-12 relative">
                  <div class="panel panel-default">
 
                      <div class="panel-heading">Existing Scores for <?php echo $date ?></div>
 
-                     <div class="table-responsive">
-                         <table class ="table table-condensed table-bordered" style="border-collapse:collapse;">
+                     <div class="table">
+                         <table class ="table table-condensed table-bordered smallFont noBottomMargin" style="border-collapse:collapse;">
                              <thead>
                                  <tr>
-                                     <th class="col-md-2">Player</th>
-                                     <th class="col-md-1 centered">Date</th>
+                                     <th class="col-md-2 col-xs-2">Player</th>
+                                     <!--<th class="col-md-1 col-xs-2 centered">Date</th>-->
                                      <!--<th class="col-md-2">Course</th>-->
-                                     <th class="col-md-2 centered">Course</th>
-                                     <th class="col-md-1 centered">Score</th>
-                                     <th class="col-md-1 centered">New Score</th>
-                                     <th class="col-md-1 centered">Time</th>
-                                     <th class="col-md-1 centered">Delete?</th>
+                                     <th class="col-md-2 col-xs-1 centered">Course</th>
+                                     <th class="col-md-1 col-xs-1 centered">Score</th>
+                                     <th class="col-md-1 col-xs-1 centered">New Score</th>
+                                     <th class="col-md-1 col-xs-1 centered">Time</th>
+                                     <th class="col-md-1 col-xs-1 centered">Delete?</th>
                                  </tr>
                              </thead>
 
@@ -59,39 +60,40 @@
                         if ($empty == TRUE) {
                             echo'
                                 <tr>
-                                    <td  colspan="8" class="centered">There are no scores entered for ' . $date . '</td>
+                                    <td  colspan="6" class="centered">There are no scores entered for ' . $date . '</td>
                                 </tr>
                             ';
                         }
                         else {
                             foreach ($getFullScoreInfoByDateQuery as $row) {
                                 echo '<tr>';
-                                    echo '<td class="col-md-2">' . $row->playerName . '</td>';
-                                    echo '<td class="col-md-1 centered">' . $row->scoreDate . '</td>';
-                                    echo '<td class="col-md-2 centered">';
-                                        echo ' <select class="form-control" id="pick-course-' . $row->scoreID . '" name="course-' . $row->scoreID . '">';
+                                    echo '<td class="col-md-2 col-xs-2">' . $row->playerName . '</td>';
+                                    //echo '<td class="col-md-1 col-xs-2 centered">' . $row->scoreDate . '</td>';
+                                    echo '<td class="col-md-2 col-xs-1 centered">';
+                                        echo ' <select class="form-control col-xs-12" id="pick-course-' . $row->scoreID . '" name="course-' . $row->scoreID . '">';
                                         foreach ($getCoursesQuery as $r) {
                                             //selecting the current course as the default in the select box.  Change in db if value changes upon submitting
                                             if ($row->courseName == $r->courseName) {
-                                                echo '<option selected="selected" value="' . $r->courseID . '">' . $r->courseName . '</option>';
+                                                echo '<option selected="selected" value="' . $r->courseID . '">*' . $r->courseName . '*</option>';
                                             }
                                             else {
                                                 echo '<option value="' . $r->courseID . '">' . $r->courseName . '</option>';
                                             }
 
                                         }
+                                            echo '<option value="null" disabled="disabled">*Denotes Current Course*</option>';
                                     echo '</select></td>';
-                                    echo '<td class="col-md-1 centered">' . $row->scoreScore . '</td>';
-                                    echo '<td class="col-md-1 centered">';
-                                        echo '<input type="text" class="col-md-12" name="' . $row->scoreID . '-new-score"  id="' . $row->scoreID . '-new-score">';
+                                    echo '<td class="col-md-1 col-xs-1 centered">' . $row->scoreScore . '</td>';
+                                    echo '<td class="col-md-1 col-xs-1 centered">';
+                                        echo '<input type="text" class="col-md-12 col-xs-12" name="' . $row->scoreID . '-new-score"  id="' . $row->scoreID . '-new-score">';
                                     echo '</td>';
                                     if ($row->scoreTime == 0) {
-                                        echo '<td class="col-md-1 centered">AM</td>';
+                                        echo '<td class="col-md-1 col-xs-1 centered">AM</td>';
                                     } else {
-                                        echo '<td class="col-md-1 centered">PM</td>';
+                                        echo '<td class="col-md-1 col-xs-1 centered">PM</td>';
                                     }
-                                    echo '<td class="col-md-1 centered">';
-                                        echo 'Delete? <input type="checkbox" class="delete_box" id="' . $row->scoreID . '-delete" name="' . $row->scoreID . '-delete"  value="delete"/>';
+                                    echo '<td class="col-md-1 col-xs-1 centered">';
+                                        echo '<input type="checkbox" class="delete_box" id="' . $row->scoreID . '-delete" name="' . $row->scoreID . '-delete"  value="delete"/>';
                                     echo '</td>';
                                 echo '</tr>';
                             }
@@ -105,6 +107,6 @@
              </div>
          </div>
         </div>
-    <!--</div>-->
+    </div>
 </div>
 </form>

@@ -1,7 +1,7 @@
 
 /*http://stackoverflow.com/questions/10336194/twitter-bootstrap-top-nav-bar-blocking-top-content-of-the-page?answertab=votes#tab-top*/
     body {
-        padding-top: 15px;
+        padding-top: 40px;
         /*font-size: 8pt;*/
     }
 
@@ -12,6 +12,10 @@
     height: 55px;*/
 }
 
+.page-header {
+    margin-top: 0;
+}
+
 tr td input .delete_box:checked {
     background-color: indianred;
 }
@@ -20,6 +24,15 @@ tr td input .delete_box:checked {
     @media(min-width:992px){
         .fixed {
             position: fixed;
+        }
+        .littlePadRight{
+            padding-right: 50px;
+        }
+    }
+
+    @media(max-width:767px) {
+        .smallFont {
+            font-size: 8pt;
         }
     }
 
@@ -169,6 +182,8 @@ tr:hover .homeCourseHeader {
     min-width: 150px;
     max-width: 150px;
 }
+
+
 
 .fixedHeight {
    /* min-height:  55px;
