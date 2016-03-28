@@ -41,7 +41,7 @@
 
                      <div class="panel-heading">Existing Scores for <?php echo $date ?></div>
 
-                     <div class="table">
+                     <div class="table" style="overflow: auto;">
                          <table class ="table table-condensed table-bordered smallFont noBottomMargin" style="border-collapse:collapse;">
                              <thead>
                                  <tr>
@@ -70,7 +70,7 @@
                                     echo '<td class="col-md-2 col-xs-2">' . $row->playerName . '</td>';
                                     //echo '<td class="col-md-1 col-xs-2 centered">' . $row->scoreDate . '</td>';
                                     echo '<td class="col-md-2 col-xs-1 centered">';
-                                        echo ' <select class="form-control col-xs-12" id="pick-course-' . $row->scoreID . '" name="course-' . $row->scoreID . '">';
+                                        echo ' <select class="form-control col-xs-12 editCourse" id="pick-course-' . $row->scoreID . '" name="course-' . $row->scoreID . '">';
                                         foreach ($getCoursesQuery as $r) {
                                             //selecting the current course as the default in the select box.  Change in db if value changes upon submitting
                                             if ($row->courseName == $r->courseName) {
@@ -85,7 +85,7 @@
                                     echo '</select></td>';
                                     echo '<td class="col-md-1 col-xs-1 centered">' . $row->scoreScore . '</td>';
                                     echo '<td class="col-md-1 col-xs-1 centered">';
-                                        echo '<input type="text" class="col-md-12 col-xs-12" name="' . $row->scoreID . '-new-score"  id="' . $row->scoreID . '-new-score">';
+                                        echo '<input type="text" class="col-md-12 col-xs-12 centered noPad" name="' . $row->scoreID . '-new-score"  id="' . $row->scoreID . '-new-score">';
                                     echo '</td>';
                                     if ($row->scoreTime == 0) {
                                         echo '<td class="col-md-1 col-xs-1 centered">AM</td>';

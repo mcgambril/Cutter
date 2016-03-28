@@ -15,6 +15,23 @@ $(function () {
     });
 });
 
+/*$(function () {
+    var sel = document.getElementsByClassName('editCourse');
+    sel.addEventListener('click', function(){
+        var options = this.children;
+        for(var i=0; i < this.childElementCount; i++){
+            options[i].style.color = 'white';
+        }
+        var selected = this.children[this.selectedIndex];
+        selected.style.color = 'green';
+    }, false);
+});*/
+
+$('.editCourse').change(function () {
+    $(this).find('option').css('background-color', 'transparent');
+    $(this).find('option:selected').css('background-color', 'red');
+}).trigger('change');
+
 //datepicker widget initializer
 $(function() {
     $( "#datepicker" ).datepicker({

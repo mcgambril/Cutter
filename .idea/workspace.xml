@@ -3,9 +3,8 @@
   <component name="ChangeListManager">
     <list default="true" id="bf1f04b8-8018-444a-9bbe-e11b375c07b1" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/css/Site.css" afterPath="$PROJECT_DIR$/assets/css/Site.css" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/views/handicap_update_result_view.php" afterPath="$PROJECT_DIR$/application/views/handicap_update_result_view.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/views/score_entry_result_view.php" afterPath="$PROJECT_DIR$/application/views/score_entry_result_view.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/views/score_post_view.php" afterPath="$PROJECT_DIR$/application/views/score_post_view.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/views/score_edit_by_date_view.php" afterPath="$PROJECT_DIR$/application/views/score_edit_by_date_view.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/js/site.js" afterPath="$PROJECT_DIR$/assets/js/site.js" />
     </list>
     <ignored path="Cutter.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -30,10 +29,10 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="handicap_update_result_view.php" pinned="false" current-in-tab="true">
+      <file leaf-file-name="handicap_update_result_view.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/application/views/handicap_update_result_view.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.2908778" vertical-offset="511" max-vertical-offset="1105">
+            <state vertical-scroll-proportion="-26.153847" vertical-offset="0" max-vertical-offset="1105">
               <caret line="40" column="33" selection-start-line="40" selection-start-column="33" selection-end-line="40" selection-end-column="33" />
               <folding>
                 <marker date="1459142466387" expanded="true" signature="899:1117" placeholder="..." />
@@ -43,11 +42,24 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="site.js" pinned="false" current-in-tab="false">
+      <file leaf-file-name="score_edit_by_date_view.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/application/views/score_edit_by_date_view.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="-7.1923075" vertical-offset="1037" max-vertical-offset="2006">
+              <caret line="72" column="95" selection-start-line="72" selection-start-column="95" selection-end-line="72" selection-end-column="95" />
+              <folding>
+                <element signature="n#style#0;n#div#1;n#div#0;n#div#1;n#div#0;n#div#0;n#div#1;n#!!top" expanded="true" />
+                <marker date="1459146219734" expanded="true" signature="2707:2866" placeholder="..." />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="site.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/assets/js/site.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1258">
-              <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+            <state vertical-scroll-proportion="0.5881384" vertical-offset="187" max-vertical-offset="1547">
+              <caret line="32" column="21" selection-start-line="32" selection-start-column="21" selection-end-line="32" selection-end-column="21" />
               <folding />
             </state>
           </provider>
@@ -79,8 +91,8 @@
       <file leaf-file-name="Site.css" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/assets/css/Site.css">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-12.310345" vertical-offset="2499" max-vertical-offset="3961">
-              <caret line="168" column="19" selection-start-line="168" selection-start-column="19" selection-end-line="168" selection-end-column="19" />
+            <state vertical-scroll-proportion="-9.379311" vertical-offset="2499" max-vertical-offset="3995">
+              <caret line="163" column="12" selection-start-line="163" selection-start-column="12" selection-end-line="163" selection-end-column="12" />
               <folding />
             </state>
           </provider>
@@ -94,7 +106,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/application/views/player_update_result_view.php" />
         <option value="$PROJECT_DIR$/application/models/course_model.php" />
         <option value="$PROJECT_DIR$/application/models/cutteradmin_model.php" />
         <option value="$PROJECT_DIR$/application/models/player_model.php" />
@@ -140,11 +151,12 @@
         <option value="$PROJECT_DIR$/application/views/header_view.php" />
         <option value="$PROJECT_DIR$/application/views/handicap_update_view.php" />
         <option value="$PROJECT_DIR$/application/views/home_view.php" />
-        <option value="$PROJECT_DIR$/application/views/score_edit_by_date_view.php" />
         <option value="$PROJECT_DIR$/application/views/score_post_view.php" />
         <option value="$PROJECT_DIR$/application/views/score_entry_result_view.php" />
-        <option value="$PROJECT_DIR$/assets/css/Site.css" />
         <option value="$PROJECT_DIR$/application/views/handicap_update_result_view.php" />
+        <option value="$PROJECT_DIR$/application/views/score_edit_by_date_view.php" />
+        <option value="$PROJECT_DIR$/assets/css/Site.css" />
+        <option value="$PROJECT_DIR$/assets/js/site.js" />
       </list>
     </option>
   </component>
@@ -390,7 +402,7 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
+    <frame x="-8" y="-8" width="1382" height="744" extended-state="7" />
     <editor active="true" />
     <layout>
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
@@ -791,24 +803,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/assets/js/site.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1258">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/application/views/score_edit_by_date_view.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.20950705" vertical-offset="204" max-vertical-offset="2006">
-          <caret line="19" column="12" selection-start-line="19" selection-start-column="12" selection-end-line="19" selection-end-column="12" />
-          <folding>
-            <marker date="1459059132074" expanded="true" signature="-1:-1" placeholder="..." />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/application/views/score_entry_result_view.php">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.13769363" vertical-offset="481" max-vertical-offset="2057">
@@ -851,14 +845,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/assets/css/Site.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-12.310345" vertical-offset="2499" max-vertical-offset="3961">
-          <caret line="168" column="19" selection-start-line="168" selection-start-column="19" selection-end-line="168" selection-end-column="19" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/application/views/home_view.php">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-5.6153846" vertical-offset="109" max-vertical-offset="714">
@@ -882,12 +868,39 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/application/views/handicap_update_result_view.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.2908778" vertical-offset="511" max-vertical-offset="1105">
+        <state vertical-scroll-proportion="-26.153847" vertical-offset="0" max-vertical-offset="1105">
           <caret line="40" column="33" selection-start-line="40" selection-start-column="33" selection-end-line="40" selection-end-column="33" />
           <folding>
             <marker date="1459142466387" expanded="true" signature="899:1117" placeholder="..." />
             <marker date="1459142466387" expanded="true" signature="1431:1622" placeholder="..." />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/assets/css/Site.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-9.379311" vertical-offset="2499" max-vertical-offset="3995">
+          <caret line="163" column="12" selection-start-line="163" selection-start-column="12" selection-end-line="163" selection-end-column="12" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/application/views/score_edit_by_date_view.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-7.1923075" vertical-offset="1037" max-vertical-offset="2006">
+          <caret line="72" column="95" selection-start-line="72" selection-start-column="95" selection-end-line="72" selection-end-column="95" />
+          <folding>
+            <element signature="n#style#0;n#div#1;n#div#0;n#div#1;n#div#0;n#div#0;n#div#1;n#!!top" expanded="true" />
+            <marker date="1459146219734" expanded="true" signature="2707:2866" placeholder="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/assets/js/site.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.5881384" vertical-offset="187" max-vertical-offset="1547">
+          <caret line="32" column="21" selection-start-line="32" selection-start-column="21" selection-end-line="32" selection-end-column="21" />
+          <folding />
         </state>
       </provider>
     </entry>
