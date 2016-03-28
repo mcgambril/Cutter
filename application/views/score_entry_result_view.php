@@ -31,7 +31,7 @@
         foreach ($getTempScoresQuery as $row) {
             echo '<div class="row">
                 <div class="col-md-12">
-                    <p class="col-md-5"></p>
+                    <p class="col-md-5 col-xs-1"></p>
                     <table class="col-md-4 noPadLeft">
                         <tbody>
                             <tr>
@@ -105,7 +105,7 @@
 
 <div class="row">
     <div class="text-center col-md-12">
-        <p class="col-md-5"><br><br><br></p>
+        <p class="col-md-5"><!--<br><br><br>--></p>
         <a class="btn btn-default col-md-2" href="<?php echo base_url("score/chooseDate"); ?>">Score - Home</a>
         <p class="col-md-5"></p>
     </div>

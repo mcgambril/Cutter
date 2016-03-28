@@ -21,7 +21,7 @@
                 <div class="col-md-4 col-xs-12">
                     <div class="col-md-3 col-xs-12 fixed noPad">
                         <div class="col-md-12 col-xs-12">
-                            <div class="col-xs-6 noPad">
+                            <div class="col-xs-6 noPad bottomPadTiny">
                             <?php
                                 //echo '<p><strong>Date: </strong></p>';
                                 echo '<label for="datepicker">Date:</label>';
@@ -43,7 +43,7 @@
                                     }
                                 ?>
                             </select>
-                            <!--<br/>-->
+
                             </div>
                         </div>
                         <div class="col-md-12 col-xs-12 bottomPadTiny">
