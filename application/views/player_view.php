@@ -11,11 +11,12 @@
     <div class="page-header">
         <h1>Player - <small>Home</small></h1>
     </div>
-    <a class="btn btn-default col-md-2" href="<?php echo base_url("player/add"); ?>">Add Player</a>
-    <div class="page-header"><br></div>
+    <div class="col-md-4 col-xs-12 noPadLeft bottomPadTiny">
+        <a class="btn btn-default col-md-6 col-xs-6" href="<?php echo base_url("player/add"); ?>">Add Player</a>
+    </div>
 
     <div class="row">
-        <div class="col-md-8">
+        <div class="col-md-8 col-xs-12">
             <div class="panel panel-default">
                 <div class="panel-heading">All Players</div>
 

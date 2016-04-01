@@ -6,15 +6,16 @@
  * Time: 9:27 PM
  */
  -->
-<div class="page-header">
-    <h1>Player - <small>Add</small></h1>
-</div>
+
 
 <?php echo validation_errors(); ?>
 
 <?php echo form_open('player/submitNewPlayer') ?>
 <div class="form-group">
     <div class="container">
+        <div class="page-header">
+            <h1>Player - <small>Add</small></h1>
+        </div>
         <div class="row">
             <div class="col-md-6">
                 <h4>Enter the name of the player you would like to add to the group:</h4>

@@ -8,15 +8,16 @@
  */
  -->
 
-<div class="page-header">
-    <h1>Score - <small>Post</small></h1>
-</div>
+
 
 <?php echo validation_errors(); ?>
 
 <?php echo form_open('score/submitPost') ?>
     <div class="form-group">
         <div class="container">
+            <div class="page-header">
+                <h1>Score - <small>Post</small></h1>
+            </div>
             <div class="row">
                 <div class="col-md-4 col-xs-12">
                     <div class="col-md-3 col-xs-12 fixed noPad">

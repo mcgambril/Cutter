@@ -7,15 +7,16 @@
  */
  -->
 
-<div class="page-header">
-    <h1>Course - <small>Add</small></h1>
-</div>
+
 
 <?php echo validation_errors(); ?>
 
 <?php echo form_open('course/submitCourseAdd') ?>
 <div class="form-group">
     <div class="container">
+        <div class="page-header">
+            <h1>Course - <small>Add</small></h1>
+        </div>
         <div class="row">
             <div class="col-md-6">
                 <h3>Enter information for the new course below:</h3>

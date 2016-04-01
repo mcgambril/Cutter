@@ -11,11 +11,11 @@
     <div class="page-header">
         <h1>Course - <small>Home</small></h1>
     </div>
-    <div class="col-md-4 noPadLeft">
+    <div class="col-md-4 noPadLeft bottomPadTiny">
         <a class="btn btn-default col-md-6" href="<?php echo base_url("course/add"); ?>">Add Course</a>
         <a class="btn btn-default col-md-6" href="<?php echo base_url("course/setHomeCourse"); ?>">Update Home Course</a>
     </div>
-    <div class="page-header"><br></div>
+    <!--<div class="page-header"><br></div>-->
 
     <div class="row">
         <div class="col-md-8">

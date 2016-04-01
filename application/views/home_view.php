@@ -8,11 +8,12 @@
  */
  -->
 
-<div class="page-header">
-    <h1>Cutter Handicaps</h1>
-</div>
+
 
 <div class="container">
+    <div class="page-header">
+        <h1>Cutter Handicaps</h1>
+    </div>
     <div class="row">
         <div class="col-xs-12 col-md-12">
             <div class="row">

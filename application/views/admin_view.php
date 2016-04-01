@@ -7,16 +7,17 @@
  */
  -->
 
-<div class="page-header">
-    <h1>Admin - <small>Login</small></h1>
-</div>
-<br />
-<br />
+
 
 <?php echo validation_errors(); ?>
 
 <?php echo form_open('admin/submitPass') ?>
-
+<div class="container">
+    <div class="page-header">
+        <h1>Admin - <small>Login</small></h1>
+    </div>
+    <br />
+    <br />
     <div class="form-group">
         <div class="row">
             <div class="col-md-4 leftPadFive">
@@ -34,6 +35,7 @@
             </div>
         </div>
     </div>
+</div>
 </form>
 
 

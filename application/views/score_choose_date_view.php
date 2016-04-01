@@ -7,15 +7,16 @@
  */
  -->
 
-<div class="page-header">
-    <h1>Scores</small></h1>
-</div>
+
 
 <?php echo validation_errors(); ?>
 
 <?php echo form_open('score/submitDate') ?>
     <div class="form-group">
         <div class="container">
+            <div class="page-header">
+                <h1>Scores</small></h1>
+            </div>
             <div class="row">
                 <div class="col-md-6">
                     <h4>Pick the date you would like to post/edit scores for:</h4>

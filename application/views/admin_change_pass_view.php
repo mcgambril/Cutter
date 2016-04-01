@@ -7,16 +7,15 @@
  */
  -->
 
-<div class="page-header">
-    <h1>Change Password</h1>
-</div>
-<br />
-<br />
+
 
 <?php echo validation_errors(); ?>
 
 <?php echo form_open('admin/submitChangePassword') ?>
     <div class="container">
+        <div class="page-header">
+            <h1>Change Password</h1>
+        </div>
         <div class="form-group">
             <div class="row">
                 <div class="col-md-5 leftPadFive">

@@ -7,15 +7,16 @@
  */
  -->
 
-<div class="page-header">
-    <h1>Score - <small>Edit Scores for <?php echo $date ?></small></h1>
-</div>
+
 
 <?php echo validation_errors(); ?>
 
 <?php echo form_open('score/submitEditScore') ?>
-<div class="form-group">
-    <div class="container">
+<div class="container">
+    <div class="page-header">
+        <h1>Score - <small>Edit Scores for <?php echo $date ?></small></h1>
+    </div>
+    <div class="form-group">
         <div class="row">
             <div class="col-md-2 col-xs-12">
                 <div class="col-md-2 col-xs-12 littlePadRight fixed">
