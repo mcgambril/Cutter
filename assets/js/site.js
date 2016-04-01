@@ -27,10 +27,17 @@ $(function () {
     }, false);
 });*/
 
-$('.editCourse').change(function () {
-    $(this).find('option').css('background-color', 'transparent');
-    $(this).find('option:selected').css('background-color', 'red');
-}).trigger('change');
+//http://stackoverflow.com/questions/7741722/change-color-of-selected-option-only
+//https://learn.jquery.com/using-jquery-core/faq/how-do-i-test-whether-an-element-has-a-particular-class/
+$(function () {
+    $('.editCourse').change(function () {
+        $(this).find('option').css('font-weight', 'normal');
+        $(this).find('option:selected').css('font-weight', 'bold');
+        if( $("#selectedEx").is(".selectedCourse")) {
+            $("#selectedEx").css('font-weight', 'bold');
+        }
+    }).trigger('change');
+});
 
 //datepicker widget initializer
 $(function() {

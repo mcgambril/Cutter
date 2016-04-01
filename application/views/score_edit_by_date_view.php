@@ -74,14 +74,16 @@
                                         foreach ($getCoursesQuery as $r) {
                                             //selecting the current course as the default in the select box.  Change in db if value changes upon submitting
                                             if ($row->courseName == $r->courseName) {
-                                                echo '<option selected="selected" value="' . $r->courseID . '">*' . $r->courseName . '*</option>';
+                                                echo '<option selected="selected" value="' . $r->courseID . '">' . $r->courseName . '</option>';
                                             }
                                             else {
                                                 echo '<option value="' . $r->courseID . '">' . $r->courseName . '</option>';
                                             }
 
                                         }
-                                            echo '<option value="null" disabled="disabled">*Denotes Current Course*</option>';
+                                            echo'<option value="null" disabled="disabled" class=denotation"></option>';
+                                            echo '<option value="null" disabled="disabled" id="selectedEx" class="selectedCourse denotation">Current Selected New Course</option>';
+                                            echo '<option value="null" disabled="disabled" class="denotation">' . $row->courseName . ' - Current Course in Database</option>';
                                     echo '</select></td>';
                                     echo '<td class="col-md-1 col-xs-1 centered">' . $row->scoreScore . '</td>';
                                     echo '<td class="col-md-1 col-xs-1 centered">';
