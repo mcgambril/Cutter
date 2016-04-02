@@ -16,7 +16,6 @@
     margin-top: 0;
 }
 
-
 tr td input .delete_box:checked {
     background-color: indianred;
 }
@@ -206,8 +205,6 @@ http://stackoverflow.com/questions/715677/trouble-with-jquery-dialog-and-datepic
     max-width: 150px;
 }
 
-
-
 .fixedHeight {
    /* min-height:  55px;
     max-height: 55px;
@@ -218,23 +215,4 @@ http://stackoverflow.com/questions/715677/trouble-with-jquery-dialog-and-datepic
    /* table.scrollBody {
         display: table;
         width: 100%;
-    }
-    table.scrollBody thead, table.scrollBody tbody {
-        float: left;
-        width: 100%;
-    }
-    table.scrollBody tbody {
-        overflow: auto;
-        height:100%;
-    }
-    table.scrollBody tr {
-        width: 100%;
-        display: table;
-        text-align: left;
-    }
-    table.scrollBody th, table.scrollBody td {
     }*/
-
-
-
-

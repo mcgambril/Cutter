@@ -20,14 +20,15 @@
             <div class="panel panel-default">
                 <div class="panel-heading">All Players</div>
 
-                <div class="table-responsive">
-                    <table class ="table table-condensed table-bordered" style="border-collapse:collapse;">
+                <div class="table" style="overflow:auto;">
+                    <table class ="table table-condensed table-bordered noBottomMargin smallFont" style="border-collapse:collapse;">
                         <thead>
                             <tr>
-                                <th class="col-md-4">Name</th>
-                                <th class="col-md-2">Handicap</th>
-                                <th class="col-md-2">Index</th>
-                                <th class="col-md-4 centered" colspan="2">Actions</th>
+                                <th class="col-xs-4">Name</th>
+                                <th class="col-xs-2">Handicap</th>
+                                <th class="col-xs-2">Index</th>
+                                <!--<th class="col-xs-4 centered" colspan="2">Actions</th>-->
+                                <th class="col-xs-4 centered">Actions</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -38,14 +39,12 @@
                                 foreach($getPlayersAZQuery as $row) {
                                     echo '
                                         <tr>
-                                            <td class="col-md-4">' . $row->playerName . '</td>
-                                            <td class="col-md-2">' . $row->playerHandicap . '</td>
-                                            <td class="col-md-2">' . $row->playerHandicapIndex . '</td>
-                                            <td class="col-md-2">
-                                                <a class="btn btn-default col-md-12" href="' . base_url("player/edit/".$row->playerID) . '">Edit</a>
-                                            </td>
-                                            <td class="col-md-2">
-                                                <a class="btn btn-default col-md-12" href="' . base_url("player/delete/".$row->playerID) . '">Delete</a>
+                                            <td class="col-xs-4">' . $row->playerName . '</td>
+                                            <td class="col-xs-2">' . $row->playerHandicap . '</td>
+                                            <td class="col-xs-2">' . $row->playerHandicapIndex . '</td>
+                                            <td class="col-xs-4">
+                                                <a class="btn btn-default col-xs-12 col-md-6 smallFont" href="' . base_url("player/edit/".$row->playerID) . '">Edit</a>
+                                                <a class="btn btn-default col-xs-12 col-md-6 smallFont" href="' . base_url("player/delete/".$row->playerID) . '">Delete</a>
                                             </td>
                                         </tr>
                                     ';
