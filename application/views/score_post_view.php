@@ -8,10 +8,6 @@
  */
  -->
 
-
-
-<?php echo validation_errors(); ?>
-
 <?php echo form_open('score/submitPost') ?>
     <div class="form-group">
         <div class="container">
@@ -51,10 +47,12 @@
                             <input type="submit" class="btn btn-default col-md-6 col-xs-6" value="Enter Scores" name="submit">
                             <a class="btn btn-default col-md-6 col-xs-6" href="<?php echo base_url("score/chooseDate"); ?>">Back</a>
                         </div>
+                        <?php echo validation_errors(); ?>
                     </div>
                 </div>
 
                 <div class="col-md-6 col-xs-12 relative">
+
                     <div class="panel panel-default">
 
                         <div class="panel-heading">Post New Scores</div>

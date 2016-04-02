@@ -15,9 +15,9 @@
 </div>
 
 <div class="text-center col-md-12">
-    <p class="col-md-4"></p>
-    <a class="btn btn-default col-md-2" href="<?php echo base_url("course/index"); ?>">Course - Home</a>
-    <a class="btn btn-default col-md-2" href="<?php echo base_url("course/setHomeCourse"); ?>">Back to Set Home Course</a>
-    <p class="col-md-4"></p>
+    <p class="col-md-4 col-xs-1"></p>
+    <a class="btn btn-default col-md-2 col-xs-5" href="<?php echo base_url("course/index"); ?>">Course - Home</a>
+    <a class="btn btn-default col-md-2 col-xs-5" href="<?php echo base_url("course/setHomeCourse"); ?>">Back</a>
+    <p class="col-md-4 col-xs-1"></p>
 </div>
 <br><br><br>
