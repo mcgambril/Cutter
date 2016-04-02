@@ -7,7 +7,6 @@
  */
  -->
 
-<?php echo validation_errors(); ?>
 <?php echo form_open('course/submitDelete') ?>
 
     <div class="container">
@@ -22,8 +21,9 @@
                 <div class="form-group">
                     <div class="container">
                         <div class="row">
-                            <div class="col-md-8">
-                                <div class="panel panel-default">
+                            <div class="col-md-8">';
+                            echo validation_errors();
+                                echo'<div class="panel panel-default">
                                     <div class="panel-heading">' . $row->courseName . '&#39s Current Information</div>
                                     <div class="table-responsive">
                                         <table class ="table table-condensed table-bordered" style="border-collapse:collapse;">

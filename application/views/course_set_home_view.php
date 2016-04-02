@@ -10,13 +10,12 @@
     <h1>Course - <small>Set Home Course</small></h1>
 </div>
 
-<?php echo validation_errors(); ?>
-
 <?php echo form_open('course/submitSetHomeCourse') ?>
 <div class="form-group">
     <div class="container">
         <div class="row">
             <div class="col-md-6">
+                <?php echo validation_errors(); ?>
                 <div class="panel panel-default">
                     <div class="panel-heading">Current Home Course</div>
                     <div class="table-responsive">
@@ -68,7 +67,7 @@
                 <br><br><br>
                 <div>
                     <br><br>
-                    <input type="submit" class="btn btn-default col-md-4" value="Set New Home Course" name="submitName">
+                    <input type="submit" class="btn btn-default col-md-4" value="Update" name="submitName">
                     <a class="btn btn-default col-md-4" href="<?php echo base_url("course/index"); ?>">Back</a>
                     <p class="col-md-2"></p>
                 </div>

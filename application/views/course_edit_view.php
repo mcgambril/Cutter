@@ -11,12 +11,11 @@
     <div class="page-header">
         <h1>Course - <small>Edit <?php echo $courseName ?></small></h1>
     </div>
-
-    <?php echo validation_errors(); ?>
     <?php echo form_open('course/submitCourseEdit') ?>
         <div class="form-group">
             <div class="container">
                 <div class="row col-md-8">
+                    <?php echo validation_errors(); ?>
                     <div class="panel panel-default">
                         <div class="panel-heading"><?php echo $courseName ?> Course Information</div>
 

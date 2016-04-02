@@ -7,10 +7,6 @@
  */
  -->
 
-
-
-<?php echo validation_errors(); ?>
-
 <?php echo form_open('admin/submitPass') ?>
 <div class="container">
     <div class="page-header">
@@ -22,6 +18,7 @@
         <div class="row">
             <div class="col-md-4 leftPadFive">
                 <div class="col-md-12">
+                    <?php echo validation_errors(); ?>
                     <label for="pwd">Password:</label>
                     <input type="password" name="password" class="form-control col-md-12">
                 </div>

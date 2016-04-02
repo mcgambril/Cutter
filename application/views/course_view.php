@@ -15,7 +15,6 @@
         <a class="btn btn-default col-md-6" href="<?php echo base_url("course/add"); ?>">Add Course</a>
         <a class="btn btn-default col-md-6" href="<?php echo base_url("course/setHomeCourse"); ?>">Update Home Course</a>
     </div>
-    <!--<div class="page-header"><br></div>-->
 
     <div class="row">
         <div class="col-md-8">

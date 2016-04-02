@@ -7,8 +7,6 @@
  */
  -->
 
-<?php echo validation_errors(); ?>
-
 <?php echo form_open('player/submitDelete') ?>
 
 <div class="container">
@@ -20,6 +18,7 @@
 
     <div class="row">
         <div class="col-md-5">
+            <?php echo validation_errors(); ?>
             <?php foreach($getPlayerByIDQuery as $row) {
                 echo '
                     <div class="panel panel-default">

@@ -7,10 +7,6 @@
  */
  -->
 
-
-
-<?php echo validation_errors(); ?>
-
 <?php echo form_open('score/submitEditScore') ?>
 <div class="container">
     <div class="page-header">
@@ -39,9 +35,8 @@
 
              <div class="col-md-9 col-xs-12 relative">
                  <div class="panel panel-default">
-
                      <div class="panel-heading">Existing Scores for <?php echo $date ?></div>
-
+                     <?php echo validation_errors(); ?>
                      <div class="table" style="overflow: auto;">
                          <table class ="table table-condensed table-bordered smallFont noBottomMargin" style="border-collapse:collapse;">
                              <thead>

@@ -9,7 +9,7 @@
 
 
 
-<?php echo validation_errors(); ?>
+
 
 <?php echo form_open('admin/submitChangePassword') ?>
     <div class="container">
@@ -19,6 +19,7 @@
         <div class="form-group">
             <div class="row">
                 <div class="col-md-5 leftPadFive">
+                    <?php echo validation_errors(); ?>
                     <table>
                         <tbody>
                             <tr>
@@ -42,7 +43,7 @@
                     <br>
                     <div class="text-center col-md-12">
                         <br>
-                        <input type="submit" class="btn btn-default col-md-6" value="Change Password" name="submit">
+                        <input type="submit" class="btn btn-default col-md-6" value="Update" name="submit">
                         <a class="btn btn-default col-md-6" href="<?php echo base_url("admin/loadHomeLoggedIn"); ?>">Home</a>
                         <br><br><br>
                     </div>

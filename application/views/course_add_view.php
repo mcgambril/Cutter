@@ -7,10 +7,6 @@
  */
  -->
 
-
-
-<?php echo validation_errors(); ?>
-
 <?php echo form_open('course/submitCourseAdd') ?>
 <div class="form-group">
     <div class="container">
@@ -21,6 +17,7 @@
             <div class="col-md-6">
                 <h3>Enter information for the new course below:</h3>
                 <br>
+                <?php echo validation_errors(); ?>
                 <table class="col-md-8">
                     <tbody>
                         <tr>

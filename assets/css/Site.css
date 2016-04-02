@@ -165,10 +165,13 @@ tr:hover .homeCourseHeader {
     /*background-color: #90ee90;*/
 }
 
-tr td select option.denotation {
-    /*font-style: italic;
-    font-weight: ;*/
-
+/*allows datepicker to render on top of all elements
+/*was previously blocked by navbar*/
+/*http://stackoverflow.com/questions/11533161/jquery-ui-datepicker-change-z-index
+http://stackoverflow.com/questions/715677/trouble-with-jquery-dialog-and-datepicker-plugins*/
+#ui-datepicker-div {
+    z-index: 9999 !important;
+    /*position: relative !important;*/
 }
 
 .changePassHeaders {

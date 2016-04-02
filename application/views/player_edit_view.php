@@ -48,13 +48,12 @@
 
 </div>
 
-<?php echo validation_errors(); ?>
-
 <?php echo form_open('player/submitEditPlayer') ?>
 <div class="form-group">
     <div class="container">
         <div class="row">
             <br>
+            <?php echo validation_errors(); ?>
             <div class="col-md-5">
                 <?php foreach ($getPlayerByIDQuery as $row) {
                     echo '<input type = "hidden" name = "playerID" value = "' . $row->playerID . '" />';
