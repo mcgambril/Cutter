@@ -144,7 +144,8 @@ class Course extends CI_Controller
             array(
                 'field' => 'newCourseName',
                 'label' => 'Course Name',
-                'rules' => 'required|max_length[45]|valid_base64|min_length[1]|is_unique[course.courseName]'
+                //'rules' => 'max_length[45]|min_length[1]|is_unique[course.courseName]'
+                'rules' => 'max_length[45]|min_length[1]|trim|callback_uniqueName'
             ),
             array(
                 'field' => 'newCourseRating',
@@ -413,8 +414,9 @@ class Course extends CI_Controller
         $courses = $this->course_model->getCourses();
         foreach ($courses as $row) {
             if ($courseName == $row->courseName) {
-                $value = FALSE;
-
+                if (strcmp($courseName, $row->courseName) == 0) {
+                    $value = FALSE;
+                }
             }
         }
 
