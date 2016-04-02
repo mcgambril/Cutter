@@ -144,7 +144,6 @@ class Course extends CI_Controller
             array(
                 'field' => 'newCourseName',
                 'label' => 'Course Name',
-                //'rules' => 'max_length[45]|min_length[1]|is_unique[course.courseName]'
                 'rules' => 'max_length[45]|min_length[1]|trim|callback_uniqueName'
             ),
             array(
@@ -414,6 +413,8 @@ class Course extends CI_Controller
         $courses = $this->course_model->getCourses();
         foreach ($courses as $row) {
             if ($courseName == $row->courseName) {
+                //case sensitive string comparison
+                //http://php.net/manual/en/function.strcmp.php
                 if (strcmp($courseName, $row->courseName) == 0) {
                     $value = FALSE;
                 }

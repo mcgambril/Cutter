@@ -34,7 +34,13 @@ tr td input .delete_box:checked {
         .smallFont {
             font-size: 8pt;
         }
+
+        .courseOption {
+            font-size: 50px;
+        }
     }
+
+
 
 .fixedHeader {
     position: fixed;
