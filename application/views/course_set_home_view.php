@@ -6,25 +6,26 @@
  * Time: 2:07 AM
  */
  -->
-<div class="page-header">
-    <h1>Course - <small>Set Home Course</small></h1>
-</div>
+
 
 <?php echo form_open('course/submitSetHomeCourse') ?>
 <div class="form-group">
     <div class="container">
+        <div class="page-header">
+            <h1>Course - <small>Set Home Course</small></h1>
+        </div>
         <div class="row">
-            <div class="col-md-6">
+            <div class="col-xs-12 col-md-6">
                 <?php echo validation_errors(); ?>
                 <div class="panel panel-default">
                     <div class="panel-heading">Current Home Course</div>
-                    <div class="table-responsive">
-                        <table class ="table table-condensed table-bordered">
+                    <div class="table" style="overflow:auto;">
+                        <table class ="table table-condensed table-bordered noBottomMargin">
                             <thead>
                             <tr>
-                                <th>Course Name</th>
-                                <th>Slope</th>
-                                <th>Rating</th>
+                                <th class="col-xs-6">Course Name</th>
+                                <th class="col-xs-3">Slope</th>
+                                <th class="col-xs-3">Rating</th>
                             </tr>
                             </thead>
                             <tbody>
@@ -37,9 +38,9 @@
                                     }
                                     else {
                                         foreach ($getHomeCourseQuery as $row) {
-                                            echo '<td>' . $row->courseName . '</td>';
-                                            echo '<td>' . $row->courseSlope . '</td>';
-                                            echo '<td>' . $row->courseRating . '</td>';
+                                            echo '<td class="col-xs-6">' . $row->courseName . '</td>';
+                                            echo '<td class="col-xs-3">' . $row->courseSlope . '</td>';
+                                            echo '<td class="col-xs-3">' . $row->courseRating . '</td>';
                                         }
                                     }
                                 ?>
@@ -48,31 +49,37 @@
                         </table>
                     </div>
                 </div>
-                <br><br>
-                <h4>Choose the course you would like to set as the new default course:</h4>
-                <div class="col-md-6 noPadLeft">
-                    <select class="form-control" id="pick-course" name="course">
-                        <?php
-                        foreach($getCoursesQuery as $row) {
-                            if ($row->courseDefault == 1) {
-                                echo '<option selected="selected" value="' . $row->courseID . '">' . $row->courseName . '</option>';
-                            }
-                            else {
-                                echo '<option value="' . $row->courseID . '">' . $row->courseName . '</option>';
-                            }
-                        }
-                        ?>
-                    </select>
-                </div>
-                <br><br><br>
-                <div>
-                    <br><br>
-                    <input type="submit" class="btn btn-default col-md-4" value="Update" name="submitName">
-                    <a class="btn btn-default col-md-4" href="<?php echo base_url("course/index"); ?>">Back</a>
-                    <p class="col-md-2"></p>
-                </div>
-                <br><br><br>
             </div>
         </div>
+
+                <div class="row bottompadTiny">
+                    <div class="col-xs-12 col-md-6 bottomPadTiny">
+                        <h4>Choose the course you would like to set as the new default course:</h4>
+                        <div class="col-md-6 col-xs-12 noPadLeft">
+                            <select class="form-control" id="pick-course" name="course">
+                                <?php
+                                foreach($getCoursesQuery as $row) {
+                                    if ($row->courseDefault == 1) {
+                                        echo '<option selected="selected" value="' . $row->courseID . '">' . $row->courseName . '</option>';
+                                    }
+                                    else {
+                                        echo '<option value="' . $row->courseID . '">' . $row->courseName . '</option>';
+                                    }
+                                }
+                                ?>
+                            </select>
+                        </div>
+                        <div class="col-xs-6 col-md-6 bottomPadTiny"></div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-xs-12 col-md-3">
+                        <input type="submit" class="btn btn-default col-xs-6 col-md-6" value="Update" name="submitName">
+                        <a class="btn btn-default col-xs-6 col-md-6" href="<?php echo base_url("course/index"); ?>">Back</a>
+                    </div>
+                </div>
+
+            <!--</div>-->
+        <!--</div>-->
     </div>
 </div>
