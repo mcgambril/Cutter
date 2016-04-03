@@ -19,13 +19,19 @@ $(function () {
 
 //http://stackoverflow.com/questions/7741722/change-color-of-selected-option-only
 //https://learn.jquery.com/using-jquery-core/faq/how-do-i-test-whether-an-element-has-a-particular-class/
+//http://stackoverflow.com/questions/196684/jquery-get-specific-option-tag-text
 $(function () {
     $('.editCourse').change(function () {
-        $(this).find('option').css('font-weight', 'normal');
-        $(this).find('option:selected').css('font-weight', 'bold');
-        if( $("#selectedEx").is(".selectedCourse")) {
+        var $tempCourse = $("select option[class='selected']:text").text();
+        var $length = $tempCourse.length;
+        var $endPos = $length - 1;
+        var $replacementText = $tempCourse.substring(0, $endPos);
+        $('option[class="selected"]').text($replacementText);
+        $(this).find('option').removeClass('selected');
+        $(this).find('option:selected').addClass("selected");
+        /*if( $("#selectedEx").is(".selectedCourse")) {
             $("#selectedEx").css('font-weight', 'bold');
-        }
+        }*/
     }).trigger('change');
 });
 

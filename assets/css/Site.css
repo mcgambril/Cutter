@@ -1,15 +1,41 @@
+/*
+    This file is a custom CSS style sheet developed for cutterhdcp.com.
+    The Bootstrap styling framework and its associated jQuery functionality are the basis of this site's styling
+    The styles within this file are applied alongside and/or over the top of the initial Bootstrap styles
+*/
 
-/*http://stackoverflow.com/questions/10336194/twitter-bootstrap-top-nav-bar-blocking-top-content-of-the-page?answertab=votes#tab-top*/
-    body {
-        padding-top: 40px;
-        /*font-size: 8pt;*/
+/*http://stackoverflow.com/questions/18424798/twitter-bootstrap-3-how-to-use-media-queries*/
+@media(min-width:992px){
+    .fixed {
+        position: fixed;
+    }
+    .littlePadRight{
+        padding-right: 50px;
+    }
+}
+
+@media(max-width:767px) {
+    .smallFont {
+        font-size: 8pt;
     }
 
+    /*http://stackoverflow.com/questions/6483425/prevent-iphone-from-zooming-in-on-select-in-web-app*/
+    /*https://github.com/jquery/jquery-mobile/issues/2069*/
+    .courseOption {
+        font-size: 50px;
+    }
+}
+
+/*http://stackoverflow.com/questions/10336194/twitter-bootstrap-top-nav-bar-blocking-top-content-of-the-page?answertab=votes#tab-top*/
+body {
+    padding-top: 40px;
+}
+
 .table tr td {
-    /*font-size: 8pt;*/
-    /*min-height:  55px;
-    max-height: 55px;
-    height: 55px;*/
+}
+
+.selected {
+    font-weight: bold;
 }
 
 .page-header {
@@ -19,28 +45,6 @@
 tr td input .delete_box:checked {
     background-color: indianred;
 }
-
-/*http://stackoverflow.com/questions/18424798/twitter-bootstrap-3-how-to-use-media-queries*/
-    @media(min-width:992px){
-        .fixed {
-            position: fixed;
-        }
-        .littlePadRight{
-            padding-right: 50px;
-        }
-    }
-
-    @media(max-width:767px) {
-        .smallFont {
-            font-size: 8pt;
-        }
-
-        .courseOption {
-            font-size: 50px;
-        }
-    }
-
-
 
 .fixedHeader {
     position: fixed;
@@ -151,7 +155,6 @@ tr:hover .homeCourseHeader {
 }
 
 .viewScoresBtn {
-
 }
 
 .test {
@@ -212,13 +215,4 @@ http://stackoverflow.com/questions/715677/trouble-with-jquery-dialog-and-datepic
 }
 
 .fixedHeight {
-   /* min-height:  55px;
-    max-height: 55px;
-    height: 55px;*/
 }
-
-/*http://stackoverflow.com/questions/17584702/how-to-add-a-scrollbar-to-an-html5-table*/
-   /* table.scrollBody {
-        display: table;
-        width: 100%;
-    }*/

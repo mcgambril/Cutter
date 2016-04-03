@@ -70,10 +70,10 @@
                                         foreach ($getCoursesQuery as $r) {
                                             //selecting the current course as the default in the select box.  Change in db if value changes upon submitting
                                             if ($row->courseName == $r->courseName) {
-                                                echo '<option class="courseOption" selected="selected" value="' . $r->courseID . '">' . $r->courseName . '</option>';
+                                                echo '<option class="courseOption" name="' . $r->courseName . '" selected="selected" value="' . $r->courseID . '">' . $r->courseName . '</option>';
                                             }
                                             else {
-                                                echo '<option class="courseOption" value="' . $r->courseID . '">' . $r->courseName . '</option>';
+                                                echo '<option class="courseOption" name="' . $r->courseName . '" value="' . $r->courseID . '">' . $r->courseName . '</option>';
                                             }
 
                                         }
