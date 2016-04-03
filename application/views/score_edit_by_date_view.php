@@ -29,6 +29,7 @@
                     <!--<br><br>-->
                     <a class="btn btn-default col-md-12 col-xs-6" href="<?php echo base_url("score/chooseDate"); ?>">Back</a>
                     <br /><br />
+                    <?php echo validation_errors(); ?>
                 </div>
             </div>
 
@@ -36,7 +37,6 @@
              <div class="col-md-9 col-xs-12 relative">
                  <div class="panel panel-default">
                      <div class="panel-heading">Existing Scores for <?php echo $date ?></div>
-                     <?php echo validation_errors(); ?>
                      <div class="table" style="overflow: auto;">
                          <table class ="table table-condensed table-bordered smallFont noBottomMargin" style="border-collapse:collapse;">
                              <thead>

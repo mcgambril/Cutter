@@ -154,6 +154,7 @@ class Score extends CI_Controller {
             if($this->form_validation->run()== FALSE) {
                 $buffer = $this->input->post('datepicker');
                 $this->postByDate($buffer);
+                RETURN;
             }
             else {
                 $date = $this->input->post('datepicker');  //submitted as mm/dd/YYYY
@@ -379,9 +380,10 @@ class Score extends CI_Controller {
                 'rules' => 'required|trim|callback_validateDate'
             )
         );
-        $this->form_validation->set_rules('date', 'Date', 'required|trim|callback_validateDate');
+        //$this->form_validation->set_rules('date', 'Date', 'required|trim|callback_validateDate');
 
-        $date = $this->input->post('date');         //date is posted in mm/dd/yyyy format
+        $date = $this->input->post('date');        //date is posted in mm/dd/yyyy format
+        $bufferDate = $date;
 
         $date = date("Y-m-d", strtotime($date));            //reformat date to MySQL yyyy-mm-dd to retrieve scores from db
 
@@ -389,9 +391,9 @@ class Score extends CI_Controller {
         if ($temp['scoreList'] != FALSE) {
             foreach ($temp['scoreList'] as $row) {
                 $temp2 = array(
-                    'field' => $row->playerID.'-new-score',
+                    'field' => $row->scoreID.'-new-score',
                     'label' => $row->playerName.' New Score',
-                    'rules' => '|trim|integer|greater_than[17]'
+                    'rules' => 'trim|integer|greater_than[17]'
                 );
                 array_push($config, $temp2);
                 //$this->form_validation->set_rules($row->playerID.'-new-score', $row->playerName.' New Score', 'integer|greater_than[17]');
@@ -402,6 +404,8 @@ class Score extends CI_Controller {
                 //Need to figure out what to do if the date for some reason does not pass the validation rules
                 //it should theoretically never fail the validation rules since it is being passed through after having passed the rules once
                 //plus it is a read only field so it shouldn't be able to be altered
+                $this->editByDate($bufferDate);
+                RETURN;
             }
             else {
                 $deleteScores = array();
