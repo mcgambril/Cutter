@@ -22,16 +22,25 @@ $(function () {
 //http://stackoverflow.com/questions/196684/jquery-get-specific-option-tag-text
 $(function () {
     $('.editCourse').change(function () {
-        var $tempCourse = $("select option[class='selected']:text").text();
-        var $length = $tempCourse.length;
-        var $endPos = $length - 1;
-        var $replacementText = $tempCourse.substring(0, $endPos);
-        $('option[class="selected"]').text($replacementText);
+        //var $tempCourse = $("option[class='selected']").name();
+        //var $tempCourse = $(this).find('option:selected').name;
+        //var $length = $tempCourse.length;
+        //var $endPos = $length - 1;
+        //var $replacementText = $tempCourse.substring(0, $endPos);
+        //$('option[class="selected"]').text($replacementText);
+        /*if ($(this).find('option').hasClass('selected') == true) {
+            var $tempCourse = $("option[class='selected']").name;
+        }*/
+
         $(this).find('option').removeClass('selected');
         $(this).find('option:selected').addClass("selected");
+        //var $selectedName = $("option:selected").name;
+        //$(this).find('option:selected').text($selectedName.concat('*'));
+
         /*if( $("#selectedEx").is(".selectedCourse")) {
             $("#selectedEx").css('font-weight', 'bold');
         }*/
+
     }).trigger('change');
 });
 
