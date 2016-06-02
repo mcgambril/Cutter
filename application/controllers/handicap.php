@@ -154,8 +154,12 @@ class Handicap extends CI_Controller
                         }
                     }
                     else {
-                        $this->load->view('error_view');
-                        //$row->playerName = ;
+                        //need to include an error message and button link if going to use the error view
+                        //need to probably eliminate the use of this and simply add the errorm essages onto the result page to make it clean
+
+                        //This is where the Active_Bug is indicating error
+
+                        //$this->load->view('error_view');      //removed this...repetitive and ugly to show this error view
                         array_push($errorUpdates, $row);
                     }
                 }
@@ -195,19 +199,15 @@ class Handicap extends CI_Controller
                 //http://stackoverflow.com/questions/10643273/no-truncate-function-in-php-options
                 //$handicapIndex = floor($handicapIndexTemp * 100) / 100;
 
-                $handicapIndex = $this->truncate($handicapIndexTemp, 1);
+                $handicapIndex = $this->truncate($handicapIndexTemp, 1);        //need to add comment on why I am using 1...I think it is number of decimal places desired
                 return $handicapIndex;
             }
             else {
                 return FALSE;
-                //return 100;   //debugging with this
-                //$this->load->view('error_view');
             }
         }
         else {
             return FALSE;
-            //return 100;     //debugging with this
-            //$this->load->view('error_view');
         }
 
     }
@@ -224,7 +224,7 @@ class Handicap extends CI_Controller
     }
 
     public function calculateHandicap($handicapIndex) {
-        if ($handicapIndex != FALSE) {
+        if ($handicapIndex !== FALSE) {
             $this->load->model('course_model');
             $data['getHomeCourseQuery'] = $this->course_model->getHomeCourse();
             if ($data['getHomeCourseQuery'] != FALSE) {
@@ -242,14 +242,10 @@ class Handicap extends CI_Controller
             }
             else {
                 return FALSE;
-                //return 100;
-                //$this->load->view('error_view');
             }
         }
         else {
             return FALSE;
-            //return 100;
-            //$this->load->view('error_view');
         }
     }
 
