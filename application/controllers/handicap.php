@@ -145,6 +145,7 @@ class Handicap extends CI_Controller
                     $limit = $differentialSchedule[$scoreCount];
                     $handicapIndex = $this->calculateHandicapIndex($row->scorePlayerID, $limit);
                     $handicap = $this->calculateHandicap($handicapIndex);
+                    //using !== instead of != so as to avoid misinterpreting a handicap of 0 as FALSE
                     if ($handicap !== FALSE) {
                         if ($this->player_model->updatePlayerHandicaps($row->scorePlayerID, $handicapIndex, $handicap) == FALSE) {
                             array_push($errorUpdates, $row);
@@ -224,6 +225,7 @@ class Handicap extends CI_Controller
     }
 
     public function calculateHandicap($handicapIndex) {
+        //using !== instead of != so as to avoid misinterpreting a handicap index of 0 as FALSE
         if ($handicapIndex !== FALSE) {
             $this->load->model('course_model');
             $data['getHomeCourseQuery'] = $this->course_model->getHomeCourse();
