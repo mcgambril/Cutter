@@ -480,7 +480,9 @@ class Score extends CI_Controller {
                         $messageData['errorMessage'] = 'An error occurred and ' . count($errors) . ' of the edited scores were unable to be applied to the database.  Identify those that failed and try again later.';
                     }
                     else {
-                        $messageData['errors'] = FALSE;
+                        $messageData['errors'] = 'FALSE';
+                        $messageData['errorTitle'] = '';
+                        $messageData['errorMessage'] = '';
                     }
 
                     if($this->validateNotEmpty($updateScores) == TRUE) {
@@ -502,6 +504,9 @@ class Score extends CI_Controller {
                 else {
                     $messageData['title'] = 'Note:';
                     $messageData['message'] = 'There were no changes entered to be made.  No scores were updated.';
+                    $messageData['errors'] = 'FALSE';
+                    $messageData['errorTitle'] = '';
+                    $messageData['errorMessage'] = '';
                 }
                 $this->scoreEditResult($messageData);
             }
@@ -574,107 +579,4 @@ class Score extends CI_Controller {
             return FALSE;
         }
     }
-
-
-    /*    public function chooseEditDate() {
-        $this->load->helper('form');
-        $this->load->library('form_validation');
-        $this->load->helper('date');
-        date_default_timezone_set('America/Mexico_City');
-
-        $this->load->view('header_view');
-        $this->load->view('score_choose_edit_date_view');
-        $this->load->view('footer_view');
-    }*/
-    /*public function edit($paramID = NULL) {
-        $this->load->model('score_model');
-        $this->load->model('course_model');
-        $this->load->helper('form');
-        $this->load->library('form_validation');
-
-        if ($paramID == NULL) {
-            $id = $this->uri->segment(3);
-        }
-        else {
-            $id = $paramID;
-        }
-
-        $data['getFullScoreInfoByIDQuery'] = $this->score_model->getFullScoreInfoByID($id);
-        $data['getCoursesQuery'] = $this->course_model->getCourses();
-
-        $this->load->view('header_view');
-        $this->load->view('score_edit_view', $data);
-        $this->load->view('footer_view');
-    }*/
-    /*public function postDate($date) {
-    $this->load->model('score_model');
-    $this->load->model('player_model');
-    $this->load->model('course_model');
-    $this->load->helper('form');
-    $this->load->library('form_validation');
-    date_default_timezone_set('America/Mexico_City');
-
-    $config = array(
-        array(
-            'field' => 'datepicker',
-            'label' => 'Date',
-            'rules' => 'required|callback_validateDate'
-        )
-    );
-    //$this->form_validation->set_rules('datepicker', 'Date', 'required|callback_validateDate');
-    $this->form_validation->set_rules($config);
-
-    if($this->form_validation->run()== FALSE) {
-        $this->postDate();
-    }
-    else {
-        $data['date'] = $this->input->post('datepicker');
-
-        $data['getCoursesQuery'] = $this->course_model->getCourses();
-        $data['date'] = $date;
-
-        $data['getPlayersScoresByDateQuery'] = $this->score_model->getPlayersScoresByDate($date);
-        foreach ($data['getPlayersScoresByDateQuery'] as $row) {
-            if ($row->scoreSummary == 'am empty') {
-                $row->amScore = 'empty';
-                $row->pmScore = $this->score_model->getScore($row->playerID, 1, $date);
-            }
-            else if ($row->scoreSummary == 'pm empty') {
-                $row->amScore = $this->score_model->getScore($row->playerID, 0, $date);
-                $row->pmScore = 'empty';
-            }
-            else if ($row->scoreSummary == 'full') {
-                $row->amScore = $this->score_model->getScore($row->playerID, 0, $date);
-                $row->pmScore = $this->score_model->getScore($row->playerID, 1, $date);
-            }
-            else if ($row->scoreSummary == 'empty') {
-                $row->amScore = 'empty';
-                $row->pmScore = 'empty';
-            }
-        }
-
-        $this->load->view('header_view');
-        $this->load->view('score_post_view', $data);
-        $this->load->view('footer_view');
-}*/
-    /*public function index() {
-
-    $this->load->model('course_model');
-    $this->load->model('player_model');
-    $this->load->model('score_model');
-
-    $data['getFullScoreInfoQuery'] = $this->score_model->getFullScoreInfo();
-    foreach($data['getFullScoreInfoQuery'] as $row) {
-        if ($row->scoreTime == 0) {
-            $row->scoreTime = 'AM';
-        }
-        else {
-            $row->scoreTime = 'PM';
-        }
-    }
-
-    $this->load->view('header_view');
-    $this->load->view('score_view', $data);
-    $this->load->view('footer_view');
-}*/
 }

@@ -21,7 +21,7 @@
     <h3> <?php echo $message ?> </h3>
     <br><br>
     <?php
-        if ($errors == TRUE) {
+        if ($errors !== 'FALSE') {
             echo'<h1>' . $errorTitle . '</h1>
             <br>
             <h3>' . $errorMessage . '</h3>
