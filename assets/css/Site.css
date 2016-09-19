@@ -214,5 +214,9 @@ http://stackoverflow.com/questions/715677/trouble-with-jquery-dialog-and-datepic
     max-width: 150px;
 }
 
+.topPad {
+    padding-top: 100px;
+}
+
 .fixedHeight {
 }
