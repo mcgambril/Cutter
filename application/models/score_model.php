@@ -287,4 +287,10 @@ class Score_model extends CI_Model {
         }
     }
 
+    public function insertDebug($column, $value) {
+        $query = "INSERT INTO debug (" . $column . ")
+                    VALUES (".$value.")";
+        return $this->db->query($query);
+    }
+
 }

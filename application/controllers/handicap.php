@@ -217,9 +217,13 @@ class Handicap extends CI_Controller
         //function found below
         //http://stackoverflow.com/questions/10643273/no-truncate-function-in-php-options
         //EX:  12.345
-        $pos = strrpos((string)$handicapIndexTemp, '.');                    //finds position index of the decimal in the index:  $pos = 3
-        $length = $pos + $decimals + 1;                                     //calculates the length of the desired index:  3 + 1 + 1 = 4
-        $truncatedIndex = substr((string)$handicapIndexTemp, 0, $length);   //grabs the truncated index:  12.345 -> takes substring, starting at position 0, and counts 4 characters:  12.3
+
+        //$pos = strrpos((string)$handicapIndexTemp, '.');
+        //test this portion of code without  string conversiona nd see what happens
+        $pos = strrpos(number_format($handicapIndexTemp,1,'.',''), '.');        //2finds position index of the decimal in the index:  $pos = 3
+        $length = $pos + $decimals + 1;                                     //4calculates the length of the desired index:  3 + 1 + 1 = 4
+        $truncatedIndex = substr(number_format($handicapIndexTemp, 1, '.', ''), 0, $length);    //grabs the truncated index:  12.345 -> takes substring, starting at position 0, and counts 4 characters:  12.3
+        //$truncatedIndex = substr((string)$handicapIndexTemp, 0, $length);
         $handicapIndex = (float)$truncatedIndex;                            //cast to float to ensure proper number format
         return $handicapIndex;
     }

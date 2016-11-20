@@ -179,6 +179,8 @@ class Player_model extends CI_Model {
         }
 
     }
+    
+    
 
     public function updatePlayer($id, $data) {
         $this->db->where('playerID', $id);
