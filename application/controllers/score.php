@@ -170,8 +170,10 @@ class Score extends CI_Controller {
                         $var = $this->input->post(''.$row['playerID'].'');
                         array_push($ids, $var);
                         $var2 = $this->input->post(''.$row['playerID'].'am-score');
+                        //if score is not empty, then push to array?
                         array_push($amScores, $var2);
                         $var3 = $this->input->post(''.$row['playerID'].'pm-score');
+                        //if score is not empty, then push to array?
                         array_push($pmScores, $var3);
                     }
 
@@ -184,7 +186,10 @@ class Score extends CI_Controller {
                         $data[''.$i.'']['scoreScore'] = $amScores[''.$j.''];
                         $data[''.$i.'']['scoreDate'] = $temp['date'];
                         $data[''.$i.'']['scoreTime'] = 0;
-                        $data[''.$i.'']['scoreDifferential'] = $this->calculateDifferential($amScores[''.$j.''], $temp['courseID']);
+                        //calculate diff throws error when the row's score is empty
+                        if($this->validateNotEmpty($amScores[''.$j.''])) {
+                            $data[''.$i.'']['scoreDifferential'] = $this->calculateDifferential($amScores[''.$j.''], $temp['courseID']);
+                        } else {$data[''.$i.'']['scoreDifferential'] = 0;}
                         $data[''.$i.'']['scoreUsedInHandicap'] = 0;
                         $data[''.$i.'']['scoreDifferentialUsed'] = 0;
 
@@ -196,7 +201,10 @@ class Score extends CI_Controller {
                         $data2[''.$i.'']['tempScore'] = $amScores[''.$j.''];
                         $data2[''.$i.'']['scoreDate'] = $temp['date'];
                         $data2[''.$i.'']['tempDate'] = $temp['date'];
-                        $data2[''.$i.'']['scoreDifferential'] = $this->calculateDifferential($amScores[''.$j.''], $temp['courseID']);
+                        //calculate diff throws error when the row's score is empty
+                        if($this->validateNotEmpty($amScores[''.$j.''])) {
+                            $data2[''.$i.'']['scoreDifferential'] = $this->calculateDifferential($amScores[''.$j.''], $temp['courseID']);
+                        } else {$data[''.$i.'']['scoreDifferential'] = 0;}
                         $data2[''.$i.'']['tempDifferential'] = $data[''.$i.'']['scoreDifferential'];
                         $data2[''.$i.'']['scoreTime'] = 0;
                         $data2[''.$i.'']['tempTime'] = 'AM';
@@ -209,7 +217,10 @@ class Score extends CI_Controller {
                         $data[''.$i.'']['scoreScore'] = $pmScores[''.$j.''];
                         $data[''.$i.'']['scoreDate'] = $temp['date'];
                         $data[''.$i.'']['scoreTime'] = 1;
-                        $data[''.$i.'']['scoreDifferential'] = $this->calculateDifferential($pmScores[''.$j.''], $temp['courseID']);
+                        //calculate diff throws error when the row's score is empty
+                        if($this->validateNotEmpty($pmScores[''.$j.''])) {
+                            $data[''.$i.'']['scoreDifferential'] = $this->calculateDifferential($pmScores[''.$j.''], $temp['courseID']);
+                        } else {$data[''.$i.'']['scoreDifferential'] = 0;}
                         $data[''.$i.'']['scoreUsedInHandicap'] = 0;
                         $data[''.$i.'']['scoreDifferentialUsed'] = 0;
 
@@ -222,7 +233,10 @@ class Score extends CI_Controller {
                         $data2[''.$i.'']['scoreDate'] = $temp['date'];
                         $data2[''.$i.'']['tempDate'] = $temp['date'];
                         $data2[''.$i.'']['tempDifferential'] = $data[''.$i.'']['scoreDifferential'];
-                        $data2[''.$i.'']['scoreDifferential'] = $this->calculateDifferential($pmScores[''.$j.''], $temp['courseID']);
+                        //calculate diff throws error when the row's score is empty
+                        if($this->validateNotEmpty($pmScores[''.$j.''])) {
+                            $data2[''.$i.'']['scoreDifferential'] = $this->calculateDifferential($pmScores[''.$j.''], $temp['courseID']);
+                        } else {$data[''.$i.'']['scoreDifferential'] = 0;}
                         $data2[''.$i.'']['scoreTime'] = 1;
                         $data2[''.$i.'']['tempTime'] = 'PM';
                         $data2[''.$i.'']['tempActive'] = 1;
@@ -441,15 +455,23 @@ class Score extends CI_Controller {
                         $newCourseID = $this->input->post('course-' . $row->scoreID);
                         if($newCourseID != $row->scoreCourseID) {
                             $change = TRUE;
+                            //need to recalculate differential b/c rating and slope changed with the course
+                            $newDiff = $this->calculateDifferential($row->scoreScore, $newCourseID);
                         }
                         $tempNewScore = $this->input->post($row->scoreID . '-new-score');
                         if($tempNewScore == "" || $tempNewScore == null || $tempNewScore == 0){
                             $newScore = $row->scoreScore;
-                            $newDiff = $row->scoreDifferential;
+                            if(empty($newDiff)) {
+                                $newDiff = $row->scoreDifferential;
+                            }
+                            else {
+                                $newDiff = $newDiff;
+                            }
                         }
                         else {
                             $newScore = $tempNewScore;
-                            $newDiff = $this->calculateDifferential($newScore, $row->scoreCourseID);
+                            //need to use new course in calc diff if course is changed in same submission
+                            $newDiff = $this->calculateDifferential($newScore, $newCourseID);
                             if ($newDiff == FALSE) {
                                 $tempError = array(
                                     "scoreID" => $id,
