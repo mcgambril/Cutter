@@ -10,7 +10,7 @@
     <?php
         date_default_timezone_set('America/Mexico_City');
     ?>
-    <p>Copyright 2015- <?php echo date("Y"); ?></p>
+    <p>Copyright 2015 - <?php echo date("Y"); ?></p>
 </div>
 
 </body>
