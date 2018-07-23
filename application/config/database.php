@@ -52,7 +52,8 @@ $db['default']['hostname'] = 'localhost';
 $db['default']['username'] = 'mcgambril'; //root
 $db['default']['password'] = 'Gammit46'; //''
 $db['default']['database'] = 'cutter';     //cutter
-$db['default']['dbdriver'] = 'mysql';
+//https://stackoverflow.com/questions/36822462/codeigniter-error-call-to-undefined-function-mysql-pconnect
+$db['default']['dbdriver'] = 'mysqli';
 $db['default']['dbprefix'] = '';
 $db['default']['pconnect'] = FALSE;
 $db['default']['db_debug'] = TRUE;
