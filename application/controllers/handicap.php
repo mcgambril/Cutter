@@ -40,7 +40,7 @@ class Handicap extends CI_Controller
         //# of most recent scores available is key on left
         //# of highest recent scores to use in calculations is value on right
         //no more than the 20 most recent scores will ever be used
-        $differentialSchedule = array(
+        $differentialSchedule = array(    //Formula Update:  Is score set still 20?  How do they 8 match up to the score set amount?
             4 => 2,
             5 => 3,
             6 => 3,
@@ -136,8 +136,8 @@ class Handicap extends CI_Controller
             if ($this->validateNotEmpty($playerScoreCounts) == TRUE) {
                 foreach($playerScoreCounts as $row) {
                     $scoreCount = $row->scoreCount;
-                    if ($scoreCount > 20) {
-                        $scoreCount = 20;
+                    if ($scoreCount > 20) {  //Formula Update:  is score set still 20?
+                        $scoreCount = 20;    //Formula Update:  is score set still 20?
                     }
                     else {
                         $scoreCount = $row->scoreCount;
@@ -180,7 +180,7 @@ class Handicap extends CI_Controller
     public function calculateHandicapIndex($playerID, $limit) {
         $this->load->model('score_model');
 
-        $constant = 0.96;
+        $constant = 0.96;  //Formula Update:  no longer using the .96 multiplier
         $playerDifferentials = $this->score_model->getHandicapDifferentials($playerID, $limit);
         if ($playerDifferentials != FALSE) {
             $diffIDs = array();
@@ -193,12 +193,13 @@ class Handicap extends CI_Controller
                     $diffTotal = $diffTotal + $row->scoreDifferential;
                 }
                 $diffAverage = $diffTotal / (count($playerDifferentials));
-                $handicapIndexTemp = $diffAverage * $constant;
+                $handicapIndexTemp = $diffAverage * $constant;              //Formula Update:  removing use of constant
 
                 //PHP cannot truncate inherently. Use floor to simulate truncating to a single decimal place
                 //potential solution commented below. doesnt seem to work for all instances...if average comes out to too many decimal points, it won't truncate to just 1 decimal
                 //http://stackoverflow.com/questions/10643273/no-truncate-function-in-php-options
                 //$handicapIndex = floor($handicapIndexTemp * 100) / 100;
+                //if truncating becomes a problem...then move logic to SQL or JS.
 
                 $handicapIndex = $this->truncate($handicapIndexTemp, 1);        //need to add comment on why I am using 1...I think it is number of decimal places desired
                 return $handicapIndex;
@@ -229,6 +230,7 @@ class Handicap extends CI_Controller
     }
 
     public function calculateHandicap($handicapIndex) {
+        //USGA formula definitions:  https://www.usga.org/handicapping/handicap-manual.html#!rule-14389
         //using !== instead of != so as to avoid misinterpreting a handicap index of 0 as FALSE
         if ($handicapIndex !== FALSE) {
             $this->load->model('course_model');
@@ -240,7 +242,11 @@ class Handicap extends CI_Controller
 
                 //handicap formula as provided by client (and USGA)
                 //needs to take slope from current home course
-                $handicapTemp = $handicapIndex * ($homeSlope / 113);
+                //home course is used because a handicap can only apply to a single course.  So the differentials/handicap index are calculated with the individual scores/ratings of the course played on inmind
+                //then the user will set the home course and calculate handicaps to see everyone for that course.
+                //home course would be changed if they were playing at a different course than usual
+                //thus - the 'home course' terminology is probably better phrases as 'current course'
+                $handicapTemp = $handicapIndex * ($homeSlope / 113);  //113 is the slope rating of a course of standard difficulty
 
                 //rounding to nearest whole number
                 $handicap = round($handicapTemp, 0);

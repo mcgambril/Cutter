@@ -590,6 +590,7 @@ class Score extends CI_Controller {
         $query['course'] = $this->course_model->getCourse((int)$courseID, 1);
         if ($query['course'] != FALSE) {
             foreach($query['course'] as $row) {
+                //USGA handicap formula definitions:  https://www.usga.org/handicapping/handicap-manual.html#!rule-14389
                 //score - rating = A
                 // A x 113 = B
                 //B / Slope = Differential->round to nearest 10th

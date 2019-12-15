@@ -63,7 +63,7 @@ $(function dialogHandicapUpdate(){
     var $length = $currentPath.length;
     var $endPos = $length - 6;                              //take 6 away b/c 'update' is 6 letters;
     var $tempPath = $currentPath.substring(0,$endPos);      //  /handicap/  b/c endPos is where the string cuts off...will not take that letter
-    var $newPath = $tempPath.concat("submitUpdate");
+    var $newPath = $tempPath.concat("submitUpdate");        //  /handicap/submitUpdate
     $( "#dialog-confirm").dialog({
         height: 200,
         draggable: true,

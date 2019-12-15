@@ -18,7 +18,9 @@
                 <br>
                 <p class="col-md-4"></p>
                 <a class="btn btn-default col-md-2" id="openHandicapDialog">Update</a>
-                    <!--This div sets the jquery ui dialog box for handicap update confirmation.  See assets/js/site.js for full fucntion-->
+                    <!-- This div sets the jquery ui dialog box for handicap update confirmation.  See assets/js/site.js for full fucntion-->
+                    <!-- Popup dialog shows 2 buttons:  Continue and Close  -->
+                    <!-- Continue sends user to /handicap/submitUpdate to trigger the update formulas; Close simply closes the dialog -->
                     <div id="dialog-confirm" title="Are you sure?">Click continue to update every player's handicap.</div>
                 <a class="btn btn-default col-md-2" href="<?php echo base_url("home/loadHomeLoggedIn"); ?>">Home</a>
                 <p class="col-md-4"></p>
