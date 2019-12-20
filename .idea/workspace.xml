@@ -20,11 +20,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="score.php" pinned="false" current-in-tab="false">
+      <file leaf-file-name="score.php" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/application/controllers/score.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="153">
-              <caret line="354" column="5" lean-forward="true" selection-start-line="354" selection-start-column="5" selection-end-line="354" selection-end-column="5" />
+            <state relative-caret-position="2834">
+              <caret line="548" column="0" lean-forward="true" selection-start-line="548" selection-start-column="0" selection-end-line="548" selection-end-column="0" />
               <folding>
                 <element signature="n#__construct#0;n#Score#0;n#!!top" expanded="false" />
                 <element signature="n#chooseDate#0;n#Score#0;n#!!top" expanded="false" />
@@ -33,7 +33,6 @@
                 <element signature="n#submitPost#0;n#Score#0;n#!!top" expanded="false" />
                 <element signature="n#scoreEntryResult#0;n#Score#0;n#!!top" expanded="false" />
                 <element signature="n#editByDate#0;n#Score#0;n#!!top" expanded="false" />
-                <element signature="n#submitEditScore#0;n#Score#0;n#!!top" expanded="false" />
                 <element signature="n#scoreEditResult#0;n#Score#0;n#!!top" expanded="false" />
                 <element signature="n#validateDate#0;n#Score#0;n#!!top" expanded="false" />
                 <element signature="n#validateNotEmpty#0;n#Score#0;n#!!top" expanded="false" />
@@ -45,8 +44,8 @@
       <file leaf-file-name="handicap.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/application/controllers/handicap.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="75">
-              <caret line="209" column="9" lean-forward="true" selection-start-line="209" selection-start-column="9" selection-end-line="209" selection-end-column="9" />
+            <state relative-caret-position="383">
+              <caret line="203" column="38" lean-forward="true" selection-start-line="203" selection-start-column="38" selection-end-line="203" selection-end-column="38" />
               <folding>
                 <element signature="n#truncate#0;n#Handicap#0;n#!!top" expanded="false" />
                 <element signature="n#handicapUpdateResult#0;n#Handicap#0;n#!!top" expanded="false" />
@@ -61,7 +60,7 @@
       <file leaf-file-name="player_model.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/application/models/player_model.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="107">
+            <state relative-caret-position="289">
               <caret line="121" column="5" lean-forward="true" selection-start-line="121" selection-start-column="5" selection-end-line="121" selection-end-column="5" />
               <folding>
                 <element signature="n#__construct#0;n#Player_model#0;n#!!top" expanded="false" />
@@ -97,7 +96,7 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="score_model.php" pinned="false" current-in-tab="true">
+      <file leaf-file-name="score_model.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/application/models/score_model.php">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="75">
@@ -130,6 +129,7 @@
   <component name="FindInProjectRecents">
     <findStrings>
       <find>calculatedifferential</find>
+      <find>formula Update</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -203,8 +203,8 @@
   </component>
   <component name="PhpWorkspaceProjectConfiguration" backward_compatibility_performed="true" />
   <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="1358" />
-    <option name="y" value="-8" />
+    <option name="x" value="1857" />
+    <option name="y" value="1" />
     <option name="width" value="697" />
     <option name="height" value="735" />
   </component>
@@ -391,12 +391,12 @@
       <workItem from="1479596291994" duration="20301000" />
       <workItem from="1532644756551" duration="291000" />
       <workItem from="1535680342659" duration="274000" />
-      <workItem from="1576355271383" duration="11966000" />
+      <workItem from="1576355271383" duration="14001000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="50782000" />
+    <option name="totallyTimeSpent" value="52817000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="1358" y="-8" width="1936" height="1056" extended-state="6" />
@@ -794,43 +794,43 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/application/controllers/score.php">
+    <entry file="file://$PROJECT_DIR$/application/models/score_model.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="153">
-          <caret line="354" column="5" lean-forward="true" selection-start-line="354" selection-start-column="5" selection-end-line="354" selection-end-column="5" />
+        <state relative-caret-position="75">
+          <caret line="59" column="5" lean-forward="true" selection-start-line="59" selection-start-column="5" selection-end-line="59" selection-end-column="5" />
           <folding>
-            <element signature="n#__construct#0;n#Score#0;n#!!top" expanded="false" />
-            <element signature="n#chooseDate#0;n#Score#0;n#!!top" expanded="false" />
-            <element signature="n#submitDate#0;n#Score#0;n#!!top" expanded="false" />
-            <element signature="n#postByDate#0;n#Score#0;n#!!top" expanded="false" />
-            <element signature="n#submitPost#0;n#Score#0;n#!!top" expanded="false" />
-            <element signature="n#scoreEntryResult#0;n#Score#0;n#!!top" expanded="false" />
-            <element signature="n#editByDate#0;n#Score#0;n#!!top" expanded="false" />
-            <element signature="n#submitEditScore#0;n#Score#0;n#!!top" expanded="false" />
-            <element signature="n#scoreEditResult#0;n#Score#0;n#!!top" expanded="false" />
-            <element signature="n#validateDate#0;n#Score#0;n#!!top" expanded="false" />
-            <element signature="n#validateNotEmpty#0;n#Score#0;n#!!top" expanded="false" />
+            <element signature="n#getScores#0;n#Score_model#0;n#!!top" expanded="false" />
+            <element signature="n#getFullScoreInfo#0;n#Score_model#0;n#!!top" expanded="false" />
+            <element signature="n#getFullScoreInfoByID#0;n#Score_model#0;n#!!top" expanded="false" />
+            <element signature="n#getPlayersScoresByDate#0;n#Score_model#0;n#!!top" expanded="false" />
+            <element signature="n#getScore#0;n#Score_model#0;n#!!top" expanded="false" />
+            <element signature="n#insertScoreBatch#0;n#Score_model#0;n#!!top" expanded="false" />
+            <element signature="n#getFullScoreInfoByDate#0;n#Score_model#0;n#!!top" expanded="false" />
+            <element signature="n#updateScoresBatch#0;n#Score_model#0;n#!!top" expanded="false" />
+            <element signature="n#deleteScores#0;n#Score_model#0;n#!!top" expanded="false" />
+            <element signature="n#getScoreCounts#0;n#Score_model#0;n#!!top" expanded="false" />
+            <element signature="n#getDataSetScores#0;n#Score_model#0;n#!!top" expanded="false" />
+            <element signature="n#getAllHandicapScores#0;n#Score_model#0;n#!!top" expanded="false" />
+            <element signature="n#clearDifferentialsUsed#0;n#Score_model#0;n#!!top" expanded="false" />
+            <element signature="n#setHandicapScores#0;n#Score_model#0;n#!!top" expanded="false" />
+            <element signature="n#getHandicapDifferentials#0;n#Score_model#0;n#!!top" expanded="false" />
+            <element signature="n#insertDebug#0;n#Score_model#0;n#!!top" expanded="false" />
+            <marker date="1532318775477" expanded="true" signature="9273:9348" ph="INSERT INTO debug... " />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/application/controllers/handicap.php">
+    <entry file="file://$PROJECT_DIR$/application/views/handicap_update_view.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="75">
-          <caret line="209" column="9" lean-forward="true" selection-start-line="209" selection-start-column="9" selection-end-line="209" selection-end-column="9" />
-          <folding>
-            <element signature="n#truncate#0;n#Handicap#0;n#!!top" expanded="false" />
-            <element signature="n#handicapUpdateResult#0;n#Handicap#0;n#!!top" expanded="false" />
-            <element signature="n#validateNotEmpty#0;n#Handicap#0;n#!!top" expanded="false" />
-            <element signature="n#noHandicaps#0;n#Handicap#0;n#!!top" expanded="false" />
-            <element signature="n#error#0;n#Handicap#0;n#!!top" expanded="false" />
-          </folding>
+        <state relative-caret-position="68">
+          <caret line="4" column="18" lean-forward="true" selection-start-line="4" selection-start-column="18" selection-end-line="4" selection-end-column="18" />
+          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/application/models/player_model.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="107">
+        <state relative-caret-position="289">
           <caret line="121" column="5" lean-forward="true" selection-start-line="121" selection-start-column="5" selection-end-line="121" selection-end-column="5" />
           <folding>
             <element signature="n#__construct#0;n#Player_model#0;n#!!top" expanded="false" />
@@ -855,36 +855,35 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/application/views/handicap_update_view.php">
+    <entry file="file://$PROJECT_DIR$/application/controllers/handicap.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="68">
-          <caret line="4" column="18" lean-forward="true" selection-start-line="4" selection-start-column="18" selection-end-line="4" selection-end-column="18" />
-          <folding />
+        <state relative-caret-position="383">
+          <caret line="203" column="38" lean-forward="true" selection-start-line="203" selection-start-column="38" selection-end-line="203" selection-end-column="38" />
+          <folding>
+            <element signature="n#truncate#0;n#Handicap#0;n#!!top" expanded="false" />
+            <element signature="n#handicapUpdateResult#0;n#Handicap#0;n#!!top" expanded="false" />
+            <element signature="n#validateNotEmpty#0;n#Handicap#0;n#!!top" expanded="false" />
+            <element signature="n#noHandicaps#0;n#Handicap#0;n#!!top" expanded="false" />
+            <element signature="n#error#0;n#Handicap#0;n#!!top" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/application/models/score_model.php">
+    <entry file="file://$PROJECT_DIR$/application/controllers/score.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="75">
-          <caret line="59" column="5" lean-forward="true" selection-start-line="59" selection-start-column="5" selection-end-line="59" selection-end-column="5" />
+        <state relative-caret-position="2834">
+          <caret line="548" column="0" lean-forward="true" selection-start-line="548" selection-start-column="0" selection-end-line="548" selection-end-column="0" />
           <folding>
-            <element signature="n#getScores#0;n#Score_model#0;n#!!top" expanded="false" />
-            <element signature="n#getFullScoreInfo#0;n#Score_model#0;n#!!top" expanded="false" />
-            <element signature="n#getFullScoreInfoByID#0;n#Score_model#0;n#!!top" expanded="false" />
-            <element signature="n#getPlayersScoresByDate#0;n#Score_model#0;n#!!top" expanded="false" />
-            <element signature="n#getScore#0;n#Score_model#0;n#!!top" expanded="false" />
-            <element signature="n#insertScoreBatch#0;n#Score_model#0;n#!!top" expanded="false" />
-            <element signature="n#getFullScoreInfoByDate#0;n#Score_model#0;n#!!top" expanded="false" />
-            <element signature="n#updateScoresBatch#0;n#Score_model#0;n#!!top" expanded="false" />
-            <element signature="n#deleteScores#0;n#Score_model#0;n#!!top" expanded="false" />
-            <element signature="n#getScoreCounts#0;n#Score_model#0;n#!!top" expanded="false" />
-            <element signature="n#getDataSetScores#0;n#Score_model#0;n#!!top" expanded="false" />
-            <element signature="n#getAllHandicapScores#0;n#Score_model#0;n#!!top" expanded="false" />
-            <element signature="n#clearDifferentialsUsed#0;n#Score_model#0;n#!!top" expanded="false" />
-            <element signature="n#setHandicapScores#0;n#Score_model#0;n#!!top" expanded="false" />
-            <element signature="n#getHandicapDifferentials#0;n#Score_model#0;n#!!top" expanded="false" />
-            <element signature="n#insertDebug#0;n#Score_model#0;n#!!top" expanded="false" />
-            <marker date="1532318775477" expanded="true" signature="9273:9348" ph="INSERT INTO debug... " />
+            <element signature="n#__construct#0;n#Score#0;n#!!top" expanded="false" />
+            <element signature="n#chooseDate#0;n#Score#0;n#!!top" expanded="false" />
+            <element signature="n#submitDate#0;n#Score#0;n#!!top" expanded="false" />
+            <element signature="n#postByDate#0;n#Score#0;n#!!top" expanded="false" />
+            <element signature="n#submitPost#0;n#Score#0;n#!!top" expanded="false" />
+            <element signature="n#scoreEntryResult#0;n#Score#0;n#!!top" expanded="false" />
+            <element signature="n#editByDate#0;n#Score#0;n#!!top" expanded="false" />
+            <element signature="n#scoreEditResult#0;n#Score#0;n#!!top" expanded="false" />
+            <element signature="n#validateDate#0;n#Score#0;n#!!top" expanded="false" />
+            <element signature="n#validateNotEmpty#0;n#Score#0;n#!!top" expanded="false" />
           </folding>
         </state>
       </provider>

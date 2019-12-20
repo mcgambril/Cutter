@@ -40,7 +40,7 @@ class Handicap extends CI_Controller
         //# of most recent scores available is key on left
         //# of highest recent scores to use in calculations is value on right
         //no more than the 20 most recent scores will ever be used
-        $differentialSchedule = array(    //Formula Update:  Is score set still 20?  How do they 8 match up to the score set amount?
+        $differentialSchedule = array(
             4 => 2,
             5 => 3,
             6 => 3,
@@ -54,10 +54,10 @@ class Handicap extends CI_Controller
             14 => 7,
             15 => 8,
             16 => 8,
-            17 => 9,
-            18 => 9,
-            19 => 10,
-            20 => 10
+            17 => 8,
+            18 => 8,
+            19 => 8,
+            20 => 8
         );
 
         $playerScoreCounts = $this->score_model->getScoreCounts();
@@ -136,8 +136,8 @@ class Handicap extends CI_Controller
             if ($this->validateNotEmpty($playerScoreCounts) == TRUE) {
                 foreach($playerScoreCounts as $row) {
                     $scoreCount = $row->scoreCount;
-                    if ($scoreCount > 20) {  //Formula Update:  is score set still 20?
-                        $scoreCount = 20;    //Formula Update:  is score set still 20?
+                    if ($scoreCount > 20) {
+                        $scoreCount = 20;
                     }
                     else {
                         $scoreCount = $row->scoreCount;
@@ -160,7 +160,6 @@ class Handicap extends CI_Controller
 
                         //This is where the Active_Bug is indicating error
 
-                        //$this->load->view('error_view');      //removed this...repetitive and ugly to show this error view
                         array_push($errorUpdates, $row);
                     }
                 }
@@ -180,7 +179,7 @@ class Handicap extends CI_Controller
     public function calculateHandicapIndex($playerID, $limit) {
         $this->load->model('score_model');
 
-        $constant = 0.96;  //Formula Update:  no longer using the .96 multiplier
+        //$constant = 0.96;  //Formula Update:  no longer using the .96 multiplier
         $playerDifferentials = $this->score_model->getHandicapDifferentials($playerID, $limit);
         if ($playerDifferentials != FALSE) {
             $diffIDs = array();
@@ -193,7 +192,7 @@ class Handicap extends CI_Controller
                     $diffTotal = $diffTotal + $row->scoreDifferential;
                 }
                 $diffAverage = $diffTotal / (count($playerDifferentials));
-                $handicapIndexTemp = $diffAverage * $constant;              //Formula Update:  removing use of constant
+                $handicapIndexTemp = $diffAverage; //$handicapIndexTemp = $diffAverage * $constant;              //Formula Update:  removing use of constant
 
                 //PHP cannot truncate inherently. Use floor to simulate truncating to a single decimal place
                 //potential solution commented below. doesnt seem to work for all instances...if average comes out to too many decimal points, it won't truncate to just 1 decimal
@@ -201,7 +200,7 @@ class Handicap extends CI_Controller
                 //$handicapIndex = floor($handicapIndexTemp * 100) / 100;
                 //if truncating becomes a problem...then move logic to SQL or JS.
 
-                $handicapIndex = $this->truncate($handicapIndexTemp, 1);        //need to add comment on why I am using 1...I think it is number of decimal places desired
+                $handicapIndex = $this->truncate($handicapIndexTemp, 1);
                 return $handicapIndex;
             }
             else {
