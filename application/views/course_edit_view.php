@@ -47,6 +47,11 @@
                                                     <td>' . $row->courseRating . '</td>
                                                     <td><input type="text" name="newCourseRating" id="newCourseRating" class="form-control"></td>
                                                 </tr>
+                                                <tr>
+                                                    <th scope="row">Par:  </th>
+                                                    <td>' . $row->coursePar . '</td>
+                                                    <td><input type="text" name="newCoursePar" id="newCoursePar" class="form-control"></td>
+                                                </tr>
                                             </tbody >
                                         </table >
                                     </div >';

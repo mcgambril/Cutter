@@ -69,6 +69,11 @@ class Course extends CI_Controller
                 'field' => 'courseRating',
                 'label' => 'Course Rating',
                 'rules' => 'required|decimal|trim'
+            ),
+            array(
+                'field' => 'coursePar',
+                'label' => 'Course Par',
+                'rules' => 'required|integer|trim'
             )
         );
 
@@ -81,9 +86,10 @@ class Course extends CI_Controller
             $courseName = $this->input->post('courseName');
             $courseSlope = $this->input->post('courseSlope');
             $courseRating = $this->input->post('courseRating');
+            $coursePar = $this->input->post('coursePar');
             $courseDefault = 0;
 
-            if ($this->course_model->insertCourse($courseName, $courseSlope, $courseRating, $courseDefault) == TRUE) {
+            if ($this->course_model->insertCourse($courseName, $courseSlope, $courseRating, $coursePar, $courseDefault) == TRUE) {
                 $data['title'] = 'Success!';
                 $data['message'] = $courseName . ' was successfully added to the database.';
             }
@@ -155,6 +161,11 @@ class Course extends CI_Controller
                 'field' => 'newCourseSlope',
                 'label' => 'Course Slope',
                 'rules' => 'integer|trim'
+            ),
+            array(
+                'field' => 'newCoursePar',
+                'label' => 'Course Par',
+                'rules' => 'integer|trim'
             )
         );
 
@@ -168,6 +179,7 @@ class Course extends CI_Controller
             $newCourseName = $this->input->post('newCourseName');
             $newCourseSlope = $this->input->post('newCourseSlope');
             $newCourseRating = $this->input->post('newCourseRating');
+            $newCoursePar = $this->input->post('newCoursePar');
 
             $change = FALSE;
             $oldCourse = $this->course_model->getCourse($courseID, 0);
@@ -190,12 +202,19 @@ class Course extends CI_Controller
                     } else {
                         $change = TRUE;
                     }
+
+                    if ($newCoursePar == "" || $newCoursePar == 0 || $newCoursePar == NULL) {
+                        $newCoursePar = $row->coursePar;
+                    } else {
+                        $change = TRUE;
+                    }
                 }
 
                 if ($change == TRUE) {
                     $data['courseName'] = $newCourseName;
                     $data['courseSlope'] = $newCourseSlope;
                     $data['courseRating'] = $newCourseRating;
+                    $data['coursePar'] = $newCoursePar;
 
                     if ($this->course_model->updateCourse($courseID, $data) == TRUE) {
                         $data['title'] = 'Success!';

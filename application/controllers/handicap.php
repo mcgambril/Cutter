@@ -200,6 +200,9 @@ class Handicap extends CI_Controller
                 //$handicapIndex = floor($handicapIndexTemp * 100) / 100;
                 //if truncating becomes a problem...then move logic to SQL or JS.
 
+                //Move the truncate logic to the db and create new model function to send to db for calc
+                //https://www.w3resource.com/mysql/mathematical-functions/mysql-truncate-function.php
+
                 $handicapIndex = $this->truncate($handicapIndexTemp, 1);
                 return $handicapIndex;
             }

@@ -28,6 +28,7 @@
                             <th class="col-md-4">Name</th>
                             <th class="col-md-1 centered">Slope</th>
                             <th class="col-md-1 centered">Rating</th>
+                            <th class="col-md-1 centered">Par</th>
                             <th class="col-md-2 centered">Home Course</th>
                             <!--<th class="col-md-4 centered" colspan="2">Actions</th>-->
                             <th class="col-md-4 centered">Actions</th>
@@ -49,6 +50,7 @@
                                     <td class="col-md-4">' . $row->courseName . '</td>
                                     <td class="col-md-1 centered">' . $row->courseSlope . '</td>
                                     <td class="col-md-1 centered">' . $row->courseRating . '</td>
+                                    <td class="col-md-1 centered">' . $row->coursePar . '</td>
                                     <td class="col-md-2 centered">' . $row->courseDefault . '</td>
                                     <td class="col-md-4">
                                         <a class="btn btn-default smallFont col-xs-12 col-md-6" href="' . base_url("course/edit/" . $row->courseID) . '">Edit</a>

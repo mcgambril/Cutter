@@ -33,6 +33,10 @@
                                 <td>Course Rating.....</td>
                                 <td>' . $courseRating . '</td>
                             </tr>
+                            <tr>
+                                <td>Course Par....</td>
+                                <td>' . $coursePar . '</td>
+                            </tr>
                         </tbody>
                     </table>
                 </div>

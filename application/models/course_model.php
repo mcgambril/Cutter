@@ -100,9 +100,14 @@ class Course_model extends CI_Model {
         }
     }
 
-    public function insertCourse($courseName, $courseRating, $courseSlope, $courseDefault) {
-        $queryString = "INSERT INTO course (courseName, courseRating, courseSlope, courseDefault)
-                        VALUES ('$courseName', $courseSlope, $courseRating, $courseDefault)";
+    //need to test
+    //courseRating and courseSlope are flip flopped in original code, inserting them into each others fields
+    //have just moved them back in place ... not sure if this is bug in prod or if code somehow works around it
+    //works fine in prod - need to understand why
+    //I think it worked fine b/c I passed the params in the right order, so the variable names are abritrary b/c the values are still int he right order
+    public function insertCourse($courseName, $courseSlope, $courseRating, $coursePar, $courseDefault) {
+        $queryString = "INSERT INTO course (courseName, courseSlope, courseRating, coursePar, courseDefault)
+                        VALUES ('$courseName', $courseSlope, $courseRating, $coursePar, $courseDefault)";
 
         if($this->db->query($queryString) == TRUE) {
             return TRUE;

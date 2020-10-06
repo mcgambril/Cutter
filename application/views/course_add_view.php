@@ -41,6 +41,13 @@
                                 <br>
                             </td>
                         </tr>
+                        <tr>
+                            <td class="headingLeft">Par:  </td>
+                            <td class="centered tableData">
+                                <input type="text" name="coursePar" id="coursePar" class="form-control">
+                                <br>
+                            </td>
+                        </tr>
                     </tbody>
                 </table>
                 <br><br>
