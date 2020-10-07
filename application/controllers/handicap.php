@@ -240,6 +240,8 @@ class Handicap extends CI_Controller
             if ($data['getHomeCourseQuery'] != FALSE) {
                 foreach ($data['getHomeCourseQuery'] as $row) {
                     $homeSlope = $row->courseSlope;
+                    $homeRating = $row->courseRating;
+                    $homePar = $row->coursePar;
                 }
 
                 //handicap formula as provided by client (and USGA)
@@ -249,9 +251,9 @@ class Handicap extends CI_Controller
                 //home course would be changed if they were playing at a different course than usual
                 //thus - the 'home course' terminology is probably better phrases as 'current course'
                 $handicapTemp = $handicapIndex * ($homeSlope / 113);  //113 is the slope rating of a course of standard difficulty
-
-                //rounding to nearest whole number
-                $handicap = round($handicapTemp, 0);
+                $handicapTemp = $handicapTemp + ($homeRating - $homePar);
+                $handicapTemp = round($handicapTemp, 3);
+                $handicap = round($handicapTemp,0);
                 return $handicap;
             }
             else {
