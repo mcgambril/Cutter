@@ -54,7 +54,7 @@
                                     <td class="col-md-2 centered">' . $row->courseDefault . '</td>
                                     <td class="col-md-4">
                                         <a class="btn btn-default smallFont col-xs-12 col-md-6" href="' . base_url("course/edit/" . $row->courseID) . '">Edit</a>
-                                        <a class="btn btn-default smallFont col-xs-12 col-md-6" href="' . base_url("course/delete/" . $row->courseID) . '">Delete</a>
+                                        <a class="btn btn-default smallFont col-xs-12 col-md-6 disabled" href="' . base_url("course/delete/" . $row->courseID) . '">Delete</a>
                                     </td>
                                 </tr>
                             ';
