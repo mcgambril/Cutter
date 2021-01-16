@@ -41,18 +41,17 @@ class Handicap extends CI_Controller
         //# of highest recent scores to use in calculations is value on right
         //no more than the 20 most recent scores will ever be used
         $differentialSchedule = array(
-            4 => 2,
-            5 => 3,
-            6 => 3,
-            7 => 4,
-            8 => 4,
-            9 => 5,
-            10 => 5,
-            11 => 6,
+
+            6 => 2,
+            7 => 2,
+            8 => 3,
+            9 => 3,
+            10 => 4,
+            11 => 4,
             12 => 6,
-            13 => 7,
+            13 => 6,
             14 => 7,
-            15 => 8,
+            15 => 7,
             16 => 8,
             17 => 8,
             18 => 8,
@@ -70,14 +69,16 @@ class Handicap extends CI_Controller
             $resetHandicaps = array();
 
             foreach($playerScoreCounts as $key => $row) {
-                if ($row->scoreCount < 4) {
-                    //players w/ less than 4 scores will have handicaps and indexes of TBD
-                    //this is updating them whether they are already set or not in order to cover any players whose score totals fell back below 4
+                if ($row->scoreCount < 6) {
+                    //players w/ less than 6 scores will have handicaps and indexes of TBD
+                    //this is updating them whether they are already set or not in order to cover any players whose score totals fell back below 6
                     $temp = array(
                         'playerID' => $row->scorePlayerID,
                         'playerHandicap' => NULL,
                         'playerHandicapIndex' => NULL
                     );
+                    //Need to add a call to DB to update differentials by setting all to 0 (for those who previously had enough but fell below the line)
+                    //Does not break anything as is.  Just causes confusion when someone with TBD as handicap still has asterisk next to scores on home view
                     array_push($resetHandicaps, $temp);
                     unset($playerScoreCounts[$key]);
                 }
