@@ -166,10 +166,23 @@ class Player_model extends CI_Model {
             return FALSE;
         }
     }
+    
+    public function getPlayerPhoneByID($id) {
+        $this->db->select('playerPhone');
+        $this->db->from('player');
+        $this->db->where('playerID', $id);
+        $getPlayerPhoneByIDQuery = $this->db->get();
+        if ($getPlayerPhoneByIDQuery->num_rows() > 0) {
+            return $getPlayerPhoneByIDQuery->result();
+        }
+        else {
+            return FALSE;
+        }
+    }
 
-    public function insertPlayer($player) {
-        $queryString = "INSERT INTO player (playerName)
-                        VALUES ('$player')";
+    public function insertPlayer($player, $phone) {
+        $queryString = "INSERT INTO player (playerName, playerPhone)
+                        VALUES ('$player', $phone)";
 
         if($this->db->query($queryString) == TRUE) {
             return TRUE;
@@ -245,6 +258,19 @@ class Player_model extends CI_Model {
         }
         else {
             return FALSE;
+        }
+    }
+    
+    public function validateUniquePhone($phone) {
+        $this->db->select('playerPhone');
+        $this->db->from('player');
+        $this->db->where('playerPhone', $phone);
+        $validateUniquePhoneQuery = $this->db->get();
+        if ($validateUniquePhoneQuery->num_rows() > 0) {
+            return FALSE;
+        }
+        else {
+            return TRUE;
         }
     }
 

@@ -12,6 +12,10 @@
     <h1> <?php echo $title ?> </h1>
     <br>
     <h3> <?php echo $message ?> </h3>
+    <?php echo $oldName ?><br>
+    <?php echo $newName ?><br>
+    <?php echo $oldPhone ?><br>
+    <?php echo $newPhone ?><br>
     <br><br>
 </div>
 

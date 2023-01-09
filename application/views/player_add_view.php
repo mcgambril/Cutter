@@ -34,6 +34,13 @@
                                 <br>
                             </td>
                         </tr>
+                        <tr>
+                            <td class="headingLeft col-md-4">Phone #:  </td>
+                            <td class="centered tableData col-md-8 bottomPadTiny">
+                                <input type="number" name="phoneNumber" id="phoneNumber" class="form-control col-md-12">
+                                <br>
+                            </td>
+                        </tr>
                     </tbody>
                 </table>
                 <div class="text-center col-md-8">

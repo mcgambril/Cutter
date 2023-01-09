@@ -24,11 +24,11 @@
                     <table class ="table table-condensed table-bordered noBottomMargin smallFont" style="border-collapse:collapse;">
                         <thead>
                             <tr>
-                                <th class="col-xs-4">Name</th>
+                                <th class="col-xs-3">Name</th>
+                                <th class="col-xs-2">Phone</th>
                                 <th class="col-xs-2">Handicap</th>
                                 <th class="col-xs-2">Index</th>
-                                <!--<th class="col-xs-4 centered" colspan="2">Actions</th>-->
-                                <th class="col-xs-4 centered">Actions</th>
+                                <th class="col-xs-3 centered">Actions</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -39,10 +39,11 @@
                                 foreach($getPlayersAZQuery as $row) {
                                     echo '
                                         <tr>
-                                            <td class="col-xs-4">' . $row->playerName . '</td>
+                                            <td class="col-xs-3">' . $row->playerName . '</td>
+                                            <td class="col-xs-2">' . $row->playerPhone . '</td>
                                             <td class="col-xs-2">' . $row->playerHandicap . '</td>
                                             <td class="col-xs-2">' . $row->playerHandicapIndex . '</td>
-                                            <td class="col-xs-4">
+                                            <td class="col-xs-3">
                                                 <a class="btn btn-default col-xs-12 col-md-6 smallFont" href="' . base_url("player/edit/".$row->playerID) . '">Edit</a>
                                                 <a class="btn btn-default col-xs-12 col-md-6 smallFont" href="' . base_url("player/delete/".$row->playerID) . '">Delete</a>
                                             </td>

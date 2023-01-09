@@ -15,26 +15,28 @@
     </div>
 
     <div class="row">
-        <div class="col-md-5">
+        <div class="col-md-6">
             <?php
                 foreach($getPlayerByIDQuery as $row) {
                     echo '
                         <div class="panel panel-default">
-                            <div class="panel-heading">' . $row->playerName . '&#39s Current Information</div>
+                            <div class="panel-heading"> Current Information for ' . $row->playerName . '</div>
                             <div class="table-responsive">
                                 <table class ="table table-condensed table-bordered" style="border-collapse:collapse;">
                                     <thead>
                                         <tr>
-                                            <th class="col-md-6">Name</th>
-                                            <th class="col-md-3 centered">Handicap</th>
-                                            <th class="col-md-3 centered">Index</th>
+                                            <th class="col-md-4">Name</th>
+                                            <th class="col-md-4 centered">Phone #</th>
+                                            <th class="col-md-2 centered">Handicap</th>
+                                            <th class="col-md-2 centered">Index</th>
                                         </tr>
                                     </thead>
                                     <tbody>
                                         <tr>
-                                            <td class="col-md-6">' . $row->playerName . '</td>
-                                            <td class="col-md-3 centered">' . $row->playerHandicap . '</td>
-                                            <td class="col-md-3 centered">' . $row->playerHandicapIndex . '</td>
+                                            <td class="col-md-4">' . $row->playerName . '</td>
+                                            <td class="col-md-4 centered">' . $row->playerPhone . '</td>
+                                            <td class="col-md-2 centered">' . $row->playerHandicap . '</td>
+                                            <td class="col-md-2 centered">' . $row->playerHandicapIndex . '</td>
                                         </tr>
                                     </tbody>
                                 </table>
@@ -58,7 +60,7 @@
                 <?php foreach ($getPlayerByIDQuery as $row) {
                     echo '<input type = "hidden" name = "playerID" value = "' . $row->playerID . '" />';
                 }?>
-                <h4>Enter the new name for this player:</h4><br>
+                <h4>Enter the new info for this player:</h4><br>
                 <table>
                     <tbody>
                         <tr>
@@ -72,6 +74,13 @@
                             <td class="headingLeft col-md-3">Last Name:  </td>
                             <td class="centered col-md-9 bottomPadTiny">
                                 <input type="text" name="newLastName" id="newLastName" class="form-control col-md-12">
+                                <br>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="headingLeft col-md-3">Phone #:  </td>
+                            <td class="centered col-md-9 bottomPadTiny">
+                                <input type="number" name="newPhone" id="newPhone" class="form-control col-md-12">
                                 <br>
                             </td>
                         </tr>

@@ -8,12 +8,10 @@
  */
  -->
 
-
-
 <div class="container">
 
     <div class="page-header">
-        <h3 class=""><a href="http://cuttergolf.com/"/>CutterGolf.com</a></h3>
+        <h3 class=""><a href="https://cuttergolf.com/2/"/>Cutter Golf 2.0</a></h3>
         <h1>Cutter Handicaps</h1>
     </div>
     <div class="row">

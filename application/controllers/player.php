@@ -68,6 +68,11 @@ class Player extends CI_Controller
                 'field' => 'lastName',
                 'label' => 'Last Name',
                 'rules' => 'required|trim|min_length[1]|max_length[45]|valid_base64'
+            ),
+            array(
+                'field' => 'phoneNumber',
+                'label' => 'Phone Number',
+                'rules' => 'required|exact_length[10]|numeric|callback_validateUniquePhone'
             )
         );
 
@@ -79,8 +84,9 @@ class Player extends CI_Controller
         else {
             $tempFirst = $this->input->post('firstName');
             $tempLast = $this->input->post('lastName');
+            $phone = $this->input->post('phoneNumber');
             $newPlayer = $tempLast . ', ' . $tempFirst;
-            $queryResult = $this->player_model->insertPlayer($newPlayer);
+            $queryResult = $this->player_model->insertPlayer($newPlayer, $phone);
             $this->playerAddResult($newPlayer, $queryResult);
         }
     }
@@ -160,6 +166,11 @@ class Player extends CI_Controller
                 'field' => 'newLastName',
                 'label' => 'Last Name',
                 'rules' => 'required|trim|min_length[1]|max_length[45]'
+            ),
+            array(
+                'field' => 'newPhone',
+                'label' => 'Phone Number',
+                'rules' => 'trim|exact_length[10]|numeric|callback_validateUniquePhone'
             )
         );
 
@@ -167,32 +178,57 @@ class Player extends CI_Controller
         $id = $this->input->post('playerID');
 
         if($this->form_validation->run() == FALSE ) {
-            //redirect('/player/edit/' . $id);
             $this->edit($id);
-            //need to go back to the Edit screen for the current player
         }
         else {
             $temp['oldName'] = $this->player_model->getPlayerNameByID($id);
             if ($temp['oldName'] == FALSE) {
-                $temp['oldName'] = 'The course';
+                $temp['oldName'] = 'The player';
             }
             foreach($temp['oldName'] as $row) {
                 if(isset($row->playerName)) {
                     $oldName = $row->playerName;
                 }
             }
+            //need to run a query to get current phone number for this player
+            $phone['oldPhone'] = $this->player_model->getPlayerPhoneByID($id);
+            foreach($phone['oldPhone'] as $row) {
+                $oldPhone = $row->playerPhone;
+            }
             $newFirst = $this->input->post('newFirstName');
             $newLast = $this->input->post('newLastName');
+            $newPhone = $this->input->post('newPhone');
+            $phoneUpdate = TRUE;
             $newName = $newLast . ', ' . $newFirst;
             $data['playerName'] = $newName;
+            if ($newPhone == "" || is_null($newPhone)) {
+                $data['playerPhone'] = $oldPhone;
+                $phoneUpdate = FALSE;
+            } 
+            else {
+                $data['playerPhone'] = $newPhone; 
+            }
             $queryResult = $this->player_model->updatePlayer($id, $data);
             if ($queryResult == TRUE) {
                 $data['title'] = 'Success!';
-                $data['message'] = "'" . $oldName . "'s' name was changed to '" . $newName . ".'";
+                $data['message'] = 'The information for player ' . $newName . ' was successfully updated.';
+                $data['oldName'] = "Old Name:  " . $oldName;
+                $data['newName'] = "New Name:  " . $newName;
+                $data['oldPhone'] = "Old Phone:  " . $oldPhone;
+                if ($phoneUpdate === TRUE) {
+                    $data['newPhone'] = "New Phone:  " . $newPhone;
+                } 
+                else {
+                    $data['newPhone'] = "";
+                }
             }
             else {
                 $data['title'] = 'Failure';
-                $data['message'] = "'" . $oldName . "'s' name failed to updated to '" . $newName . ".'  Please try again later";
+                $data['message'] = 'The player ' . $oldName . ' failed to update.';
+                $data['oldname'] = '';
+                $data['newName'] = '';
+                $data['oldPhone'] = '';
+                $data['newPhone'] = '';
             }
             $this->playerEditResult($data);
         }
@@ -267,6 +303,22 @@ class Player extends CI_Controller
         $this->load->view('header_view');
         $this->load->view('player_delete_result_view', $data);
         $this->load->view('footer_view');
+    }
+    
+    public function validateUniquePhone($phone) {
+        //read in phone number
+        //run query in db.  It should attempt to select the phone number value
+        //return true if nothing found
+        //return fals if found
+        
+        $this->load->model('player_model');
+        if ($this->player_model->validateUniquePhone($phone)) {
+            return TRUE;
+        }
+        else {
+            $this->form_validation->set_message('validateUniquePhone', 'That phone number already belongs to another player.');
+            return FALSE;
+        }
     }
 
 }
