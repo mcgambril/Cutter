@@ -54,5 +54,23 @@ class Cutteradmin_model extends CI_Model {
             return FALSE;
         }
     }
+    
+    //rename to key record?
+    public function getBets() {
+        $this->db->select('*');
+        $this->db->from('config');
+        $this->db->order_by('displayOrder','asc');
+        $getBetsQuery = $this->db->get();
+        if ($getBetsQuery->num_rows() > 0) {
+            return $getBetsQuery->result();
+        }
+        else {
+            return FALSE;
+        }
+    }
+    
+    public function insertKeyRecord() {
+        
+    }
 
 }

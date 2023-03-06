@@ -126,6 +126,39 @@ class Admin extends CI_Controller {
             $this->load->view('footer_view');
         }
     }
+    
+    public function keyTableIndex() {
+        $this->load->model('cutteradmin_model');
+        
+        //add logic to gracefully handle if no data returned
+        $data['getBetsQuery'] = $this->cutteradmin_model->getBets();
+        
+        $this->load->view('header_view');
+        $this->load->view('admin_key_table_index_view', $data);
+        $this->load->view('footer_view');
+    }
+    
+    public function addKeyRecord() {
+        $this->load->view('header_view');
+        $this->load->view('admin_add_key_record_view');
+        $this->load->view('footer_view');
+    }
+    
+    public function submitNewKeyRecord() {
+        //logic to bring in values for new record and submit to db
+    }
+    
+    public function editKeyRecord() {
+        $this->load->view('header_view');
+        $this->load->view('admin_edit_key_record_view');
+        $this->load->view('footer_view');
+    }
+    
+    public function deleteKeyRecord() {
+        $this->load->view('header_view');
+        $this->load->view('admin_delete_key_record_view');
+        $this->load->view('footer_view');
+    }
 
     public function loadHomeLoggedIn() {
         $this->load->model('course_model');
