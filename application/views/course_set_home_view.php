@@ -16,7 +16,7 @@
         </div>
         <div class="row">
             <div class="col-xs-12 col-md-6">
-                <?php echo validation_errors(); ?>
+                <strong style="color:red"><?php echo validation_errors(); ?></strong>
                 <div class="panel panel-default">
                     <div class="panel-heading">Current Home Course</div>
                     <div class="table" style="overflow:auto;">

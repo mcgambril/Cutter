@@ -56,7 +56,7 @@ class Admin extends CI_Controller {
             return TRUE;
         }
         else {
-            $this->form_validation->set_message('passwordConfirm', 'Invalid Password.');
+            $this->form_validation->set_message('passwordConfirm', 'ERROR:  Invalid Password.');
             return FALSE;
         }
 

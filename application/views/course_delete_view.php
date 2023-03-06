@@ -21,9 +21,11 @@
                 <div class="form-group">
                     <div class="container">
                         <div class="row">
-                            <div class=" noPadLeft col-xs-12 col-md-8">';
+                            <div class=" noPadLeft col-xs-12 col-md-8">
+                            <strong style="color:red">';
                             echo validation_errors();
-                                echo'<div class="panel panel-default">
+                                echo'</strong>
+                                    <div class="panel panel-default">
                                     <div class="panel-heading">' . $row->courseName . '&#39s Current Information</div>
                                     <div class="table" style="overflow:auto;">
                                         <table class ="table table-condensed table-bordered smallFont noBottomMargin" style="border-collapse:collapse;">

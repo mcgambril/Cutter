@@ -55,7 +55,7 @@
     <div class="container">
         <div class="row">
             <br>
-            <?php echo validation_errors(); ?>
+            <strong style="color:red"><?php echo validation_errors(); ?></strong>
             <div class="col-md-5">
                 <?php foreach ($getPlayerByIDQuery as $row) {
                     echo '<input type = "hidden" name = "playerID" value = "' . $row->playerID . '" />';

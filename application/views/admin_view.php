@@ -18,7 +18,7 @@
         <div class="row">
             <div class="col-md-4 leftPadFive">
                 <div class="col-md-12">
-                    <?php echo validation_errors(); ?>
+                    <strong style="color:red"><?php echo validation_errors(); ?></strong>
                     <label for="pwd">Password:</label>
                     <input type="password" name="password" class="form-control col-md-12">
                 </div>

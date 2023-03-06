@@ -18,6 +18,10 @@ class Player extends CI_Controller
         $this->load->model('player_model');
         $data['getPlayersAZQuery'] = $this->player_model->getPlayersAZ();
         if ($data['getPlayersAZQuery'] != FALSE) {
+            $data['getBetsQuery'] = $this->player_model->getBets();
+            if ($data['getBetsQuery'] == FALSE) {
+                $data['getBetsQuery'] = 'empty';
+            }
             foreach($data['getPlayersAZQuery'] as $row) {
                 if ($row->playerHandicap == "" || 0 || null) {
                     $row->playerHandicap = "TBD";
@@ -158,6 +162,8 @@ class Player extends CI_Controller
         $this->load->helper('form');
         $this->load->library('form_validation');
 
+        $callbackID = $this->input->post('playerID');
+        
         $config = array(
             array(
                 'field' => 'newFirstName',
@@ -172,7 +178,7 @@ class Player extends CI_Controller
             array(
                 'field' => 'newPhone',
                 'label' => 'Phone Number',
-                'rules' => 'trim|exact_length[10]|numeric|callback_validateUniquePhone'
+                'rules' => 'trim|exact_length[10]|numeric|callback_validateUniquePhone[' . $callbackID . ']'
             )
         );
 
@@ -307,18 +313,18 @@ class Player extends CI_Controller
         $this->load->view('footer_view');
     }
     
-    public function validateUniquePhone($phone) {
+    public function validateUniquePhone($phone, $id) {
         //read in phone number
         //run query in db.  It should attempt to select the phone number value
         //return true if nothing found
-        //return fals if found
+        //return false if found
         
         $this->load->model('player_model');
-        if ($this->player_model->validateUniquePhone($phone)) {
+        if ($this->player_model->validateUniquePhone($phone, $id)) {
             return TRUE;
         }
         else {
-            $this->form_validation->set_message('validateUniquePhone', 'That phone number already belongs to another player.');
+            $this->form_validation->set_message('validateUniquePhone', 'ERROR:  That phone number already belongs to another player.');
             return FALSE;
         }
     }

@@ -25,7 +25,6 @@ class Cutteradmin_model extends CI_Model {
         else {
             return FALSE;
         }
-
     }
 
     public function insertNewPass($newPass) {

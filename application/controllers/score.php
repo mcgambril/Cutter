@@ -571,7 +571,7 @@ class Score extends CI_Controller {
             return TRUE;
         }
         else {
-            $this->form_validation->set_message('validateDate', 'Cannot enter or edit scores for a future date.');
+            $this->form_validation->set_message('validateDate', 'ERROR:  Cannot enter or edit scores for a future date.');
             return FALSE;
         }
     }

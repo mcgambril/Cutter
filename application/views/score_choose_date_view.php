@@ -18,7 +18,7 @@
                     <h4>Pick the date you would like to post/edit scores for:</h4>
                     <br>
                     <div class="col-md-6">
-                        <?php echo validation_errors(); ?>
+                        <strong style="color:red"><?php echo validation_errors(); ?></strong>
                         <p><strong>Date:  </strong></p>
                         <input type="text" name="datepicker" id="datepicker" class="form-control"> <!--data-date-format="mm-dd-yyyy"--> <!--"yyyy-mm-dd"-->
                         <br>

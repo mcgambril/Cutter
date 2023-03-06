@@ -19,7 +19,7 @@
         <div class="form-group">
             <div class="row">
                 <div class="col-md-5 leftPadFive">
-                    <?php echo validation_errors(); ?>
+                    <strong style="color:red"><?php echo validation_errors(); ?></strong>
                     <table>
                         <tbody>
                             <tr>

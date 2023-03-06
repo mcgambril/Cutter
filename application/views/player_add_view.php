@@ -17,7 +17,7 @@
             <div class="col-md-6">
                 <h4>Enter the name of the player you would like to add to the group:</h4>
                 <br>
-                <?php echo validation_errors(); ?>
+                <strong style="color:red"><?php echo validation_errors(); ?></strong>
                 <table class="col-md-8">
                     <tbody>
                         <tr>

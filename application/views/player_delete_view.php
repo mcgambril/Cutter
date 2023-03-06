@@ -18,7 +18,7 @@
 
     <div class="row">
         <div class="col-md-5">
-            <?php echo validation_errors(); ?>
+            <strong style="color:red"><?php echo validation_errors(); ?></strong>
             <?php foreach($getPlayerByIDQuery as $row) {
                 echo '
                     <div class="panel panel-default">

@@ -52,8 +52,34 @@
                     </div> <!--panel panel-default-->
                 </div> <!--col-md-6-->
             </div> <!--row-->
-
-            <br />
+            <div class="row">
+                <div class="col-xs-12 col-md-6">
+                    <div class="panel panel-default">
+                        <!--<div class="panel-heading">Home Course</div>-->
+                        <div class="table-responsive">  <!--table-responsive-->
+                            <table class ="table table-condensed table-bordered">
+                                <thead>
+                                <tr>
+                                    <th class="homeCourseHeader centered col-xs-4 col-md-4">Symbol</th>
+                                    <th class="homeCourseHeader centered col-xs-8 col-md-8">Description</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td class="centered col-xs-4 col-md-4">♦️</td>
+                                        <td class="centered col-xs-8 col-md-8">NO TUMBLE</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="centered col-xs-4 col-md-4">♠️</td>
+                                        <td class="centered col-xs-8 col-md-8">NO ACE POOL</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!--<br />-->
 
             <div class="row">
                 <div class="col-xs-12 col-md-6">
@@ -64,9 +90,10 @@
                                 <thead>
                                     <tr>
                                         <!--<th class="col-md-3">See Scores</th>-->
+                                        <th class="col-xs-1 col-md-1"></th>
                                         <th class="col-xs-6 col-md-4">Name</th>
                                         <th class="col-xs-3 col-md-4 centered">Handicap</th>
-                                        <th class="col-xs-3 col-md-4 centered">Index</th>
+                                        <th class="col-xs-2 col-md-3 centered">Index</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -79,16 +106,19 @@
                                             ';
                                         }
                                         else {
+                                            $i = 1;
                                             foreach ($getPlayersAndScoresQuery as $row) {
                                                 //echo'
                                                 echo '
                                                 <tr data-toggle="collapse" data-target="#' . $row->playerID . '" class="accordion-toggle pointer">';
                                                 echo '
                                                     <!--<td class="col-md-3"><a class="btn btn-default col-md-12 viewScoresBtn">Scores Details</a></td>-->
+                                                    <td class="col-xs-1 col-md-1 centered">' . $i . '</td>
                                                     <td class="col-xs-6 col-md-4 vertMiddle fixedHeight"><span class="caret"></span> ' . $row->playerName . '</td>
                                                     <td class="col-xs-3 col-md-4 centered fixedHeight">' . $row->playerHandicap . '</td>
-                                                    <td class="col-xs-3 col-md-4 centered fixedHeight">' . $row->playerHandicapIndex . '</td>
+                                                    <td class="col-xs-2 col-md-3 centered fixedHeight">' . $row->playerHandicapIndex . '</td>
                                                 </tr>';
+                                                $i++;
                                                 echo '
                                                 <tr id="' . $row->playerID . '" class="collapse noHover">';
                                                 /*<td colspan="1" class="scoresTitle">Last ' . $row->playerScoreCount . ' Score(s):  </td>*/

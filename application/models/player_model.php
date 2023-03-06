@@ -261,16 +261,39 @@ class Player_model extends CI_Model {
         }
     }
     
-    public function validateUniquePhone($phone) {
+    public function validateUniquePhone($phone, $id) {
         $this->db->select('playerPhone');
         $this->db->from('player');
-        $this->db->where('playerPhone', $phone);
+        if ($id == "" || is_null($id)) {
+            $whereClause = "playerPhone = '" . $phone ."'"; 
+        }
+        else {
+            $whereClause = "playerPhone = '" . $phone . "' and playerID <> " . $id;
+        }
+        $this->db->where($whereClause);
         $validateUniquePhoneQuery = $this->db->get();
-        if ($validateUniquePhoneQuery->num_rows() > 0) {
+        if ($phone == "" || is_null($phone)) {
+            return TRUE;
+        }
+        elseif ($validateUniquePhoneQuery->num_rows() > 0) {
             return FALSE;
         }
         else {
             return TRUE;
+        }
+    }
+    
+    public function getBets() {
+        $this->db->select('symbol, description');
+        $this->db->from('config');
+        $this->db->where('displayToggle', '1');
+        $this->db->order_by('displayOrder','asc');
+        $getBetsQuery = $this->db->get();
+        if ($getBetsQuery->num_rows() > 0) {
+            return $getBetsQuery->result();
+        }
+        else {
+            return FALSE;
         }
     }
 

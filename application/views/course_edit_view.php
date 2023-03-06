@@ -15,7 +15,7 @@
         <div class="form-group">
             <div class="container">
                 <div class="row col-md-8">
-                    <?php echo validation_errors(); ?>
+                    <strong style="color:red"><?php echo validation_errors(); ?></strong>
                     <div class="panel panel-default">
                         <div class="panel-heading"><?php echo $courseName ?> Course Information</div>
 

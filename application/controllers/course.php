@@ -441,7 +441,7 @@ class Course extends CI_Controller
         }
 
         if ($value == FALSE) {
-            $this->form_validation->set_message('uniqueName', 'A course with this name already exists.');
+            $this->form_validation->set_message('uniqueName', 'ERROR:  A course with this name already exists.');
             return FALSE;
         }
         else {
