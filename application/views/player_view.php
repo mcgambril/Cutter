@@ -18,10 +18,38 @@
     </div>
     </div>
     
-    <div class="row">
+                <div class="row">
+                <div class="col-xs-12 col-md-6">
+                    <div class="panel panel-default">
+                        <!--<div class="panel-heading">Home Course</div>-->
+                        <div class="table-responsive">  <!--table-responsive-->
+                            <table class ="table table-condensed table-bordered">
+                                <thead>
+                                <tr>
+                                    <th class="homeCourseHeader centered col-xs-4 col-md-4">Symbol</th>
+                                    <th class="homeCourseHeader centered col-xs-8 col-md-8">Description</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td class="centered col-xs-4 col-md-4">♦️</td>
+                                        <td class="centered col-xs-8 col-md-8">NO TUMBLE</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="centered col-xs-4 col-md-4">♠️</td>
+                                        <td class="centered col-xs-8 col-md-8">NO ACE POOL</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+    
+   <!-- <div class="row">
         <div class="col-xs-12 col-md-6">
             <div class="panel panel-default">
-                <div class="table-responsive">  <!--table-responsive-->
+                <div class="table-responsive">  
                     <table class ="table table-condensed table-bordered">
                         <thead>
                             <tr>
@@ -48,7 +76,7 @@
                 </div>
             </div>
         </div>
-    </div>
+    </div>-->
 
     <div class="row">
         <div class="col-md-8 col-xs-12">
